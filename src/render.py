@@ -209,11 +209,50 @@ def _motif_circuito(img: Image.Image, st: dict, rng: random.Random) -> None:
         draw.ellipse([ex - 6, ey - 6, ex + 6, ey + 6], outline=cor, width=3)
 
 
+def _motif_radar(img: Image.Image, st: dict, rng: random.Random) -> None:
+    """Destaque: radar com varredura e alvos detectados."""
+    w, h = img.size
+    draw = ImageDraw.Draw(img)
+    cx, cy = int(w * 0.80), int(h * 0.30)
+    raio = int(w * 0.62)
+
+    # anéis e eixos
+    for i in range(1, 6):
+        r = raio * i // 5
+        draw.ellipse([cx - r, cy - r, cx + r, cy + r],
+                     outline=_mix(st["accent"], config.BG, 0.80), width=2)
+    draw.line([(cx - raio, cy), (cx + raio, cy)], fill=_mix(st["accent"], config.BG, 0.85), width=1)
+    draw.line([(cx, cy - raio), (cx, cy + raio)], fill=_mix(st["accent"], config.BG, 0.85), width=1)
+
+    # varredura: leque de raios cada vez mais apagados
+    inicio = rng.uniform(150, 230)
+    for k in range(40):
+        ang = math.radians(inicio - k * 1.6)
+        t = k / 40
+        draw.line(
+            [(cx, cy), (cx + raio * math.cos(ang), cy - raio * math.sin(ang))],
+            fill=_mix(st["accent"], config.BG, 0.45 + t * 0.53),
+            width=3,
+        )
+
+    # alvos detectados
+    for _ in range(7):
+        ang = math.radians(rng.uniform(0, 360))
+        r = rng.uniform(0.2, 0.95) * raio
+        x, y = cx + r * math.cos(ang), cy - r * math.sin(ang)
+        tam = rng.choice([5, 7, 9])
+        cor = _mix(st["second"], config.BG, rng.uniform(0.25, 0.55))
+        draw.ellipse([x - tam, y - tam, x + tam, y + tam], fill=cor)
+        draw.ellipse([x - tam * 2.2, y - tam * 2.2, x + tam * 2.2, y + tam * 2.2],
+                     outline=cor, width=2)
+
+
 _MOTIFS = {
     "ondas": _motif_ondas,
     "scanlines": _motif_scanlines,
     "grade": _motif_grade,
     "circuito": _motif_circuito,
+    "radar": _motif_radar,
 }
 
 
@@ -297,6 +336,8 @@ def _slide_capa(draw, w, h, pad, slide, st, index, total) -> None:
     )
     chip_h = int(w * 0.024) + int(w * 0.024 * 0.9)
     extra = int(w * 0.055) if total > 1 else 0
+    if slide.get("fonte"):
+        extra += int(w * 0.060)
     bloco = chip_h + int(w * 0.045) + len(lines) * leading + int(w * 0.030) + extra
     y = top + max(0, (bottom - top - bloco) // 2)
 
@@ -308,9 +349,18 @@ def _slide_capa(draw, w, h, pad, slide, st, index, total) -> None:
     y += int(w * 0.022)
     draw.rectangle([pad, y, pad + int(w * 0.16), y + 7], fill=st["second"])
 
+    if slide.get("fonte"):
+        y += int(w * 0.034)
+        draw.text(
+            (pad, y),
+            f"fonte: {slide['fonte']}",
+            font=_font("mono", int(w * 0.022)),
+            fill=config.MUTED,
+        )
+
     if total > 1:
         draw.text(
-            (pad, y + int(w * 0.028)),
+            (pad, y + int(w * 0.040)),
             "arraste \u2192",
             font=_font("mono", int(w * 0.026)),
             fill=config.MUTED,
