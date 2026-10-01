@@ -40,6 +40,44 @@ Confira no [Token Inspector](https://www.linkedin.com/developers/tools/oauth/tok
 
 Documentação oficial: [Developer Portal Tools](https://learn.microsoft.com/en-us/linkedin/shared/authentication/developer-portal-tools).
 
+## Alternativa ao Token Generator: fluxo manual com `localhost`
+
+Use se o Token Generator não aparecer para o seu app. Redirect URL do app:
+`http://localhost:8080/callback`.
+
+1. No app, aba **Auth** → *Authorized redirect URLs for your app* → **Add redirect URL** → cole `http://localhost:8080/callback` e salve. A URL precisa ser idêntica, caractere por caractere.
+2. Abra este endereço no navegador (já com o seu Client ID), logado no LinkedIn:
+
+   ```
+   https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77h1pbpeug4k88&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fcallback&state=techdim&scope=openid%20profile%20w_member_social
+   ```
+3. Autorize. O navegador vai para `localhost:8080/callback?code=...` e mostra erro de página: é normal, não há nada rodando ali. **Copie o valor depois de `code=`** da barra de endereço. Ele vale ~30 minutos e só pode ser usado uma vez.
+4. Troque o código pelo token **no seu computador** (o Client Secret não sai dele):
+
+   ```bash
+   curl -X POST https://www.linkedin.com/oauth/v2/accessToken \
+     -d grant_type=authorization_code \
+     -d code=COLE_O_CODE \
+     -d redirect_uri=http://localhost:8080/callback \
+     -d client_id=77h1pbpeug4k88 \
+     -d client_secret=SEU_CLIENT_SECRET
+   ```
+   A resposta traz `access_token` (copie) e `expires_in` (≈ 5 184 000 s = 60 dias).
+
+## Links diretos para cadastrar no GitHub
+
+| O quê | Tipo | Link |
+|---|---|---|
+| `LINKEDIN_ACCESS_TOKEN` | Secret | [criar](https://github.com/Techdimbr/Publi-midia-Techdim/settings/secrets/actions/new) |
+| `LINKEDIN_URN` | Variable | [criar](https://github.com/Techdimbr/Publi-midia-Techdim/settings/variables/actions/new) |
+| `META_ACCESS_TOKEN` (trocar o token) | Secret | [editar](https://github.com/Techdimbr/Publi-midia-Techdim/settings/secrets/actions/META_ACCESS_TOKEN) |
+| `ANTHROPIC_API_KEY` (opcional) | Secret | [criar](https://github.com/Techdimbr/Publi-midia-Techdim/settings/secrets/actions/new) |
+| Todos os Secrets | — | [lista](https://github.com/Techdimbr/Publi-midia-Techdim/settings/secrets/actions) |
+| Todas as Variables | — | [lista](https://github.com/Techdimbr/Publi-midia-Techdim/settings/variables/actions) |
+
+Só `LINKEDIN_ACCESS_TOKEN` e `LINKEDIN_URN` são necessários. O **Client ID** e o
+**Client Secret** do app **não** vão para o GitHub: a automação usa o token.
+
 ## 3. Cadastre o token no GitHub
 
 Direto no GitHub, nunca no chat:
