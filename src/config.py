@@ -136,10 +136,10 @@ THEME_TARGETS = {
 }
 
 THEME_LABELS = {
-    "noticias": "Notícias de Tecnologia & IA",
-    "hacker": "Tecnologia Hacker",
-    "dica": "Dica / Conhecimento",
-    "servico": "Anúncio de Serviço",
+    "noticias": "Notícias de Tecnologia",
+    "hacker": "Cibersegurança · IA · Hacker",
+    "dica": "Conhecimento",
+    "servico": "TECHDIM · Serviços",
     "destaque": "Destaque do Dia",
     "especial": "TECHDIM + IA",
 }

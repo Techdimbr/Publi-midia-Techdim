@@ -53,9 +53,9 @@ HASHTAGS = {
         "instagram": "#ciberseguranca #seguranca #hacker #ti #infraestrutura #techdim #campinas",
     },
     "dica": {
-        "linkedin": "#CiberSeguranca #InfraestruturaDeTI #GestaoDeTI #TECHDIM",
-        "facebook": "#TECHDIM #DicaDeTI #Seguranca #Campinas",
-        "instagram": "#dicadeti #ciberseguranca #ti #infraestrutura #techdim #campinas #devsecops",
+        "linkedin": "#Conhecimento #TI #CiberSeguranca #GestaoDeTI #TECHDIM",
+        "facebook": "#TECHDIM #AprendaTI #Tecnologia #Campinas",
+        "instagram": "#conhecimento #aprendati #tecnologia #ti #ciberseguranca #techdim #campinas",
     },
     "especial": {
         "linkedin": "#TECHDIM #InteligenciaArtificial #ClaudeCode #Gemini #AutomacaoEmpresarial",
@@ -86,6 +86,7 @@ class Post:
     fontes: list[tuple[str, str]] = field(default_factory=list)  # (nome, url)
     curado_por_ia: bool = False
     motivo: str = ""  # por que esta pauta foi escolhida (curadoria)
+    origem: str = ""  # "routine" quando veio da pauta do dia escrita pelo Claude
 
     @property
     def label(self) -> str:
@@ -363,10 +364,59 @@ def _destaque(today: dt.date, theme: str = "destaque", pasta: str = "destaques")
     )
 
 
+# ---------------------------------------------------------------- pauta do dia
+
+PAUTA = ("noticias", "hacker", "dica", "servico")
+
+
+def _da_pauta(theme: str, today: dt.date) -> Post | None:
+    """Post escrito pela Routine em content/diario/AAAA-MM-DD/<tema>.json.
+
+    Arquivo ausente ou malformado devolve None: quem chama cai no conteúdo de
+    reserva (RSS ou acervo), para o horário nunca ficar vazio.
+    """
+    path = CONTENT_DIR / "diario" / today.isoformat() / f"{theme}.json"
+    if not path.exists():
+        return None
+    try:
+        item = json.loads(path.read_text(encoding="utf-8"))
+        titulo = item["titulo"].strip()
+        pontos = [p.strip() for p in item["pontos"] if p and p.strip()]
+    except (json.JSONDecodeError, KeyError, AttributeError, TypeError) as exc:
+        log.warning("pauta do dia %s inválida (%s); usando reserva", path.name, exc)
+        return None
+    if not titulo or len(pontos) < 2:
+        log.warning("pauta do dia %s incompleta; usando reserva", path.name)
+        return None
+    return Post(
+        theme=theme,
+        titulo=titulo,
+        pontos=pontos[:4],
+        fecho=item.get("fecho", ""),
+        fontes=[tuple(f) for f in item.get("fontes", []) if len(f) == 2],
+        motivo=item.get("motivo", ""),
+        origem="routine",
+    )
+
+
+def _semente(texto: str) -> int:
+    """Número estável a partir de um texto (hash() do Python muda a cada execução)."""
+    return sum(ord(c) for c in texto)
+
+
 def build(theme: str, today: dt.date | None = None) -> Post:
-    """Monta o post do tema para a data dada (determinístico por dia)."""
+    """Monta o post do tema para a data dada (determinístico por dia).
+
+    Ordem: pauta do dia escrita pela Routine; depois a curadoria por IA ou o
+    filtro de RSS (notícias); por fim o acervo autoral (conhecimento e serviços).
+    """
     today = today or dt.date.today()
     seed = today.toordinal()
+
+    if theme in PAUTA:
+        post = _da_pauta(theme, today)
+        if post:
+            return post
 
     if theme in FEEDS:
         post = _from_feeds(theme, seed)
@@ -375,7 +425,7 @@ def build(theme: str, today: dt.date | None = None) -> Post:
         # Nenhum feed respondeu: não deixa o horário vazio, publica peça autoral.
         log.warning("tema %s sem notícia disponível; usando conteúdo autoral", theme)
         alt_theme, alt_file = _FALLBACK[theme]
-        return _from_pool(alt_theme, alt_file, seed + hash(theme) % 7)
+        return _from_pool(alt_theme, alt_file, seed + _semente(theme) % 7)
 
     if theme == "dica":
         return _from_pool("dica", "dicas.json", seed)

@@ -123,18 +123,45 @@ rede. Credenciais nunca entram no registro (o branch é público).
 
 Link direto do dia: `https://github.com/Techdimbr/Publi-midia-Techdim/tree/assets/registros/AAAA-MM-DD`
 
-## Agendamento
+## Agendamento e pauta do dia
 
-| Quem agenda | O quê | Quando (Brasília) |
+Quatro temas por dia: duas de informação, uma de conhecimento e uma de
+propaganda.
+
+| Horário (Brasília) | Tema | O que sai |
 |---|---|---|
-| Routine do Claude "TECHDIM — Destaque do Dia" | pesquisa a notícia, confere em 2 fontes, grava `content/destaques/AAAA-MM-DD.json` e dispara este workflow | 07:52 |
-| GitHub Actions (`publicar.yml`) | Tecnologia Hacker | 11:07 |
-| GitHub Actions (`publicar.yml`) | Dica / Conhecimento | 14:23 |
-| GitHub Actions (`publicar.yml`) | Anúncio de Serviço | 17:23 |
+| 08:00 | Notícias de Tecnologia | notícia do dia relevante para empresas, conferida em 2 fontes |
+| 11:07 | Cibersegurança · IA · Hacker | alerta ou notícia de segurança, conferida em 2 fontes |
+| 14:23 | Conhecimento | ensino ou instrução passo a passo, com a documentação oficial como fonte |
+| 17:23 | TECHDIM · Serviços | propaganda de um serviço, um diferente a cada dia |
 
-Os dois rodam na nuvem (Anthropic e GitHub): nenhum computador precisa
-estar ligado. Os horários do GitHub Actions costumam atrasar alguns
-minutos — às vezes mais de uma hora em dias de fila cheia.
+Às 07:52 a Routine do Claude "TECHDIM — Pauta do Dia" pesquisa e escreve os
+quatro posts em `content/diario/AAAA-MM-DD/` (`noticias.json`, `hacker.json`,
+`dica.json`, `servico.json`), num único commit, e publica o das 08:00. Os outros
+três saem pelos horários do GitHub Actions, lendo esses arquivos.
+
+Se um arquivo do dia faltar ou estiver malformado, aquele horário usa o
+conteúdo de reserva — RSS com filtro (notícias) ou o acervo autoral
+(conhecimento e serviços) — e nunca fica vazio.
+
+Formato de cada arquivo:
+
+```json
+{
+  "titulo": "até 90 caracteres",
+  "pontos": ["até 170 caracteres", "...", "..."],
+  "fecho": "até 130 caracteres",
+  "motivo": "por que esta pauta foi escolhida",
+  "fontes": [["dominio.com.br", "https://..."]]
+}
+```
+
+Tudo roda na nuvem (Anthropic e GitHub): nenhum computador precisa estar
+ligado. Os horários do GitHub Actions podem atrasar — os registros do dia
+gravam a hora real de cada post, para acompanhar isso.
+
+**Publicação sob demanda:** `content/especiais/AAAA-MM-DD.json` e o workflow
+disparado manualmente com `tema=especial`.
 
 ## Manutenção
 

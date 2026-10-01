@@ -1,12 +1,13 @@
 name: Publicar
 
+# Pauta do dia: às 07:52 (Brasília) a Routine do Claude escreve os 4 posts do
+# dia em content/diario/AAAA-MM-DD/ e dispara este workflow com tema=noticias.
+# Os outros três saem pelos horários abaixo, lendo esses arquivos; sem o
+# arquivo do dia, cada horário usa o conteúdo de reserva (RSS ou acervo).
 # Horários em UTC. Brasília é UTC-3, sem horário de verão desde 2019.
-#   08:00 BRT = Destaque do Dia — não está aqui: uma Routine do Claude
-#               pesquisa a notícia, grava content/destaques/AAAA-MM-DD.json
-#               em main e dispara este workflow com tema=destaque.
-#   14:07 UTC = 11:07 BRT   (Tecnologia Hacker)
-#   17:23 UTC = 14:23 BRT   (Dica / Conhecimento)
-#   20:23 UTC = 17:23 BRT   (Anúncio de Serviço)
+#   14:07 UTC = 11:07 BRT   (Cibersegurança · IA · Hacker)
+#   17:23 UTC = 14:23 BRT   (Conhecimento)
+#   20:23 UTC = 17:23 BRT   (TECHDIM · Serviços)
 # Os minutos são deslocados de propósito: cron no minuto 0 concentra a fila
 # do GitHub e costuma atrasar vários minutos.
 
