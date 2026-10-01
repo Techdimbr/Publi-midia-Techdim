@@ -49,5 +49,31 @@
       "instagram": "https://www.instagram.com/p/Dd-B-K8jMIs/",
       "linkedin": ""
     }
+  },
+  {
+    "hora": "20:59",
+    "tema": "servico",
+    "titulo": "Backup gerenciado e recuperação testada",
+    "curadoria": "acervo autoral",
+    "arquivo": "20h59-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "não configurado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132562783390486",
+      "instagram": "https://www.instagram.com/p/Dd-JVV4lDEb/",
+      "instagram_stories": "",
+      "linkedin": ""
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132562783390486",
+      "instagram": "18629863453018014"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]

@@ -29,3 +29,12 @@
 {"hora": "20:16:01", "teste": true, "tema": "Conhecimento", "origem": "disparo manual", "link": "", "rede": "facebook", "tipo": "ensaio", "detalhe": "4 imagem(ns) geradas; nada publicado"}
 {"hora": "20:16:01", "teste": true, "tema": "Conhecimento", "origem": "disparo manual", "link": "", "rede": "instagram", "tipo": "ensaio", "detalhe": "4 imagem(ns) geradas; nada publicado"}
 {"hora": "20:16:15", "teste": true, "tipo": "observacao", "detalhe": "Teste do workflow Registrar movimento: diario de movimentacoes ativado", "tema": "", "rede": "", "link": "", "origem": "manual (Techdimbr)"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36943592509", "tipo": "iniciado", "detalhe": "execução iniciada"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "", "tipo": "planejado", "detalhe": "pauta: Backup gerenciado e recuperação testada — curadoria: acervo autoral"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "", "rede": "linkedin", "tipo": "gerado", "detalhe": "1 imagem(ns)"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "", "rede": "linkedin", "tipo": "pulado", "detalhe": "não configurado"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "", "rede": "facebook", "tipo": "gerado", "detalhe": "4 imagem(ns)"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "https://www.facebook.com/122132402349390486/posts/122132562783390486", "rede": "facebook", "tipo": "publicado", "detalhe": "id 1167193706481148_122132562783390486"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "https://www.facebook.com/122132402349390486/posts/122132562783390486", "rede": "facebook", "tipo": "comentou", "detalhe": "primeiro comentário com fontes e site"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "", "rede": "instagram", "tipo": "gerado", "detalhe": "4 imagem(ns)"}
+{"hora": "20:59:49", "teste": false, "tema": "TECHDIM · Serviços", "origem": "agendamento automático", "link": "https://www.instagram.com/p/Dd-JVV4lDEb/", "rede": "instagram", "tipo": "publicado", "detalhe": "id 18629863453018014"}
