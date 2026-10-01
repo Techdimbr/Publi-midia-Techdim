@@ -34,3 +34,4 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 20:16 | 🧪 ensaio | Conhecimento | linkedin | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
 | 20:16 | 🧪 ensaio | Conhecimento | facebook | 4 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
 | 20:16 | 🧪 ensaio | Conhecimento | instagram | 4 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 20:16 | 📝 observacao |  |  | Teste do workflow Registrar movimento: diario de movimentacoes ativado | manual (Techdimbr) | 🧪 |  |

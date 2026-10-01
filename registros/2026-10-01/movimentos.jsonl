@@ -28,3 +28,4 @@
 {"hora": "20:16:01", "teste": true, "tema": "Conhecimento", "origem": "disparo manual", "link": "", "rede": "linkedin", "tipo": "ensaio", "detalhe": "1 imagem(ns) geradas; nada publicado"}
 {"hora": "20:16:01", "teste": true, "tema": "Conhecimento", "origem": "disparo manual", "link": "", "rede": "facebook", "tipo": "ensaio", "detalhe": "4 imagem(ns) geradas; nada publicado"}
 {"hora": "20:16:01", "teste": true, "tema": "Conhecimento", "origem": "disparo manual", "link": "", "rede": "instagram", "tipo": "ensaio", "detalhe": "4 imagem(ns) geradas; nada publicado"}
+{"hora": "20:16:15", "teste": true, "tipo": "observacao", "detalhe": "Teste do workflow Registrar movimento: diario de movimentacoes ativado", "tema": "", "rede": "", "link": "", "origem": "manual (Techdimbr)"}
