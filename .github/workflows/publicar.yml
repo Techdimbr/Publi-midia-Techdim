@@ -1,7 +1,9 @@
 name: Publicar
 
 # Horários em UTC. Brasília é UTC-3, sem horário de verão desde 2019.
-#   11:07 UTC = 08:07 BRT   (Notícias de Tecnologia & IA)
+#   08:00 BRT = Destaque do Dia — não está aqui: uma Routine do Claude
+#               pesquisa a notícia, grava content/destaques/AAAA-MM-DD.json
+#               em main e dispara este workflow com tema=destaque.
 #   14:07 UTC = 11:07 BRT   (Tecnologia Hacker)
 #   17:23 UTC = 14:23 BRT   (Dica / Conhecimento)
 #   20:23 UTC = 17:23 BRT   (Anúncio de Serviço)
@@ -10,7 +12,6 @@ name: Publicar
 
 on:
   schedule:
-    - cron: "7 11 * * *"
     - cron: "7 14 * * *"
     - cron: "23 17 * * *"
     - cron: "23 20 * * *"
@@ -57,7 +58,6 @@ jobs:
         id: tema
         run: |
           case "${{ github.event.schedule }}" in
-            "7 11 * * *")  tema=noticias ;;
             "7 14 * * *")  tema=hacker   ;;
             "23 17 * * *") tema=dica     ;;
             "23 20 * * *") tema=servico  ;;
@@ -92,7 +92,7 @@ jobs:
           "
 
       - name: Guardar as imagens para conferência
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: imagens-${{ steps.tema.outputs.tema }}-${{ github.run_id }}
           path: out/
