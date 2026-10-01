@@ -56,7 +56,7 @@ jobs:
           TESTE: ${{ inputs.teste }}
         run: |
           set -euo pipefail
-          git clone -q --depth 1 --branch assets \\
+          git clone -q --depth 1 --branch assets \
             "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
