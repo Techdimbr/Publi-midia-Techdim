@@ -13,6 +13,7 @@ from dataclasses import dataclass, field
 import feedparser
 
 import config
+import curator
 
 log = logging.getLogger(__name__)
 
@@ -78,6 +79,7 @@ class Post:
     pontos: list[str]
     fecho: str = ""
     fontes: list[tuple[str, str]] = field(default_factory=list)  # (nome, url)
+    curado_por_ia: bool = False
 
     @property
     def label(self) -> str:
@@ -251,6 +253,22 @@ def _fetch_entries(sources: list[tuple[str, str]], max_age_hours: int = 48) -> l
 
 
 def _from_feeds(theme: str, seed: int) -> Post | None:
+    if curator.disponivel():
+        candidatos = [
+            e for e in _fetch_entries(FEEDS[theme])
+            if not any(bad in f"{e['title']} {e['summary']}".lower() for bad in BLOCK)
+        ][:25]
+        try:
+            c = curator.curar(theme, candidatos)
+        except curator.CuradoriaIndisponivel as exc:
+            log.warning("curadoria por IA indisponível (%s); usando filtro por palavra-chave", exc)
+        else:
+            return Post(theme=theme, titulo=c["titulo"], pontos=c["pontos"],
+                        fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True)
+    return _from_feeds_palavra_chave(theme, seed)
+
+
+def _from_feeds_palavra_chave(theme: str, seed: int) -> Post | None:
     entries = [
         e
         for e in _fetch_entries(FEEDS[theme])

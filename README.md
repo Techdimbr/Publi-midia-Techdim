@@ -23,6 +23,11 @@ Cada execução:
 1. **monta o conteúdo** — temas 1 e 2 buscam manchetes reais em feeds RSS
    (priorizando fontes em português) e filtram o que não é pauta técnica;
    temas 3 e 4 giram um acervo autoral em `content/`;
+   Com `ANTHROPIC_API_KEY` configurada, os temas de notícia passam pela
+   **curadoria por IA**: o Claude escolhe a manchete mais útil para empresas,
+   lê a matéria e escreve dois fatos e uma recomendação prática. Sem a chave,
+   ou se a API falhar, vale o filtro por palavra-chave. O resumo da execução
+   no Actions mostra qual curadoria foi usada;
 2. **renderiza as imagens** no formato ideal de cada rede, com arte generativa
    própria do tema;
 3. **publica as imagens** num branch `assets`, que lhes dá URL pública (o
@@ -67,6 +72,7 @@ Em **Settings → Secrets and variables → Actions → Secrets**:
 |---|---|
 | `META_ACCESS_TOKEN` | token de longa duração da Página do Facebook (serve também para o Instagram) |
 | `LINKEDIN_ACCESS_TOKEN` | token do app LinkedIn |
+| `ANTHROPIC_API_KEY` | chave da API da Anthropic, para a curadoria das notícias por IA (opcional) |
 
 ### 2. Variables (não são sigilosos)
 

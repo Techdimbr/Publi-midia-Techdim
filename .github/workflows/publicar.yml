@@ -44,9 +44,9 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -73,6 +73,7 @@ jobs:
       - name: Gerar conteúdo e imagens
         env:
           PYTHONPATH: src
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python src/main.py generate \
             --theme "${{ steps.tema.outputs.tema }}" \
@@ -84,13 +85,14 @@ jobs:
           import json, pathlib
           m = json.loads(pathlib.Path('out/manifest.json').read_text('utf-8'))
           print('Título:', m['titulo'])
+          print('Curadoria:', m.get('curadoria'))
           for rede, d in m['networks'].items():
               print(f'\n===== {rede} =====')
               print(d['caption'])
           "
 
       - name: Guardar as imagens para conferência
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: imagens-${{ steps.tema.outputs.tema }}-${{ github.run_id }}
           path: out/

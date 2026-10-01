@@ -40,13 +40,15 @@ def _today() -> dt.date:
 def generate(theme: str, networks: list[str]) -> dict:
     today = _today()
     post = content.build(theme, today)
-    log.info("tema=%s titulo=%r", theme, post.titulo)
+    log.info("tema=%s titulo=%r curadoria=%s", theme, post.titulo,
+             "ia" if post.curado_por_ia else "palavra-chave")
 
     stamp = today.isoformat()
     manifest = {
         "theme": theme,
         "date": stamp,
         "titulo": post.titulo,
+        "curadoria": "ia" if post.curado_por_ia else "palavra-chave",
         "networks": {},
     }
 
@@ -154,7 +156,7 @@ def _summary(
     linhas = [
         f"### {config.THEME_LABELS.get(manifest['theme'], manifest['theme'])}",
         "",
-        f"**{manifest['titulo']}** — {manifest['date']}",
+        f"**{manifest['titulo']}** — {manifest['date']} — curadoria: {manifest.get('curadoria', '-')}",
         "",
     ]
     for ok in sucessos:
