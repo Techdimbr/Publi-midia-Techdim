@@ -43,6 +43,12 @@ THEME_STYLE = {
         "motif": "circuito",
         "glyph": "##",
     },
+    "especial": {
+        "accent": "#FFB000",   # âmbar da marca: anúncio institucional sob demanda
+        "second": "#4DA3FF",
+        "motif": "ondas",
+        "glyph": "++",
+    },
     "destaque": {
         "accent": "#FF8A00",   # laranja de alerta: notícia curada do dia
         "second": "#FF3B30",
@@ -126,6 +132,7 @@ THEME_TARGETS = {
     "dica": ["linkedin", "facebook", "instagram"],
     "servico": ["linkedin", "facebook", "instagram"],
     "destaque": ["linkedin", "facebook", "instagram"],
+    "especial": ["linkedin", "facebook", "instagram"],
 }
 
 THEME_LABELS = {
@@ -134,4 +141,5 @@ THEME_LABELS = {
     "dica": "Dica / Conhecimento",
     "servico": "Anúncio de Serviço",
     "destaque": "Destaque do Dia",
+    "especial": "TECHDIM + IA",
 }

@@ -40,6 +40,8 @@ def _today() -> dt.date:
 
 
 def _curadoria(post) -> str:
+    if post.theme == "especial":
+        return "publicação especial, escrita sob demanda"
     if post.theme == "destaque":
         return "Claude (Routine) — notícia pesquisada e conferida em 2 fontes"
     if post.curado_por_ia:

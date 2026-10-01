@@ -57,6 +57,11 @@ HASHTAGS = {
         "facebook": "#TECHDIM #DicaDeTI #Seguranca #Campinas",
         "instagram": "#dicadeti #ciberseguranca #ti #infraestrutura #techdim #campinas #devsecops",
     },
+    "especial": {
+        "linkedin": "#TECHDIM #InteligenciaArtificial #ClaudeCode #Gemini #AutomacaoEmpresarial",
+        "facebook": "#TECHDIM #IA #Automacao #Campinas",
+        "instagram": "#inteligenciaartificial #ia #claudecode #gemini #automacao #techdim #campinas",
+    },
     "destaque": {
         "linkedin": "#InteligenciaArtificial #CiberSeguranca #AgentesDeIA #TECHDIM",
         "facebook": "#TECHDIM #IA #Seguranca #Campinas",
@@ -336,16 +341,20 @@ _FALLBACK = {
 }
 
 
-def _destaque(today: dt.date) -> Post:
-    """Notícia curada à mão para o dia: content/destaques/AAAA-MM-DD.json."""
-    path = CONTENT_DIR / "destaques" / f"{today.isoformat()}.json"
+def _destaque(today: dt.date, theme: str = "destaque", pasta: str = "destaques") -> Post:
+    """Post escrito para o dia: content/<pasta>/AAAA-MM-DD.json.
+
+    "destaques" é a notícia curada pela Routine; "especiais" são anúncios
+    escritos sob demanda.
+    """
+    path = CONTENT_DIR / pasta / f"{today.isoformat()}.json"
     if not path.exists():
         raise FileNotFoundError(
             f"nenhum destaque curado para {today.isoformat()} — crie {path.relative_to(ROOT)}"
         )
     item = json.loads(path.read_text(encoding="utf-8"))
     return Post(
-        theme="destaque",
+        theme=theme,
         titulo=item["titulo"],
         pontos=list(item["pontos"]),
         fecho=item.get("fecho", ""),
@@ -374,5 +383,7 @@ def build(theme: str, today: dt.date | None = None) -> Post:
         return _from_pool("servico", "servicos.json", seed)
     if theme == "destaque":
         return _destaque(today)
+    if theme == "especial":
+        return _destaque(today, "especial", "especiais")
 
     raise ValueError(f"tema desconhecido: {theme}")

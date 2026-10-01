@@ -21,7 +21,7 @@ on:
         description: "Tema a publicar"
         required: true
         type: choice
-        options: [noticias, hacker, dica, servico, destaque]
+        options: [noticias, hacker, dica, servico, destaque, especial]
       redes:
         description: "Redes (vazio = todas do tema)"
         required: false
