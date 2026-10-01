@@ -1,0 +1,81 @@
+[
+  {
+    "titulo": "Os 3 pilares da TECHDIM",
+    "pontos": [
+      "Infraestrutura: rede, servidores e backup que não param",
+      "Segurança: hardening, monitoramento e resposta a incidente",
+      "IA & Automação: processos que rodam sem a sua equipe parar"
+    ],
+    "fecho": "Atendimento em Campinas e região, presencial e remoto."
+  },
+  {
+    "titulo": "Diagnóstico de infraestrutura e segurança",
+    "pontos": [
+      "Levantamento completo de rede, servidores e dispositivos",
+      "Relatório com riscos priorizados por impacto",
+      "Plano de correção com prazo e custo definidos",
+      "Sem compromisso de contrato depois"
+    ],
+    "fecho": "Você sai sabendo exatamente onde está exposto."
+  },
+  {
+    "titulo": "Backup gerenciado e recuperação testada",
+    "pontos": [
+      "Rotina 3-2-1 com cópia imutável contra ransomware",
+      "Teste de restauração mensal com relatório",
+      "Tempo de recuperação acordado em contrato",
+      "Monitoramento com alerta em caso de falha"
+    ],
+    "fecho": "Backup que você sabe que funciona, porque foi testado."
+  },
+  {
+    "titulo": "Hardening de servidores e estações",
+    "pontos": [
+      "Remoção de senha padrão e serviço desnecessário",
+      "Política de atualização automatizada",
+      "MFA em todos os acessos administrativos",
+      "Segmentação de rede e revisão de regras de firewall"
+    ],
+    "fecho": "Aplicamos a mesma base de 8 camadas que usamos internamente."
+  },
+  {
+    "titulo": "Automação e IA aplicada ao seu processo",
+    "pontos": [
+      "Mapeamento do que consome tempo da sua equipe hoje",
+      "Automação de atendimento, relatório e tarefa repetitiva",
+      "Integração com as ferramentas que você já usa",
+      "Treinamento do time para operar sem depender de nós"
+    ],
+    "fecho": "Automação que devolve hora de trabalho, não que cria sistema novo."
+  },
+  {
+    "titulo": "Suporte de TI para pequena e média empresa",
+    "pontos": [
+      "Atendimento com prazo de resposta definido",
+      "Monitoramento proativo, antes do usuário reclamar",
+      "Inventário de equipamento e licença sempre atualizado",
+      "Um ponto de contato para tudo de TI"
+    ],
+    "fecho": "TI previsível, com custo mensal fixo."
+  },
+  {
+    "titulo": "Adequação à LGPD sem travar a operação",
+    "pontos": [
+      "Mapa de dados pessoais tratados pela empresa",
+      "Base legal e política de retenção documentadas",
+      "Canal do titular e plano de resposta a incidente",
+      "Controles técnicos implantados, não só documento"
+    ],
+    "fecho": "Conformidade que resiste a auditoria e a incidente real."
+  },
+  {
+    "titulo": "Migração de servidor sem parar a empresa",
+    "pontos": [
+      "Planejamento com janela fora do horário comercial",
+      "Ambiente novo validado antes do corte",
+      "Plano de retorno pronto caso algo falhe",
+      "Acompanhamento nos primeiros dias de operação"
+    ],
+    "fecho": "Migração com plano B escrito antes de começar."
+  }
+]

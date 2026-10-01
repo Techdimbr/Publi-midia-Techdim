@@ -1,0 +1,25 @@
+name: Verificar token
+
+# Token de longa duração da Meta vale ~60 dias. Esta verificação semanal falha
+# de propósito quando faltam 10 dias ou menos, para o GitHub te notificar por
+# e-mail antes que a publicação quebre em silêncio.
+
+on:
+  schedule:
+    - cron: "41 12 * * 1"
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - env:
+          PYTHONPATH: src
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+        run: python src/token_check.py

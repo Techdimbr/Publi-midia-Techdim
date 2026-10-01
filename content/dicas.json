@@ -1,0 +1,121 @@
+[
+  {
+    "titulo": "3 sinais de que sua rede pode estar vulnerável",
+    "pontos": [
+      "Senhas padrão ainda ativas em roteadores e firewalls",
+      "Nenhum monitoramento de tentativas de acesso (SIEM)",
+      "Backup sem teste de restauração nos últimos 90 dias"
+    ],
+    "fecho": "Se um desses pontos soou familiar, vale uma conversa."
+  },
+  {
+    "titulo": "Backup que nunca foi restaurado não é backup",
+    "pontos": [
+      "Regra 3-2-1: 3 cópias, 2 mídias, 1 fora do site",
+      "Teste de restauração agendado, não improvisado",
+      "Cópia imutável (WORM) contra ransomware",
+      "Tempo de recuperação medido, não estimado"
+    ],
+    "fecho": "Quanto tempo sua empresa aguenta parada? Essa é a pergunta que define o backup."
+  },
+  {
+    "titulo": "MFA: por que senha forte já não basta",
+    "pontos": [
+      "Credencial vazada derruba senha forte em segundos",
+      "SMS é o fator mais fraco — prefira app ou chave física",
+      "Ative primeiro em e-mail, VPN e painéis de administração",
+      "Conta de serviço sem MFA é a porta dos fundos esquecida"
+    ],
+    "fecho": "MFA bem aplicado barra a maioria dos ataques de credencial."
+  },
+  {
+    "titulo": "Seu firewall está configurado ou só ligado?",
+    "pontos": [
+      "Regra 'any-any' ainda viva da instalação inicial",
+      "Firmware sem atualização há mais de 6 meses",
+      "Nenhuma segmentação entre rede de visitantes e produção",
+      "Logs que ninguém lê há meses"
+    ],
+    "fecho": "Firewall sem revisão periódica envelhece como porta destrancada."
+  },
+  {
+    "titulo": "Shadow IT: o risco que ninguém aprovou",
+    "pontos": [
+      "Planilha crítica num Drive pessoal de ex-funcionário",
+      "Ferramenta de IA processando dado de cliente sem contrato",
+      "WhatsApp pessoal como canal oficial de atendimento",
+      "Credencial compartilhada entre equipe inteira"
+    ],
+    "fecho": "Mapear o que já é usado vale mais que proibir no papel."
+  },
+  {
+    "titulo": "LGPD na prática: 4 itens que o auditor pede primeiro",
+    "pontos": [
+      "Registro das operações de tratamento (mapa de dados)",
+      "Base legal declarada para cada finalidade",
+      "Canal de atendimento ao titular funcionando",
+      "Plano de resposta a incidente com prazo de notificação"
+    ],
+    "fecho": "Conformidade começa com inventário, não com termo de uso."
+  },
+  {
+    "titulo": "Atualização de software é controle de segurança",
+    "pontos": [
+      "A maioria das invasões usa falha com correção já publicada",
+      "Inventário primeiro: não se corrige o que não se conhece",
+      "Janela de manutenção definida evita o 'depois eu faço'",
+      "Sistema sem suporte do fabricante é dívida, não economia"
+    ],
+    "fecho": "Patch em dia é o controle de maior retorno por real investido."
+  },
+  {
+    "titulo": "IA na empresa sem vazar dado de cliente",
+    "pontos": [
+      "Política escrita do que pode e não pode ser colado na IA",
+      "Preferir plano corporativo, que não treina com seu dado",
+      "Anonimizar antes de enviar: CPF e nome raramente são necessários",
+      "Registrar quais processos usam IA, para auditoria"
+    ],
+    "fecho": "IA bem governada acelera o time sem virar incidente de dados."
+  },
+  {
+    "titulo": "Phishing não é mais e-mail mal escrito",
+    "pontos": [
+      "Texto gerado por IA, sem erro de português",
+      "Domínio parecido com o real, com certificado válido",
+      "Pedido urgente de transferência fora do processo",
+      "QR code em PDF para fugir do filtro de link"
+    ],
+    "fecho": "Treinamento com simulação periódica reduz clique muito mais que aviso por e-mail."
+  },
+  {
+    "titulo": "Wi-Fi corporativo: 4 erros que ainda vemos",
+    "pontos": [
+      "Senha única compartilhada com toda a empresa e visitantes",
+      "Rede de visitantes enxergando servidores internos",
+      "WPS ligado por conveniência",
+      "Nenhum controle de qual dispositivo entra"
+    ],
+    "fecho": "Separar visitante de produção é a correção mais rápida e mais barata."
+  },
+  {
+    "titulo": "Quanto custa uma hora de sistema parado?",
+    "pontos": [
+      "Faturamento perdido por hora de indisponibilidade",
+      "Hora-extra da equipe no retrabalho",
+      "Cliente que não volta depois da falha",
+      "Multa contratual por SLA descumprido"
+    ],
+    "fecho": "Com esse número na mão, investimento em infraestrutura deixa de ser discussão."
+  },
+  {
+    "titulo": "Offboarding: o acesso que ficou aberto",
+    "pontos": [
+      "E-mail e VPN revogados no mesmo dia da saída",
+      "Token de API e chave SSH pessoais removidos",
+      "Acesso a SaaS fora do diretório central mapeado",
+      "Dispositivo da empresa recolhido e limpo"
+    ],
+    "fecho": "Checklist de desligamento evita o acesso fantasma meses depois."
+  }
+]

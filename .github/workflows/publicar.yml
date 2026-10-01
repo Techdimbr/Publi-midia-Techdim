@@ -1,0 +1,156 @@
+name: Publicar
+
+# Horários em UTC. Brasília é UTC-3, sem horário de verão desde 2019.
+#   11:07 UTC = 08:07 BRT   (Notícias de Tecnologia & IA)
+#   14:07 UTC = 11:07 BRT   (Tecnologia Hacker)
+#   17:23 UTC = 14:23 BRT   (Dica / Conhecimento)
+#   20:23 UTC = 17:23 BRT   (Anúncio de Serviço)
+# Os minutos são deslocados de propósito: cron no minuto 0 concentra a fila
+# do GitHub e costuma atrasar vários minutos.
+
+on:
+  schedule:
+    - cron: "7 11 * * *"
+    - cron: "7 14 * * *"
+    - cron: "23 17 * * *"
+    - cron: "23 20 * * *"
+  workflow_dispatch:
+    inputs:
+      tema:
+        description: "Tema a publicar"
+        required: true
+        type: choice
+        options: [noticias, hacker, dica, servico]
+      redes:
+        description: "Redes (vazio = todas do tema)"
+        required: false
+        type: string
+      ensaio:
+        description: "Só gerar e mostrar, sem publicar"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Definir o tema
+        id: tema
+        run: |
+          case "${{ github.event.schedule }}" in
+            "7 11 * * *")  tema=noticias ;;
+            "7 14 * * *")  tema=hacker   ;;
+            "23 17 * * *") tema=dica     ;;
+            "23 20 * * *") tema=servico  ;;
+            *)             tema="${{ inputs.tema }}" ;;
+          esac
+          if [ -z "$tema" ]; then
+            echo "::error::não foi possível determinar o tema"
+            exit 1
+          fi
+          echo "tema=$tema" >> "$GITHUB_OUTPUT"
+          echo "Tema desta execução: $tema"
+
+      - name: Gerar conteúdo e imagens
+        env:
+          PYTHONPATH: src
+        run: |
+          python src/main.py generate \
+            --theme "${{ steps.tema.outputs.tema }}" \
+            --networks "${{ inputs.redes }}"
+
+      - name: Mostrar as legendas no log
+        run: |
+          python -c "
+          import json, pathlib
+          m = json.loads(pathlib.Path('out/manifest.json').read_text('utf-8'))
+          print('Título:', m['titulo'])
+          for rede, d in m['networks'].items():
+              print(f'\n===== {rede} =====')
+              print(d['caption'])
+          "
+
+      - name: Guardar as imagens para conferência
+        uses: actions/upload-artifact@v4
+        with:
+          name: imagens-${{ steps.tema.outputs.tema }}-${{ github.run_id }}
+          path: out/
+          retention-days: 14
+
+      - name: Publicar as imagens no branch de assets
+        if: ${{ !inputs.ensaio }}
+        id: assets
+        run: |
+          set -euo pipefail
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # branch órfão: guarda só imagens, sem histórico do código
+          if git ls-remote --exit-code --heads origin assets >/dev/null 2>&1; then
+            git clone --depth 1 --branch assets \
+              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+          else
+            git clone --depth 1 \
+              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+            git -C /tmp/assets checkout --orphan assets
+            git -C /tmp/assets rm -rf . >/dev/null 2>&1 || true
+          fi
+
+          cp -r out/posts /tmp/assets/
+          git -C /tmp/assets add -A
+          git -C /tmp/assets commit -m "assets: ${{ steps.tema.outputs.tema }} $(date -u +%F)" || {
+            echo "nada novo para commitar"; exit 0; }
+          git -C /tmp/assets push origin assets
+
+          echo "base=https://raw.githubusercontent.com/${{ github.repository }}/assets" >> "$GITHUB_OUTPUT"
+
+      - name: Conferir se as imagens já estão públicas
+        if: ${{ !inputs.ensaio }}
+        run: |
+          set -euo pipefail
+          primeira=$(python -c "
+          import json, pathlib
+          m = json.loads(pathlib.Path('out/manifest.json').read_text('utf-8'))
+          print(next(iter(m['networks'].values()))['files'][0])
+          ")
+          url="${{ steps.assets.outputs.base }}/$primeira"
+          echo "conferindo $url"
+          for i in $(seq 1 12); do
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$url" || true)
+            [ "$codigo" = "200" ] && { echo "imagem pública (tentativa $i)"; exit 0; }
+            echo "ainda $codigo, aguardando..."
+            sleep 10
+          done
+          echo "::error::as imagens não ficaram públicas a tempo"
+          exit 1
+
+      - name: Publicar nas redes
+        if: ${{ !inputs.ensaio }}
+        env:
+          PYTHONPATH: src
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
+          IG_USER_ID: ${{ vars.IG_USER_ID }}
+          LINKEDIN_URN: ${{ vars.LINKEDIN_URN }}
+          ASSET_BASE_URL: ${{ steps.assets.outputs.base }}
+        run: python src/main.py publish --theme "${{ steps.tema.outputs.tema }}"
