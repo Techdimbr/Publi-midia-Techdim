@@ -1,0 +1,73 @@
+name: Registrar movimento
+
+# Anota no diário do dia (branch assets, registros/AAAA-MM-DD/movimentos.md)
+# uma ação feita à mão: comentou, apagou, editou, testou... Use sempre que
+# alguém mexer num post fora da automação, para o histórico ficar completo.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tipo:
+        description: "O que aconteceu"
+        required: true
+        type: choice
+        options: [comentou, apagou, editou, publicado, planejado, falhou, observacao]
+      rede:
+        description: "Rede (facebook, instagram, linkedin)"
+        required: false
+        type: string
+      detalhe:
+        description: "O que foi feito e por quê"
+        required: true
+        type: string
+      link:
+        description: "Link do post, se houver"
+        required: false
+        type: string
+      teste:
+        description: "Foi um teste?"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: registro-assets
+  cancel-in-progress: false
+
+jobs:
+  registrar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Gravar no diário
+        env:
+          PYTHONPATH: src
+          TIPO: ${{ inputs.tipo }}
+          REDE: ${{ inputs.rede }}
+          DETALHE: ${{ inputs.detalhe }}
+          LINK: ${{ inputs.link }}
+          TESTE: ${{ inputs.teste }}
+        run: |
+          set -euo pipefail
+          git clone -q --depth 1 --branch assets \\
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          args=(--dest /tmp/assets --tipo "$TIPO" --detalhe "$DETALHE" --rede "$REDE" --link "$LINK" --origem "manual (${{ github.actor }})")
+          [ "$TESTE" = "true" ] && args+=(--teste)
+          python src/movimentos.py "${args[@]}"
+          cd /tmp/assets
+          git add registros
+          git commit -q -m "movimento: $TIPO $(TZ=America/Sao_Paulo date +'%F %H:%M')"
+          for i in 1 2 3 4; do
+            if git pull -q --rebase origin assets && git push -q origin assets; then exit 0; fi
+            sleep $((i * 3))
+          done
+          echo "::error::não consegui gravar o movimento"; exit 1

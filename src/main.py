@@ -18,6 +18,7 @@ import sys
 
 import config
 import content
+import movimentos
 import registro
 import render
 from publishers import facebook, instagram, linkedin
@@ -271,6 +272,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--dest", default=".", help="registrar: raiz do checkout do branch assets"
     )
+    parser.add_argument("--ensaio", action="store_true", help="registrar: execução de teste")
     args = parser.parse_args(argv)
 
     logging.basicConfig(
@@ -292,22 +294,56 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.phase == "registrar":
-        return registrar(pathlib.Path(args.dest))
+        return registrar(pathlib.Path(args.dest), args.theme, args.ensaio)
 
     return publish(config.Credentials())
 
 
-def registrar(destino: pathlib.Path) -> int:
-    if not MANIFEST.exists():
-        log.error("manifesto ausente — nada a registrar")
-        return 1
-    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+def _eventos(theme, manifest, resultado, ensaio, run_url) -> list[dict]:
+    """Movimentos desta execução, para o diário do dia."""
+    evento = os.environ.get("EVENTO", "")
+    origem = {"schedule": "agendamento automático", "workflow_dispatch": "disparo manual"}.get(evento, evento or "execução")
+    base = {"tema": config.THEME_LABELS.get(theme, theme), "origem": origem, "link": run_url, "teste": ensaio}
+    ev = [{**base, "tipo": "iniciado", "detalhe": "ensaio: nada será publicado" if ensaio else "execução iniciada"}]
+    if not manifest:
+        return ev + [{**base, "tipo": "falhou", "detalhe": "a geração do conteúdo não terminou"}]
+    ev.append({**base, "tipo": "planejado", "link": "",
+               "detalhe": f"pauta: {manifest['titulo']} — curadoria: {manifest.get('curadoria', '-')}"})
+    redes = resultado.get("redes", {})
+    for rede, dados in manifest["networks"].items():
+        b = {**base, "rede": rede, "link": ""}
+        if ensaio:
+            ev.append({**b, "tipo": "ensaio", "detalhe": f"{len(dados['files'])} imagem(ns) geradas; nada publicado"})
+            continue
+        ev.append({**b, "tipo": "gerado", "detalhe": f"{len(dados['files'])} imagem(ns)"})
+        r = redes.get(rede, {})
+        st = r.get("status", "não executado")
+        if st == "publicado":
+            tipo = "story" if rede == "instagram_stories" else "publicado"
+            ev.append({**b, "tipo": tipo, "detalhe": f"id {r.get('id', '')}", "link": r.get("link", "")})
+            if r.get("comentario") == "ok":
+                ev.append({**b, "tipo": "comentou", "detalhe": "primeiro comentário com fontes e site", "link": r.get("link", "")})
+            elif str(r.get("comentario", "")).startswith("falhou"):
+                ev.append({**b, "tipo": "falhou", "detalhe": f"primeiro comentário: {r['comentario']}"})
+        elif st == "falhou":
+            ev.append({**b, "tipo": "falhou", "detalhe": r.get("erro", "")})
+        else:
+            ev.append({**b, "tipo": "pulado", "detalhe": st})
+    return ev
+
+
+def registrar(destino: pathlib.Path, theme: str, ensaio: bool = False) -> int:
+    run_url = os.environ.get("RUN_URL", "")
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else None
     try:
         resultado = json.loads(RESULTADO.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
         resultado = {"redes": {}}  # a publicação não chegou a rodar
-    arquivo = registro.escrever(manifest, resultado, destino, os.environ.get("RUN_URL", ""))
-    log.info("registro gravado em %s", arquivo.relative_to(destino))
+    if manifest and not ensaio:
+        arquivo = registro.escrever(manifest, resultado, destino, run_url)
+        log.info("registro gravado em %s", arquivo.relative_to(destino))
+    movimentos.registrar(destino, _eventos(theme, manifest, resultado, ensaio, run_url))
+    log.info("movimentos gravados no diário do dia")
     return 0
 
 

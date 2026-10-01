@@ -186,7 +186,17 @@ visualizações, cliques, reações, comentários e compartilhamentos; Instagram
 alcance, visualizações, interações, curtidas, comentários, compartilhamentos e
 salvamentos. Stories não entram (a Meta só guarda essas métricas por 24 h).
 
+## Diário de movimentações
+
+`registros/AAAA-MM-DD/movimentos.md` (branch `assets`) lista, em ordem, tudo
+que aconteceu no dia: planejado, iniciado, gerado, publicado, Story, comentou,
+falhou, pulado e **ensaios/testes** (marcados com 🧪). Ações feitas à mão
+(apagou, editou, comentou) entram pelo workflow **Registrar movimento**.
+Credenciais nunca entram no diário.
+
 ## LinkedIn
+
+Guia completo, com links: [docs/LINKEDIN.md](docs/LINKEDIN.md).
 
 1. No app do LinkedIn (developer.linkedin.com), aba **Products**: ative
    "Share on LinkedIn" e "Sign In with LinkedIn using OpenID Connect" (para

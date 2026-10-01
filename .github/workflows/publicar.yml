@@ -168,13 +168,22 @@ jobs:
       # importa. Fica no branch assets, em registros/AAAA-MM-DD/, ao lado das
       # imagens; o README.md da pasta é o índice do dia.
       - name: Salvar na pasta diária de registros
-        if: ${{ always() && !inputs.ensaio && steps.assets.outcome == 'success' }}
+        # Sempre: ensaio, falha na geração e falha na publicação também ficam
+        # registrados — o diário de movimentações guarda tudo, inclusive testes.
+        if: ${{ always() && steps.tema.outcome == 'success' }}
         env:
           PYTHONPATH: src
+          EVENTO: ${{ github.event_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set -euo pipefail
-          python src/main.py registrar --theme "${{ steps.tema.outputs.tema }}" --dest /tmp/assets
+          if [ ! -d /tmp/assets/.git ]; then
+            git clone -q --depth 1 --branch assets \
+              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+          fi
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python src/main.py registrar --theme "${{ steps.tema.outputs.tema }}" --dest /tmp/assets ${{ inputs.ensaio && '--ensaio' || '' }}
           cd /tmp/assets
           git add registros
           git commit -q -m "registro: ${{ steps.tema.outputs.tema }} $(TZ=America/Sao_Paulo date +'%F %H:%M')" || {
