@@ -32,5 +32,22 @@
       "instagram": "https://www.instagram.com/p/Dd-BXpBnU8e/",
       "linkedin": ""
     }
+  },
+  {
+    "hora": "19:55",
+    "tema": "destaque",
+    "titulo": "Falha crítica no MikroTik RouterOS permite executar código sem login",
+    "curadoria": "Claude (Routine) — notícia pesquisada e conferida em 2 fontes",
+    "arquivo": "19h55-destaque.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "linkedin": "não configurado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132550933390486",
+      "instagram": "https://www.instagram.com/p/Dd-B-K8jMIs/",
+      "linkedin": ""
+    }
   }
 ]
