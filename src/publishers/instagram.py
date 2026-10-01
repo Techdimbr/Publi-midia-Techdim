@@ -12,6 +12,7 @@ import time
 
 import config
 from publishers.common import PublishError, request
+from publishers.meta_auth import page_token
 
 log = logging.getLogger(__name__)
 
@@ -53,7 +54,9 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
     if not image_urls:
         raise PublishError("Instagram: nenhuma imagem para publicar")
 
-    ig_id, token = creds.ig_user_id, creds.meta_token
+    ig_id = creds.ig_user_id
+    # O Instagram comercial publica com o token da Página do Facebook vinculada.
+    token = page_token(creds.meta_token, creds.fb_page_id) if creds.fb_page_id else creds.meta_token
     urls = image_urls[:10]  # limite do carrossel
 
     if len(urls) == 1:

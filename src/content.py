@@ -141,6 +141,15 @@ BLOCK = (
     "na íntegra", "na integra", "playstation", "xbox", "nintendo",
     "jogos", "gamer", "game pass", "steam", "filme", "série", "serie",
     "despenca", "mais barato", "oferta", "r$ ", "preço", "preco",
+    # utilidade doméstica e consumo: pauta de portal, não de empresa de TI
+    "geladeira", "chuveiro", "ar-condicionado", "conta de luz", "energia elétrica",
+    "energia eletrica", "economizar energia", "receita", "saúde", "saude",
+    "signo", "carro", "veículo", "veiculo", "viagem", "turismo",
+    "whatsapp status", "como fazer no", "truque", "dica de celular",
+    # console, celular de consumo e pauta social: não é infraestrutura corporativa
+    "ps5", "ps4", "console", "upscaling", "pixel ", "iphone", "galaxy",
+    "moto g", "redmi", "tablet", "smartwatch", "fone de ouvido",
+    "democracia", "eleitor", "censura", "política", "politica",
 )
 
 ALLOW = {
@@ -165,11 +174,17 @@ ALLOW = {
 
 
 def _relevant(theme: str, title: str, summary: str = "") -> bool:
+    """Pauta relevante: o termo precisa estar no TÍTULO.
+
+    Casar com o resumo deixava passar matéria de utilidade doméstica que
+    apenas citava tecnologia de passagem. O título é o sinal forte.
+    """
+    titulo = title.lower()
     blob = f"{title} {summary}".lower()
     if any(bad in blob for bad in BLOCK):
         return False
     terms = ALLOW.get(theme, ())
-    return not terms or any(term in blob for term in terms)
+    return not terms or any(term in titulo for term in terms)
 
 
 # ---------------------------------------------------------------- RSS

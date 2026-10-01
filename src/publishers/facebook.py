@@ -11,6 +11,7 @@ import logging
 
 import config
 from publishers.common import PublishError, request
+from publishers.meta_auth import page_token
 
 log = logging.getLogger(__name__)
 
@@ -32,7 +33,8 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
     if not image_urls:
         raise PublishError("Facebook: nenhuma imagem para publicar")
 
-    page_id, token = creds.fb_page_id, creds.meta_token
+    page_id = creds.fb_page_id
+    token = page_token(creds.meta_token, page_id)
 
     fbids = [_upload_photo(page_id, token, url) for url in image_urls]
     log.info("Facebook: %d foto(s) enviada(s)", len(fbids))
