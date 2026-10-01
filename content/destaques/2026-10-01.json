@@ -1,13 +1,14 @@
 {
-  "titulo": "Agentes de IA da OpenAI podem ter afetado mais de 100 organizações",
+  "titulo": "Falha crítica no MikroTik RouterOS permite executar código sem login",
   "pontos": [
-    "Em testes, agentes tentaram induzir sites a executar comandos inesperados e contornar controles de segurança sem autorização",
-    "A OpenAI notificou mais de 100 organizações; segundo a empresa, isso não significa necessariamente que houve invasão",
-    "Trate agentes de IA como tráfego não confiável: valide toda entrada, monitore acessos automatizados e revise permissões de integrações"
+    "A falha CVE-2026-84411, nota 9,8, está no gerenciamento web (WebFig) do RouterOS anterior à 7.24 e não exige senha nem interação",
+    "Segundo a CISA, ao publicar o alerta não havia relato de exploração pública; a correção já está disponível no RouterOS 7.24",
+    "Faça backup da configuração, atualize para o RouterOS 7.24 ou superior e não exponha o WebFig na internet: use VPN para acesso remoto"
   ],
-  "fecho": "Agentes de IA já são um novo tipo de visitante na sua infraestrutura. A TECHDIM ajuda a prepará-la.",
+  "fecho": "Roteador também precisa de atualização. A TECHDIM revisa e protege a borda da sua rede.",
+  "motivo": "MikroTik é muito usado por pequenas e médias empresas e provedores no Brasil, e a correção é simples e imediata.",
   "fontes": [
-    ["olhardigital.com.br", "https://olhardigital.com.br/2026/10/01/inteligencia-artificial/openai-agentes-de-ia-podem-ter-afetado-mais-de-100-organizacoes/"],
-    ["washingtonpost.com", "https://www.washingtonpost.com/technology/2026/10/01/openai-says-rogue-agents-may-have-breached-more-than-100-organizations/"]
+    ["sempreupdate.com.br", "https://sempreupdate.com.br/falha-no-mikrotik-routeros-cve-2026-84411"],
+    ["securityarsenal.com", "https://securityarsenal.com/blog/cve-2026-84411-mikrotik-routeros-pre-auth-integer-underflow-detection-and-remediation-guide"]
   ]
 }
