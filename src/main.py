@@ -76,6 +76,7 @@ def publish(creds: config.Credentials) -> int:
     base = creds.asset_base_url.rstrip("/")
     falhas: list[str] = []
     sucessos: list[str] = []
+    sem_credencial: list[str] = []
 
     for network, data in manifest["networks"].items():
         caption = data["caption"]
@@ -86,7 +87,8 @@ def publish(creds: config.Credentials) -> int:
         try:
             if network == "facebook":
                 if not creds.has_facebook:
-                    log.warning("Facebook: credenciais ausentes, pulando")
+                    log.error("Facebook: credenciais ausentes")
+                    sem_credencial.append("facebook")
                     continue
                 if not base:
                     raise PublishError("ASSET_BASE_URL não definido")
@@ -94,7 +96,8 @@ def publish(creds: config.Credentials) -> int:
 
             elif network == "instagram":
                 if not creds.has_instagram:
-                    log.warning("Instagram: credenciais ausentes, pulando")
+                    log.error("Instagram: credenciais ausentes")
+                    sem_credencial.append("instagram")
                     continue
                 if not base:
                     raise PublishError("ASSET_BASE_URL não definido")
@@ -102,7 +105,8 @@ def publish(creds: config.Credentials) -> int:
 
             elif network == "linkedin":
                 if not creds.has_linkedin:
-                    log.warning("LinkedIn: credenciais ausentes, pulando")
+                    log.error("LinkedIn: credenciais ausentes")
+                    sem_credencial.append("linkedin")
                     continue
                 ident = linkedin.publish(creds, caption, local, alt=manifest["titulo"])
 
@@ -119,13 +123,25 @@ def publish(creds: config.Credentials) -> int:
         else:
             sucessos.append(f"{network} ({ident})")
 
+    if sem_credencial:
+        falhas.append(
+            "sem credencial configurada: " + ", ".join(sem_credencial)
+            + " — cadastre os Secrets e Variables do repositório (ver README)"
+        )
+
     log.info("publicado em: %s", ", ".join(sucessos) or "nenhuma rede")
-    if falhas:
-        log.error("falhas: %s", " | ".join(falhas))
-        _summary(manifest, sucessos, falhas)
+    _summary(manifest, sucessos, falhas)
+
+    if not sucessos:
+        # Um job verde sem nenhuma publicação é a pior falha possível: ninguém
+        # percebe. Falhar aqui é o que faz o GitHub notificar.
+        log.error("NENHUMA rede recebeu a publicação — encerrando com erro")
         return 1
 
-    _summary(manifest, sucessos, falhas)
+    if falhas:
+        log.error("falhas: %s", " | ".join(falhas))
+        return 1
+
     return 0
 
 
