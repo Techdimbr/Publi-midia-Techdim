@@ -56,6 +56,11 @@ HASHTAGS = {
         "facebook": "#TECHDIM #DicaDeTI #Seguranca #Campinas",
         "instagram": "#dicadeti #ciberseguranca #ti #infraestrutura #techdim #campinas #devsecops",
     },
+    "destaque": {
+        "linkedin": "#InteligenciaArtificial #CiberSeguranca #AgentesDeIA #TECHDIM",
+        "facebook": "#TECHDIM #IA #Seguranca #Campinas",
+        "instagram": "#inteligenciaartificial #ia #ciberseguranca #agentesdeia #techdim #campinas #ti",
+    },
     "servico": {
         "linkedin": "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #AutomacaoEmpresarial",
         "facebook": "#TECHDIM #TI #Campinas #Seguranca",
@@ -81,7 +86,8 @@ class Post:
     @property
     def slides(self) -> list[dict]:
         """Até 4 slides: capa + um por ponto, preenchendo o que faltar."""
-        out = [{"kind": "capa", "titulo": self.titulo, "label": self.label}]
+        fonte = " · ".join(nome for nome, _ in self.fontes[:2])
+        out = [{"kind": "capa", "titulo": self.titulo, "label": self.label, "fonte": fonte}]
         for i, ponto in enumerate(self.pontos[: config.CAROUSEL_SLIDES - 1], start=1):
             out.append({"kind": "ponto", "n": i, "texto": ponto, "titulo": self.titulo})
         if len(out) < config.CAROUSEL_SLIDES:
@@ -310,6 +316,23 @@ _FALLBACK = {
 }
 
 
+def _destaque(today: dt.date) -> Post:
+    """Notícia curada à mão para o dia: content/destaques/AAAA-MM-DD.json."""
+    path = CONTENT_DIR / "destaques" / f"{today.isoformat()}.json"
+    if not path.exists():
+        raise FileNotFoundError(
+            f"nenhum destaque curado para {today.isoformat()} — crie {path.relative_to(ROOT)}"
+        )
+    item = json.loads(path.read_text(encoding="utf-8"))
+    return Post(
+        theme="destaque",
+        titulo=item["titulo"],
+        pontos=list(item["pontos"]),
+        fecho=item.get("fecho", ""),
+        fontes=[tuple(f) for f in item.get("fontes", [])],
+    )
+
+
 def build(theme: str, today: dt.date | None = None) -> Post:
     """Monta o post do tema para a data dada (determinístico por dia)."""
     today = today or dt.date.today()
@@ -328,5 +351,7 @@ def build(theme: str, today: dt.date | None = None) -> Post:
         return _from_pool("dica", "dicas.json", seed)
     if theme == "servico":
         return _from_pool("servico", "servicos.json", seed)
+    if theme == "destaque":
+        return _destaque(today)
 
     raise ValueError(f"tema desconhecido: {theme}")

@@ -43,6 +43,12 @@ THEME_STYLE = {
         "motif": "circuito",
         "glyph": "##",
     },
+    "destaque": {
+        "accent": "#FF8A00",   # laranja de alerta: notícia curada do dia
+        "second": "#FF3B30",
+        "motif": "radar",
+        "glyph": "**",
+    },
 }
 
 
@@ -119,6 +125,7 @@ THEME_TARGETS = {
     "hacker": ["linkedin", "facebook", "instagram"],
     "dica": ["linkedin", "facebook", "instagram"],
     "servico": ["linkedin", "facebook", "instagram"],
+    "destaque": ["linkedin", "facebook", "instagram"],
 }
 
 THEME_LABELS = {
@@ -126,4 +133,5 @@ THEME_LABELS = {
     "hacker": "Tecnologia Hacker",
     "dica": "Dica / Conhecimento",
     "servico": "Anúncio de Serviço",
+    "destaque": "Destaque do Dia",
 }

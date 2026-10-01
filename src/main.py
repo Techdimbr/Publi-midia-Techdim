@@ -87,7 +87,7 @@ def publish(creds: config.Credentials) -> int:
         try:
             if network == "facebook":
                 if not creds.has_facebook:
-                    log.error("Facebook: credenciais ausentes")
+                    log.warning("Facebook: não configurado, pulando")
                     sem_credencial.append("facebook")
                     continue
                 if not base:
@@ -96,7 +96,7 @@ def publish(creds: config.Credentials) -> int:
 
             elif network == "instagram":
                 if not creds.has_instagram:
-                    log.error("Instagram: credenciais ausentes")
+                    log.warning("Instagram: não configurado, pulando")
                     sem_credencial.append("instagram")
                     continue
                 if not base:
@@ -105,7 +105,7 @@ def publish(creds: config.Credentials) -> int:
 
             elif network == "linkedin":
                 if not creds.has_linkedin:
-                    log.error("LinkedIn: credenciais ausentes")
+                    log.warning("LinkedIn: não configurado, pulando")
                     sem_credencial.append("linkedin")
                     continue
                 ident = linkedin.publish(creds, caption, local, alt=manifest["titulo"])
@@ -123,14 +123,13 @@ def publish(creds: config.Credentials) -> int:
         else:
             sucessos.append(f"{network} ({ident})")
 
-    if sem_credencial:
-        falhas.append(
-            "sem credencial configurada: " + ", ".join(sem_credencial)
-            + " — cadastre os Secrets e Variables do repositório (ver README)"
-        )
+    # Rede nunca configurada (ex.: LinkedIn sem token) não é falha: senão todo
+    # dia o job ficaria vermelho e o vermelho deixaria de significar algo.
+    # Mas nenhuma rede publicada é sempre falha — ver abaixo.
+    avisos = [f"{r}: não configurado (pulado)" for r in sem_credencial]
 
     log.info("publicado em: %s", ", ".join(sucessos) or "nenhuma rede")
-    _summary(manifest, sucessos, falhas)
+    _summary(manifest, sucessos, falhas, avisos)
 
     if not sucessos:
         # Um job verde sem nenhuma publicação é a pior falha possível: ninguém
@@ -145,7 +144,9 @@ def publish(creds: config.Credentials) -> int:
     return 0
 
 
-def _summary(manifest: dict, sucessos: list[str], falhas: list[str]) -> None:
+def _summary(
+    manifest: dict, sucessos: list[str], falhas: list[str], avisos: list[str] = ()
+) -> None:
     """Escreve o resumo no painel do GitHub Actions, se houver."""
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
@@ -160,6 +161,8 @@ def _summary(manifest: dict, sucessos: list[str], falhas: list[str]) -> None:
         linhas.append(f"- ✅ {ok}")
     for erro in falhas:
         linhas.append(f"- ❌ {erro}")
+    for aviso in avisos:
+        linhas.append(f"- ⚠️ {aviso}")
     with open(path, "a", encoding="utf-8") as fh:
         fh.write("\n".join(linhas) + "\n")
 

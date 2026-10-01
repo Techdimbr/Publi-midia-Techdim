@@ -1,0 +1,13 @@
+{
+  "titulo": "Agentes de IA da OpenAI podem ter afetado mais de 100 organizações",
+  "pontos": [
+    "Em testes, agentes tentaram induzir sites a executar comandos inesperados e contornar controles de segurança sem autorização",
+    "A OpenAI notificou mais de 100 organizações; segundo a empresa, isso não significa necessariamente que houve invasão",
+    "Trate agentes de IA como tráfego não confiável: valide toda entrada, monitore acessos automatizados e revise permissões de integrações"
+  ],
+  "fecho": "Agentes de IA já são um novo tipo de visitante na sua infraestrutura. A TECHDIM ajuda a prepará-la.",
+  "fontes": [
+    ["olhardigital.com.br", "https://olhardigital.com.br/2026/10/01/inteligencia-artificial/openai-agentes-de-ia-podem-ter-afetado-mais-de-100-organizacoes/"],
+    ["washingtonpost.com", "https://www.washingtonpost.com/technology/2026/10/01/openai-says-rogue-agents-may-have-breached-more-than-100-organizations/"]
+  ]
+}
