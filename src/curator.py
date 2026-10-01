@@ -166,4 +166,5 @@ def curar(theme: str, candidatos: list[dict]) -> dict:
         "pontos": fatos + [post["recomendacao"].strip()],
         "fecho": post["fecho"].strip(),
         "fonte": (item["source"], item["link"]),
+        "motivo": escolha.get("motivo", ""),
     }

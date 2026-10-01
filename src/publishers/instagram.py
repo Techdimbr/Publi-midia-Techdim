@@ -86,3 +86,15 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
     media_id = resp.json().get("id", "")
     log.info("Instagram: publicado %s", media_id)
     return media_id
+
+
+def permalink(creds, media_id: str) -> str:
+    """Link público do post (melhor esforço: devolve "" se a API não responder)."""
+    token = page_token(creds.meta_token, creds.fb_page_id) if creds.fb_page_id else creds.meta_token
+    resp = request(
+        "GET",
+        f"{config.GRAPH}/{media_id}",
+        params={"fields": "permalink", "access_token": token},
+        attempts=2,
+    )
+    return resp.json().get("permalink", "")

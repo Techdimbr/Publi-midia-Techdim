@@ -80,6 +80,7 @@ class Post:
     fecho: str = ""
     fontes: list[tuple[str, str]] = field(default_factory=list)  # (nome, url)
     curado_por_ia: bool = False
+    motivo: str = ""  # por que esta pauta foi escolhida (curadoria)
 
     @property
     def label(self) -> str:
@@ -264,7 +265,8 @@ def _from_feeds(theme: str, seed: int) -> Post | None:
             log.warning("curadoria por IA indisponível (%s); usando filtro por palavra-chave", exc)
         else:
             return Post(theme=theme, titulo=c["titulo"], pontos=c["pontos"],
-                        fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True)
+                        fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True,
+                        motivo=c.get("motivo", ""))
     return _from_feeds_palavra_chave(theme, seed)
 
 
@@ -348,6 +350,7 @@ def _destaque(today: dt.date) -> Post:
         pontos=list(item["pontos"]),
         fecho=item.get("fecho", ""),
         fontes=[tuple(f) for f in item.get("fontes", [])],
+        motivo=item.get("motivo", ""),
     )
 
 

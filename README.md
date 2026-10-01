@@ -107,6 +107,35 @@ legendas, e você baixa tudo no artifact da execução para conferir.
 Tirando o ensaio, a mesma tela publica de verdade — é o jeito de testar uma
 rede de cada vez antes de deixar os horários rodarem sozinhos.
 
+## Pasta diária de registros
+
+Cada publicação real grava um registro no branch `assets`, em
+`registros/AAAA-MM-DD/` — ao lado das imagens daquele dia:
+
+- `README.md` — índice do dia: hora, tema, título e o status em cada rede,
+  com link para o post no ar;
+- `HHhMM-<tema>.md` — o registro completo: curadoria usada, motivo da
+  pauta, fontes, texto de cada rede, as imagens e o link da execução;
+- `index.json` — os mesmos dados, para consulta automática.
+
+O registro é gravado também quando a publicação falha, com o erro de cada
+rede. Credenciais nunca entram no registro (o branch é público).
+
+Link direto do dia: `https://github.com/Techdimbr/Publi-midia-Techdim/tree/assets/registros/AAAA-MM-DD`
+
+## Agendamento
+
+| Quem agenda | O quê | Quando (Brasília) |
+|---|---|---|
+| Routine do Claude "TECHDIM — Destaque do Dia" | pesquisa a notícia, confere em 2 fontes, grava `content/destaques/AAAA-MM-DD.json` e dispara este workflow | 07:52 |
+| GitHub Actions (`publicar.yml`) | Tecnologia Hacker | 11:07 |
+| GitHub Actions (`publicar.yml`) | Dica / Conhecimento | 14:23 |
+| GitHub Actions (`publicar.yml`) | Anúncio de Serviço | 17:23 |
+
+Os dois rodam na nuvem (Anthropic e GitHub): nenhum computador precisa
+estar ligado. Os horários do GitHub Actions costumam atrasar alguns
+minutos — às vezes mais de uma hora em dias de fila cheia.
+
 ## Manutenção
 
 - **Validade do token**: o workflow **Verificar token** roda toda segunda-feira

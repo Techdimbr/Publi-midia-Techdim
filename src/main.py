@@ -18,15 +18,17 @@ import sys
 
 import config
 import content
+import registro
 import render
 from publishers import facebook, instagram, linkedin
-from publishers.common import PublishError
+from publishers.common import PublishError, redact
 
 log = logging.getLogger("techdim")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "out"
 MANIFEST = OUT / "manifest.json"
+RESULTADO = OUT / "resultado.json"
 
 
 def _today() -> dt.date:
@@ -37,18 +39,29 @@ def _today() -> dt.date:
 # ---------------------------------------------------------------- generate
 
 
+def _curadoria(post) -> str:
+    if post.theme == "destaque":
+        return "Claude (Routine) — notícia pesquisada e conferida em 2 fontes"
+    if post.curado_por_ia:
+        return "IA (API da Anthropic)"
+    if post.theme in ("dica", "servico"):
+        return "acervo autoral"
+    return "filtro por palavra-chave"
+
+
 def generate(theme: str, networks: list[str]) -> dict:
     today = _today()
     post = content.build(theme, today)
-    log.info("tema=%s titulo=%r curadoria=%s", theme, post.titulo,
-             "ia" if post.curado_por_ia else "palavra-chave")
+    log.info("tema=%s titulo=%r curadoria=%s", theme, post.titulo, _curadoria(post))
 
     stamp = today.isoformat()
     manifest = {
         "theme": theme,
         "date": stamp,
         "titulo": post.titulo,
-        "curadoria": "ia" if post.curado_por_ia else "palavra-chave",
+        "curadoria": _curadoria(post),
+        "motivo": post.motivo,
+        "fontes": [list(f) for f in post.fontes],
         "networks": {},
     }
 
@@ -79,6 +92,8 @@ def publish(creds: config.Credentials) -> int:
     falhas: list[str] = []
     sucessos: list[str] = []
     sem_credencial: list[str] = []
+    resultados: dict[str, dict] = {}
+    segredos = (creds.meta_token, creds.linkedin_token)
 
     for network, data in manifest["networks"].items():
         caption = data["caption"]
@@ -119,11 +134,23 @@ def publish(creds: config.Credentials) -> int:
         except PublishError as exc:
             log.error("%s falhou: %s", network, exc)
             falhas.append(f"{network}: {exc}")
+            resultados[network] = {"status": "falhou", "erro": redact(str(exc), *segredos)[:300]}
         except Exception as exc:  # não deixa uma rede derrubar as outras
             log.exception("%s falhou com erro inesperado", network)
             falhas.append(f"{network}: {exc}")
+            resultados[network] = {"status": "falhou", "erro": redact(str(exc), *segredos)[:300]}
         else:
             sucessos.append(f"{network} ({ident})")
+            resultados[network] = {
+                "status": "publicado", "id": ident, "link": _link(network, creds, ident),
+            }
+
+    for rede in sem_credencial:
+        resultados[rede] = {"status": "não configurado"}
+    OUT.mkdir(parents=True, exist_ok=True)
+    RESULTADO.write_text(
+        json.dumps({"redes": resultados}, ensure_ascii=False, indent=2), "utf-8"
+    )
 
     # Rede nunca configurada (ex.: LinkedIn sem token) não é falha: senão todo
     # dia o job ficaria vermelho e o vermelho deixaria de significar algo.
@@ -144,6 +171,20 @@ def publish(creds: config.Credentials) -> int:
         return 1
 
     return 0
+
+
+def _link(network: str, creds, ident: str) -> str:
+    """Link público do post; falhar aqui não pode derrubar a publicação."""
+    try:
+        if network == "facebook":
+            return facebook.permalink(creds, ident)
+        if network == "instagram":
+            return instagram.permalink(creds, ident)
+        if network == "linkedin":
+            return linkedin.permalink(ident)
+    except Exception as exc:
+        log.warning("não consegui o link do post no %s: %s", network, exc)
+    return ""
 
 
 def _summary(
@@ -174,12 +215,15 @@ def _summary(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Publicador diário TECHDIM")
-    parser.add_argument("phase", choices=["generate", "publish", "preview"])
+    parser.add_argument("phase", choices=["generate", "publish", "preview", "registrar"])
     parser.add_argument("--theme", required=True, choices=list(config.THEME_LABELS))
     parser.add_argument(
         "--networks",
         default="",
         help="lista separada por vírgula; padrão vem de config.THEME_TARGETS",
+    )
+    parser.add_argument(
+        "--dest", default=".", help="registrar: raiz do checkout do branch assets"
     )
     args = parser.parse_args(argv)
 
@@ -201,7 +245,24 @@ def main(argv: list[str] | None = None) -> int:
                 print("imagens:", *data["files"], sep="\n  ")
         return 0
 
+    if args.phase == "registrar":
+        return registrar(pathlib.Path(args.dest))
+
     return publish(config.Credentials())
+
+
+def registrar(destino: pathlib.Path) -> int:
+    if not MANIFEST.exists():
+        log.error("manifesto ausente — nada a registrar")
+        return 1
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    try:
+        resultado = json.loads(RESULTADO.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        resultado = {"redes": {}}  # a publicação não chegou a rodar
+    arquivo = registro.escrever(manifest, resultado, destino, os.environ.get("RUN_URL", ""))
+    log.info("registro gravado em %s", arquivo.relative_to(destino))
+    return 0
 
 
 if __name__ == "__main__":

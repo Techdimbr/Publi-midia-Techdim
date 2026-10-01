@@ -47,3 +47,15 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
     post_id = resp.json().get("id", "")
     log.info("Facebook: publicado %s", post_id)
     return post_id
+
+
+def permalink(creds, post_id: str) -> str:
+    """Link público do post (melhor esforço: devolve "" se a API não responder)."""
+    token = page_token(creds.meta_token, creds.fb_page_id)
+    resp = request(
+        "GET",
+        f"{config.GRAPH}/{post_id}",
+        params={"fields": "permalink_url", "access_token": token},
+        attempts=2,
+    )
+    return resp.json().get("permalink_url", "")

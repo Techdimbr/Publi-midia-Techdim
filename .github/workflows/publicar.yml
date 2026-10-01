@@ -156,3 +156,30 @@ jobs:
           LINKEDIN_URN: ${{ vars.LINKEDIN_URN }}
           ASSET_BASE_URL: ${{ steps.assets.outputs.base }}
         run: python src/main.py publish --theme "${{ steps.tema.outputs.tema }}"
+
+      # Roda mesmo se a publicação falhar: o registro da falha é o que mais
+      # importa. Fica no branch assets, em registros/AAAA-MM-DD/, ao lado das
+      # imagens; o README.md da pasta é o índice do dia.
+      - name: Salvar na pasta diária de registros
+        if: ${{ always() && !inputs.ensaio && steps.assets.outcome == 'success' }}
+        env:
+          PYTHONPATH: src
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          python src/main.py registrar --theme "${{ steps.tema.outputs.tema }}" --dest /tmp/assets
+          cd /tmp/assets
+          git add registros
+          git commit -q -m "registro: ${{ steps.tema.outputs.tema }} $(TZ=America/Sao_Paulo date +'%F %H:%M')" || {
+            echo "nada novo para registrar"; exit 0; }
+          for i in 1 2 3 4; do
+            if git pull -q --rebase origin assets && git push -q origin assets; then
+              dia=$(TZ=America/Sao_Paulo date +%F)
+              echo "### Registro do dia" >> "$GITHUB_STEP_SUMMARY"
+              echo "https://github.com/${{ github.repository }}/tree/assets/registros/$dia" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep $((i * 3))
+          done
+          echo "::error::não consegui gravar o registro no branch assets"
+          exit 1

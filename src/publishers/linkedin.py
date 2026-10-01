@@ -96,3 +96,7 @@ def publish(creds, caption: str, image_paths: list[pathlib.Path], alt: str = "")
     post_urn = resp.headers.get("x-restli-id") or resp.headers.get("X-RestLi-Id", "")
     log.info("LinkedIn: publicado %s", post_urn)
     return post_urn
+
+
+def permalink(post_urn: str) -> str:
+    return f"https://www.linkedin.com/feed/update/{post_urn}/" if post_urn else ""
