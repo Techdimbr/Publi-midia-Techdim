@@ -29,3 +29,8 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 20:08 | 💬 comentou | Destaque do Dia | facebook | Primeiro comentário com fontes e site (1ª vez) _(reconstituído do histórico)_ | manual (Claude, sessão) | 🧪 | [abrir](https://www.facebook.com/122132402349390486/posts/122132550933390486) |
 | 20:08 | 💬 comentou | Destaque do Dia | instagram | Primeiro comentário com as fontes (1ª vez) _(reconstituído do histórico)_ | manual (Claude, sessão) | 🧪 | [abrir](https://www.instagram.com/p/Dd-B-K8jMIs/) |
 | 20:10 | 📝 observacao |  |  | Relatório semanal gerado pela 1ª vez: registros/semanal/2026-S40 _(reconstituído do histórico)_ | manual (Claude, sessão) |  |  |
+| 20:16 | ▶️ iniciado | Conhecimento |  | ensaio: nada será publicado | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36939820320) |
+| 20:16 | 🗓️ planejado | Conhecimento |  | pauta: Atualização de software é controle de segurança — curadoria: acervo autoral | disparo manual | 🧪 |  |
+| 20:16 | 🧪 ensaio | Conhecimento | linkedin | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 20:16 | 🧪 ensaio | Conhecimento | facebook | 4 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 20:16 | 🧪 ensaio | Conhecimento | instagram | 4 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
