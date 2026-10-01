@@ -98,3 +98,35 @@ def permalink(creds, media_id: str) -> str:
         attempts=2,
     )
     return resp.json().get("permalink", "")
+
+
+def _token(creds) -> str:
+    return page_token(creds.meta_token, creds.fb_page_id) if creds.fb_page_id else creds.meta_token
+
+
+def publish_story(creds, image_url: str) -> str:
+    """Publica uma imagem nos Stories (instagram_content_publish).
+
+    Story não tem legenda pela API e some do perfil em 24 horas.
+    """
+    ig_id, token = creds.ig_user_id, _token(creds)
+    creation_id = _container(ig_id, token, image_url=image_url, media_type="STORIES")
+    _wait_ready(creation_id, token)
+    resp = request(
+        "POST",
+        f"{config.GRAPH}/{ig_id}/media_publish",
+        data={"creation_id": creation_id, "access_token": token},
+    )
+    media_id = resp.json().get("id", "")
+    log.info("Instagram Stories: publicado %s", media_id)
+    return media_id
+
+
+def comment(creds, media_id: str, message: str) -> str:
+    """Primeiro comentário no post (exige instagram_manage_comments)."""
+    resp = request(
+        "POST",
+        f"{config.GRAPH}/{media_id}/comments",
+        data={"message": message, "access_token": _token(creds)},
+    )
+    return resp.json().get("id", "")

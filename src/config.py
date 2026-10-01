@@ -16,6 +16,8 @@ GRID = "#161B22"        # linhas e caixas
 BRAND = "TECHDIM"
 TAGLINE = "Infraestrutura · Segurança · IA"
 SITE = "www.techdim.com.br"
+SITE_URL = "https://www.techdim.com.br"
+IG_HANDLE = "@techdimbr"
 
 # Identidade visual por tema: cor de acento, cor secundária e motivo de fundo.
 THEME_STYLE = {
@@ -69,7 +71,10 @@ SIZE_INSTAGRAM = (1080, 1350)  # 4:5 — ocupa a altura máxima do feed do IG
 SIZE_FACEBOOK = (1200, 1500)   # 4:5 na resolução que o FB serve sem recomprimir
 SIZE_LINKEDIN = (1200, 1200)   # 1:1 — melhor aproveitamento no feed do LinkedIn
 
+SIZE_STORY = (1080, 1920)      # 9:16 — Stories do Instagram
+
 SIZE_BY_NETWORK = {
+    "instagram_stories": SIZE_STORY,
     "instagram": SIZE_INSTAGRAM,
     "facebook": SIZE_FACEBOOK,
     "linkedin": SIZE_LINKEDIN,
@@ -115,10 +120,13 @@ class Credentials:
         return bool(self.linkedin_token and self.linkedin_urn)
 
 
+# v21.0 funciona até 21/01/2027 — atualizar antes dessa data.
 GRAPH_VERSION = "v21.0"
 GRAPH = f"https://graph.facebook.com/{GRAPH_VERSION}"
 LINKEDIN_API = "https://api.linkedin.com"
-LINKEDIN_VERSION = "202509"
+# LinkedIn mantém cada versão por ~1 ano; versão vencida devolve HTTP 426.
+# 202609 vale até ~09/2027 — atualizar uma vez por ano.
+LINKEDIN_VERSION = "202609"
 
 TZ = "America/Sao_Paulo"
 
@@ -127,11 +135,11 @@ TZ = "America/Sao_Paulo"
 # Quais redes recebem post de feed em cada tema.
 # Editar aqui é o jeito de reduzir volume sem mexer em código.
 THEME_TARGETS = {
-    "noticias": ["linkedin", "facebook", "instagram"],
-    "hacker": ["linkedin", "facebook", "instagram"],
+    "noticias": ["linkedin", "facebook", "instagram", "instagram_stories"],
+    "hacker": ["linkedin", "facebook", "instagram", "instagram_stories"],
     "dica": ["linkedin", "facebook", "instagram"],
     "servico": ["linkedin", "facebook", "instagram"],
-    "destaque": ["linkedin", "facebook", "instagram"],
+    "destaque": ["linkedin", "facebook", "instagram", "instagram_stories"],
     "especial": ["linkedin", "facebook", "instagram"],
 }
 

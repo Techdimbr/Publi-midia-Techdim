@@ -20,3 +20,8 @@ jobs:
           PYTHONPATH: src
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
         run: python src/discover.py
+      - name: LinkedIn
+        env:
+          PYTHONPATH: src
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: python src/linkedin_ids.py

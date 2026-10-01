@@ -1,0 +1,63 @@
+name: Relatório semanal
+
+# Toda segunda às 08:17 (Brasília): alcance e engajamento dos posts dos últimos
+# 7 dias, por tema, gravados em registros/semanal/ no branch assets.
+
+on:
+  schedule:
+    - cron: "17 11 * * 1"
+  workflow_dispatch:
+    inputs:
+      incluir_hoje:
+        description: "Fechar o período hoje (padrão: ontem)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  relatorio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Baixar a pasta de registros
+        run: |
+          git clone -q --depth 1 --branch assets \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+
+      - name: Gerar o relatório
+        env:
+          PYTHONPATH: src
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
+          IG_USER_ID: ${{ vars.IG_USER_ID }}
+        run: python src/relatorio.py --dest /tmp/assets ${{ inputs.incluir_hoje && '--incluir-hoje' || '' }}
+
+      - name: Gravar no branch assets
+        run: |
+          set -euo pipefail
+          cd /tmp/assets
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registros/semanal
+          git commit -q -m "relatório semanal $(TZ=America/Sao_Paulo date +%F)" || { echo "sem mudanças"; exit 0; }
+          for i in 1 2 3 4; do
+            if git pull -q --rebase origin assets && git push -q origin assets; then
+              echo "https://github.com/${{ github.repository }}/tree/assets/registros/semanal" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep $((i * 3))
+          done
+          echo "::error::não consegui gravar o relatório"
+          exit 1

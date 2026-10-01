@@ -163,6 +163,50 @@ gravam a hora real de cada post, para acompanhar isso.
 **Publicação sob demanda:** `content/especiais/AAAA-MM-DD.json` e o workflow
 disparado manualmente com `tema=especial`.
 
+## Stories, primeiro comentário e relatório semanal
+
+**Stories (Instagram):** os temas de notícia (Notícias de Tecnologia,
+Cibersegurança · IA · Hacker e Destaque) também saem nos Stories, numa arte
+9:16 com o título, "o que fazer" e a chamada para o post no perfil. Story não
+disputa alcance com o feed e some em 24 horas.
+
+**Primeiro comentário:** link no corpo do post reduz o alcance no Facebook e
+no LinkedIn. As fontes e o site vão para o primeiro comentário, publicado logo
+depois do post; a legenda avisa "fontes e site no primeiro comentário". No
+Instagram, onde link não é clicável, o site continua na legenda e o comentário
+traz as fontes. Se o comentário falhar, o post continua no ar e a falha fica no
+registro do dia.
+
+**Relatório semanal:** toda segunda às 08:17 o workflow "Relatório semanal"
+lê os registros dos últimos 7 dias, busca alcance e engajamento de cada post
+na Meta e grava `registros/semanal/AAAA-Sxx.md` no branch `assets`: resumo por
+rede, **ranking dos temas** (qual traz mais retorno), melhores posts e a tabela
+completa. Métricas usadas: Facebook — visualizações únicas (alcance),
+visualizações, cliques, reações, comentários e compartilhamentos; Instagram —
+alcance, visualizações, interações, curtidas, comentários, compartilhamentos e
+salvamentos. Stories não entram (a Meta só guarda essas métricas por 24 h).
+
+## LinkedIn
+
+1. No app do LinkedIn (developer.linkedin.com), aba **Products**: ative
+   "Share on LinkedIn" e "Sign In with LinkedIn using OpenID Connect" (para
+   publicar como perfil). Para publicar como **página da empresa** é preciso o
+   "Community Management API", que passa por aprovação do LinkedIn.
+2. Gere o token em **Developer tools → OAuth 2.0 tools → Create token**:
+   escolha o app, marque `openid`, `profile` e `w_member_social`
+   (ou `w_organization_social` para página) e faça login.
+3. Cadastre o token no Secret `LINKEDIN_ACCESS_TOKEN`.
+4. Rode **Actions → Descobrir IDs**: ele imprime o `LINKEDIN_URN` do perfil e
+   das páginas. Cadastre-o na Variable `LINKEDIN_URN`.
+
+O token do LinkedIn vale 60 dias e não se renova sozinho em apps comuns: o
+workflow "Verificar token" testa toda segunda e falha (avisando por e-mail)
+quando ele vencer.
+
+**Prazos de versão:** Graph API da Meta `v21.0` até 21/01/2027;
+LinkedIn `202609` até ~09/2027 (`GRAPH_VERSION` e `LINKEDIN_VERSION` em
+`src/config.py`).
+
 ## Manutenção
 
 - **Validade do token**: o workflow **Verificar token** roda toda segunda-feira

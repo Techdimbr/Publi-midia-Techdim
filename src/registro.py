@@ -21,7 +21,8 @@ import config
 _CREDENCIAL = re.compile(r"\bEAA[A-Za-z0-9]{20,}|\bAQ[A-Za-z0-9_-]{40,}")
 
 ICONE = {"publicado": "✅", "falhou": "❌", "não configurado": "⚠️", "não executado": "⏸️"}
-REDES = ("facebook", "instagram", "linkedin")
+REDES = ("facebook", "instagram", "instagram_stories", "linkedin")
+NOME_REDE = {"instagram_stories": "Stories"}
 
 
 def _limpo(texto: str) -> str:
@@ -64,13 +65,21 @@ def escrever(
     if manifest.get("motivo"):
         linhas.append(f"- **Por que esta pauta:** {manifest['motivo']}")
 
-    linhas += ["", "## Resultado", "", "| Rede | Status | Link |", "|---|---|---|"]
+    linhas += [
+        "", "## Resultado", "",
+        "| Rede | Status | Link | 1º comentário |", "|---|---|---|---|",
+    ]
     for rede in manifest["networks"]:
         r = redes.get(rede, {"status": "não executado"})
         status = f"{ICONE.get(r['status'], '')} {r['status']}"
         if r.get("erro"):
             status += f" — {r['erro']}"
-        linhas.append(f"| {rede} | {_celula(status)} | {r.get('link', '')} |")
+        comentario = r.get("comentario", "")
+        comentario = {"ok": "✅", "": "—"}.get(comentario, f"⚠️ {comentario}")
+        linhas.append(
+            f"| {NOME_REDE.get(rede, rede)} | {_celula(status)} | {r.get('link', '')} "
+            f"| {_celula(comentario)} |"
+        )
 
     fontes = manifest.get("fontes") or []
     if fontes:
@@ -78,7 +87,11 @@ def escrever(
         linhas += [f"- [{nome}]({url})" for nome, url in fontes]
 
     for rede, dados in manifest["networks"].items():
-        linhas += ["", f"## {rede.capitalize()}", "", "```text", dados["caption"], "```", ""]
+        linhas += ["", f"## {NOME_REDE.get(rede, rede.capitalize())}", ""]
+        if dados.get("caption"):
+            linhas += ["```text", dados["caption"], "```", ""]
+        if dados.get("comentario"):
+            linhas += ["Primeiro comentário:", "", "```text", dados["comentario"], "```", ""]
         # caminho relativo: registros/<dia>/arquivo.md -> posts/<dia>/...
         linhas += [f"![{rede} {i}](../../{f})" for i, f in enumerate(dados["files"], 1)]
 
@@ -108,6 +121,8 @@ def _indice(pasta, dia, nome, manifest, redes, agora) -> None:
             for r in REDES
         },
         "links": {r: redes.get(r, {}).get("link", "") for r in REDES},
+        "ids": {r: redes[r]["id"] for r in REDES if redes.get(r, {}).get("id")},
+        "comentou": [r for r in REDES if redes.get(r, {}).get("comentario") == "ok"],
     })
     indice_json.write_text(
         _limpo(json.dumps(entradas, ensure_ascii=False, indent=2)) + "\n", encoding="utf-8"
@@ -118,14 +133,14 @@ def _indice(pasta, dia, nome, manifest, redes, agora) -> None:
         "",
         "Tudo que a automação publicou (ou tentou publicar) neste dia.",
         "",
-        "| Hora | Tema | Título | Facebook | Instagram | LinkedIn |",
-        "|---|---|---|---|---|---|",
+        "| Hora | Tema | Título | Facebook | Instagram | Stories | LinkedIn |",
+        "|---|---|---|---|---|---|---|",
     ]
     for e in entradas:
         celulas = []
         for r in REDES:
             st = e["redes"].get(r, "-")
-            link = e["links"].get(r, "")
+            link = e.get("links", {}).get(r, "")
             icone = ICONE.get(st, "—")
             celulas.append(f"[{icone}]({link})" if link else icone)
         rotulo = config.THEME_LABELS.get(e["tema"], e["tema"])

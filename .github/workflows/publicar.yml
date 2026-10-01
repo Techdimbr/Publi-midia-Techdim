@@ -122,7 +122,13 @@ jobs:
           git -C /tmp/assets add -A
           git -C /tmp/assets commit -m "assets: ${{ steps.tema.outputs.tema }} $(date -u +%F)" || {
             echo "nada novo para commitar"; exit 0; }
-          git -C /tmp/assets push origin assets
+          for i in 1 2 3 4; do
+            if git -C /tmp/assets pull -q --rebase origin assets 2>/dev/null || [ "$i" = 1 ]; then
+              git -C /tmp/assets push -q origin assets && break
+            fi
+            [ "$i" = 4 ] && { echo "::error::não consegui enviar as imagens"; exit 1; }
+            sleep $((i * 3))
+          done
 
           echo "base=https://raw.githubusercontent.com/${{ github.repository }}/assets" >> "$GITHUB_OUTPUT"
 

@@ -59,3 +59,14 @@ def permalink(creds, post_id: str) -> str:
         attempts=2,
     )
     return resp.json().get("permalink_url", "")
+
+
+def comment(creds, post_id: str, message: str) -> str:
+    """Primeiro comentário no post (exige pages_manage_engagement)."""
+    token = page_token(creds.meta_token, creds.fb_page_id)
+    resp = request(
+        "POST",
+        f"{config.GRAPH}/{post_id}/comments",
+        data={"message": message, "access_token": token},
+    )
+    return resp.json().get("id", "")

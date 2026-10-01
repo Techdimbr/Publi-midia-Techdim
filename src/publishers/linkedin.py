@@ -100,3 +100,20 @@ def publish(creds, caption: str, image_paths: list[pathlib.Path], alt: str = "")
 
 def permalink(post_urn: str) -> str:
     return f"https://www.linkedin.com/feed/update/{post_urn}/" if post_urn else ""
+
+
+def comment(creds, post_urn: str, message: str) -> str:
+    """Primeiro comentário no post (Comments API, mesma permissão de publicar)."""
+    from urllib.parse import quote
+
+    resp = request(
+        "POST",
+        f"{config.LINKEDIN_API}/rest/socialActions/{quote(post_urn, safe='')}/comments",
+        headers={**_headers(creds.linkedin_token), "Content-Type": "application/json"},
+        json={
+            "actor": creds.linkedin_urn,
+            "object": post_urn,
+            "message": {"text": message},
+        },
+    )
+    return resp.headers.get("x-restli-id") or resp.headers.get("X-RestLi-Id", "")

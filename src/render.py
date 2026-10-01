@@ -459,6 +459,9 @@ def render_slide(
 
 def render_post(post, network: str, out_dir: pathlib.Path, seed: int = 0) -> list[pathlib.Path]:
     """Gera os PNGs do post no formato ideal da rede. Devolve os caminhos."""
+    if network == "instagram_stories":
+        return [render_story(post, out_dir, seed)]
+
     out_dir.mkdir(parents=True, exist_ok=True)
     size = config.SIZE_BY_NETWORK[network]
 
@@ -472,3 +475,79 @@ def render_post(post, network: str, out_dir: pathlib.Path, seed: int = 0) -> lis
         img.save(path, "PNG", optimize=True)
         paths.append(path)
     return paths
+
+
+def render_story(post, out_dir: pathlib.Path, seed: int = 0) -> pathlib.Path:
+    """Story 9:16 para os temas de notícia: título, o que fazer e chamada para o post.
+
+    O Instagram cobre ~250 px no topo (barra de progresso, perfil) e ~250 px
+    embaixo (responder); o conteúdo fica entre essas faixas.
+    """
+    size = config.SIZE_STORY
+    w, h = size
+    pad = int(w * 0.08)
+    st = config.style(post.theme)
+    img = _background(size, post.theme, seed * 100 + 7)
+    draw = ImageDraw.Draw(img)
+
+    draw.rectangle([0, 0, w, 14], fill=st["accent"])
+    draw.rectangle([0, h - 8, w, h], fill=_mix(st["second"], config.BG, 0.35))
+
+    top, bottom = 290, h - 330
+    box_w = w - pad * 2
+    label = config.THEME_LABELS.get(post.theme, post.theme)
+    font_t, linhas_t, lead_t = _fit(
+        draw, post.titulo, "bold", box_w, int((bottom - top) * 0.40), start=int(w * 0.092)
+    )
+    reco = post.pontos[-1] if post.pontos else ""
+    font_r, linhas_r, lead_r = _fit(
+        draw, reco, "regular", box_w - 48, int((bottom - top) * 0.24), start=int(w * 0.048)
+    )
+    chip_h = int(w * 0.024) + int(w * 0.024 * 0.9)
+    rotulo_h = int(w * 0.030)
+    bloco = (
+        chip_h + 50 + len(linhas_t) * lead_t + 40 + 8 + 60
+        + (28 + int(w * 0.024) if post.fontes else 0)
+        + rotulo_h + 24 + len(linhas_r) * lead_r + 70 + int(w * 0.11)
+    )
+    y = top + max(0, (bottom - top - bloco) // 2)
+
+    y += _chip(draw, pad, y, label, st["accent"], w) + 50
+    for linha in linhas_t:
+        draw.text((pad, y), linha, font=font_t, fill=config.FG)
+        y += lead_t
+    y += 40
+    draw.rectangle([pad, y, pad + int(w * 0.16), y + 8], fill=st["second"])
+    y += 8
+    if post.fontes:
+        fonte = "fonte: " + " · ".join(nome for nome, _ in post.fontes[:2])
+        draw.text((pad, y + 28), fonte, font=_font("mono", int(w * 0.024)), fill=config.MUTED)
+        y += 28 + int(w * 0.024)
+    y += 60
+
+    # caixa "o que fazer"
+    caixa_top = y
+    draw.text((pad + 36, y), "O QUE FAZER", font=_font("monobold", rotulo_h), fill=st["accent"])
+    y += rotulo_h + 24
+    for linha in linhas_r:
+        draw.text((pad + 36, y), linha, font=font_r, fill=config.FG)
+        y += lead_r
+    draw.rectangle([pad, caixa_top - 6, pad + 8, y + 6], fill=st["accent"])
+    y += 70
+
+    draw.text((pad, y), "Post completo no perfil", font=_font("regular", int(w * 0.040)), fill=config.MUTED)
+    y += int(w * 0.055)
+    draw.text((pad, y), config.IG_HANDLE, font=_font("bold", int(w * 0.060)), fill=st["accent"])
+
+    # marca, logo acima da faixa coberta pelo campo "responder"
+    base = h - 330 + 90
+    draw.line([(pad, base - 26), (w - pad, base - 26)], fill=_mix(st["accent"], config.BG, 0.60), width=2)
+    draw.text((pad, base), config.BRAND, font=_font("bold", int(w * 0.034)), fill=st["accent"])
+    draw.text(
+        (pad, base + int(w * 0.046)), config.SITE,
+        font=_font("mono", int(w * 0.026)), fill=config.MUTED,
+    )
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{post.theme}-instagram_stories-01.png"
+    img.save(path, "PNG", optimize=True)
+    return path

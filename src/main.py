@@ -74,6 +74,7 @@ def generate(theme: str, networks: list[str]) -> dict:
         paths = render.render_post(post, network, OUT / rel_dir, seed=today.toordinal())
         manifest["networks"][network] = {
             "caption": post.caption(network),
+            "comentario": post.comentario(network),
             "files": [str(rel_dir / p.name) for p in paths],
         }
         log.info("%s: %d imagem(ns)", network, len(paths))
@@ -124,6 +125,15 @@ def publish(creds: config.Credentials) -> int:
                     raise PublishError("ASSET_BASE_URL não definido")
                 ident = instagram.publish(creds, caption, urls)
 
+            elif network == "instagram_stories":
+                if not creds.has_instagram:
+                    log.warning("Instagram Stories: não configurado, pulando")
+                    sem_credencial.append("instagram_stories")
+                    continue
+                if not base:
+                    raise PublishError("ASSET_BASE_URL não definido")
+                ident = instagram.publish_story(creds, urls[0])
+
             elif network == "linkedin":
                 if not creds.has_linkedin:
                     log.warning("LinkedIn: não configurado, pulando")
@@ -148,6 +158,10 @@ def publish(creds: config.Credentials) -> int:
             resultados[network] = {
                 "status": "publicado", "id": ident, "link": _link(network, creds, ident),
             }
+            if data.get("comentario"):
+                resultados[network]["comentario"] = _comentar(
+                    network, creds, ident, data["comentario"], segredos
+                )
 
     for rede in sem_credencial:
         resultados[rede] = {"status": "não configurado"}
@@ -160,6 +174,11 @@ def publish(creds: config.Credentials) -> int:
     # dia o job ficaria vermelho e o vermelho deixaria de significar algo.
     # Mas nenhuma rede publicada é sempre falha — ver abaixo.
     avisos = [f"{r}: não configurado (pulado)" for r in sem_credencial]
+    avisos += [
+        f"{r}: primeiro comentário {v['comentario']}"
+        for r, v in resultados.items()
+        if str(v.get("comentario", "")).startswith("falhou")
+    ]
 
     log.info("publicado em: %s", ", ".join(sucessos) or "nenhuma rede")
     _summary(manifest, sucessos, falhas, avisos)
@@ -177,12 +196,35 @@ def publish(creds: config.Credentials) -> int:
     return 0
 
 
+def _comentar(network: str, creds, ident: str, texto: str, segredos) -> str:
+    """Primeiro comentário com fontes e site.
+
+    Falhar aqui não derruba a publicação — o post já está no ar —, mas fica
+    registrado e aparece no resumo da execução.
+    """
+    try:
+        if network == "facebook":
+            facebook.comment(creds, ident, texto)
+        elif network == "instagram":
+            instagram.comment(creds, ident, texto)
+        elif network == "linkedin":
+            linkedin.comment(creds, ident, texto)
+        else:
+            return ""
+    except Exception as exc:
+        msg = redact(str(exc), *segredos)[:200]
+        log.warning("%s: primeiro comentário falhou: %s", network, msg)
+        return f"falhou: {msg}"
+    log.info("%s: primeiro comentário publicado", network)
+    return "ok"
+
+
 def _link(network: str, creds, ident: str) -> str:
     """Link público do post; falhar aqui não pode derrubar a publicação."""
     try:
         if network == "facebook":
             return facebook.permalink(creds, ident)
-        if network == "instagram":
+        if network in ("instagram", "instagram_stories"):
             return instagram.permalink(creds, ident)
         if network == "linkedin":
             return linkedin.permalink(ident)

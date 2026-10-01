@@ -105,18 +105,24 @@ class Post:
         return out[: config.CAROUSEL_SLIDES]
 
     def caption(self, network: str) -> str:
+        """Legenda por rede. Links ficam no primeiro comentário (ver comentario()):
+        link no corpo do post reduz o alcance no Facebook e no LinkedIn."""
+        if network == "instagram_stories":
+            return ""  # a API de Stories não aceita legenda
         tags = HASHTAGS.get(self.theme, {}).get(network, "#TECHDIM")
         pontos = self.pontos[:4]
-        fontes = " · ".join(url for _, url in self.fontes[:2])
+        aviso_link = (
+            "🔗 Fontes e site no primeiro comentário"
+            if self.fontes
+            else "🔗 Link no primeiro comentário"
+        )
 
         if network == "linkedin":
             corpo = "\n".join(f"{i:02d}. {p}" for i, p in enumerate(pontos, 1))
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
-            if fontes:
-                partes += ["", f"Fontes: {fontes}"]
-            partes += ["", f"TECHDIM — {config.TAGLINE}", config.SITE, "", tags]
+            partes += ["", f"TECHDIM — {config.TAGLINE}", aviso_link, "", tags]
             return "\n".join(partes)
 
         if network == "facebook":
@@ -124,20 +130,38 @@ class Post:
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
-            if fontes:
-                partes += ["", f"Fontes: {fontes}"]
-            partes += ["", f"Fale com a TECHDIM → {config.SITE}", "", tags]
+            partes += ["", f"Fale com a TECHDIM — {aviso_link.lower().replace('🔗 ', '')} 👇", "", tags]
             return "\n".join(partes)
 
-        # instagram
+        # instagram: link não é clicável em legenda nem em comentário, então o
+        # site continua escrito aqui; as fontes vão para o comentário.
         emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
         corpo = "\n".join(f"{emojis[i]} {p}" for i, p in enumerate(pontos))
         partes = [f"{self.titulo}", "", "Arraste para o lado →", "", corpo]
         if self.fecho:
             partes += ["", self.fecho]
-        partes += ["", f"Saiba mais: {config.SITE}", "", tags]
+        partes += ["", f"Saiba mais: {config.SITE}"]
+        if self.fontes:
+            partes += ["Fontes no primeiro comentário 👇"]
+        partes += ["", tags]
         return "\n".join(partes)
 
+    def comentario(self, network: str) -> str:
+        """Primeiro comentário: fontes e site. Vazio quando não há o que pôr."""
+        if network == "instagram_stories":
+            return ""
+        if network == "instagram":
+            if not self.fontes:
+                return ""  # o site já está na legenda
+            nomes = " · ".join(nome for nome, _ in self.fontes[:3])
+            return f"📎 Fontes: {nomes}"
+        linhas = []
+        if self.fontes:
+            linhas.append("📎 Fontes:")
+            linhas += [f"• {nome}: {url}" for nome, url in self.fontes[:3]]
+            linhas.append("")
+        linhas.append(f"🌐 TECHDIM — {config.TAGLINE}: {config.SITE_URL}")
+        return "\n".join(linhas)
 
 
 # ---------------------------------------------------------------- relevância
