@@ -471,6 +471,8 @@ def render_post(post, network: str, out_dir: pathlib.Path, seed: int = 0) -> lis
         p = dict(post.infografico, slug=f"{post.theme}-{network}")
         p.setdefault("cena", ig.CENA_PADRAO.get(post.theme, "noticias"))
         p.setdefault("cor", ig.COR_PADRAO.get(post.theme, "#4DA3FF"))
+        if p.get("cena_composta"):
+            p["cena"] = "composta"
         if p["cena"] == "painel" and not p.get("terminal"):
             p["cena"] = "noticias"
         return [infografico.desenhar(p, out_dir / f"{post.theme}-{network}-01.png")]

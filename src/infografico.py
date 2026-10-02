@@ -602,7 +602,207 @@ def cena_painel(acc, rng):
     return img
 
 
-CENAS = {"noticias": cena_noticias, "ensino": cena_ensino, "rede": cena_rede, "painel": cena_painel, "dev": cena_dev,
+# ------------------------------------------------------------ cena composta
+# O Claude (Routine) descreve a cena do post: fundo + até 4 elementos + legenda.
+# Cada combinação gera uma imagem diferente, sempre ligada ao assunto.
+
+def _el_notebook(t, cx, by, s, tela="grafico"):
+    d = t.draw(); acc = t.acc
+    w, h = int(330 * s), int(210 * s)
+    x0, y0 = cx - w // 2, by - h - int(26 * s)
+    t.sombra((x0, y0, x0 + w, by), 20, 12, 180)
+    d = t.draw()
+    d.rounded_rectangle([x0, y0, x0 + w, y0 + h], 10, fill=(30, 32, 38, 255), outline=(70, 74, 84, 255), width=3)
+    d.rectangle([x0 + 10, y0 + 10, x0 + w - 10, y0 + h - 10], fill=(244, 247, 251, 255))
+    d.rectangle([x0 + 10, y0 + 10, x0 + w - 10, y0 + 10 + int(30 * s)], fill=acc + (255,))
+    for i, v in enumerate((30, 52, 44, 70, 62, 86)):
+        bx = x0 + 28 + i * int(46 * s)
+        d.rectangle([bx, y0 + h - 22 - int(v * s * 1.2), bx + int(30 * s), y0 + h - 22], fill=mix(acc, (255, 255, 255), 0.2) + (255,))
+    d.polygon([(x0 - int(30 * s), by - int(24 * s)), (x0 + w + int(30 * s), by - int(24 * s)), (x0 + w + int(50 * s), by), (x0 - int(50 * s), by)], fill=(150, 154, 164, 255))
+
+
+def _el_monitor(t, cx, by, s, tela="codigo"):
+    d = t.draw(); acc = t.acc
+    w, h = int(400 * s), int(270 * s)
+    x0, y0 = cx - w // 2, by - h - int(50 * s)
+    t.sombra((x0, y0, x0 + w, y0 + h)); t.brilho((x0, y0, x0 + w, y0 + h), acc, 50)
+    d = t.draw()
+    d.rounded_rectangle([x0, y0, x0 + w, y0 + h], 12, fill=(26, 28, 34, 255), outline=(60, 64, 74, 255), width=3)
+    d.rectangle([x0 + 12, y0 + 12, x0 + w - 12, y0 + h - 12], fill=(13, 17, 26, 255))
+    for i in range(9):
+        wd = t.rng.randint(60, int(w * 0.7))
+        d.rounded_rectangle([x0 + 30, y0 + 28 + i * int(24 * s), x0 + 30 + wd, y0 + 36 + i * int(24 * s)], 3,
+                            fill=mix((50, 80, 130), acc, (i % 3) / 3) + (255,))
+    d.rectangle([cx - 18, y0 + h, cx + 18, by - 14], fill=(40, 44, 52, 255))
+    d.rounded_rectangle([cx - int(70 * s), by - 16, cx + int(70 * s), by], 6, fill=(52, 56, 66, 255))
+
+
+def _el_celular(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    w, h = int(120 * s), int(240 * s)
+    x0, y0 = cx - w // 2, by - h
+    t.sombra((x0, y0, x0 + w, by), 14, 10, 200)
+    d = t.draw()
+    d.rounded_rectangle([x0, y0, x0 + w, by], 22, fill=(18, 20, 24, 255), outline=(84, 88, 98, 255), width=3)
+    d.rounded_rectangle([x0 + 8, y0 + 8, x0 + w - 8, by - 8], 16, fill=(244, 247, 251, 255))
+    d.rectangle([x0 + 8, y0 + 30, x0 + w - 8, y0 + 30 + int(36 * s)], fill=acc + (255,))
+    for i in range(3):
+        yy = y0 + 30 + int(36 * s) + 14 + i * int(48 * s)
+        d.rounded_rectangle([x0 + 16, yy, x0 + w - 16, yy + int(38 * s)], 8, fill=(255, 255, 255, 255), outline=(214, 222, 232, 255), width=2)
+        d.ellipse([x0 + 22, yy + 8, x0 + 22 + int(22 * s), yy + 8 + int(22 * s)], fill=mix(acc, (255, 255, 255), 0.3) + (255,))
+
+
+def _el_rack(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    w, h = int(200 * s), int(330 * s)
+    x0, y0 = cx - w // 2, by - h
+    t.sombra((x0, y0, x0 + w, by), 20, 12, 190)
+    d = t.draw()
+    d.rounded_rectangle([x0, y0, x0 + w, by], 8, fill=(28, 30, 36, 255), outline=(70, 74, 84, 255), width=3)
+    for i in range(6):
+        y = y0 + 14 + i * int(52 * s)
+        d.rounded_rectangle([x0 + 12, y, x0 + w - 12, y + int(42 * s)], 5, fill=(40, 44, 54, 255), outline=(66, 70, 82, 255), width=2)
+        for k in range(3):
+            c = (60, 230, 140) if t.rng.random() > 0.2 else (255, 190, 60)
+            d.ellipse([x0 + w - 70 + k * 16, y + int(16 * s), x0 + w - 60 + k * 16, y + int(26 * s)], fill=c + (255,))
+
+
+def _el_nuvem(t, cx, by, s, tela=""):
+    acc = t.acc
+    cy = by - int(150 * s)
+    g = Image.new("RGBA", (t.W, t.H), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(g)
+    gd.ellipse([cx - 150 * s, cy - 60 * s, cx + 150 * s, cy + 60 * s], fill=acc + (90,))
+    t.img.alpha_composite(g.filter(ImageFilter.GaussianBlur(30)))
+    d = t.draw()
+    col = (226, 236, 248, 255)
+    for dx, dy, r in ((-80, 10, 50), (-20, -20, 66), (50, 0, 56), (110, 20, 40)):
+        d.ellipse([cx + (dx - r) * s, cy + (dy - r) * s, cx + (dx + r) * s, cy + (dy + r) * s], fill=col)
+    d.rounded_rectangle([cx - 130 * s, cy + 6 * s, cx + 150 * s, cy + 60 * s], 20, fill=col)
+    d.polygon([(cx - 14, cy - 10), (cx + 14, cy - 10), (cx, cy - 36)], fill=acc + (255,))
+    d.rectangle([cx - 5, cy - 10, cx + 5, cy + 36], fill=acc + (255,))
+
+
+def _el_escudo(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    cy = by - int(170 * s)
+    g = Image.new("RGBA", (t.W, t.H), (0, 0, 0, 0))
+    ImageDraw.Draw(g).ellipse([cx - 180 * s, cy - 180 * s, cx + 180 * s, cy + 180 * s], fill=acc + (90,))
+    t.img.alpha_composite(g.filter(ImageFilter.GaussianBlur(36)))
+    d = t.draw()
+    pts = [(cx - 110 * s, cy - 120 * s), (cx + 110 * s, cy - 120 * s), (cx + 110 * s, cy + 10 * s), (cx, cy + 140 * s), (cx - 110 * s, cy + 10 * s)]
+    d.polygon(pts, fill=(14, 30, 58, 255)); d.line(pts + [pts[0]], fill=acc + (255,), width=6)
+    d.rounded_rectangle([cx - 30 * s, cy - 6 * s, cx + 30 * s, cy + 46 * s], 7, fill=acc + (255,))
+    d.arc([cx - 22 * s, cy - 42 * s, cx + 22 * s, cy + 6 * s], 180, 360, fill=acc + (255,), width=8)
+
+
+def _el_globo(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    r = int(120 * s); cy = by - r - int(30 * s)
+    g = Image.new("RGBA", (t.W, t.H), (0, 0, 0, 0))
+    ImageDraw.Draw(g).ellipse([cx - r - 30, cy - r - 30, cx + r + 30, cy + r + 30], fill=acc + (80,))
+    t.img.alpha_composite(g.filter(ImageFilter.GaussianBlur(30)))
+    d = t.draw()
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(14, 28, 52, 255), outline=acc + (255,), width=4)
+    for k in (0.35, 0.7):
+        d.ellipse([cx - r * k, cy - r, cx + r * k, cy + r], outline=acc + (160,), width=2)
+        d.ellipse([cx - r, cy - r * k, cx + r, cy + r * k], outline=acc + (160,), width=2)
+    for _ in range(9):
+        x, y = t.rng.randint(-70, 70) * s, t.rng.randint(-70, 70) * s
+        d.ellipse([cx + x - 6, cy + y - 6, cx + x + 6, cy + y + 6], fill=acc + (255,))
+
+
+def _el_engrenagens(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    def eng(x, y, r, n, cor):
+        pts = []
+        for i in range(n * 2):
+            a = math.pi * i / n
+            rr = r if i % 2 == 0 else r * 0.82
+            pts += [(x + rr * math.cos(a), y + rr * math.sin(a)), (x + rr * math.cos(a + math.pi / (2 * n)), y + rr * math.sin(a + math.pi / (2 * n)))]
+        d.polygon(pts, fill=cor); d.ellipse([x - r * 0.35, y - r * 0.35, x + r * 0.35, y + r * 0.35], fill=(12, 16, 24, 255))
+    eng(cx - 50 * s, by - 150 * s, 90 * s, 10, acc + (255,))
+    eng(cx + 74 * s, by - 90 * s, 62 * s, 8, mix(acc, (255, 255, 255), 0.4) + (255,))
+    eng(cx + 10 * s, by - 250 * s, 44 * s, 6, mix(acc, (30, 40, 60), 0.3) + (255,))
+
+
+def _el_grafico(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    w, h = int(300 * s), int(200 * s)
+    x0, y0 = cx - w // 2, by - h
+    d.rounded_rectangle([x0, y0, x0 + w, by], 10, fill=(18, 24, 38, 255), outline=mix(acc, (30, 40, 60), 0.5) + (255,), width=2)
+    vals = [30, 48, 40, 66, 58, 88, 80, 110]
+    bw = (w - 30) / len(vals)
+    for i, v in enumerate(vals):
+        d.rectangle([x0 + 15 + i * bw + 4, by - 14 - v * s * 1.2, x0 + 15 + (i + 1) * bw - 4, by - 14], fill=mix(acc, (255, 255, 255), 0.15) + (255,))
+    d.line([(x0 + 15 + i * bw + bw / 2, by - 24 - v * s * 1.2) for i, v in enumerate(vals)], fill=(240, 244, 250, 255), width=4)
+
+
+def _el_documento(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    w, h = int(190 * s), int(250 * s)
+    x0, y0 = cx - w // 2, by - h
+    t.sombra((x0, y0, x0 + w, by), 14, 10, 160)
+    d = t.draw()
+    d.rounded_rectangle([x0, y0, x0 + w, by], 8, fill=(244, 247, 251, 255))
+    d.rectangle([x0, y0, x0 + w, y0 + int(34 * s)], fill=acc + (255,))
+    for i in range(6):
+        d.rounded_rectangle([x0 + 18, y0 + int(54 * s) + i * int(26 * s), x0 + w - 18 - (i % 3) * 22, y0 + int(62 * s) + i * int(26 * s)], 3, fill=(120, 134, 156, 255))
+    d.ellipse([x0 + w - 70, by - 70, x0 + w - 20, by - 20], outline=acc + (255,), width=5)
+    d.line([(x0 + w - 58, by - 46), (x0 + w - 48, by - 36), (x0 + w - 32, by - 56)], fill=acc + (255,), width=5)
+
+
+def _el_chip(t, cx, by, s, tela=""):
+    d = t.draw(); acc = t.acc
+    r = int(80 * s); cy = by - r - int(40 * s)
+    g = Image.new("RGBA", (t.W, t.H), (0, 0, 0, 0))
+    ImageDraw.Draw(g).rectangle([cx - r - 40, cy - r - 40, cx + r + 40, cy + r + 40], fill=acc + (90,))
+    t.img.alpha_composite(g.filter(ImageFilter.GaussianBlur(32)))
+    d = t.draw()
+    for i in range(6):
+        p = -r + 20 + i * (2 * r - 40) / 5
+        for (a, b, c2, e) in ((cx + p, cy - r - 24, cx + p, cy - r), (cx + p, cy + r, cx + p, cy + r + 24), (cx - r - 24, cy + p, cx - r, cy + p), (cx + r, cy + p, cx + r + 24, cy + p)):
+            d.line([(a, b), (c2, e)], fill=(200, 210, 224, 255), width=6)
+    d.rounded_rectangle([cx - r, cy - r, cx + r, cy + r], 12, fill=(20, 26, 40, 255), outline=acc + (255,), width=5)
+    d.text((cx, cy), "IA", font=bebas(int(90 * s)), fill=acc + (255,), anchor="mm")
+
+
+ELEMENTOS = {"notebook": _el_notebook, "monitor": _el_monitor, "celular": _el_celular, "rack": _el_rack,
+             "nuvem": _el_nuvem, "escudo": _el_escudo, "globo": _el_globo, "engrenagens": _el_engrenagens,
+             "grafico": _el_grafico, "documento": _el_documento, "chip": _el_chip}
+FUNDOS = {"escritorio": ((10, 16, 28), (20, 30, 44), 640), "datacenter": ((6, 10, 20), (12, 20, 34), None),
+          "espaco": ((4, 6, 14), (14, 18, 34), None), "cidade": ((18, 24, 44), (36, 40, 70), 660),
+          "laboratorio": ((12, 22, 26), (22, 38, 44), 640)}
+
+
+def cena_composta(acc, rng):
+    """p["cena_composta"] = {"fundo": ..., "elementos": [...até 4...], "legenda": "..."}."""
+    c = ATUAL.get("cena_composta", {})
+    topo, base, mesa = FUNDOS.get(c.get("fundo", "escritorio"), FUNDOS["escritorio"])
+    t = _Tela(rng, acc, topo=topo, base=base, mesa=mesa)
+    if c.get("fundo") == "espaco":
+        d = t.draw()
+        _estrelas(d, t.W, t.H, 160, rng)
+    if c.get("fundo") == "cidade":
+        d = t.draw()
+        for i in range(14):
+            x = i * 70 + rng.randint(0, 20); h = rng.randint(180, 420)
+            d.rectangle([x, 660 - h, x + 56, 660], fill=mix((20, 26, 48), acc, 0.08) + (255,))
+            for yy in range(660 - h + 16, 640, 30):
+                if rng.random() > 0.45:
+                    d.rectangle([x + 10, yy, x + 18, yy + 12], fill=(255, 210, 120, 255))
+    els = [e for e in c.get("elementos", []) if e in ELEMENTOS][:4] or ["notebook", "celular"]
+    n = len(els)
+    by = 810 if mesa else 840
+    slots = {1: [480], 2: [320, 660], 3: [200, 480, 760], 4: [150, 370, 590, 810]}[n]
+    escala = {1: 1.9, 2: 1.5, 3: 1.2, 4: 1.0}[n]
+    ordem = sorted(range(n), key=lambda i: -abs(slots[i] - 480))  # centro por último, na frente
+    for i in ordem:
+        ELEMENTOS[els[i]](t, slots[i], by, escala)
+    return t.fim(c.get("legenda", "TECHDIM")[:60].upper())
+
+
+CENAS = {"composta": cena_composta, "noticias": cena_noticias, "ensino": cena_ensino, "rede": cena_rede, "painel": cena_painel, "dev": cena_dev,
     "titanic": cena_titanic, "maginot": cena_maginot, "vasa": cena_vasa,
     "apollo": cena_apollo, "troia": cena_troia,
 }
