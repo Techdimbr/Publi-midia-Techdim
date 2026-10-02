@@ -260,6 +260,9 @@ PYTHONPATH=src python src/main.py pendentes --theme hacker --indice index.json
 # testes e análise estática (rodam a cada push no workflow "Testes")
 ruff check src tests && pytest
 
+# confere a pauta de um dia (o que a Routine roda antes de gravar)
+PYTHONPATH=src python src/validar_pauta.py 2026-10-02
+
 # regenera os exemplos de padrão visual
 python src/exemplos_infograficos.py historias
 ```
@@ -291,6 +294,7 @@ src/
   render.py             arte antiga (carrossel/capa) e Stories
   main.py               generate / publish / preview / pendentes / registrar
   registro.py movimentos.py relatorio.py   diário, movimentos e relatório
+  validar_pauta.py     confere a pauta do dia antes de ela ir para o ar
   apagar.py token_check.py discover.py linkedin_ids.py curator.py
   seguranca.py texto.py utilitários (redação de credenciais, corte de texto)
   publishers/           facebook.py, instagram.py, linkedin.py, common.py
