@@ -27,11 +27,24 @@ de que nada visual mudou: 85 imagens geradas antes e depois da refatoração
 
 ## Testes
 
-`pytest` (109 testes) e `ruff` rodam a cada mudança em `src/`, `tests/` ou `content/`
+`pytest` (145 testes) e `ruff` rodam a cada mudança em `src/`, `tests/` ou `content/`
 (workflow **Testes**). Cobrem: retry de rede, validação do infográfico, desenho de
 todas as cenas e combinações de fundo e elemento, leitura da pauta e fallback,
 legendas e hashtags, anti-duplicidade, geração do dia, exclusão de posts e a
 integridade de **todas** as pautas já commitadas.
+
+## Provas em ambiente real (02/10/2026, horário de Brasília)
+
+| Hora | Execução | O que provou |
+|---|---|---|
+| 01:11 | [nº 22](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36963385706) | publicação completa das notícias (LinkedIn, Facebook, Instagram e Stories) com o infográfico novo e o primeiro comentário |
+| 01:41 | [nº 23](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965644427) | anti-duplicidade: o tema já tinha saído, a execução foi registrada como "pulado" e nada foi repostado |
+| 01:42 | [nº 24](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965648447) | ensaio do tema hacker: gerou as 4 imagens (feed e Stories) sem publicar |
+| 01:47 | [nº 25](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36966085418) | pré-voo (`sem_publicar`): gerou, enviou a imagem ao branch `assets`, conferiu a URL pública (HTTP 200) e pulou só a publicação nas redes; o diário registrou "ensaio" |
+
+O que ainda não foi visto ao vivo: uma Routine disparando sozinha no horário.
+O primeiro teste é hoje às 07:03 (pauta, que deve responder "já existe") e 07:58
+(notícias, que deve ser "pulado"); o primeiro ciclo completo do zero é 03/10.
 
 ## Pontos que continuam em aberto
 
