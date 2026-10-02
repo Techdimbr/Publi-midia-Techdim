@@ -46,6 +46,11 @@ on:
         required: false
         type: boolean
         default: false
+      sem_publicar:
+        description: "Pré-voo: gera, envia as imagens ao branch assets e confere a URL pública, mas NÃO publica nas redes"
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: publicar
@@ -229,7 +234,7 @@ jobs:
           exit 1
 
       - name: Publicar nas redes
-        if: ${{ !inputs.ensaio && steps.dup.outputs.pular != 'true' }}
+        if: ${{ !inputs.ensaio && !inputs.sem_publicar && steps.dup.outputs.pular != 'true' }}
         env:
           PYTHONPATH: src
           TEMA: ${{ steps.tema.outputs.tema }}
@@ -253,7 +258,7 @@ jobs:
           PYTHONPATH: src
           GH_TOKEN: ${{ github.token }}
           TEMA: ${{ steps.tema.outputs.tema }}
-          ENSAIO: ${{ inputs.ensaio }}
+          ENSAIO: ${{ inputs.ensaio || inputs.sem_publicar }}
           PULADO: ${{ steps.dup.outputs.pular == 'true' && 'tema já publicado hoje em todas as redes; execução ignorada' || '' }}
           EVENTO: ${{ github.event_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

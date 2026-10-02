@@ -98,6 +98,10 @@ legendas, e você baixa tudo no artifact da execução para conferir.
 Tirando o ensaio, a mesma tela publica de verdade — é o jeito de testar uma
 rede de cada vez antes de deixar os horários rodarem sozinhos.
 
+Para provar o caminho inteiro **sem publicar**, marque **sem_publicar**: o workflow
+gera as imagens, envia ao branch `assets` e confere a URL pública (o que o ensaio
+não faz), mas não chama nenhuma rede. O diário registra como ensaio.
+
 ## Pasta diária de registros
 
 Cada publicação real grava um registro no branch `assets`, em
