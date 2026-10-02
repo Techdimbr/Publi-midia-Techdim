@@ -58,9 +58,9 @@ HASHTAGS = {
         "instagram": "#conhecimento #aprendati #tecnologia #ti #ciberseguranca #techdim #campinas",
     },
     "especial": {
-        "linkedin": "#TECHDIM #InteligenciaArtificial #ClaudeCode #Gemini #AutomacaoEmpresarial",
-        "facebook": "#TECHDIM #IA #Automacao #Campinas",
-        "instagram": "#inteligenciaartificial #ia #claudecode #gemini #automacao #techdim #campinas",
+        "linkedin": "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #Tecnologia #Campinas",
+        "facebook": "#TECHDIM #TI #Tecnologia #Campinas",
+        "instagram": "#techdim #ti #infraestrutura #tecnologia #ciberseguranca #campinas",
     },
     # Genéricas de propósito: o assunto do destaque muda todo dia.
     "destaque": {
