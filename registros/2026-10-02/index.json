@@ -54,5 +54,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "00:53",
+    "tema": "especial",
+    "titulo": "A TECHDIM desenvolve software sob medida para a sua empresa",
+    "curadoria": "publicação especial, escrita sob demanda",
+    "arquivo": "00h53-especial.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132608677390486",
+      "instagram": "https://www.instagram.com/p/Dd-kFQEDAtE/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511634361335709696/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132608677390486",
+      "instagram": "18108123260264023",
+      "linkedin": "urn:li:share:7511634361335709696"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]

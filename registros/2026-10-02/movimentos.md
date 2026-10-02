@@ -33,3 +33,12 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 00:47 | 💬 comentou | Destaque do Dia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-jYZHjFnj/) |
 | 00:47 | 🖼️ gerado | Destaque do Dia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 00:47 | 📱 story | Destaque do Dia | instagram_stories | id 18126116707860752 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/3998789203655421790) |
+| 00:53 | ▶️ iniciado | TECHDIM + IA |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36962090512) |
+| 00:53 | 🗓️ planejado | TECHDIM + IA |  | pauta: A TECHDIM desenvolve software sob medida para a sua empresa — curadoria: publicação especial, escrita sob demanda | disparo manual |  |  |
+| 00:53 | 🖼️ gerado | TECHDIM + IA | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 00:53 | ✅ publicado | TECHDIM + IA | linkedin | id urn:li:share:7511634361335709696 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7511634361335709696/) |
+| 00:53 | 🖼️ gerado | TECHDIM + IA | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 00:53 | ✅ publicado | TECHDIM + IA | facebook | id 1167193706481148_122132608677390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132608677390486) |
+| 00:53 | 💬 comentou | TECHDIM + IA | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132608677390486) |
+| 00:53 | 🖼️ gerado | TECHDIM + IA | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 00:53 | ✅ publicado | TECHDIM + IA | instagram | id 18108123260264023 | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-kFQEDAtE/) |
