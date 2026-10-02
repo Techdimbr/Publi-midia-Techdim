@@ -139,5 +139,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:23",
+    "tema": "dica",
+    "titulo": "Notebook perdido sem BitLocker é dado exposto: como ligar a criptografia",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h23-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132772753390486",
+      "instagram": "https://www.instagram.com/p/DeAAwqZmMRm/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511838117511974912/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132772753390486",
+      "instagram": "17896524429673286",
+      "linkedin": "urn:li:share:7511838117511974912"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
