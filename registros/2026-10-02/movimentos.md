@@ -13,3 +13,11 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 00:22 | 💬 comentou | TECHDIM + IA | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132603679390486) |
 | 00:22 | 🖼️ gerado | TECHDIM + IA | instagram | 4 imagem(ns) | disparo manual |  |  |
 | 00:22 | ✅ publicado | TECHDIM + IA | instagram | id 18110092328349684 | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-ggTolxFA/) |
+| 00:30 | 🗑️ apagou |  | facebook | 1167193706481148_122132401797390486 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | instagram | 18114001634084077 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | facebook | 1167193706481148_122132535999390486 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | instagram | 17983876857082529 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | facebook | 1167193706481148_122132603679390486 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | instagram | 18110092328349684 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | linkedin | urn:li:share:7511626305306529792 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |
+| 00:30 | 🗑️ apagou |  | linkedin | urn:li:share:7511620411286233088 — motivo: post de teste, pedido do dono da conta | workflow Apagar posts | 🧪 |  |

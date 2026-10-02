@@ -7,3 +7,11 @@
 {"hora": "00:22:19", "teste": false, "tema": "TECHDIM + IA", "origem": "disparo manual", "link": "https://www.facebook.com/122132402349390486/posts/122132603679390486", "rede": "facebook", "tipo": "comentou", "detalhe": "primeiro comentário com fontes e site"}
 {"hora": "00:22:19", "teste": false, "tema": "TECHDIM + IA", "origem": "disparo manual", "link": "", "rede": "instagram", "tipo": "gerado", "detalhe": "4 imagem(ns)"}
 {"hora": "00:22:19", "teste": false, "tema": "TECHDIM + IA", "origem": "disparo manual", "link": "https://www.instagram.com/p/Dd-ggTolxFA/", "rede": "instagram", "tipo": "publicado", "detalhe": "id 18110092328349684"}
+{"hora": "00:30:58", "teste": true, "rede": "facebook", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "1167193706481148_122132401797390486 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "instagram", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "18114001634084077 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "facebook", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "1167193706481148_122132535999390486 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "instagram", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "17983876857082529 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "facebook", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "1167193706481148_122132603679390486 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "instagram", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "18110092328349684 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "linkedin", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "urn:li:share:7511626305306529792 — motivo: post de teste, pedido do dono da conta"}
+{"hora": "00:30:58", "teste": true, "rede": "linkedin", "origem": "workflow Apagar posts", "tipo": "apagou", "detalhe": "urn:li:share:7511620411286233088 — motivo: post de teste, pedido do dono da conta"}
