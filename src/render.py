@@ -467,7 +467,12 @@ def render_post(post, network: str, out_dir: pathlib.Path, seed: int = 0) -> lis
 
     if getattr(post, "infografico", None):  # padrão novo: 1 infográfico 1080×1350
         import infografico
+        import infografico as ig
         p = dict(post.infografico, slug=f"{post.theme}-{network}")
+        p.setdefault("cena", ig.CENA_PADRAO.get(post.theme, "noticias"))
+        p.setdefault("cor", ig.COR_PADRAO.get(post.theme, "#4DA3FF"))
+        if p["cena"] == "painel" and not p.get("terminal"):
+            p["cena"] = "noticias"
         return [infografico.desenhar(p, out_dir / f"{post.theme}-{network}-01.png")]
 
     # LinkedIn publica imagem única: só a capa, em 1:1.

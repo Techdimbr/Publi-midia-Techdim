@@ -389,6 +389,190 @@ def cena_dev(acc, rng):
     return out
 
 
+class _Tela:
+    """Tela em 2x com sombra e brilho, para cenas de ambiente."""
+
+    def __init__(self, rng, acc, topo=(10, 16, 28), base=(20, 30, 44), mesa=None):
+        self.bw, self.bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
+        self.W, self.H = self.bw * 2, self.bh * 2
+        self.acc, self.rng = acc, rng
+        self.img = _grad(self.W, self.H, topo, base).convert("RGBA")
+        bok = Image.new("RGBA", (self.W, self.H), (0, 0, 0, 0))
+        bd = ImageDraw.Draw(bok)
+        for _ in range(24):
+            x, y, r = rng.randint(0, self.W), rng.randint(0, 560), rng.randint(14, 44)
+            bd.ellipse([x - r, y - r, x + r, y + r], fill=mix((60, 90, 140), acc, rng.random() * 0.5) + (rng.randint(24, 60),))
+        self.img.alpha_composite(bok.filter(ImageFilter.GaussianBlur(14)))
+        self.mesa = mesa
+        if mesa:
+            d = ImageDraw.Draw(self.img)
+            for y in range(mesa, self.H):
+                d.line([(0, y), (self.W, y)], fill=mix((44, 34, 30), (14, 12, 12), (y - mesa) / (self.H - mesa)) + (255,))
+            d.line([(0, mesa), (self.W, mesa)], fill=(90, 74, 64, 255), width=3)
+
+    def sombra(self, box, raio=22, desloc=14, alfa=150):
+        sh = Image.new("RGBA", (self.W, self.H), (0, 0, 0, 0))
+        x0, y0, x1, y1 = box
+        ImageDraw.Draw(sh).rounded_rectangle([x0 + 6, y0 + desloc, x1 + 6, y1 + desloc], 10, fill=(0, 0, 0, alfa))
+        self.img.alpha_composite(sh.filter(ImageFilter.GaussianBlur(raio)))
+
+    def brilho(self, box, cor, alfa=60, raio=40):
+        g = Image.new("RGBA", (self.W, self.H), (0, 0, 0, 0))
+        x0, y0, x1, y1 = box
+        ImageDraw.Draw(g).rectangle([x0 - 30, y0 - 20, x1 + 30, y1 + 50], fill=cor + (alfa,))
+        self.img.alpha_composite(g.filter(ImageFilter.GaussianBlur(raio)))
+
+    def draw(self):
+        return ImageDraw.Draw(self.img)
+
+    def fim(self, legenda):
+        out = self.img.convert("RGB").resize((self.bw, self.bh), Image.LANCZOS)
+        od = ImageDraw.Draw(out)
+        od.rectangle([0, self.bh - 34, self.bw, self.bh], fill=(8, 12, 20))
+        od.text((14, self.bh - 26), legenda, font=rob(15, 700), fill=(200, 215, 230))
+        return out
+
+
+def _monitor(t, box, titulo=""):
+    t.sombra(box)
+    t.brilho(box, t.acc, 55)
+    d = t.draw()
+    x0, y0, x1, y1 = box
+    d.rounded_rectangle(box, 14, fill=(26, 28, 34, 255), outline=(60, 64, 74, 255), width=3)
+    tela = (x0 + 16, y0 + 16, x1 - 16, y1 - 16)
+    d.rectangle(tela, fill=(13, 17, 26, 255))
+    return tela
+
+
+def cena_noticias(acc, rng):
+    """Painel de notícias: manchetes, mapa de pontos e gráfico, mais um celular com alerta."""
+    t = _Tela(rng, acc, mesa=600)
+    mx0, my0, mx1, my1 = 40, 80, 700, 540
+    sx0, sy0, sx1, sy1 = _monitor(t, (mx0, my0, mx1, my1))
+    d = t.draw()
+    d.rectangle([sx0, sy0, sx1, sy0 + 40], fill=acc + (255,))
+    d.text((sx0 + 16, sy0 + 8), "TECH NEWS · AO VIVO", font=rob(22, 700), fill=(10, 14, 20, 255))
+    # mapa de pontos
+    mapa = [(x, y) for x in range(sx0 + 20, sx0 + 270, 12) for y in range(sy0 + 66, sy0 + 250, 12)
+            if ((x - sx0 - 145) / 125) ** 2 + ((y - sy0 - 158) / 92) ** 2 < 1 and rng.random() > 0.28]
+    for x, y in mapa:
+        d.ellipse([x - 2, y - 2, x + 2, y + 2], fill=(60, 90, 130, 255))
+    for x, y in rng.sample(mapa, 7):
+        d.ellipse([x - 7, y - 7, x + 7, y + 7], outline=acc + (255,), width=3)
+        d.ellipse([x - 3, y - 3, x + 3, y + 3], fill=acc + (255,))
+    # manchetes
+    for i in range(3):
+        y = sy0 + 64 + i * 66
+        d.rounded_rectangle([sx0 + 300, y, sx1 - 16, y + 56], 8, fill=(22, 30, 46, 255))
+        d.rectangle([sx0 + 300, y, sx0 + 308, y + 56], fill=acc + (255,))
+        d.rounded_rectangle([sx0 + 322, y + 12, sx1 - 40 - rng.randint(0, 60), y + 24], 4, fill=(220, 228, 240, 255))
+        d.rounded_rectangle([sx0 + 322, y + 34, sx1 - 120 - rng.randint(0, 80), y + 42], 4, fill=(110, 124, 146, 255))
+    # gráfico
+    gy = sy0 + 280
+    d.rounded_rectangle([sx0 + 16, gy, sx1 - 16, sy1 - 14], 8, fill=(18, 24, 38, 255))
+    pts, v = [], 80
+    for i in range(24):
+        v = max(20, min(110, v + rng.randint(-22, 24)))
+        pts.append((sx0 + 36 + i * 24, sy1 - 30 - v))
+    d.line(pts, fill=acc + (255,), width=4)
+    d.rectangle([mx0 + 300, my1, mx0 + 340, 584], fill=(40, 44, 52, 255))
+    d.rounded_rectangle([mx0 + 210, 576, mx0 + 430, 596], 8, fill=(52, 56, 66, 255))
+    # celular com alerta
+    px0, py0, px1, py1 = 740, 470, 920, 860
+    t.sombra((px0, py0, px1, py1), 20, 16, 200)
+    d = t.draw()
+    d.rounded_rectangle([px0, py0, px1, py1], 30, fill=(18, 20, 24, 255), outline=(84, 88, 98, 255), width=3)
+    d.rounded_rectangle([px0 + 10, py0 + 10, px1 - 10, py1 - 10], 24, fill=(14, 20, 34, 255))
+    d.text(((px0 + px1) // 2, py0 + 60), "09:41", font=rob(40, 700), fill=(240, 244, 250, 255), anchor="mm")
+    for i in range(3):
+        y = py0 + 110 + i * 100
+        d.rounded_rectangle([px0 + 22, y, px1 - 22, y + 86], 14, fill=(32, 42, 62, 255))
+        d.ellipse([px0 + 34, y + 24, px0 + 72, y + 62], fill=acc + (255,))
+        d.rounded_rectangle([px0 + 86, y + 22, px1 - 36, y + 34], 4, fill=(230, 236, 246, 255))
+        d.rounded_rectangle([px0 + 86, y + 46, px1 - 60, y + 56], 4, fill=(130, 144, 168, 255))
+    return t.fim("NOTÍCIA DO DIA  ·  TECNOLOGIA  ·  IA  ·  NEGÓCIOS")
+
+
+def cena_ensino(acc, rng):
+    """Quadro com passo a passo e diagrama, notebook com apresentação e caneca."""
+    t = _Tela(rng, acc, topo=(18, 24, 36), base=(26, 36, 50), mesa=640)
+    qx0, qy0, qx1, qy1 = 50, 70, 910, 560
+    t.sombra((qx0, qy0, qx1, qy1), 24, 16, 170)
+    d = t.draw()
+    d.rounded_rectangle([qx0, qy0, qx1, qy1], 12, fill=(120, 124, 132, 255))
+    d.rounded_rectangle([qx0 + 12, qy0 + 12, qx1 - 12, qy1 - 12], 8, fill=(22, 46, 40, 255))
+    d.rectangle([qx0 + 40, qy1, qx1 - 40, qy1 + 16], fill=(100, 104, 112, 255))
+    giz, giz2 = (236, 240, 232, 255), acc + (255,)
+    d.text((qx0 + 40, qy0 + 36), "COMO FAZER", font=bebas(64), fill=giz2)
+    d.line([(qx0 + 40, qy0 + 106), (qx0 + 340, qy0 + 108)], fill=giz2, width=4)
+    for i, txt in enumerate(("Identifique", "Configure", "Teste e registre")):
+        y = qy0 + 140 + i * 100
+        d.ellipse([qx0 + 40, y, qx0 + 100, y + 60], outline=giz, width=4)
+        d.text((qx0 + 70, y + 30), str(i + 1), font=bebas(44), fill=giz, anchor="mm")
+        d.text((qx0 + 120, y + 8), txt, font=rob(40, 600), fill=giz)
+        if i < 2:
+            d.line([(qx0 + 70, y + 66), (qx0 + 70, y + 96)], fill=giz2, width=4)
+    # diagrama
+    cx, cy = qx0 + 640, qy0 + 230
+    for dx, dy, r in ((-150, 70, 46), (150, 70, 46), (0, -90, 54)):
+        d.ellipse([cx + dx - r, cy + dy - r, cx + dx + r, cy + dy + r], outline=giz, width=4)
+    for a, b in (((cx - 110, cy + 40), (cx - 30, cy - 50)), ((cx + 110, cy + 40), (cx + 30, cy - 50)), ((cx - 104, cy + 70), (cx + 104, cy + 70))):
+        d.line([a, b], fill=giz2, width=4)
+    d.ellipse([cx - 22, cy - 112, cx + 22, cy - 68], fill=giz2)
+    d.text((cx, cy + 200), "O QUE · POR QUÊ · COMO", font=rob(26, 700), fill=giz, anchor="mm")
+    # notebook
+    lx0, ly0, lx1, ly1 = 420, 640, 880, 880
+    t.sombra((lx0, ly0, lx1, ly1 + 30), 22, 14, 190)
+    d = t.draw()
+    d.rounded_rectangle([lx0, ly0, lx1, ly1], 12, fill=(30, 32, 38, 255), outline=(70, 74, 84, 255), width=3)
+    d.rectangle([lx0 + 12, ly0 + 12, lx1 - 12, ly1 - 12], fill=(244, 247, 251, 255))
+    d.rectangle([lx0 + 12, ly0 + 12, lx1 - 12, ly0 + 48], fill=acc + (255,))
+    d.text((lx0 + 28, ly0 + 18), "Aula · Passo 1 de 3", font=rob(20, 700), fill=(255, 255, 255, 255))
+    for i in range(4):
+        d.ellipse([lx0 + 32, ly0 + 74 + i * 38, lx0 + 46, ly0 + 88 + i * 38], fill=acc + (255,))
+        d.rounded_rectangle([lx0 + 60, ly0 + 76 + i * 38, lx1 - 40 - i * 36, ly0 + 86 + i * 38], 4, fill=(60, 72, 92, 255))
+    d.polygon([(lx0 - 30, ly1 + 6), (lx1 + 30, ly1 + 6), (lx1 + 54, ly1 + 38), (lx0 - 54, ly1 + 38)], fill=(150, 154, 164, 255))
+    # caneca e livro
+    d.rounded_rectangle([110, 700, 250, 790], 12, fill=(236, 238, 242, 255))
+    d.rounded_rectangle([250, 716, 290, 760], 16, outline=(236, 238, 242, 255), width=8)
+    d.rectangle([128, 720, 232, 740], fill=acc + (255,))
+    d.rounded_rectangle([60, 800, 330, 840], 6, fill=mix(acc, (20, 30, 40), 0.35) + (255,))
+    d.rectangle([60, 800, 330, 810], fill=(236, 238, 242, 255))
+    return t.fim("PASSO A PASSO  ·  APRENDA  ·  APLIQUE")
+
+
+def cena_rede(acc, rng):
+    """Rack de servidores com LEDs, switch e diagrama de rede com cadeado."""
+    t = _Tela(rng, acc, topo=(8, 12, 22), base=(16, 22, 34))
+    rx0, ry0, rx1, ry1 = 60, 50, 430, 870
+    t.sombra((rx0, ry0, rx1, ry1), 26, 16, 190)
+    t.brilho((rx0, ry0, rx1, ry1), acc, 40)
+    d = t.draw()
+    d.rounded_rectangle([rx0, ry0, rx1, ry1], 12, fill=(28, 30, 36, 255), outline=(70, 74, 84, 255), width=4)
+    for i in range(12):
+        y = ry0 + 24 + i * 66
+        d.rounded_rectangle([rx0 + 20, y, rx1 - 20, y + 54], 6, fill=(40, 44, 54, 255), outline=(66, 70, 82, 255), width=2)
+        for k in range(8):
+            d.rectangle([rx0 + 40 + k * 14, y + 14, rx0 + 48 + k * 14, y + 40], fill=(24, 26, 32, 255))
+        for k in range(4):
+            cor = (60, 230, 140) if rng.random() > 0.2 else (255, 190, 60)
+            d.ellipse([rx1 - 120 + k * 22, y + 20, rx1 - 106 + k * 22, y + 34], fill=cor + (255,))
+    # diagrama de rede
+    cx, cy = 690, 330
+    nos = [(cx - 190, cy - 170), (cx + 190, cy - 170), (cx - 210, cy + 170), (cx + 210, cy + 170), (cx, cy + 300)]
+    for x, y in nos:
+        d.line([(cx, cy), (x, y)], fill=acc + (255,), width=5)
+    for i, (x, y) in enumerate(nos):
+        d.rounded_rectangle([x - 52, y - 38, x + 52, y + 38], 10, fill=(20, 28, 44, 255), outline=acc + (255,), width=3)
+        d.rectangle([x - 30, y - 16, x + 30, y + 10], outline=(210, 224, 240, 255), width=3)
+        d.line([(x - 14, y + 20), (x + 14, y + 20)], fill=(210, 224, 240, 255), width=3)
+    d.ellipse([cx - 96, cy - 96, cx + 96, cy + 96], fill=(14, 22, 38, 255), outline=acc + (255,), width=5)
+    d.polygon([(cx, cy - 66), (cx + 52, cy - 40), (cx + 52, cy + 14), (cx, cy + 66), (cx - 52, cy + 14), (cx - 52, cy - 40)], outline=acc + (255,), fill=(20, 40, 60, 255))
+    d.rounded_rectangle([cx - 20, cy - 4, cx + 20, cy + 30], 5, fill=acc + (255,))
+    d.arc([cx - 14, cy - 28, cx + 14, cy + 6], 180, 360, fill=acc + (255,), width=6)
+    return t.fim("INFRAESTRUTURA  ·  REDE  ·  SEGURANÇA  ·  BACKUP")
+
+
 ATUAL: dict = {}
 
 
@@ -418,10 +602,16 @@ def cena_painel(acc, rng):
     return img
 
 
-CENAS = {"painel": cena_painel, "dev": cena_dev,
+CENAS = {"noticias": cena_noticias, "ensino": cena_ensino, "rede": cena_rede, "painel": cena_painel, "dev": cena_dev,
     "titanic": cena_titanic, "maginot": cena_maginot, "vasa": cena_vasa,
     "apollo": cena_apollo, "troia": cena_troia,
 }
+
+
+CENA_PADRAO = {"noticias": "noticias", "destaque": "noticias", "hacker": "painel",
+               "dica": "ensino", "servico": "dev", "especial": "dev"}
+COR_PADRAO = {"noticias": "#4DA3FF", "destaque": "#FF8A00", "hacker": "#FF3B30",
+              "dica": "#FFB000", "servico": "#2EE59D", "especial": "#2EE59D"}
 
 
 def desenhar(p: dict, caminho: pathlib.Path) -> pathlib.Path:
