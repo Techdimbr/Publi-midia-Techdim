@@ -117,7 +117,8 @@ class Credentials:
 
     @property
     def has_linkedin(self) -> bool:
-        return bool(self.linkedin_token and self.linkedin_urn)
+        # O URN é opcional: sem ele, o publicador o descobre pelo token.
+        return bool(self.linkedin_token)
 
 
 # v21.0 funciona até 21/01/2027 — atualizar antes dessa data.

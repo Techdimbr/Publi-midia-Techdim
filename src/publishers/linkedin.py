@@ -39,6 +39,31 @@ def escape_commentary(text: str) -> str:
     return "".join(out)
 
 
+def resolve_urn(creds) -> str:
+    """URN do autor. Sem LINKEDIN_URN, descobre o do dono do token (perfil pessoal).
+
+    O LinkedIn não entrega o URN junto com o token; ele sai do endpoint userinfo
+    (escopos openid + profile): urn:li:person:<sub>. Para publicar como página,
+    informe LINKEDIN_URN=urn:li:organization:<id>.
+    """
+    if creds.linkedin_urn:
+        return creds.linkedin_urn
+    resp = request(
+        "GET",
+        f"{config.LINKEDIN_API}/v2/userinfo",
+        headers={"Authorization": f"Bearer {creds.linkedin_token}"},
+        attempts=2,
+    )
+    sub = resp.json().get("sub")
+    if not sub:
+        raise PublishError(
+            "LinkedIn: não consegui descobrir o URN — o token precisa dos escopos openid e profile"
+        )
+    creds.linkedin_urn = f"urn:li:person:{sub}"
+    log.info("LinkedIn: URN descoberto pelo token (%s)", creds.linkedin_urn)
+    return creds.linkedin_urn
+
+
 def _upload_image(creds, image_path: pathlib.Path) -> str:
     resp = request(
         "POST",
@@ -66,6 +91,7 @@ def publish(creds, caption: str, image_paths: list[pathlib.Path], alt: str = "")
     if not image_paths:
         raise PublishError("LinkedIn: nenhuma imagem para publicar")
 
+    resolve_urn(creds)
     image_urn = _upload_image(creds, image_paths[0])
 
     body = {

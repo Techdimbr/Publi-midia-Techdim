@@ -75,7 +75,7 @@ Use se o Token Generator não aparecer para o seu app. Redirect URL do app:
 | Todos os Secrets | — | [lista](https://github.com/Techdimbr/Publi-midia-Techdim/settings/secrets/actions) |
 | Todas as Variables | — | [lista](https://github.com/Techdimbr/Publi-midia-Techdim/settings/variables/actions) |
 
-Só `LINKEDIN_ACCESS_TOKEN` e `LINKEDIN_URN` são necessários. O **Client ID** e o
+Só `LINKEDIN_ACCESS_TOKEN` é necessário (`LINKEDIN_URN` é opcional). O **Client ID** e o
 **Client Secret** do app **não** vão para o GitHub: a automação usa o token.
 
 ## 3. Cadastre o token no GitHub
@@ -85,12 +85,12 @@ Direto no GitHub, nunca no chat:
 1. [Secrets do repositório](https://github.com/Techdimbr/Publi-midia-Techdim/settings/secrets/actions) → **New repository secret**.
 2. Nome: `LINKEDIN_ACCESS_TOKEN`. Valor: o token do passo 2.
 
-## 4. Descubra o `LINKEDIN_URN`
+## 4. URN: não precisa fazer nada
 
-1. [Actions → Descobrir IDs](https://github.com/Techdimbr/Publi-midia-Techdim/actions/workflows/descobrir-ids.yml) → **Run workflow**.
-2. Abra a execução e o passo **LinkedIn**. Ele imprime algo como:
-   `LINKEDIN_URN = urn:li:person:AbCdEf123`
-3. [Variables do repositório](https://github.com/Techdimbr/Publi-midia-Techdim/settings/variables/actions) → **New repository variable**: nome `LINKEDIN_URN`, valor o URN completo.
+O LinkedIn não entrega o URN junto com o token, e a automação não exige que você
+o informe: ela o descobre sozinha pelo token (escopos `openid` e `profile`) e
+publica no **seu perfil**. Só crie a Variable `LINKEDIN_URN` se for publicar como
+**página da empresa** (passo 7), com o valor `urn:li:organization:NNN`.
 
 ## 5. Teste com um post real só no LinkedIn
 
