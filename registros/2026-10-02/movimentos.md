@@ -56,3 +56,9 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 01:11 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18106840634616913 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/3998801227626057932) |
 | 01:41 | ▶️ iniciado | Notícias de Tecnologia |  | ensaio: nada será publicado | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965644427) |
 | 01:41 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965644427) |
+| 01:42 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | ensaio: nada será publicado | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965648447) |
+| 01:42 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: ShinyHunters volta a explorar falha crítica do Oracle PeopleSoft — curadoria: Claude (Routine) — pauta do dia | disparo manual | 🧪 |  |
+| 01:42 | 🧪 ensaio | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 01:42 | 🧪 ensaio | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 01:42 | 🧪 ensaio | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 01:42 | 🧪 ensaio | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
