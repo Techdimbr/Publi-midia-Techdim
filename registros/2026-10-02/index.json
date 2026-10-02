@@ -1,0 +1,29 @@
+[
+  {
+    "hora": "00:22",
+    "tema": "especial",
+    "titulo": "Sua empresa depende de TI. Quem cuida dela quando algo para?",
+    "curadoria": "publicação especial, escrita sob demanda",
+    "arquivo": "00h22-especial.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132603679390486",
+      "instagram": "https://www.instagram.com/p/Dd-ggTolxFA/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511626305306529792/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132603679390486",
+      "instagram": "18110092328349684",
+      "linkedin": "urn:li:share:7511626305306529792"
+    },
+    "comentou": [
+      "facebook"
+    ]
+  }
+]
