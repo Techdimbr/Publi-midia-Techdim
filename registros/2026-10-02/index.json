@@ -81,5 +81,34 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "01:11",
+    "tema": "noticias",
+    "titulo": "IA já está em quase toda empresa, mas integração e governança ainda travam",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "01h11-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132611413390486",
+      "instagram": "https://www.instagram.com/p/Dd-mHO1jHdm/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/3998801227626057932",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511638821072211968/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132611413390486",
+      "instagram": "18098286008635145",
+      "instagram_stories": "18106840634616913",
+      "linkedin": "urn:li:share:7511638821072211968"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

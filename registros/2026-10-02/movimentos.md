@@ -42,3 +42,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 00:53 | 💬 comentou | TECHDIM + IA | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132608677390486) |
 | 00:53 | 🖼️ gerado | TECHDIM + IA | instagram | 1 imagem(ns) | disparo manual |  |  |
 | 00:53 | ✅ publicado | TECHDIM + IA | instagram | id 18108123260264023 | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-kFQEDAtE/) |
+| 01:11 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36963385706) |
+| 01:11 | 🗓️ planejado | Notícias de Tecnologia |  | pauta: IA já está em quase toda empresa, mas integração e governança ainda travam — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 01:11 | 🖼️ gerado | Notícias de Tecnologia | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 01:11 | ✅ publicado | Notícias de Tecnologia | linkedin | id urn:li:share:7511638821072211968 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7511638821072211968/) |
+| 01:11 | 🖼️ gerado | Notícias de Tecnologia | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 01:11 | ✅ publicado | Notícias de Tecnologia | facebook | id 1167193706481148_122132611413390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132611413390486) |
+| 01:11 | 💬 comentou | Notícias de Tecnologia | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132611413390486) |
+| 01:11 | 🖼️ gerado | Notícias de Tecnologia | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 01:11 | ✅ publicado | Notícias de Tecnologia | instagram | id 18098286008635145 | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-mHO1jHdm/) |
+| 01:11 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-mHO1jHdm/) |
+| 01:11 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
+| 01:11 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18106840634616913 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/3998801227626057932) |
