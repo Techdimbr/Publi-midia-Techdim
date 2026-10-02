@@ -265,7 +265,36 @@ def cena_troia(acc, rng):
     return img
 
 
-CENAS = {
+ATUAL: dict = {}
+
+
+def cena_painel(acc, rng):
+    """Terminal com linhas do post: p["terminal"] = [[prefixo, texto, cor]], cor em
+    ok|risco|cmd|txt. Estilo de relatório técnico, para o tema hacker/IA."""
+    bw, bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
+    img = Image.new("RGB", (bw, bh), (8, 10, 16))
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, 0, bw, 34], fill=(24, 30, 42))
+    for i, c in enumerate(((255, 95, 86), (255, 189, 46), (39, 201, 63))):
+        d.ellipse([14 + i * 22, 11, 26 + i * 22, 23], fill=c)
+    d.text((100, 8), ATUAL.get("terminal_titulo", "relatório"), font=rob(16, 400), fill=(150, 160, 175))
+    cores = {"ok": (90, 230, 150), "risco": (255, 120, 110), "cmd": (120, 200, 255), "txt": (230, 235, 245)}
+    mono = rob(19, 400)
+    y = 56
+    for pre, txt, cor in ATUAL.get("terminal", []):
+        x = 18
+        if pre:
+            d.text((x, y), pre, font=mono, fill=acc)
+            x += d.textlength(pre, font=mono)
+        for ln in wrap(d, txt, mono, bw - x - 18):
+            d.text((x, y), ln, font=mono, fill=cores.get(cor, cores["txt"]))
+            y += 28
+        y += 4
+    d.rectangle([18, y + 2, 32, y + 24], fill=acc)
+    return img
+
+
+CENAS = {"painel": cena_painel,
     "titanic": cena_titanic, "maginot": cena_maginot, "vasa": cena_vasa,
     "apollo": cena_apollo, "troia": cena_troia,
 }
@@ -273,6 +302,8 @@ CENAS = {
 
 def desenhar(p: dict, caminho: pathlib.Path) -> pathlib.Path:
     acc = hexrgb(p["cor"])
+    ATUAL.clear()
+    ATUAL.update(p)
     rng = random.Random(p["slug"])
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)

@@ -46,7 +46,7 @@ def _curadoria(post) -> str:
     if post.theme == "especial":
         return "publicação especial, escrita sob demanda"
     if post.theme == "destaque":
-        return "Claude (Routine) — notícia pesquisada e conferida em 2 fontes"
+        return f"Claude (Routine) — notícia pesquisada, {len(post.fontes)} fonte(s) citada(s)"
     if post.curado_por_ia:
         return "IA (API da Anthropic)"
     if post.theme in ("dica", "servico"):

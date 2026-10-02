@@ -465,6 +465,11 @@ def render_post(post, network: str, out_dir: pathlib.Path, seed: int = 0) -> lis
     out_dir.mkdir(parents=True, exist_ok=True)
     size = config.SIZE_BY_NETWORK[network]
 
+    if getattr(post, "infografico", None):  # padrão novo: 1 infográfico 1080×1350
+        import infografico
+        p = dict(post.infografico, slug=f"{post.theme}-{network}")
+        return [infografico.desenhar(p, out_dir / f"{post.theme}-{network}-01.png")]
+
     # LinkedIn publica imagem única: só a capa, em 1:1.
     slides = post.slides[:1] if network == "linkedin" else post.slides
 

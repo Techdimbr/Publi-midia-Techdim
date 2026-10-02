@@ -88,6 +88,7 @@ class Post:
     curado_por_ia: bool = False
     motivo: str = ""  # por que esta pauta foi escolhida (curadoria)
     origem: str = ""  # "routine" quando veio da pauta do dia escrita pelo Claude
+    infografico: dict | None = None  # padrão visual novo (src/infografico.py); None = arte antiga
 
     @property
     def label(self) -> str:
@@ -142,7 +143,7 @@ class Post:
         # site continua escrito aqui; as fontes vão para o comentário.
         emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
         corpo = "\n".join(f"{emojis[i]} {p}" for i, p in enumerate(pontos))
-        partes = [f"{self.titulo}", "", "Arraste para o lado →", "", corpo]
+        partes = [f"{self.titulo}", ""] + ([] if self.infografico else ["Arraste para o lado →", ""]) + [corpo]
         if self.fecho:
             partes += ["", self.fecho]
         partes += ["", f"Saiba mais: {config.SITE}"]
@@ -391,6 +392,7 @@ def _destaque(today: dt.date, theme: str = "destaque", pasta: str = "destaques")
         fecho=item.get("fecho", ""),
         fontes=[tuple(f) for f in item.get("fontes", [])],
         motivo=item.get("motivo", ""),
+        infografico=item.get("infografico"),
     )
 
 
@@ -425,6 +427,7 @@ def _da_pauta(theme: str, today: dt.date) -> Post | None:
         fecho=item.get("fecho", ""),
         fontes=[tuple(f) for f in item.get("fontes", []) if len(f) == 2],
         motivo=item.get("motivo", ""),
+        infografico=item.get("infografico"),
         origem="routine",
     )
 

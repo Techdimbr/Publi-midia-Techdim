@@ -1,0 +1,37 @@
+{
+  "titulo": "Hacker usa agentes de IA para atacar até 100 empresas em 5 dias",
+  "pontos": [
+    "Entre 10 e 15 de setembro, um invasor automatizou ataques com DeepSeek, Kimi e uma versão antiga do Claude, segundo a Forbes; ao menos 30 sites tiveram acesso confirmado",
+    "Foram roubados mais de 618 mil registros de cartão de crédito, a um custo estimado de cerca de US$ 8 mil em todo o ataque",
+    "A Anthropic confirmou ter identificado e banido a conta usada. Defesa: correções em dia, MFA, menor privilégio e monitoramento de acessos incomuns"
+  ],
+  "fecho": "Ataque com IA é barato e rápido. A TECHDIM ajuda a manter a sua empresa atualizada e monitorada.",
+  "motivo": "Notícia de hacker com agentes de IA, publicada pela Forbes Brasil em 22/09/2026, com números verificáveis e lições práticas para PMEs.",
+  "fontes": [
+    ["forbes.com.br", "https://forbes.com.br/forbes-tech/2026/09/hacker-usa-ia-para-atacar-mais-de-100-empresas-em-apenas-cinco-dias/"]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "cor": "#FF3B30",
+    "titulo_branco": "Um hacker usou agentes de IA para atacar até 100 empresas",
+    "titulo_destaque": "em apenas 5 dias.",
+    "historia": "Segundo a Forbes Brasil, em setembro um invasor automatizou os ataques com DeepSeek, Kimi e uma versão antiga do Claude. O custo total foi de cerca de US$ 8 mil. A conta usada foi banida pela Anthropic.",
+    "terminal_titulo": "resumo do caso · fonte: Forbes Brasil",
+    "terminal": [
+      ["$ ", "janela do ataque: 10 a 15/09/2026", "cmd"],
+      ["", "alvos atacados: até 100", "txt"],
+      ["", "acesso confirmado: 30+ sites", "risco"],
+      ["", "cartões roubados: 618 mil+", "risco"],
+      ["", "custo total: ~US$ 8 mil", "txt"],
+      ["", "modelos: DeepSeek, Kimi, Claude (versão antiga)", "txt"],
+      ["$ ", "resposta: conta banida pela Anthropic", "cmd"]
+    ],
+    "licoes": [
+      ["Corrija rápido", "Ataque com IA é barato e veloz. Atualizações e correções precisam acompanhar o ritmo."],
+      ["Reduza o que guarda", "Menos dado de cartão armazenado é menos dado a perder. Segmente a rede e monitore acessos."],
+      ["Controle contas e acessos", "MFA, menor privilégio e revisão de acessos limitam o estrago de uma invasão."]
+    ],
+    "pergunta": "A sua empresa detectaria um ataque automatizado a tempo?",
+    "hashtags": ["#CIBERSEGURANÇA", "#IA", "#HACKER", "#TI", "#TECHDIM"]
+  }
+}
