@@ -122,7 +122,12 @@ class Post:
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
-            partes += ["", f"TECHDIM — {config.TAGLINE}", aviso_link, "", tags]
+            # A API de comentários do LinkedIn exige o produto Community
+            # Management API; sem ele o comentário dá 403. Enquanto isso, fontes
+            # e site vão no próprio texto do post.
+            if self.fontes:
+                partes += ["", "Fontes: " + " · ".join(url for _, url in self.fontes[:2])]
+            partes += ["", f"TECHDIM — {config.TAGLINE}", config.SITE_URL, "", tags]
             return "\n".join(partes)
 
         if network == "facebook":
@@ -148,8 +153,8 @@ class Post:
 
     def comentario(self, network: str) -> str:
         """Primeiro comentário: fontes e site. Vazio quando não há o que pôr."""
-        if network == "instagram_stories":
-            return ""
+        if network in ("instagram_stories", "linkedin"):
+            return ""  # LinkedIn: tudo no texto do post (ver caption)
         if network == "instagram":
             if not self.fontes:
                 return ""  # o site já está na legenda
