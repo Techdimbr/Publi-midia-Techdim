@@ -44,3 +44,7 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 20:59 | 💬 comentou | TECHDIM · Serviços | facebook | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132562783390486) |
 | 20:59 | 🖼️ gerado | TECHDIM · Serviços | instagram | 4 imagem(ns) | agendamento automático |  |  |
 | 20:59 | ✅ publicado | TECHDIM · Serviços | instagram | id 18629863453018014 | agendamento automático |  | [abrir](https://www.instagram.com/p/Dd-JVV4lDEb/) |
+| 23:46 | ▶️ iniciado | TECHDIM + IA |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36956990307) |
+| 23:46 | 🗓️ planejado | TECHDIM + IA |  | pauta: Agentes de IA na empresa: 3 cuidados antes de liberar o acesso — curadoria: publicação especial, escrita sob demanda | disparo manual |  |  |
+| 23:46 | 🖼️ gerado | TECHDIM + IA | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 23:46 | ⚠️ pulado | TECHDIM + IA | linkedin | não executado | disparo manual |  |  |
