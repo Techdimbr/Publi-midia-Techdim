@@ -110,5 +110,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:08",
+    "tema": "hacker",
+    "titulo": "ShinyHunters volta a explorar falha crítica do Oracle PeopleSoft",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h08-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132726913390486",
+      "instagram": "https://www.instagram.com/p/Dd_qeodmKU6/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/3999101967268321367",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511789130620641280/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132726913390486",
+      "instagram": "18414363088087403",
+      "instagram_stories": "18086842145289196",
+      "linkedin": "urn:li:share:7511789130620641280"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

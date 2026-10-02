@@ -69,3 +69,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 01:47 | 🧪 ensaio | TECHDIM · Serviços | instagram | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
 | 07:59 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36998456183) |
 | 07:59 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36998456183) |
+| 11:08 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37017698804) |
+| 11:08 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: ShinyHunters volta a explorar falha crítica do Oracle PeopleSoft — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7511789130620641280 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7511789130620641280/) |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122132726913390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132726913390486) |
+| 11:08 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122132726913390486) |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 18414363088087403 | disparo manual |  | [abrir](https://www.instagram.com/p/Dd_qeodmKU6/) |
+| 11:08 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/Dd_qeodmKU6/) |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18086842145289196 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/3999101967268321367) |
