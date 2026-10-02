@@ -54,3 +54,5 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 01:11 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/Dd-mHO1jHdm/) |
 | 01:11 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 01:11 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18106840634616913 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/3998801227626057932) |
+| 01:41 | ▶️ iniciado | Notícias de Tecnologia |  | ensaio: nada será publicado | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965644427) |
+| 01:41 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36965644427) |
