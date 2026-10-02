@@ -56,3 +56,8 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 23:54 | 🗓️ planejado | TECHDIM + IA |  | pauta: Agentes de IA na empresa: 3 cuidados antes de liberar o acesso — curadoria: publicação especial, escrita sob demanda | disparo manual |  |  |
 | 23:54 | 🖼️ gerado | TECHDIM + IA | linkedin | 1 imagem(ns) | disparo manual |  |  |
 | 23:54 | ⚠️ pulado | TECHDIM + IA | linkedin | não configurado | disparo manual |  |  |
+| 23:57 | ▶️ iniciado | TECHDIM + IA |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36957995790) |
+| 23:57 | 🗓️ planejado | TECHDIM + IA |  | pauta: Agentes de IA na empresa: 3 cuidados antes de liberar o acesso — curadoria: publicação especial, escrita sob demanda | disparo manual |  |  |
+| 23:57 | 🖼️ gerado | TECHDIM + IA | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 23:57 | ✅ publicado | TECHDIM + IA | linkedin | id urn:li:share:7511620411286233088 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7511620411286233088/) |
+| 23:57 | ❌ falhou | TECHDIM + IA | linkedin | primeiro comentário: falhou: POST https://api.linkedin.com/rest/socialActions/urn%3Ali%3Ashare%3A7511620411286233088/comments -> HTTP 403: {"status":403,"serviceErrorCode":100,"code":"ACCESS_DENIED","message":"Not enough permissi | disparo manual |  |  |

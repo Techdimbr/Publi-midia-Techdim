@@ -11,5 +11,6 @@ Tudo que a automação publicou (ou tentou publicar) neste dia.
 | 23:46 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h46-especial.md) | — | — | — | ⏸️ |
 | 23:47 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h47-especial.md) | — | — | — | ⚠️ |
 | 23:54 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h54-especial.md) | — | — | — | ⚠️ |
+| 23:57 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h57-especial.md) | — | — | — | [✅](https://www.linkedin.com/feed/update/urn:li:share:7511620411286233088/) |
 
 ✅ publicado · ❌ falhou · ⚠️ rede não configurada · ⏸️ não executado · — não se aplica

@@ -138,5 +138,28 @@
     },
     "ids": {},
     "comentou": []
+  },
+  {
+    "hora": "23:57",
+    "tema": "especial",
+    "titulo": "Agentes de IA na empresa: 3 cuidados antes de liberar o acesso",
+    "curadoria": "publicação especial, escrita sob demanda",
+    "arquivo": "23h57-especial.md",
+    "redes": {
+      "facebook": "-",
+      "instagram": "-",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "",
+      "instagram": "",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511620411286233088/"
+    },
+    "ids": {
+      "linkedin": "urn:li:share:7511620411286233088"
+    },
+    "comentou": []
   }
 ]
