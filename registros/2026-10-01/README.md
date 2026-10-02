@@ -10,5 +10,6 @@ Tudo que a automação publicou (ou tentou publicar) neste dia.
 | 20:59 | TECHDIM · Serviços | [Backup gerenciado e recuperação testada](20h59-servico.md) | [✅](https://www.facebook.com/122132402349390486/posts/122132562783390486) | [✅](https://www.instagram.com/p/Dd-JVV4lDEb/) | — | ⚠️ |
 | 23:46 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h46-especial.md) | — | — | — | ⏸️ |
 | 23:47 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h47-especial.md) | — | — | — | ⚠️ |
+| 23:54 | TECHDIM + IA | [Agentes de IA na empresa: 3 cuidados antes de liberar o acesso](23h54-especial.md) | — | — | — | ⚠️ |
 
 ✅ publicado · ❌ falhou · ⚠️ rede não configurada · ⏸️ não executado · — não se aplica

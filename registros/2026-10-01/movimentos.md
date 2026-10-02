@@ -52,3 +52,7 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 23:47 | 🗓️ planejado | TECHDIM + IA |  | pauta: Agentes de IA na empresa: 3 cuidados antes de liberar o acesso — curadoria: publicação especial, escrita sob demanda | disparo manual |  |  |
 | 23:47 | 🖼️ gerado | TECHDIM + IA | linkedin | 1 imagem(ns) | disparo manual |  |  |
 | 23:47 | ⚠️ pulado | TECHDIM + IA | linkedin | não configurado | disparo manual |  |  |
+| 23:54 | ▶️ iniciado | TECHDIM + IA |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36957781193) |
+| 23:54 | 🗓️ planejado | TECHDIM + IA |  | pauta: Agentes de IA na empresa: 3 cuidados antes de liberar o acesso — curadoria: publicação especial, escrita sob demanda | disparo manual |  |  |
+| 23:54 | 🖼️ gerado | TECHDIM + IA | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 23:54 | ⚠️ pulado | TECHDIM + IA | linkedin | não configurado | disparo manual |  |  |
