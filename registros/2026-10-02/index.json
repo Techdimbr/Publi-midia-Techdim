@@ -25,5 +25,34 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "00:47",
+    "tema": "destaque",
+    "titulo": "Hacker usa agentes de IA para atacar até 100 empresas em 5 dias",
+    "curadoria": "Claude (Routine) — notícia pesquisada, 1 fonte(s) citada(s)",
+    "arquivo": "00h47-destaque.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132607459390486",
+      "instagram": "https://www.instagram.com/p/Dd-jYZHjFnj/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/3998789203655421790",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7511632804133359616/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132607459390486",
+      "instagram": "17908812558515545",
+      "instagram_stories": "18126116707860752",
+      "linkedin": "urn:li:share:7511632804133359616"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
