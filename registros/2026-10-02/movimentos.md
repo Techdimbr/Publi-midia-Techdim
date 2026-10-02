@@ -67,3 +67,5 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 01:47 | 🧪 ensaio | TECHDIM · Serviços | linkedin | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
 | 01:47 | 🧪 ensaio | TECHDIM · Serviços | facebook | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
 | 01:47 | 🧪 ensaio | TECHDIM · Serviços | instagram | 1 imagem(ns) geradas; nada publicado | disparo manual | 🧪 |  |
+| 07:59 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36998456183) |
+| 07:59 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/36998456183) |
