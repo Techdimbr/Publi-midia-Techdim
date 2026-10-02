@@ -289,13 +289,34 @@ def desenhar(p: dict, caminho: pathlib.Path) -> pathlib.Path:
 
     # cena com bordas suaves
     x0, y0, x1, y1 = SCENE
-    cena = CENAS[p["cena"]](acc, rng).convert("RGB")
+    if p.get("fundo"):  # foto de fundo inteira, escurecida, sem moldura
+        foto = Image.open(ROOT / "fotos" / p["fundo"]).convert("RGB")
+        k = max(W / foto.width, 700 / foto.height)
+        foto = foto.resize((int(foto.width * k) + 1, int(foto.height * k) + 1))
+        foto = foto.crop((0, 0, W, 700))
+        tom = Image.new("RGB", (W, 700), acc)
+        foto = Image.blend(foto.convert("L").convert("RGB"), tom, 0.35)
+        fade = Image.new("L", (W, 700))
+        fd = ImageDraw.Draw(fade)
+        for yy in range(700):
+            fd.line([(0, yy), (W, yy)], fill=int(255 * (0.55 + 0.45 * min(1, yy / 700) ** 1.6)))
+        img.paste(Image.new("RGB", (W, 700), BG), (0, 0))
+        img.paste(Image.composite(Image.new("RGB", (W, 700), BG), foto, fade), (0, 0))
+        d = ImageDraw.Draw(img)
+        d.text((1040, 664), p.get("credito", ""), font=rob(15, 400), fill=MUTED, anchor="ra")
+        cena = None
+    else:
+        cena = CENAS[p["cena"]](acc, rng).convert("RGB")
+    if cena is None:
+        x0 = x1 = 0
+        cena = Image.new("RGB", (1, 1))
     mascara = Image.new("L", cena.size, 0)
     md = ImageDraw.Draw(mascara)
     md.rounded_rectangle([0, 0, cena.size[0], cena.size[1]], 26, fill=255)
-    img.paste(cena, (x0, y0), mascara)
-    d = ImageDraw.Draw(img)
-    d.rounded_rectangle([x0, y0, x1, y1], 26, outline=mix(acc, BG, 0.45), width=2)
+    if not p.get("fundo"):
+        img.paste(cena, (x0, y0), mascara)
+        d = ImageDraw.Draw(img)
+        d.rounded_rectangle([x0, y0, x1, y1], 26, outline=mix(acc, BG, 0.45), width=2)
 
     # barra vertical e título
     d.rectangle([40, 150, 48, 470], fill=acc)
