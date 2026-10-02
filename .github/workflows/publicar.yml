@@ -104,6 +104,10 @@ jobs:
         id: assets
         run: |
           set -euo pipefail
+          # Primeiro, antes de qualquer saída antecipada ("nada novo para
+          # commitar" quando as imagens já estão no branch): os passos
+          # seguintes dependem desse endereço.
+          echo "base=https://raw.githubusercontent.com/${{ github.repository }}/assets" >> "$GITHUB_OUTPUT"
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -130,7 +134,6 @@ jobs:
             sleep $((i * 3))
           done
 
-          echo "base=https://raw.githubusercontent.com/${{ github.repository }}/assets" >> "$GITHUB_OUTPUT"
 
       - name: Conferir se as imagens já estão públicas
         if: ${{ !inputs.ensaio }}
