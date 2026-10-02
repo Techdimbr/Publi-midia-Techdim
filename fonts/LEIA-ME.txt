@@ -1,0 +1,3 @@
+Bebas Neue (Dharma Type) e Roboto Condensed (Christian Robertson): fontes sob a
+SIL Open Font License 1.1 (https://openfontlicense.org), obtidas do repositório
+https://github.com/google/fonts. Uso livre, inclusive comercial.
