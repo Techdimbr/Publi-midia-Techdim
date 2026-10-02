@@ -265,6 +265,130 @@ def cena_troia(acc, rng):
     return img
 
 
+def cena_dev(acc, rng):
+    """Mesa de trabalho: monitor com código, notebook com sistema rodando e celular com app.
+    Desenhado em 2x e reduzido, para bordas suaves; sombras e brilho de tela dão volume."""
+    import render
+    bw, bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
+    S = 2
+    W2, H2 = bw * S, bh * S
+    img = _grad(W2, H2, (10, 16, 28), (20, 30, 44)).convert("RGBA")
+    # escritório desfocado ao fundo (bokeh)
+    bok = Image.new("RGBA", (W2, H2), (0, 0, 0, 0))
+    bd = ImageDraw.Draw(bok)
+    for _ in range(26):
+        x, y, r = rng.randint(0, W2), rng.randint(0, 560), rng.randint(14, 46)
+        bd.ellipse([x - r, y - r, x + r, y + r], fill=mix((60, 90, 140), acc, rng.random() * 0.5) + (rng.randint(28, 70),))
+    img.alpha_composite(bok.filter(ImageFilter.GaussianBlur(14)))
+    d = ImageDraw.Draw(img)
+    mesa = 600
+    for y in range(mesa, H2):
+        d.line([(0, y), (W2, y)], fill=mix((44, 34, 30), (14, 12, 12), (y - mesa) / (H2 - mesa)) + (255,))
+    d.line([(0, mesa), (W2, mesa)], fill=(90, 74, 64, 255), width=3)
+
+    def sombra(box, raio=22, desloc=14, alfa=150):
+        sh = Image.new("RGBA", (W2, H2), (0, 0, 0, 0))
+        x0, y0, x1, y1 = box
+        ImageDraw.Draw(sh).rounded_rectangle([x0 + 6, y0 + desloc, x1 + 6, y1 + desloc], 10, fill=(0, 0, 0, alfa))
+        img.alpha_composite(sh.filter(ImageFilter.GaussianBlur(raio)))
+
+    def brilho(box, cor, alfa=70, raio=40):
+        g = Image.new("RGBA", (W2, H2), (0, 0, 0, 0))
+        x0, y0, x1, y1 = box
+        ImageDraw.Draw(g).rectangle([x0 - 30, y0 - 20, x1 + 30, y1 + 50], fill=cor + (alfa,))
+        img.alpha_composite(g.filter(ImageFilter.GaussianBlur(raio)))
+
+    # --- monitor com editor de código
+    mx0, my0, mx1, my1 = 50, 90, 650, 520
+    sombra((mx0, my0, mx1, my1))
+    brilho((mx0, my0, mx1, my1), acc, 60)
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([mx0, my0, mx1, my1], 14, fill=(26, 28, 34, 255), outline=(60, 64, 74, 255), width=3)
+    sx0, sy0, sx1, sy1 = mx0 + 16, my0 + 16, mx1 - 16, my1 - 16
+    d.rectangle([sx0, sy0, sx1, sy1], fill=(13, 17, 26, 255))
+    d.rectangle([sx0, sy0, sx1, sy0 + 34], fill=(24, 30, 44, 255))
+    for i, c in enumerate(((255, 95, 86), (255, 189, 46), (39, 201, 63))):
+        d.ellipse([sx0 + 14 + i * 24, sy0 + 10, sx0 + 28 + i * 24, sy0 + 24], fill=c + (255,))
+    d.text((sx0 + 100, sy0 + 8), "app.ts  —  TECHDIM", font=render._font("mono", 18), fill=(150, 160, 175, 255))
+    d.rectangle([sx0, sy0 + 34, sx0 + 150, sy1], fill=(17, 22, 34, 255))
+    for i, nome in enumerate(("src", "  api.ts", "  app.ts", "  ui.tsx", "tests", "deploy.yml")):
+        d.text((sx0 + 14, sy0 + 50 + i * 30), nome, font=render._font("mono", 17), fill=(120, 132, 150, 255))
+    codigo = [
+        ("const ", "app", " = criarSistema({"), ("  nome: ", '"Sob medida"', ","),
+        ("  plataformas: ", '["web","desktop","ios","android"]', ","),
+        ("  integra: ", '["ERP","CRM","API","planilhas"]', ","), ("});", "", ""),
+        ("", "", ""), ("app.", "rodar", "();  // no ar"),
+    ]
+    mono = render._font("mono", 19)
+    y = sy0 + 56
+    for i, (a, b, c) in enumerate(codigo):
+        x = sx0 + 168
+        d.text((x - 32, y), f"{i + 1:02d}", font=mono, fill=(70, 80, 98, 255))
+        d.text((x, y), a, font=mono, fill=(200, 120, 255, 255) if a.startswith("const") else (170, 180, 195, 255))
+        x += d.textlength(a, font=mono)
+        d.text((x, y), b, font=mono, fill=acc + (255,) if b.startswith('"') or b.startswith("[") else (120, 200, 255, 255))
+        x += d.textlength(b, font=mono)
+        d.text((x, y), c, font=mono, fill=(150, 160, 175, 255))
+        y += 32
+    for i in range(7):  # blocos de código abaixo, só textura
+        w = rng.randint(120, 330)
+        d.rounded_rectangle([sx0 + 168, y + 12 + i * 20, sx0 + 168 + w, y + 20 + i * 20], 3,
+                            fill=mix((40, 60, 90), acc, rng.random() * 0.4) + (255,))
+    d.rectangle([mx0 + 280, my1, mx0 + 320, 574], fill=(40, 44, 52, 255))
+    d.rounded_rectangle([mx0 + 190, 566, mx0 + 410, 586], 8, fill=(52, 56, 66, 255))
+
+    # --- notebook com o sistema funcionando
+    lx0, ly0, lx1, ly1 = 410, 390, 930, 740
+    sombra((lx0, ly0, lx1, ly1 + 40), 26, 18, 190)
+    brilho((lx0, ly0, lx1, ly1), (60, 200, 150), 60)
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([lx0, ly0, lx1, ly1], 14, fill=(30, 32, 38, 255), outline=(70, 74, 84, 255), width=3)
+    ex0, ey0, ex1, ey1 = lx0 + 14, ly0 + 14, lx1 - 14, ly1 - 14
+    d.rectangle([ex0, ey0, ex1, ey1], fill=(244, 247, 251, 255))
+    d.rectangle([ex0, ey0, ex1, ey0 + 44], fill=acc + (255,))
+    d.text((ex0 + 18, ey0 + 11), "TECHDIM · Painel", font=rob(22, 700), fill=(255, 255, 255, 255))
+    for i, (rot, val) in enumerate((("Pedidos", "128"), ("Hoje", "R$ 8,4 mil"), ("Prazo", "98%"))):
+        cx = ex0 + 16 + i * 160
+        d.rounded_rectangle([cx, ey0 + 60, cx + 148, ey0 + 128], 8, fill=(255, 255, 255, 255), outline=(214, 222, 232, 255), width=2)
+        d.text((cx + 12, ey0 + 68), rot, font=rob(16, 400), fill=(110, 120, 135, 255))
+        d.text((cx + 12, ey0 + 90), val, font=rob(26, 700), fill=(24, 32, 46, 255))
+    gx0, gy0, gx1, gy1 = ex0 + 16, ey0 + 144, ex1 - 16, ey1 - 14
+    d.rounded_rectangle([gx0, gy0, gx1, gy1], 8, fill=(255, 255, 255, 255), outline=(214, 222, 232, 255), width=2)
+    barras = [34, 52, 44, 66, 58, 82, 74, 96]
+    bwid = (gx1 - gx0 - 40) / len(barras)
+    for i, v in enumerate(barras):
+        bx = gx0 + 20 + i * bwid
+        d.rectangle([bx + 6, gy1 - 14 - v * 1.25, bx + bwid - 6, gy1 - 14], fill=mix(acc, (255, 255, 255), 0.25 if i < 7 else 0) + (255,))
+    pts = [(gx0 + 20 + i * bwid + bwid / 2, gy1 - 30 - v * 1.25) for i, v in enumerate(barras)]
+    d.line(pts, fill=(24, 32, 46, 255), width=4)
+    d.polygon([(lx0 - 34, ly1 + 6), (lx1 + 34, ly1 + 6), (lx1 + 60, ly1 + 44), (lx0 - 60, ly1 + 44)], fill=(150, 154, 164, 255))
+    d.rounded_rectangle([lx0 + 190, ly1 + 8, lx1 - 190, ly1 + 18], 5, fill=(110, 114, 124, 255))
+
+    # --- celular com o aplicativo
+    px0, py0, px1, py1 = 60, 520, 240, 880
+    sombra((px0, py0, px1, py1), 20, 16, 200)
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([px0, py0, px1, py1], 30, fill=(18, 20, 24, 255), outline=(84, 88, 98, 255), width=3)
+    d.rounded_rectangle([px0 + 10, py0 + 10, px1 - 10, py1 - 10], 24, fill=(244, 247, 251, 255))
+    d.rounded_rectangle([px0 + 62, py0 + 16, px1 - 62, py0 + 26], 5, fill=(18, 20, 24, 255))
+    d.rectangle([px0 + 10, py0 + 40, px1 - 10, py0 + 96], fill=acc + (255,))
+    d.text((px0 + 24, py0 + 54), "Meu app", font=rob(24, 700), fill=(255, 255, 255, 255))
+    for i in range(3):
+        cy = py0 + 112 + i * 76
+        d.rounded_rectangle([px0 + 22, cy, px1 - 22, cy + 62], 10, fill=(255, 255, 255, 255), outline=(214, 222, 232, 255), width=2)
+        d.ellipse([px0 + 32, cy + 14, px0 + 66, cy + 48], fill=mix(acc, (255, 255, 255), 0.3 + 0.2 * i) + (255,))
+        d.rounded_rectangle([px0 + 78, cy + 16, px1 - 40, cy + 26], 4, fill=(60, 70, 88, 255))
+        d.rounded_rectangle([px0 + 78, cy + 36, px1 - 70, cy + 44], 4, fill=(190, 198, 210, 255))
+    d.rounded_rectangle([px0 + 28, py1 - 92, px1 - 28, py1 - 48], 22, fill=acc + (255,))
+    d.text(((px0 + px1) // 2, py1 - 70), "Novo pedido", font=rob(20, 700), fill=(255, 255, 255, 255), anchor="mm")
+
+    out = img.convert("RGB").resize((bw, bh), Image.LANCZOS)
+    od = ImageDraw.Draw(out)
+    od.rectangle([0, bh - 34, bw, bh], fill=(8, 12, 20))
+    od.text((14, bh - 26), "WEB  ·  DESKTOP  ·  CELULAR  ·  INTEGRAÇÕES", font=rob(15, 700), fill=(200, 215, 230))
+    return out
+
+
 ATUAL: dict = {}
 
 
@@ -294,7 +418,7 @@ def cena_painel(acc, rng):
     return img
 
 
-CENAS = {"painel": cena_painel,
+CENAS = {"painel": cena_painel, "dev": cena_dev,
     "titanic": cena_titanic, "maginot": cena_maginot, "vasa": cena_vasa,
     "apollo": cena_apollo, "troia": cena_troia,
 }

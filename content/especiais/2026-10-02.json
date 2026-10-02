@@ -1,10 +1,39 @@
 {
-  "titulo": "Sua empresa depende de TI. Quem cuida dela quando algo para?",
+  "titulo": "A TECHDIM desenvolve software sob medida para a sua empresa",
   "pontos": [
-    "Monitoramento proativo: a TECHDIM acompanha servidores, rede e backup e avisa antes de o usuário perceber o problema",
-    "Atendimento com responsável definido: um único ponto de contato para infraestrutura, segurança e automação",
-    "Segurança desde o início: atualizações, controle de acesso e backup testado fazem parte da rotina, não de um projeto à parte"
+    "Sistemas web, aplicativos para celular (Android e iOS) e programas para desktop, feitos para o jeito de trabalhar da sua empresa",
+    "Integração com o que você já usa: ERP, CRM, planilhas, APIs e outros sistemas, sem trocar tudo",
+    "Você conta a ideia e a TECHDIM analisa, propõe e desenvolve. Fale com a gente para saber como começar"
   ],
-  "fecho": "Conheça como a TECHDIM cuida da TI da sua empresa.",
-  "motivo": "Publicação de teste das três redes: propaganda institucional dos serviços, sem promessa de prazo ou resultado."
+  "fecho": "Tem uma ideia? Conte para a TECHDIM e a gente desenvolve.",
+  "motivo": "Propaganda do serviço de desenvolvimento de software personalizado, sem promessa de prazo ou preço.",
+  "infografico": {
+    "cena": "dev",
+    "cor": "#2EE59D",
+    "titulo_branco": "Tem uma ideia? Informe para a TECHDIM.",
+    "titulo_destaque": "A gente desenvolve.",
+    "historia": "Software sob medida para a sua empresa: sistemas web, aplicativos de celular e programas de desktop, integrados ao que você já usa. Você conta a ideia, a TECHDIM analisa e desenvolve.",
+    "licoes": [
+      [
+        "Qualquer sistema",
+        "Web, desktop e integrações com ERP, CRM, planilhas e APIs que sua empresa já usa."
+      ],
+      [
+        "Qualquer celular",
+        "Aplicativos para Android e iOS, pensados para a rotina de quem usa."
+      ],
+      [
+        "Do seu jeito",
+        "Nada de adaptar a empresa ao sistema: o sistema é feito para a empresa."
+      ]
+    ],
+    "pergunta": "Qual processo da sua empresa um sistema próprio resolveria?",
+    "hashtags": [
+      "#SOFTWARESOBMEDIDA",
+      "#DESENVOLVIMENTO",
+      "#APLICATIVOS",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
 }
