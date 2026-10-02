@@ -1,0 +1,5 @@
+baltic-servers.jpg
+  Foto: BalticServers, "BalticServers data center.jpg", Wikimedia Commons.
+  Licença: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0/
+  Uso: só nos exemplos de padrão visual (src/exemplos_infograficos.py), com o crédito
+  impresso na própria arte. O pipeline diário não usa fotos de terceiros.

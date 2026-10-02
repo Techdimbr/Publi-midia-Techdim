@@ -1,4 +1,11 @@
-"""Cinco variações de padrão visual para o mesmo tema (Hardening do Windows)."""
+"""Exemplos do infográfico, para escolher e testar padrões visuais.
+
+  python src/exemplos_infograficos.py historias   5 histórias reais -> exemplos/infograficos/
+  python src/exemplos_infograficos.py windows     5 estilos do mesmo tema -> exemplos/hardening-windows/
+
+Nada aqui entra no pipeline diário: as cenas de exemplo (escudo, terminal,
+antes_depois, foto) só existem enquanto este módulo está importado.
+"""
 from __future__ import annotations
 
 import pathlib
@@ -6,15 +13,16 @@ import sys
 
 from PIL import Image, ImageDraw, ImageFilter
 
-import infografico as ig
-from infografico import SCENE, ROOT, bebas, rob, hexrgb, mix
+from cenas import CENAS
+from desenho import ROOT, SCENE, bebas, grad, rob
+from infografico import desenhar
 
 CRED = "Foto: BalticServers, CC BY-SA 3.0, Wikimedia Commons"
 
 
-def cena_escudo(acc, rng):
+def cena_escudo(acc, rng, p=None):
     bw, bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
-    img = ig._grad(bw, bh, (8, 16, 34), (12, 40, 80))
+    img = grad(bw, bh, (8, 16, 34), (12, 40, 80))
     d = ImageDraw.Draw(img)
     for x in range(0, bw, 32):
         d.line([(x, 0), (x, bh)], fill=(16, 34, 64))
@@ -44,7 +52,7 @@ def cena_escudo(acc, rng):
     return img
 
 
-def cena_terminal(acc, rng):
+def cena_terminal(acc, rng, p=None):
     bw, bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
     img = Image.new("RGB", (bw, bh), (8, 10, 16))
     d = ImageDraw.Draw(img)
@@ -78,9 +86,9 @@ def cena_terminal(acc, rng):
     return img
 
 
-def cena_antes_depois(acc, rng):
+def cena_antes_depois(acc, rng, p=None):
     bw, bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
-    img = ig._grad(bw, bh, (14, 18, 26), (10, 14, 20))
+    img = grad(bw, bh, (14, 18, 26), (10, 14, 20))
     d = ImageDraw.Draw(img)
     metade = bw // 2
     d.line([(metade, 20), (metade, bh - 20)], fill=(40, 48, 60), width=2)
@@ -108,7 +116,7 @@ def cena_antes_depois(acc, rng):
     return img
 
 
-def cena_foto(acc, rng):
+def cena_foto(acc, rng, p=None):
     bw, bh = SCENE[2] - SCENE[0], SCENE[3] - SCENE[1]
     foto = Image.open(ROOT / "fotos" / "baltic-servers.jpg").convert("L")
     k = max(bw / foto.width, bh / foto.height)
@@ -121,8 +129,8 @@ def cena_foto(acc, rng):
     return img
 
 
-ig.CENAS.update({"escudo": cena_escudo, "terminal": cena_terminal,
-                 "antes_depois": cena_antes_depois, "foto": cena_foto})
+CENAS.update({"escudo": cena_escudo, "terminal": cena_terminal,
+              "antes_depois": cena_antes_depois, "foto": cena_foto})
 
 BASE = {
     "titulo_branco": "Windows de fábrica não é Windows seguro.",
@@ -146,11 +154,97 @@ VARIANTES = [
 ]
 
 
-def main():
-    saida = ROOT / "exemplos" / "hardening-windows"
+PECAS = [
+    {
+        "slug": "01-titanic-backup", "cena": "titanic", "cor": "#4DA3FF",
+        "titulo_branco": "O Titanic tinha botes para cerca de",
+        "titulo_destaque": "metade de quem estava a bordo.",
+        "historia": "O navio cumpria a norma da época e era tido como praticamente inafundável. Na TI é parecido: muita empresa faz backup só para cumprir tabela, e nunca testou se ele restaura.",
+        "licoes": [
+            ("Regra 3-2-1", "Três cópias dos dados, em duas mídias diferentes, com uma delas fora do local."),
+            ("Teste a restauração", "Backup que nunca foi restaurado é só esperança. Agende testes periódicos."),
+            ("Meça o tempo de volta", "Defina em quanto tempo o negócio precisa voltar e quanto dado pode perder."),
+        ],
+        "pergunta": "Se o seu sistema parar hoje, em quanto tempo a sua empresa volta?",
+        "hashtags": ["#BACKUP", "#CONTINUIDADE", "#INFRAESTRUTURA", "#TI", "#TECHDIM"],
+    },
+    {
+        "slug": "02-maginot-defesa-em-camadas", "cena": "maginot", "cor": "#FF3B30",
+        "titulo_branco": "A Linha Maginot era impenetrável.",
+        "titulo_destaque": "Pela frente.",
+        "historia": "Nos anos 1930 a França fortificou a fronteira com a Alemanha. Em 1940 o ataque contornou a linha pelas Ardenas. Segurança que protege um único ponto deixa o resto exposto.",
+        "licoes": [
+            ("Defesa em camadas", "Firewall, e-mail, estações e acessos: cada camada cobre a falha da outra."),
+            ("Proteja a pessoa", "Phishing e senha fraca contornam o firewall. Treine a equipe e use verificação em duas etapas."),
+            ("Revise o mapa", "A infraestrutura muda. Revise o que está exposto a cada mudança relevante."),
+        ],
+        "pergunta": "A sua segurança cobre todas as entradas ou só a principal?",
+        "hashtags": ["#CIBERSEGURANÇA", "#DEFESAEMCAMADAS", "#ZEROTRUST", "#TI", "#TECHDIM"],
+    },
+    {
+        "slug": "03-vasa-teste-antes-de-publicar", "cena": "vasa", "cor": "#FFB000",
+        "titulo_branco": "O Vasa afundou na primeira viagem,",
+        "titulo_destaque": "a menos de 2 km do porto.",
+        "historia": "O navio de guerra mais ambicioso da Suécia saiu sem passar por um teste de estabilidade: o teste foi interrompido porque ele balançava demais. Mudança em produção sem teste é a versão moderna disso.",
+        "licoes": [
+            ("Teste antes de publicar", "Valide em um ambiente de homologação antes de mexer no sistema real."),
+            ("Tenha plano de volta", "Toda mudança precisa de um procedimento claro para desfazer."),
+            ("Janela e responsável", "Mude fora do horário de pico, com alguém acompanhando de ponta a ponta."),
+        ],
+        "pergunta": "As mudanças de TI da sua empresa passam por teste antes de ir ao ar?",
+        "hashtags": ["#GESTÃODEMUDANÇA", "#HOMOLOGAÇÃO", "#DEVOPS", "#TI", "#TECHDIM"],
+    },
+    {
+        "slug": "04-apollo-13-resposta-a-incidentes", "cena": "apollo", "cor": "#FF8A00",
+        "titulo_branco": "Na Apollo 13, a solução veio com o que havia",
+        "titulo_destaque": "a bordo e muito método.",
+        "historia": "Os filtros de CO₂ do módulo de comando eram quadrados e os do módulo lunar, redondos. Engenheiros em Terra criaram um adaptador com itens da própria tripulação. Incidente se resolve com plano, comunicação e prática.",
+        "licoes": [
+            ("Plano de resposta", "Defina quem decide, quem comunica e quem executa antes de o incidente acontecer."),
+            ("Simule a falha", "Exercícios periódicos mostram o que o papel esconde."),
+            ("Comunicação clara", "Um canal único e o registro de cada ação feita durante o incidente."),
+        ],
+        "pergunta": "A sua empresa sabe o que fazer nos primeiros 15 minutos de um incidente?",
+        "hashtags": ["#INCIDENTES", "#RESILIÊNCIA", "#SEGURANÇA", "#TI", "#TECHDIM"],
+    },
+    {
+        "slug": "05-troia-engenharia-social", "cena": "troia", "cor": "#2EE59D",
+        "titulo_branco": "Troia resistiu ao cerco.",
+        "titulo_destaque": "Um presente abriu os portões.",
+        "historia": "Na lenda grega, a muralha não cedeu à força: a cidade abriu o portão para um presente. Hoje o cavalo de Troia chega por e-mail, anexo ou instalador falso, e quem abre é a própria equipe.",
+        "licoes": [
+            ("Desconfie do presente", "Remetente inesperado, urgência e anexo pedem confirmação por outro canal."),
+            ("Menor privilégio", "Cada pessoa acessa só o necessário. Isso limita o estrago de um clique errado."),
+            ("Treine a equipe", "Simulações de phishing periódicas reduzem cliques de risco."),
+        ],
+        "pergunta": "O seu time sabe reconhecer um presente de grego digital?",
+        "hashtags": ["#PHISHING", "#ENGENHARIASOCIAL", "#CIBERSEGURANÇA", "#TI", "#TECHDIM"],
+    },
+]
+
+
+def historias(saida: pathlib.Path) -> None:
+    for p in PECAS:
+        print(desenhar(p, saida / f"{p['slug']}.png"))
+
+
+def windows(saida: pathlib.Path) -> None:
     for nome, extra in VARIANTES:
         p = dict(BASE, slug=nome, **extra)
-        print(ig.desenhar(p, saida / f"{nome}.png"))
+        print(desenhar(p, saida / f"{nome}.png"))
+
+
+def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    modo = argv[0] if argv else "historias"
+    if modo == "historias":
+        historias(ROOT / "exemplos" / "infograficos")
+    elif modo == "windows":
+        windows(ROOT / "exemplos" / "hardening-windows")
+    else:
+        print(__doc__)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":

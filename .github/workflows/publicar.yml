@@ -1,10 +1,18 @@
 name: Publicar
 
-# Pauta do dia: às 07:52 (Brasília) a Routine do Claude escreve os 4 posts do
-# dia em content/diario/AAAA-MM-DD/ e dispara este workflow com tema=noticias.
-# Os outros três saem pelos horários abaixo, lendo esses arquivos; sem o
-# arquivo do dia, cada horário usa o conteúdo de reserva (RSS ou acervo).
-# Horários em UTC. Brasília é UTC-3, sem horário de verão desde 2019.
+# Pauta do dia (horários de Brasília):
+#   07:03  Routine do Claude escreve os 4 posts em content/diario/AAAA-MM-DD/
+#   07:58  Routine dispara este workflow com tema=noticias      (post às ~08:00)
+#   11:06  Routine dispara tema=hacker                          (post às ~11:07)
+#   14:22  Routine dispara tema=dica                            (post às ~14:23)
+#   17:22  Routine dispara tema=servico                         (post às ~17:23)
+#
+# Os cron abaixo são a RESERVA: o agendador do GitHub atrasa de 1h30 a 3h, então
+# ele não serve como relógio — mas serve de rede de segurança. Quando a Routine
+# já publicou o tema, a verificação "Ver o que já saiu hoje" pula a execução; se
+# a Routine não rodou, o cron publica (atrasado, porém publica).
+# Horários em UTC; Brasília é UTC-3, sem horário de verão desde 2019.
+#   11:07 UTC = 08:07 BRT   (Notícias de Tecnologia)
 #   14:07 UTC = 11:07 BRT   (Cibersegurança · IA · Hacker)
 #   17:23 UTC = 14:23 BRT   (Conhecimento)
 #   20:23 UTC = 17:23 BRT   (TECHDIM · Serviços)
@@ -13,6 +21,7 @@ name: Publicar
 
 on:
   schedule:
+    - cron: "7 11 * * *"
     - cron: "7 14 * * *"
     - cron: "23 17 * * *"
     - cron: "23 20 * * *"
@@ -32,6 +41,11 @@ on:
         required: false
         type: boolean
         default: false
+      evitar_duplicado:
+        description: "Pular as redes em que o tema já saiu hoje (as Routines usam isto)"
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: publicar
@@ -39,6 +53,11 @@ concurrency:
 
 permissions:
   contents: write
+
+env:
+  # Quantos dias de imagens ficam no branch assets (os registros em texto ficam
+  # para sempre). Sem poda, o clone do branch cresce ~1,6 MB por dia.
+  DIAS_IMAGENS: "45"
 
 jobs:
   publicar:
@@ -57,30 +76,69 @@ jobs:
 
       - name: Definir o tema
         id: tema
+        env:
+          CRON: ${{ github.event.schedule }}
+          TEMA_INFORMADO: ${{ inputs.tema }}
         run: |
-          case "${{ github.event.schedule }}" in
+          case "$CRON" in
+            "7 11 * * *")  tema=noticias ;;
             "7 14 * * *")  tema=hacker   ;;
             "23 17 * * *") tema=dica     ;;
             "23 20 * * *") tema=servico  ;;
-            *)             tema="${{ inputs.tema }}" ;;
+            *)             tema="$TEMA_INFORMADO" ;;
           esac
-          if [ -z "$tema" ]; then
-            echo "::error::não foi possível determinar o tema"
-            exit 1
-          fi
+          case "$tema" in
+            noticias|hacker|dica|servico|destaque|especial) ;;
+            *) echo "::error::tema inválido ou ausente: '$tema'"; exit 1 ;;
+          esac
           echo "tema=$tema" >> "$GITHUB_OUTPUT"
           echo "Tema desta execução: $tema"
 
+      # Execução agendada e execução com "evitar_duplicado" olham o diário do dia
+      # no branch assets: redes em que o tema já saiu não saem de novo, e se só uma
+      # rede falhou antes, só ela é repetida. Se a checagem em si falhar, publica
+      # normalmente — melhor um post repetido do que nenhum.
+      - name: Ver o que já saiu hoje
+        id: dup
+        env:
+          PYTHONPATH: src
+          TEMA: ${{ steps.tema.outputs.tema }}
+          REDES_PEDIDAS: ${{ inputs.redes }}
+          CHECAR: ${{ github.event_name == 'schedule' || inputs.evitar_duplicado }}
+        run: |
+          set -uo pipefail
+          redes="$REDES_PEDIDAS"
+          pular=false
+          if [ "$CHECAR" = "true" ]; then
+            dia=$(TZ=America/Sao_Paulo date +%F)
+            echo '[]' > /tmp/index-dia.json
+            if git fetch -q --depth 1 origin assets 2>/dev/null; then
+              git show "FETCH_HEAD:registros/$dia/index.json" > /tmp/index-dia.json 2>/dev/null || echo '[]' > /tmp/index-dia.json
+            fi
+            if python src/main.py pendentes --theme "$TEMA" --networks "$REDES_PEDIDAS" --indice /tmp/index-dia.json > /tmp/pendentes.txt; then
+              redes=$(sed -n 's/^redes=//p' /tmp/pendentes.txt)
+              pular=$(sed -n 's/^pular=//p' /tmp/pendentes.txt)
+            else
+              echo "::warning::não consegui checar duplicidade; publicando normalmente"
+            fi
+          fi
+          echo "redes=$redes" >> "$GITHUB_OUTPUT"
+          echo "pular=$pular" >> "$GITHUB_OUTPUT"
+          if [ "$pular" = "true" ]; then
+            echo "O tema $TEMA já saiu hoje em todas as redes: execução ignorada." | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Gerar conteúdo e imagens
+        if: ${{ steps.dup.outputs.pular != 'true' }}
         env:
           PYTHONPATH: src
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python src/main.py generate \
-            --theme "${{ steps.tema.outputs.tema }}" \
-            --networks "${{ inputs.redes }}"
+          TEMA: ${{ steps.tema.outputs.tema }}
+          REDES: ${{ steps.dup.outputs.redes }}
+        run: python src/main.py generate --theme "$TEMA" --networks "$REDES"
 
       - name: Mostrar as legendas no log
+        if: ${{ steps.dup.outputs.pular != 'true' }}
         run: |
           python -c "
           import json, pathlib
@@ -93,6 +151,7 @@ jobs:
           "
 
       - name: Guardar as imagens para conferência
+        if: ${{ steps.dup.outputs.pular != 'true' }}
         uses: actions/upload-artifact@v6
         with:
           name: imagens-${{ steps.tema.outputs.tema }}-${{ github.run_id }}
@@ -100,8 +159,11 @@ jobs:
           retention-days: 14
 
       - name: Publicar as imagens no branch de assets
-        if: ${{ !inputs.ensaio }}
+        if: ${{ !inputs.ensaio && steps.dup.outputs.pular != 'true' }}
         id: assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TEMA: ${{ steps.tema.outputs.tema }}
         run: |
           set -euo pipefail
           # Primeiro, antes de qualquer saída antecipada ("nada novo para
@@ -110,21 +172,31 @@ jobs:
           echo "base=https://raw.githubusercontent.com/${{ github.repository }}/assets" >> "$GITHUB_OUTPUT"
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          repo="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
-          # branch órfão: guarda só imagens, sem histórico do código
+          # branch órfão: guarda só imagens e registros, sem histórico do código
           if git ls-remote --exit-code --heads origin assets >/dev/null 2>&1; then
-            git clone --depth 1 --branch assets \
-              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+            git clone --depth 1 --branch assets "$repo" /tmp/assets
           else
-            git clone --depth 1 \
-              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+            git clone --depth 1 "$repo" /tmp/assets
             git -C /tmp/assets checkout --orphan assets
             git -C /tmp/assets rm -rf . >/dev/null 2>&1 || true
           fi
 
+          # poda: imagens de dias antigos saem (o texto dos registros fica)
+          corte=$(date -u -d "-${DIAS_IMAGENS} days" +%F)
+          for pasta in /tmp/assets/posts/*/; do
+            [ -d "$pasta" ] || continue
+            dia=$(basename "$pasta")
+            if [[ "$dia" < "$corte" ]]; then
+              git -C /tmp/assets rm -rq "posts/$dia"
+              echo "imagens de $dia removidas (mais de $DIAS_IMAGENS dias)"
+            fi
+          done
+
           cp -r out/posts /tmp/assets/
           git -C /tmp/assets add -A
-          git -C /tmp/assets commit -m "assets: ${{ steps.tema.outputs.tema }} $(date -u +%F)" || {
+          git -C /tmp/assets commit -m "assets: $TEMA $(date -u +%F)" || {
             echo "nada novo para commitar"; exit 0; }
           for i in 1 2 3 4; do
             if git -C /tmp/assets pull -q --rebase origin assets 2>/dev/null || [ "$i" = 1 ]; then
@@ -134,9 +206,10 @@ jobs:
             sleep $((i * 3))
           done
 
-
       - name: Conferir se as imagens já estão públicas
-        if: ${{ !inputs.ensaio }}
+        if: ${{ !inputs.ensaio && steps.dup.outputs.pular != 'true' }}
+        env:
+          BASE: ${{ steps.assets.outputs.base }}
         run: |
           set -euo pipefail
           primeira=$(python -c "
@@ -144,7 +217,7 @@ jobs:
           m = json.loads(pathlib.Path('out/manifest.json').read_text('utf-8'))
           print(next(iter(m['networks'].values()))['files'][0])
           ")
-          url="${{ steps.assets.outputs.base }}/$primeira"
+          url="$BASE/$primeira"
           echo "conferindo $url"
           for i in $(seq 1 12); do
             codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$url" || true)
@@ -156,40 +229,49 @@ jobs:
           exit 1
 
       - name: Publicar nas redes
-        if: ${{ !inputs.ensaio }}
+        if: ${{ !inputs.ensaio && steps.dup.outputs.pular != 'true' }}
         env:
           PYTHONPATH: src
+          TEMA: ${{ steps.tema.outputs.tema }}
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
           IG_USER_ID: ${{ vars.IG_USER_ID }}
           LINKEDIN_URN: ${{ vars.LINKEDIN_URN }}
           ASSET_BASE_URL: ${{ steps.assets.outputs.base }}
-        run: python src/main.py publish --theme "${{ steps.tema.outputs.tema }}"
+        run: python src/main.py publish --theme "$TEMA"
 
       # Roda mesmo se a publicação falhar: o registro da falha é o que mais
       # importa. Fica no branch assets, em registros/AAAA-MM-DD/, ao lado das
       # imagens; o README.md da pasta é o índice do dia.
       - name: Salvar na pasta diária de registros
-        # Sempre: ensaio, falha na geração e falha na publicação também ficam
-        # registrados — o diário de movimentações guarda tudo, inclusive testes.
+        # Sempre: ensaio, execução ignorada, falha na geração e falha na
+        # publicação também ficam registrados — o diário de movimentações guarda
+        # tudo, inclusive testes.
         if: ${{ always() && steps.tema.outcome == 'success' }}
         env:
           PYTHONPATH: src
+          GH_TOKEN: ${{ github.token }}
+          TEMA: ${{ steps.tema.outputs.tema }}
+          ENSAIO: ${{ inputs.ensaio }}
+          PULADO: ${{ steps.dup.outputs.pular == 'true' && 'tema já publicado hoje em todas as redes; execução ignorada' || '' }}
           EVENTO: ${{ github.event_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set -euo pipefail
           if [ ! -d /tmp/assets/.git ]; then
             git clone -q --depth 1 --branch assets \
-              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
+              "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" /tmp/assets
           fi
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          python src/main.py registrar --theme "${{ steps.tema.outputs.tema }}" --dest /tmp/assets ${{ inputs.ensaio && '--ensaio' || '' }}
+          args=(registrar --theme "$TEMA" --dest /tmp/assets)
+          [ "$ENSAIO" = "true" ] && args+=(--ensaio)
+          [ -n "$PULADO" ] && args+=(--pulado "$PULADO")
+          python src/main.py "${args[@]}"
           cd /tmp/assets
           git add registros
-          git commit -q -m "registro: ${{ steps.tema.outputs.tema }} $(TZ=America/Sao_Paulo date +'%F %H:%M')" || {
+          git commit -q -m "registro: $TEMA $(TZ=America/Sao_Paulo date +'%F %H:%M')" || {
             echo "nada novo para registrar"; exit 0; }
           for i in 1 2 3 4; do
             if git pull -q --rebase origin assets && git push -q origin assets; then

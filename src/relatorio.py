@@ -158,7 +158,7 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
     pasta = destino / "registros" / "semanal"
     pasta.mkdir(parents=True, exist_ok=True)
     nome = f"{ano}-S{semana:02d}"
-    agora = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=3)
+    agora = config.agora()
     rot = lambda t: config.THEME_LABELS.get(t, t)  # noqa: E731
 
     md = [
@@ -176,7 +176,8 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
             ls = [x for x in linhas if x["rede"] == rede]
             if not ls:
                 continue
-            a = sum(x["alcance"] for x in ls); v = sum(x["visualizacoes"] for x in ls)
+            a = sum(x["alcance"] for x in ls)
+            v = sum(x["visualizacoes"] for x in ls)
             i = sum(x["interacoes"] for x in ls)
             md.append(f"| {rede.capitalize()} | {len(ls)} | {a} | {v} | {i} | {_taxa(i, a)} |")
 
@@ -184,7 +185,9 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
         for x in linhas:
             t = temas.setdefault(x["tema"], {"posts": set(), "alcance": 0, "inter": 0, "n": 0})
             t["posts"].add((x["data"], x["hora"]))
-            t["alcance"] += x["alcance"]; t["inter"] += x["interacoes"]; t["n"] += 1
+            t["alcance"] += x["alcance"]
+            t["inter"] += x["interacoes"]
+            t["n"] += 1
         ranking = sorted(temas.items(), key=lambda kv: (kv[1]["inter"] / kv[1]["n"], kv[1]["alcance"] / kv[1]["n"]), reverse=True)
         md += ["", "## Qual tema traz mais retorno", "",
                "Ordenado pela média de interações por post (cada rede conta como um post).", "",
@@ -250,7 +253,7 @@ def main(argv: list[str] | None = None) -> int:
         log.error("META_ACCESS_TOKEN e FB_PAGE_ID são necessários")
         return 1
 
-    hoje = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=3)).date()
+    hoje = config.hoje()
     fim = hoje if args.incluir_hoje else hoje - dt.timedelta(days=1)
     inicio = fim - dt.timedelta(days=args.dias - 1)
     destino = pathlib.Path(args.dest)

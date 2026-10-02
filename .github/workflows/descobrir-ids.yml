@@ -6,6 +6,9 @@ name: Descobrir IDs
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   descobrir:
     runs-on: ubuntu-latest

@@ -9,7 +9,7 @@ elas tenham URL pública (o Instagram exige buscar a imagem por URL).
 from __future__ import annotations
 
 import argparse
-import datetime as dt
+import hashlib
 import json
 import logging
 import os
@@ -32,9 +32,17 @@ MANIFEST = OUT / "manifest.json"
 RESULTADO = OUT / "resultado.json"
 
 
-def _today() -> dt.date:
-    """Data no fuso de São Paulo (o runner do GitHub roda em UTC)."""
-    return (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=3)).date()
+def _com_hash(caminho: pathlib.Path) -> pathlib.Path:
+    """Acrescenta ao nome do PNG um resumo do conteúdo (arte.png -> arte-1a2b3c4d.png).
+
+    A URL pública da imagem passa a mudar quando a imagem muda. O
+    raw.githubusercontent guarda cópias por alguns minutos: sem isso, republicar
+    o mesmo tema no mesmo dia poderia entregar à rede a imagem antiga.
+    """
+    resumo = hashlib.sha1(caminho.read_bytes()).hexdigest()[:8]
+    novo = caminho.with_name(f"{caminho.stem}-{resumo}{caminho.suffix}")
+    caminho.replace(novo)
+    return novo
 
 
 # ---------------------------------------------------------------- generate
@@ -55,11 +63,12 @@ def _curadoria(post) -> str:
 
 
 def generate(theme: str, networks: list[str]) -> dict:
-    today = _today()
+    today = config.hoje()
     post = content.build(theme, today)
     log.info("tema=%s titulo=%r curadoria=%s", theme, post.titulo, _curadoria(post))
 
     stamp = today.isoformat()
+    pasta = pathlib.Path("posts") / stamp / theme
     manifest = {
         "theme": theme,
         "date": stamp,
@@ -70,13 +79,26 @@ def generate(theme: str, networks: list[str]) -> dict:
         "networks": {},
     }
 
+    # O infográfico tem o mesmo formato em todas as redes de feed: desenha uma
+    # vez só e todas apontam para o mesmo arquivo. Sem bloco "infografico" (ou se
+    # o desenho falhar), cada rede recebe a arte antiga no formato dela.
+    arte = None
+    if any(n != "instagram_stories" for n in networks):
+        feito = render.render_infografico(post, OUT / pasta / f"{theme}.png", slug=f"{theme}-{stamp}")
+        arte = _com_hash(feito) if feito else None
+
     for network in networks:
-        rel_dir = pathlib.Path("posts") / stamp / theme / network
-        paths = render.render_post(post, network, OUT / rel_dir, seed=today.toordinal())
+        if arte and network != "instagram_stories":
+            paths = [arte]
+        else:
+            paths = [
+                _com_hash(p)
+                for p in render.render_post(post, network, OUT / pasta / network, seed=today.toordinal())
+            ]
         manifest["networks"][network] = {
             "caption": post.caption(network),
             "comentario": post.comentario(network),
-            "files": [str(rel_dir / p.name) for p in paths],
+            "files": [p.relative_to(OUT).as_posix() for p in paths],
         }
         log.info("%s: %d imagem(ns)", network, len(paths))
 
@@ -262,7 +284,9 @@ def _summary(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Publicador diário TECHDIM")
-    parser.add_argument("phase", choices=["generate", "publish", "preview", "registrar"])
+    parser.add_argument(
+        "phase", choices=["generate", "publish", "preview", "registrar", "pendentes"]
+    )
     parser.add_argument("--theme", required=True, choices=list(config.THEME_LABELS))
     parser.add_argument(
         "--networks",
@@ -273,6 +297,12 @@ def main(argv: list[str] | None = None) -> int:
         "--dest", default=".", help="registrar: raiz do checkout do branch assets"
     )
     parser.add_argument("--ensaio", action="store_true", help="registrar: execução de teste")
+    parser.add_argument(
+        "--pulado", default="", help="registrar: motivo de a execução ter sido ignorada"
+    )
+    parser.add_argument(
+        "--indice", default="", help="pendentes: index.json do dia (branch assets)"
+    )
     args = parser.parse_args(argv)
 
     logging.basicConfig(
@@ -294,17 +324,39 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.phase == "registrar":
-        return registrar(pathlib.Path(args.dest), args.theme, args.ensaio)
+        return registrar(pathlib.Path(args.dest), args.theme, args.ensaio, args.pulado)
+
+    if args.phase == "pendentes":
+        return pendentes(args.theme, networks, args.indice)
 
     return publish(config.Credentials())
 
 
-def _eventos(theme, manifest, resultado, ensaio, run_url) -> list[dict]:
+def pendentes(theme: str, networks: list[str], indice: str) -> int:
+    """Imprime, no formato de GITHUB_OUTPUT, o que ainda falta publicar hoje.
+
+    Uma rede só entra no que falta se o diário do dia não a registra como
+    publicada para este tema. Serve de reserva para o agendador do GitHub (que
+    atrasa): se a Routine já publicou, nada sai em duplicidade — e se só uma
+    rede falhou, só ela é repetida.
+    """
+    ja = registro.redes_publicadas(registro.ler_indice(indice), theme)
+    faltam = [n for n in networks if n not in ja]
+    print(f"redes={','.join(faltam)}")
+    print(f"pular={'false' if faltam else 'true'}")
+    if ja:
+        log.info("%s: já publicado hoje em %s", theme, ", ".join(sorted(ja)))
+    return 0
+
+
+def _eventos(theme, manifest, resultado, ensaio, run_url, pulado="") -> list[dict]:
     """Movimentos desta execução, para o diário do dia."""
     evento = os.environ.get("EVENTO", "")
     origem = {"schedule": "agendamento automático", "workflow_dispatch": "disparo manual"}.get(evento, evento or "execução")
     base = {"tema": config.THEME_LABELS.get(theme, theme), "origem": origem, "link": run_url, "teste": ensaio}
     ev = [{**base, "tipo": "iniciado", "detalhe": "ensaio: nada será publicado" if ensaio else "execução iniciada"}]
+    if pulado:
+        return ev + [{**base, "tipo": "pulado", "detalhe": pulado}]
     if not manifest:
         return ev + [{**base, "tipo": "falhou", "detalhe": "a geração do conteúdo não terminou"}]
     ev.append({**base, "tipo": "planejado", "link": "",
@@ -332,9 +384,9 @@ def _eventos(theme, manifest, resultado, ensaio, run_url) -> list[dict]:
     return ev
 
 
-def registrar(destino: pathlib.Path, theme: str, ensaio: bool = False) -> int:
+def registrar(destino: pathlib.Path, theme: str, ensaio: bool = False, pulado: str = "") -> int:
     run_url = os.environ.get("RUN_URL", "")
-    manifest = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else None
+    manifest = None if pulado or not MANIFEST.exists() else json.loads(MANIFEST.read_text(encoding="utf-8"))
     try:
         resultado = json.loads(RESULTADO.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
@@ -342,7 +394,7 @@ def registrar(destino: pathlib.Path, theme: str, ensaio: bool = False) -> int:
     if manifest and not ensaio:
         arquivo = registro.escrever(manifest, resultado, destino, run_url)
         log.info("registro gravado em %s", arquivo.relative_to(destino))
-    movimentos.registrar(destino, _eventos(theme, manifest, resultado, ensaio, run_url))
+    movimentos.registrar(destino, _eventos(theme, manifest, resultado, ensaio, run_url, pulado))
     log.info("movimentos gravados no diário do dia")
     return 0
 

@@ -10,23 +10,19 @@ de gravar.
 """
 from __future__ import annotations
 
-import datetime as dt
 import json
 import pathlib
 import re
 
 import config
-
-# Token de usuário/página da Meta (EAA...) e token do LinkedIn (AQ...).
-_CREDENCIAL = re.compile(r"\bEAA[A-Za-z0-9]{20,}|\bAQ[A-Za-z0-9_-]{40,}")
+from seguranca import redigir
 
 ICONE = {"publicado": "✅", "falhou": "❌", "não configurado": "⚠️", "não executado": "⏸️"}
 REDES = ("facebook", "instagram", "instagram_stories", "linkedin")
 NOME_REDE = {"instagram_stories": "Stories"}
 
 
-def _limpo(texto: str) -> str:
-    return _CREDENCIAL.sub("[REDIGIDO]", texto or "")
+_limpo = redigir
 
 
 def _celula(texto: str) -> str:
@@ -34,15 +30,33 @@ def _celula(texto: str) -> str:
     return re.sub(r"\s+", " ", texto or "").replace("|", "/").strip()
 
 
-def _agora_brasilia() -> dt.datetime:
-    return dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=3)
+def ler_indice(caminho: str | pathlib.Path) -> list[dict]:
+    """Entradas do index.json do dia; arquivo ausente ou ilegível = nenhuma."""
+    if not caminho:
+        return []
+    try:
+        dados = json.loads(pathlib.Path(caminho).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    return [e for e in dados if isinstance(e, dict)] if isinstance(dados, list) else []
+
+
+def redes_publicadas(entradas: list[dict], tema: str) -> set[str]:
+    """Redes em que o tema já saiu (status "publicado") segundo o diário do dia."""
+    return {
+        rede
+        for e in entradas
+        if e.get("tema") == tema
+        for rede, status in (e.get("redes") or {}).items()
+        if status == "publicado"
+    }
 
 
 def escrever(
     manifest: dict, resultado: dict, destino: pathlib.Path, run_url: str = ""
 ) -> pathlib.Path:
     """Grava o registro desta publicação e atualiza o índice do dia."""
-    agora = _agora_brasilia()
+    agora = config.agora()
     dia = manifest["date"]
     pasta = destino / "registros" / dia
     pasta.mkdir(parents=True, exist_ok=True)

@@ -65,7 +65,8 @@ jobs:
           python src/movimentos.py "${args[@]}"
           cd /tmp/assets
           git add registros
-          git commit -q -m "movimento: $TIPO $(TZ=America/Sao_Paulo date +'%F %H:%M')"
+          git commit -q -m "movimento: $TIPO $(TZ=America/Sao_Paulo date +'%F %H:%M')" || {
+            echo "nada novo para gravar"; exit 0; }
           for i in 1 2 3 4; do
             if git pull -q --rebase origin assets && git push -q origin assets; then exit 0; fi
             sleep $((i * 3))

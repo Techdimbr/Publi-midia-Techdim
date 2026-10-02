@@ -82,6 +82,7 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
         "POST",
         f"{config.GRAPH}/{ig_id}/media_publish",
         data={"creation_id": creation_id, "access_token": token},
+        idempotent=False,
     )
     media_id = resp.json().get("id", "")
     log.info("Instagram: publicado %s", media_id)
@@ -116,6 +117,7 @@ def publish_story(creds, image_url: str) -> str:
         "POST",
         f"{config.GRAPH}/{ig_id}/media_publish",
         data={"creation_id": creation_id, "access_token": token},
+        idempotent=False,
     )
     media_id = resp.json().get("id", "")
     log.info("Instagram Stories: publicado %s", media_id)
@@ -128,5 +130,6 @@ def comment(creds, media_id: str, message: str) -> str:
         "POST",
         f"{config.GRAPH}/{media_id}/comments",
         data={"message": message, "access_token": _token(creds)},
+        idempotent=False,
     )
     return resp.json().get("id", "")

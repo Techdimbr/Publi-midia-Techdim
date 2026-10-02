@@ -1,0 +1,20 @@
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 130
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# F: nomes indefinidos e imports sobrando · B: armadilhas comuns · I: ordem dos imports
+select = ["E4", "E7", "E9", "F", "B", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# código de desenho: várias instruções curtas por linha deixam as cenas legíveis
+"src/cenas.py" = ["E701", "E702"]
+"src/cenas_historicas.py" = ["E701", "E702"]
+"src/exemplos_infograficos.py" = ["E701", "E702"]
+"src/movimentos.py" = ["E702"]

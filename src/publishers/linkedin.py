@@ -118,6 +118,7 @@ def publish(creds, caption: str, image_paths: list[pathlib.Path], alt: str = "")
         f"{config.LINKEDIN_API}/rest/posts",
         headers={**_headers(creds.linkedin_token), "Content-Type": "application/json"},
         json=body,
+        idempotent=False,
     )
     post_urn = resp.headers.get("x-restli-id") or resp.headers.get("X-RestLi-Id", "")
     log.info("LinkedIn: publicado %s", post_urn)
@@ -141,5 +142,6 @@ def comment(creds, post_urn: str, message: str) -> str:
             "object": post_urn,
             "message": {"text": message},
         },
+        idempotent=False,
     )
     return resp.headers.get("x-restli-id") or resp.headers.get("X-RestLi-Id", "")

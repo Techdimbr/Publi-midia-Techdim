@@ -8,26 +8,22 @@ testes e ensaios — a coluna "Teste" os marca — e também ações manuais
 from __future__ import annotations
 
 import argparse
-import datetime as dt
 import json
 import pathlib
 import re
 import sys
+
+import config
+from seguranca import redigir
 
 ICONE = {
     "planejado": "🗓️", "iniciado": "▶️", "gerado": "🖼️", "publicado": "✅",
     "story": "📱", "comentou": "💬", "apagou": "🗑️", "editou": "✏️",
     "falhou": "❌", "ensaio": "🧪", "pulado": "⚠️", "observacao": "📝",
 }
-_CREDENCIAL = re.compile(r"\bEAA[A-Za-z0-9]{20,}|\bAQ[A-Za-z0-9_-]{40,}|\bWPL_AP\d\.[\w./=+-]+")
 
-
-def agora_brasilia() -> dt.datetime:
-    return dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=3)
-
-
-def _limpo(t: str) -> str:
-    return _CREDENCIAL.sub("[REDIGIDO]", t or "")
+agora_brasilia = config.agora
+_limpo = redigir
 
 
 def _cel(t: str) -> str:
@@ -46,7 +42,7 @@ def registrar(destino: pathlib.Path, eventos: list[dict], dia: str | None = None
             e = {"hora": f"{agora:%H:%M:%S}", "teste": False, **e}
             e = {k: (_limpo(v) if isinstance(v, str) else v) for k, v in e.items()}
             fh.write(json.dumps(e, ensure_ascii=False) + "\n")
-    todos = [json.loads(l) for l in jsonl.read_text(encoding="utf-8").splitlines() if l.strip()]
+    todos = [json.loads(linha) for linha in jsonl.read_text(encoding="utf-8").splitlines() if linha.strip()]
     todos.sort(key=lambda e: e["hora"])
     linhas = [
         f"# Movimentações de {dia}", "",

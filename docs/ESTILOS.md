@@ -28,3 +28,16 @@ O Claude descreve a cena pensando no assunto do post, no campo `cena_composta` d
 
 Elementos: notebook, monitor, celular, rack, nuvem, escudo, globo, engrenagens, grafico,
 documento, chip. Cada combinação de fundo, elementos e legenda gera uma imagem diferente.
+
+## Validação e reserva
+
+O bloco `infografico` da pauta passa por `infografico.validar`:
+
+- textos longos são cortados em palavra inteira, com reticências;
+- no máximo 3 lições, 4 elementos, 8 linhas de terminal e 6 hashtags;
+- fundo, elemento ou cena desconhecidos caem no padrão do tema;
+- sem `titulo_branco`/`titulo_destaque` ou sem nenhuma lição o bloco é recusado — e
+  o post sai com a arte antiga (carrossel/capa), nunca deixa de sair.
+
+As hashtags da imagem saem em caixa alta. Na legenda, as do assunto vêm primeiro,
+sem acento; escreva-as em CamelCase (`#IAGenerativa`) para ficarem legíveis.

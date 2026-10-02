@@ -1,0 +1,47 @@
+name: Testes
+
+# Roda a cada mudança no código ou no conteúdo. Como a Routine do Claude grava a
+# pauta do dia em content/diario/, uma pauta malformada também derruba este
+# check — e o e-mail de falha avisa antes de o horário chegar.
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "content/**"
+      - "requirements*.txt"
+      - "pyproject.toml"
+      - ".github/workflows/testes.yml"
+  pull_request:
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "content/**"
+      - "requirements*.txt"
+      - "pyproject.toml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+
+      - run: pip install -r requirements-dev.txt
+
+      - name: Análise estática (ruff)
+        run: ruff check src tests
+
+      - name: Testes
+        run: pytest

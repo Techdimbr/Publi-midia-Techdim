@@ -24,7 +24,35 @@ from publishers.meta_auth import page_token
 log = logging.getLogger("apagar")
 
 
+def _consultar(creds, rede: str, ident: str) -> None:
+    """GET no post; levanta PublishError se a rede responder erro (ex.: não existe mais)."""
+    if rede in ("facebook", "instagram"):
+        token = page_token(creds.meta_token, creds.fb_page_id)
+        request("GET", f"{config.GRAPH}/{ident}", params={"fields": "id", "access_token": token}, attempts=1)
+    else:
+        request(
+            "GET",
+            f"{config.LINKEDIN_API}/rest/posts/{quote(ident, safe='')}",
+            headers=linkedin._headers(creds.linkedin_token),
+            attempts=1,
+        )
+
+
+def ainda_existe(creds, rede: str, ident: str) -> bool | None:
+    """True se o post continua visível, False se sumiu, None se não deu para saber."""
+    try:
+        _consultar(creds, rede, ident)
+    except PublishError as exc:
+        texto = str(exc)
+        if "HTTP 404" in texto or "does not exist" in texto or '"code":100' in texto:
+            return False
+        return None
+    return True
+
+
 def apagar(creds, rede: str, ident: str) -> None:
+    """Apaga o post e confere que ele sumiu: a API pode aceitar o DELETE (HTTP 200)
+    sem apagar de fato, e registrar "apagou" nesse caso seria mentir no diário."""
     if rede in ("facebook", "instagram"):
         token = page_token(creds.meta_token, creds.fb_page_id)
         request("DELETE", f"{config.GRAPH}/{ident}", params={"access_token": token})
@@ -36,6 +64,14 @@ def apagar(creds, rede: str, ident: str) -> None:
         )
     else:
         raise PublishError(f"rede desconhecida: {rede}")
+
+    existe = ainda_existe(creds, rede, ident)
+    if existe:
+        raise PublishError(
+            f"a {rede} aceitou o DELETE, mas o post {ident} continua visível — apague à mão"
+        )
+    if existe is None:
+        log.warning("%s %s: DELETE aceito, mas não consegui confirmar que sumiu", rede, ident)
 
 
 def main(argv=None) -> int:
@@ -53,7 +89,7 @@ def main(argv=None) -> int:
         base = {"rede": rede, "origem": "workflow Apagar posts", "teste": "teste" in a.motivo.lower()}
         try:
             apagar(creds, rede, ident)
-        except PublishError as exc:
+        except Exception as exc:  # noqa: BLE001 — um post com erro não impede os demais
             falhas += 1
             log.error("%s %s: %s", rede, ident, str(exc)[:200])
             eventos.append({**base, "tipo": "falhou", "detalhe": f"não consegui apagar {ident}: {str(exc)[:160]}"})

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass, field
+from datetime import date, datetime, timedelta, timezone
 
 # ---------------------------------------------------------------- marca
 
@@ -130,6 +131,25 @@ LINKEDIN_API = "https://api.linkedin.com"
 LINKEDIN_VERSION = "202609"
 
 TZ = "America/Sao_Paulo"
+
+
+def _fuso():
+    try:
+        from zoneinfo import ZoneInfo
+
+        return ZoneInfo(TZ)
+    except Exception:  # sem base de fusos: Brasília é UTC-3 fixo desde 2019
+        return timezone(timedelta(hours=-3))
+
+
+def agora() -> datetime:
+    """Hora atual em Brasília (o runner do GitHub roda em UTC)."""
+    return datetime.now(_fuso())
+
+
+def hoje() -> date:
+    """Data de hoje em Brasília: é ela que nomeia pauta, imagens e registros."""
+    return agora().date()
 
 # ---------------------------------------------------------------- grade
 

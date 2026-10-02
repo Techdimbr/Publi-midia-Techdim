@@ -43,7 +43,7 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
     for i, fbid in enumerate(fbids):
         payload[f"attached_media[{i}]"] = f'{{"media_fbid":"{fbid}"}}'
 
-    resp = request("POST", f"{config.GRAPH}/{page_id}/feed", data=payload)
+    resp = request("POST", f"{config.GRAPH}/{page_id}/feed", data=payload, idempotent=False)
     post_id = resp.json().get("id", "")
     log.info("Facebook: publicado %s", post_id)
     return post_id
@@ -68,5 +68,6 @@ def comment(creds, post_id: str, message: str) -> str:
         "POST",
         f"{config.GRAPH}/{post_id}/comments",
         data={"message": message, "access_token": token},
+        idempotent=False,
     )
     return resp.json().get("id", "")

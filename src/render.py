@@ -7,6 +7,7 @@ reproduzível.
 """
 from __future__ import annotations
 
+import logging
 import math
 import pathlib
 import random
@@ -14,6 +15,9 @@ import random
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 import config
+import infografico
+
+log = logging.getLogger(__name__)
 
 FONT_DIRS = [
     "/usr/share/fonts/truetype/dejavu",
@@ -457,25 +461,28 @@ def render_slide(
     return img
 
 
+def render_infografico(post, destino: pathlib.Path, slug: str) -> pathlib.Path | None:
+    """Infográfico do post (padrão visual atual), um só para todas as redes de feed.
+
+    Devolve None quando o post não tem bloco "infografico" ou quando o desenho
+    falha: aí quem chama usa a arte antiga, e o horário nunca fica sem post.
+    """
+    if not getattr(post, "infografico", None):
+        return None
+    try:
+        return infografico.renderizar(post.infografico, post.theme, slug, destino)
+    except Exception:  # noqa: BLE001 — um bloco ruim não pode derrubar a publicação
+        log.exception("infográfico de %r falhou; usando a arte antiga", post.theme)
+        return None
+
+
 def render_post(post, network: str, out_dir: pathlib.Path, seed: int = 0) -> list[pathlib.Path]:
-    """Gera os PNGs do post no formato ideal da rede. Devolve os caminhos."""
+    """Gera os PNGs da arte antiga (carrossel/capa) no formato ideal da rede."""
     if network == "instagram_stories":
         return [render_story(post, out_dir, seed)]
 
     out_dir.mkdir(parents=True, exist_ok=True)
     size = config.SIZE_BY_NETWORK[network]
-
-    if getattr(post, "infografico", None):  # padrão novo: 1 infográfico 1080×1350
-        import infografico
-        import infografico as ig
-        p = dict(post.infografico, slug=f"{post.theme}-{network}")
-        p.setdefault("cena", ig.CENA_PADRAO.get(post.theme, "noticias"))
-        p.setdefault("cor", ig.COR_PADRAO.get(post.theme, "#4DA3FF"))
-        if p.get("cena_composta"):
-            p["cena"] = "composta"
-        if p["cena"] == "painel" and not p.get("terminal"):
-            p["cena"] = "noticias"
-        return [infografico.desenhar(p, out_dir / f"{post.theme}-{network}-01.png")]
 
     # LinkedIn publica imagem única: só a capa, em 1:1.
     slides = post.slides[:1] if network == "linkedin" else post.slides

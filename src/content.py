@@ -8,12 +8,16 @@ import logging
 import pathlib
 import random
 import re
+import unicodedata
 from dataclasses import dataclass, field
 
 import feedparser
+import requests
 
 import config
 import curator
+import infografico
+from texto import cortar, uma_linha
 
 log = logging.getLogger(__name__)
 
@@ -76,6 +80,33 @@ HASHTAGS = {
 }
 
 
+def _chave_tag(tag: str) -> str:
+    """Hashtag sem acento e sem caixa: duas grafias da mesma hashtag têm a mesma chave."""
+    base = unicodedata.normalize("NFKD", tag)
+    return "".join(c for c in base if not unicodedata.combining(c)).lower()
+
+
+def _forma_tag(tag: str, network: str) -> str:
+    """Hashtag do assunto na forma que a rede pede (ver Post.hashtags)."""
+    sem_acento = "".join(
+        c for c in unicodedata.normalize("NFKD", tag) if not unicodedata.combining(c)
+    )
+    sem_acento = "#" + sem_acento.lstrip("#")
+    if _chave_tag(sem_acento) == "#techdim":
+        return "#techdim" if network == "instagram" else "#TECHDIM"
+    if network == "instagram":
+        return sem_acento.lower()
+    if sem_acento.isupper() and len(sem_acento) > 4:  # #BACKUP -> #Backup
+        return "#" + sem_acento[1:].capitalize()
+    return sem_acento  # CamelCase digitado (#IAGenerativa) e curtas (#TI) ficam como vieram
+
+
+# Quantas hashtags cada rede comporta numa legenda legível.
+LIMITE_HASHTAGS = {"linkedin": 5, "facebook": 4, "instagram": 8}
+# Limite de caracteres da legenda em cada rede.
+LIMITE_LEGENDA = {"linkedin": 3000, "facebook": 5000, "instagram": 2200}
+
+
 @dataclass
 class Post:
     """Uma publicação pronta: texto por rede + slides para renderizar."""
@@ -105,12 +136,40 @@ class Post:
             out.append({"kind": "cta", "fecho": self.fecho or "Fale com a TECHDIM."})
         return out[: config.CAROUSEL_SLIDES]
 
+    def hashtags(self, network: str) -> str:
+        """Hashtags da legenda: as do assunto do post primeiro, depois as do tema.
+
+        Sempre termina com a marca. Sem acento (como as do tema), para casar com
+        o que as pessoas digitam; minúsculas no Instagram, como é costume, e
+        capitalizadas nas demais, porque TUDOMAIÚSCULO é ruim para quem usa
+        leitor de tela.
+        """
+        padrao = HASHTAGS.get(self.theme, {}).get(network, "#TECHDIM").split()
+        proprias = [_forma_tag(t, network) for t in (self.infografico or {}).get("hashtags", [])]
+        limite = LIMITE_HASHTAGS.get(network, 5)
+        todas: list[str] = []
+        for tag in proprias + padrao:
+            if _chave_tag(tag) not in (_chave_tag(t) for t in todas):
+                todas.append(tag)
+        todas = todas[:limite]
+        marca = "#techdim" if network == "instagram" else "#TECHDIM"
+        if _chave_tag(marca) not in (_chave_tag(t) for t in todas):
+            todas = todas[: limite - 1] + [marca]
+        return " ".join(todas)
+
     def caption(self, network: str) -> str:
-        """Legenda por rede. Links ficam no primeiro comentário (ver comentario()):
-        link no corpo do post reduz o alcance no Facebook e no LinkedIn."""
+        """Legenda por rede, dentro do limite de caracteres dela.
+
+        Links ficam no primeiro comentário (ver comentario()): link no corpo do
+        post reduz o alcance no Facebook e no LinkedIn."""
         if network == "instagram_stories":
             return ""  # a API de Stories não aceita legenda
-        tags = HASHTAGS.get(self.theme, {}).get(network, "#TECHDIM")
+        texto = self._legenda(network)
+        limite = LIMITE_LEGENDA.get(network, 2000)
+        return texto if len(texto) <= limite else texto[: limite - 1].rstrip() + "…"
+
+    def _legenda(self, network: str) -> str:
+        tags = self.hashtags(network)
         pontos = self.pontos[:4]
         aviso_link = (
             "🔗 Fontes e site no primeiro comentário"
@@ -251,14 +310,24 @@ def _domain(url: str) -> str:
     return m.group(1) if m else "fonte"
 
 
+FEED_TIMEOUT = (5, 15)  # (conexão, leitura): feed lento não pode travar o job
+
+
+def _baixar_feed(url: str):
+    """Baixa o feed com tempo limite (o feedparser, sozinho, espera sem limite)."""
+    resp = requests.get(url, timeout=FEED_TIMEOUT, headers={"User-Agent": feedparser.USER_AGENT})
+    resp.raise_for_status()
+    return feedparser.parse(resp.content)
+
+
 def _fetch_entries(sources: list[tuple[str, str]], max_age_hours: int = 48) -> list[dict]:
     """Coleta manchetes recentes de todos os feeds, tolerando feed fora do ar."""
     cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=max_age_hours)
     items: list[dict] = []
     for url, lang in sources:
         try:
-            feed = feedparser.parse(url)
-        except Exception as exc:  # feed malformado ou rede instável
+            feed = _baixar_feed(url)
+        except Exception as exc:  # feed malformado, fora do ar ou lento
             log.warning("feed falhou %s: %s", url, exc)
             continue
         if getattr(feed, "bozo", 0) and not feed.entries:
@@ -300,6 +369,8 @@ def _from_feeds(theme: str, seed: int) -> Post | None:
             c = curator.curar(theme, candidatos)
         except curator.CuradoriaIndisponivel as exc:
             log.warning("curadoria por IA indisponível (%s); usando filtro por palavra-chave", exc)
+        except Exception:  # noqa: BLE001 — a curadoria é um extra, nunca pode derrubar o post
+            log.exception("curadoria por IA falhou; usando filtro por palavra-chave")
         else:
             return Post(theme=theme, titulo=c["titulo"], pontos=c["pontos"],
                         fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True,
@@ -373,6 +444,47 @@ _FALLBACK = {
 }
 
 
+def _fontes(valor: object) -> list[tuple[str, str]]:
+    """Pares (nome, url) válidos; qualquer item fora do formato é ignorado."""
+    out: list[tuple[str, str]] = []
+    for f in valor if isinstance(valor, list) else []:
+        if isinstance(f, (list, tuple)) and len(f) == 2 and all(isinstance(x, str) for x in f):
+            nome, url = uma_linha(f[0]), f[1].strip()
+            if nome and url.startswith(("http://", "https://")):
+                out.append((nome, url))
+    return out
+
+
+def _post_do_json(theme: str, item: object, origem: str = "") -> Post:
+    """Post a partir do JSON de uma pauta. Levanta ValueError se faltar o essencial.
+
+    O essencial é título e ao menos 2 pontos. O bloco "infografico" é opcional:
+    se estiver malformado, o post sai com a arte antiga em vez de não sair.
+    """
+    if not isinstance(item, dict):
+        raise ValueError("a pauta precisa ser um objeto JSON")
+    titulo = cortar(item.get("titulo"), 160)
+    pontos = [cortar(p, 260) for p in item.get("pontos", []) if isinstance(p, str)]
+    pontos = [p for p in pontos if p]
+    if not titulo or len(pontos) < 2:
+        raise ValueError("a pauta precisa de titulo e ao menos 2 pontos")
+    try:
+        bloco = infografico.validar(item.get("infografico"), theme)
+    except infografico.InfograficoInvalido as exc:
+        log.warning("pauta de %s: bloco infografico inválido (%s); usando a arte antiga", theme, exc)
+        bloco = None
+    return Post(
+        theme=theme,
+        titulo=titulo,
+        pontos=pontos[:4],
+        fecho=cortar(item.get("fecho"), 200),
+        fontes=_fontes(item.get("fontes")),
+        motivo=cortar(item.get("motivo"), 300),
+        infografico=bloco,
+        origem=origem,
+    )
+
+
 def _destaque(today: dt.date, theme: str = "destaque", pasta: str = "destaques") -> Post:
     """Post escrito para o dia: content/<pasta>/AAAA-MM-DD.json.
 
@@ -384,16 +496,7 @@ def _destaque(today: dt.date, theme: str = "destaque", pasta: str = "destaques")
         raise FileNotFoundError(
             f"nenhum destaque curado para {today.isoformat()} — crie {path.relative_to(ROOT)}"
         )
-    item = json.loads(path.read_text(encoding="utf-8"))
-    return Post(
-        theme=theme,
-        titulo=item["titulo"],
-        pontos=list(item["pontos"]),
-        fecho=item.get("fecho", ""),
-        fontes=[tuple(f) for f in item.get("fontes", [])],
-        motivo=item.get("motivo", ""),
-        infografico=item.get("infografico"),
-    )
+    return _post_do_json(theme, json.loads(path.read_text(encoding="utf-8")))
 
 
 # ---------------------------------------------------------------- pauta do dia
@@ -411,25 +514,10 @@ def _da_pauta(theme: str, today: dt.date) -> Post | None:
     if not path.exists():
         return None
     try:
-        item = json.loads(path.read_text(encoding="utf-8"))
-        titulo = item["titulo"].strip()
-        pontos = [p.strip() for p in item["pontos"] if p and p.strip()]
-    except (json.JSONDecodeError, KeyError, AttributeError, TypeError) as exc:
+        return _post_do_json(theme, json.loads(path.read_text(encoding="utf-8")), origem="routine")
+    except (json.JSONDecodeError, ValueError) as exc:
         log.warning("pauta do dia %s inválida (%s); usando reserva", path.name, exc)
         return None
-    if not titulo or len(pontos) < 2:
-        log.warning("pauta do dia %s incompleta; usando reserva", path.name)
-        return None
-    return Post(
-        theme=theme,
-        titulo=titulo,
-        pontos=pontos[:4],
-        fecho=item.get("fecho", ""),
-        fontes=[tuple(f) for f in item.get("fontes", []) if len(f) == 2],
-        motivo=item.get("motivo", ""),
-        infografico=item.get("infografico"),
-        origem="routine",
-    )
 
 
 def _semente(texto: str) -> int:
@@ -443,7 +531,7 @@ def build(theme: str, today: dt.date | None = None) -> Post:
     Ordem: pauta do dia escrita pela Routine; depois a curadoria por IA ou o
     filtro de RSS (notícias); por fim o acervo autoral (conhecimento e serviços).
     """
-    today = today or dt.date.today()
+    today = today or config.hoje()
     seed = today.toordinal()
 
     if theme in PAUTA:
