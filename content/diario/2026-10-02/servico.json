@@ -1,0 +1,47 @@
+{
+  "titulo": "Backup que nunca foi restaurado é como extintor que ninguém testou",
+  "pontos": [
+    "O problema: muita empresa tem rotina de backup, mas nunca restaurou um arquivo para provar que ele volta",
+    "A TECHDIM define o que proteger, mantém cópias fora do local e faz testes periódicos de restauração, com registro",
+    "O resultado esperado: se algo parar, a empresa sabe o que volta, de onde e em quanto tempo"
+  ],
+  "fecho": "Fale com a TECHDIM e teste a restauração dos seus backups.",
+  "motivo": "Serviço de backup e recuperação testada, com analogia do cotidiano e sem promessa de prazo.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "engrenagens"
+      ],
+      "legenda": "BACKUP QUE RESTAURA DE VERDADE"
+    },
+    "titulo_branco": "Backup que ninguém restaurou",
+    "titulo_destaque": "é extintor sem teste.",
+    "historia": "Ter backup não é o mesmo que conseguir voltar. Só a restauração testada mostra se os dados voltam, de onde e em quanto tempo. A TECHDIM cuida disso na sua empresa.",
+    "licoes": [
+      [
+        "Defina o essencial",
+        "Liste sistemas e dados críticos e o quanto a empresa pode perder."
+      ],
+      [
+        "Copie fora do local",
+        "Mantenha cópias em nuvem ou em outro lugar, além do servidor local."
+      ],
+      [
+        "Teste a restauração",
+        "Restaure arquivos de verdade em intervalos fixos e registre o resultado."
+      ]
+    ],
+    "pergunta": "Quando foi a última vez que você restaurou um backup?",
+    "hashtags": [
+      "#BACKUP",
+      "#CONTINUIDADE",
+      "#INFRAESTRUTURA",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

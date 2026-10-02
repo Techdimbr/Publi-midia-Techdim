@@ -1,0 +1,51 @@
+{
+  "titulo": "Notebook perdido sem BitLocker é dado exposto: como ligar a criptografia",
+  "pontos": [
+    "Veja se o equipamento tem TPM e se atende aos requisitos: em msinfo32, a linha \"Suporte à criptografia do dispositivo\" deve indicar que atende",
+    "Ative o BitLocker (Windows Pro/Enterprise) ou a criptografia do dispositivo em Configurações, para proteger o disco contra acesso não autorizado",
+    "Guarde a chave de recuperação em local seguro: no Microsoft Entra ID, no AD ou na conta Microsoft, e teste a recuperação"
+  ],
+  "fecho": "A TECHDIM padroniza criptografia e chaves de recuperação nos computadores da sua empresa.",
+  "motivo": "Medida simples de hardening, documentada pela Microsoft, que reduz o dano de perda ou roubo de equipamento.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/pt-br/windows/security/operating-system-security/data-protection/bitlocker/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "notebook",
+        "escudo"
+      ],
+      "legenda": "DISCO CIFRADO · DADOS PROTEGIDOS"
+    },
+    "titulo_branco": "Notebook roubado não pode virar",
+    "titulo_destaque": "vazamento de dados.",
+    "historia": "O BitLocker cifra o disco inteiro e torna os dados inacessíveis em dispositivos perdidos ou roubados. Funciona melhor com TPM e, se preciso, com PIN na inicialização.",
+    "licoes": [
+      [
+        "Confira o TPM",
+        "Em msinfo32, veja se o equipamento atende aos requisitos de criptografia."
+      ],
+      [
+        "Ative o BitLocker",
+        "Windows Pro ou Enterprise. Ligue pelas Configurações ou pela política da empresa."
+      ],
+      [
+        "Guarde a chave",
+        "Salve a chave de recuperação no Entra ID, no AD ou na conta Microsoft."
+      ]
+    ],
+    "pergunta": "Os notebooks da sua empresa estão com o disco cifrado?",
+    "hashtags": [
+      "#BITLOCKER",
+      "#HARDENING",
+      "#WINDOWS",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

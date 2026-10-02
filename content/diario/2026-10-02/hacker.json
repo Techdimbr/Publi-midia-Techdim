@@ -1,0 +1,86 @@
+{
+  "titulo": "ShinyHunters volta a explorar falha crítica do Oracle PeopleSoft",
+  "pontos": [
+    "A CVE-2026-35273, nota 9,8, permite executar código sem login no PeopleSoft PeopleTools 8.61 e 8.62; a Mandiant relata nova campanha em setembro",
+    "Os invasores contornam regras de WAF trocando /PSEMHUB/ por /%50SEMHUB/; web shells foram achados em várias organizações",
+    "Aplique o patch da Oracle (alerta de 10/06 e CPU de julho), desative o PSEMHUB se não usar e não confie só em regra de WAF"
+  ],
+  "fecho": "Regra de firewall não substitui atualização. A TECHDIM revisa e protege seus sistemas críticos.",
+  "motivo": "Falha crítica com exploração ativa e contorno de WAF; a lição vale para qualquer sistema exposto à internet.",
+  "fontes": [
+    [
+      "techenet.com",
+      "https://www.techenet.com/2026/09/shinyhunters-oracle-peoplesoft-regras-waf/"
+    ],
+    [
+      "cloud.google.com",
+      "https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-renewed-mass-exploitation-campaign-targeting-oracle-peoplesoft"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "alerta · Mandiant / Google",
+    "terminal": [
+      [
+        "$ ",
+        "falha: CVE-2026-35273 (nota 9,8)",
+        "cmd"
+      ],
+      [
+        "",
+        "produto: PeopleSoft PeopleTools 8.61/8.62",
+        "txt"
+      ],
+      [
+        "",
+        "execução remota sem login",
+        "risco"
+      ],
+      [
+        "",
+        "grupo: ShinyHunters (UNC6240)",
+        "txt"
+      ],
+      [
+        "",
+        "bypass: /PSEMHUB/ -> /%50SEMHUB/",
+        "risco"
+      ],
+      [
+        "$ ",
+        "correção: patch Oracle de 10/06/2026",
+        "cmd"
+      ],
+      [
+        "",
+        "desative o PSEMHUB se não usar",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Hackers contornaram o firewall trocando uma letra:",
+    "titulo_destaque": "%50 no lugar de P.",
+    "historia": "A Mandiant relata nova campanha do ShinyHunters contra o Oracle PeopleSoft. A regra de WAF bloqueava /PSEMHUB/, mas não a versão codificada. Só o patch resolve a falha.",
+    "licoes": [
+      [
+        "Aplique o patch",
+        "Mitigação temporária não substitui a correção do fabricante."
+      ],
+      [
+        "Reduza a exposição",
+        "Desative componentes sem uso e tire sistemas internos da internet."
+      ],
+      [
+        "Monitore os logs",
+        "Procure acessos com caminhos codificados e arquivos desconhecidos."
+      ]
+    ],
+    "pergunta": "Seus sistemas expostos têm as correções em dia?",
+    "hashtags": [
+      "#CIBERSEGURANÇA",
+      "#PEOPLESOFT",
+      "#PATCH",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

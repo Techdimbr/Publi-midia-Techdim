@@ -1,0 +1,56 @@
+{
+  "titulo": "IA já está em quase toda empresa, mas integração e governança ainda travam",
+  "pontos": [
+    "Segundo a Bain com a Microsoft, 95% das empresas brasileiras já usam IA generativa, mas a maioria ainda não tem estrutura formal de governança",
+    "Em pesquisa da BearingPoint, só 13% das empresas avançam bem em IA; 34% citam a integração com sistemas de TI antigos como barreira",
+    "Antes de ampliar o uso, defina quem responde pela IA, quais dados podem entrar nela e como ela se conecta aos sistemas que a empresa já usa"
+  ],
+  "fecho": "A TECHDIM ajuda a integrar a IA aos seus sistemas com regras claras de uso.",
+  "motivo": "Duas pesquisas publicadas em 01/10/2026 apontam o mesmo gargalo: a IA se espalhou, mas integração e governança não acompanharam.",
+  "fontes": [
+    [
+      "em.com.br",
+      "https://www.em.com.br/mundo-corporativo/2026/10/7512653-adocao-de-ia-avanca-mas-governanca-ainda-e-ponto-cego.html"
+    ],
+    [
+      "forbes.com.br",
+      "https://forbes.com.br/forbes-tech/2026/10/apenas-13-das-empresas-avancam-em-ia-diante-de-barreiras-regulatorias-e-sistemas-de-ti-antigos"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "chip",
+        "grafico",
+        "documento"
+      ],
+      "legenda": "IA NAS EMPRESAS · GOVERNANÇA"
+    },
+    "titulo_branco": "IA está em quase toda empresa,",
+    "titulo_destaque": "mas a governança ficou para trás.",
+    "historia": "A Bain com a Microsoft aponta 95% das empresas brasileiras com IA generativa. A BearingPoint mostra que só 13% avançam bem: integração com TI antiga e regras travam o ganho.",
+    "licoes": [
+      [
+        "Defina responsáveis",
+        "Quem decide o uso da IA, quem aprova ferramentas e quem responde por erros."
+      ],
+      [
+        "Proteja os dados",
+        "Estabeleça quais dados nunca entram em uma IA e registre o que é usado."
+      ],
+      [
+        "Integre aos sistemas",
+        "IA isolada rende pouco: conecte ao ERP, CRM e planilhas que já existem."
+      ]
+    ],
+    "pergunta": "Quem responde pela IA que sua equipe já usa hoje?",
+    "hashtags": [
+      "#IAGENERATIVA",
+      "#GOVERNANÇA",
+      "#AUTOMAÇÃO",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
