@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "07:59",
+    "tema": "noticias",
+    "titulo": "Apple vai endurecer o Acesso Total ao Disco por causa dos agentes de IA",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "07h59-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122132990877390486",
+      "instagram": "https://www.instagram.com/p/DeB5pADlNbh/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/3999731572647698550",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512103965996761088/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122132990877390486",
+      "instagram": "18175997332442802",
+      "instagram_stories": "17870565210647346",
+      "linkedin": "urn:li:share:7512103965996761088"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
