@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:08",
+    "tema": "hacker",
+    "titulo": "GitLab corrige falha crítica (nota 9,9) no AI Gateway que permite executar comandos",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h08-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133029103390486",
+      "instagram": "https://www.instagram.com/p/DeCPMOYFYc5/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/3999826373279870384",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512151349942321153/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133029103390486",
+      "instagram": "18130075243754002",
+      "instagram_stories": "17912064483494830",
+      "linkedin": "urn:li:share:7512151349942321153"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
