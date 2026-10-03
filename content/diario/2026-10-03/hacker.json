@@ -1,0 +1,86 @@
+{
+  "titulo": "GitLab corrige falha crítica (nota 9,9) no AI Gateway que permite executar comandos",
+  "pontos": [
+    "A CVE-2026-90970 (nota 9,9) atinge o AI Gateway auto-hospedado do GitLab: quem tem acesso ao Duo Agent Platform escapa do sandbox de templates e executa comandos",
+    "Afetadas: da 18.1.6 até antes da 19.2.4, da 19.3 até antes da 19.3.2 e a 19.4.0; correções 19.2.4, 19.3.2 e 19.4.1. Atualize a imagem Docker do gateway",
+    "Não há exploração conhecida até 2/10. Atualize, restrinja quem acessa o Duo Agent Platform e revise mudanças recentes nas configurações de flow"
+  ],
+  "fecho": "Ferramenta de IA no servidor de código também precisa de patch e de acesso mínimo. A TECHDIM cuida disso.",
+  "motivo": "Falha crítica em ferramenta de IA integrada ao servidor de código; vale para empresas que hospedam o próprio GitLab.",
+  "fontes": [
+    [
+      "securityonline.info",
+      "https://securityonline.info/gitlab-ai-gateway-vulnerability/"
+    ],
+    [
+      "letsdatascience.com",
+      "https://letsdatascience.com/news/gitlab-patches-critical-ai-gateway-command-execution-flaw-3c0f4f57"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "alerta · GitLab AI Gateway",
+    "terminal": [
+      [
+        "$ ",
+        "falha: CVE-2026-90970 (nota 9,9)",
+        "cmd"
+      ],
+      [
+        "",
+        "produto: GitLab AI Gateway (auto-hospedado)",
+        "txt"
+      ],
+      [
+        "",
+        "exige conta com acesso ao Duo Agent",
+        "txt"
+      ],
+      [
+        "",
+        "escapa do sandbox e executa comandos",
+        "risco"
+      ],
+      [
+        "",
+        "exploração conhecida: nenhuma até 2/10",
+        "txt"
+      ],
+      [
+        "$ ",
+        "corrija: 19.2.4 / 19.3.2 / 19.4.1",
+        "cmd"
+      ],
+      [
+        "",
+        "restrinja o acesso ao Duo Agent",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "A falha está no template do agente de IA:",
+    "titulo_destaque": "nota 9,9 no GitLab.",
+    "historia": "O GitLab corrigiu em 2/10 uma falha no AI Gateway auto-hospedado: com acesso ao Duo Agent Platform, dá para escapar do sandbox e rodar comandos no servidor. Não há exploração conhecida.",
+    "licoes": [
+      [
+        "Atualize o gateway",
+        "Suba para 19.2.4, 19.3.2 ou 19.4.1: a imagem Docker, não só o GitLab."
+      ],
+      [
+        "Restrinja o acesso",
+        "Só quem precisa deve usar o Duo Agent Platform; revise contas e permissões."
+      ],
+      [
+        "Revise as flows",
+        "Procure mudanças recentes e não autorizadas nas configurações de flow."
+      ]
+    ],
+    "pergunta": "Quem pode usar IA nos seus servidores de código?",
+    "hashtags": [
+      "#GitLab",
+      "#DevSecOps",
+      "#IASegura",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

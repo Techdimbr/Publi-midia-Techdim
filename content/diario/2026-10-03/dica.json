@@ -1,0 +1,55 @@
+{
+  "titulo": "Ligue a verificação em 2 etapas no e-mail da empresa: passo a passo",
+  "pontos": [
+    "Microsoft 365: no Entra admin center, vá em Entra ID > Overview > Properties > Manage security defaults, marque Enabled e salve (exige Conditional Access Administrator)",
+    "Google Workspace: no Admin console, abra Security > Authentication > 2-step verification, permita o uso e ative a obrigatoriedade, na hora ou numa data",
+    "Antes, veja se algum sistema usa login legado (IMAP, POP, SMTP básico): ele não aceita MFA. Avise a equipe e mantenha 2 contas de administrador de emergência"
+  ],
+  "fecho": "A TECHDIM configura a verificação em 2 etapas e os acessos de toda a equipe, sem travar o trabalho.",
+  "motivo": "Medida de baixo custo, documentada pela Microsoft e pelo Google, que reduz o risco de invasão por senha roubada.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults"
+    ],
+    [
+      "knowledge.workspace.google.com",
+      "https://knowledge.workspace.google.com/admin/security/deploy-2-step-verification"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "celular",
+        "escudo"
+      ],
+      "legenda": "SENHA + 2ª ETAPA · CONTA PROTEGIDA"
+    },
+    "titulo_branco": "Senha roubada não entra se houver",
+    "titulo_destaque": "segunda etapa.",
+    "historia": "A verificação em 2 etapas exige algo além da senha, como o app autenticador. No Microsoft 365 e no Google Workspace, o administrador liga e exige para toda a equipe.",
+    "licoes": [
+      [
+        "Ative para todos",
+        "Microsoft: padrões de segurança no Entra. Google: 2-step verification no Admin console."
+      ],
+      [
+        "Cuidado com o legado",
+        "IMAP e POP não suportam MFA e permitem contornar a proteção."
+      ],
+      [
+        "Conta de emergência",
+        "Mantenha duas contas de administrador de emergência para não ficar trancado."
+      ]
+    ],
+    "pergunta": "Todo e-mail da sua empresa já exige segunda etapa?",
+    "hashtags": [
+      "#MFA",
+      "#SegurancaDigital",
+      "#Microsoft365",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

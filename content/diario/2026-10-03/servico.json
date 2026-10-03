@@ -1,0 +1,48 @@
+{
+  "titulo": "Planilha que virou sistema: software sob medida para o seu processo",
+  "pontos": [
+    "Quando o processo depende de planilhas, mensagens e anotações, cada pessoa faz de um jeito e o erro passa despercebido",
+    "A TECHDIM desenvolve software sob medida para web, desktop e celular: você conta a ideia e o sistema segue o seu processo, não o contrário",
+    "Cadastros, orçamentos, agendas, painéis e controles: informe sua ideia em www.techdim.com.br e vamos conversar sobre como tirá-la do papel"
+  ],
+  "fecho": "Sua ideia merece um sistema que funciona do seu jeito. Informe a sua em www.techdim.com.br.",
+  "motivo": "Propaganda do serviço de software sob medida, convidando o leitor a informar sua ideia.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "notebook",
+        "celular",
+        "engrenagens",
+        "nuvem"
+      ],
+      "legenda": "SEU PROCESSO · SEU SISTEMA"
+    },
+    "titulo_branco": "Seu processo não cabe em planilha?",
+    "titulo_destaque": "Vira sistema sob medida.",
+    "historia": "Planilhas e mensagens resolvem no começo, mas travam quando a empresa cresce. Um sistema sob medida organiza o processo do seu jeito, na web, no computador ou no celular.",
+    "licoes": [
+      [
+        "Conte a ideia",
+        "Descreva o processo que hoje é manual ou espalhado em planilhas."
+      ],
+      [
+        "Desenhamos juntos",
+        "O sistema nasce do seu fluxo de trabalho, não de um modelo pronto."
+      ],
+      [
+        "Use onde quiser",
+        "Web, desktop ou celular, conforme a rotina da sua equipe."
+      ]
+    ],
+    "pergunta": "Qual processo da sua empresa merece virar sistema?",
+    "hashtags": [
+      "#SoftwareSobMedida",
+      "#Automacao",
+      "#TransformacaoDigital",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

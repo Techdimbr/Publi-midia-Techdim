@@ -1,0 +1,56 @@
+{
+  "titulo": "Apple vai endurecer o Acesso Total ao Disco por causa dos agentes de IA",
+  "pontos": [
+    "Em 2/10 a Apple anunciou novos controles para o Acesso Total ao Disco do macOS: o app só obterá essa permissão com \"ação explícita do usuário\"",
+    "O motivo são os agentes de IA: com esse acesso, um app lê arquivos, e-mails, mensagens e histórico de navegação sem que o usuário perceba o alcance",
+    "A Apple não detalhou como serão as novas travas; na prática, vale revisar já quais apps e agentes têm esse acesso nos computadores da empresa"
+  ],
+  "fecho": "Agente de IA é ótimo, mas precisa de limite. A TECHDIM define permissões e políticas para usar IA com segurança.",
+  "motivo": "Mostra que o acesso amplo de agentes de IA virou risco reconhecido pelo fabricante do sistema; a lição vale para qualquer computador da empresa.",
+  "fontes": [
+    [
+      "engadget.com",
+      "https://www.engadget.com/2276186/apple-sounds-the-alarm-on-ai-agents-and-full-disk-access/"
+    ],
+    [
+      "macstories.net",
+      "https://www.macstories.net/linked/apple-announces-plan-to-impose-new-full-disk-access-controls-on-mac-developers/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "notebook",
+        "escudo",
+        "chip"
+      ],
+      "legenda": "IA COM LIMITE · ACESSO SOB CONTROLE"
+    },
+    "titulo_branco": "Apple exigirá ação explícita para",
+    "titulo_destaque": "acesso total ao disco.",
+    "historia": "Em 2/10 a Apple avisou que agentes de IA elevam o risco do Acesso Total ao Disco, que alcança arquivos, e-mails e mensagens. Haverá novos controles; os detalhes ainda não saíram.",
+    "licoes": [
+      [
+        "Liste os acessos",
+        "Veja quais apps têm Acesso Total ao Disco nos Macs da empresa e remova o que não precisa."
+      ],
+      [
+        "Aprove os agentes",
+        "Defina quais agentes de IA a empresa permite e quais dados eles podem acessar."
+      ],
+      [
+        "Dê o mínimo",
+        "Permissão só para a tarefa necessária, com revisão periódica."
+      ]
+    ],
+    "pergunta": "Você sabe quais agentes de IA acessam os dados da sua empresa?",
+    "hashtags": [
+      "#AgentesDeIA",
+      "#Privacidade",
+      "#MacOS",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
