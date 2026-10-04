@@ -3,7 +3,9 @@ import json
 
 import pytest
 
+import config
 import content
+import links
 from conftest import DIA, bloco_infografico, pauta
 from content import Post
 
@@ -91,8 +93,65 @@ def test_hashtags_sem_duplicata_de_acento_ou_caixa():
 
 
 def test_legenda_antiga_continua_com_as_hashtags_do_tema():
-    # posts sem infográfico (acervo, RSS) não mudam
-    assert _post().hashtags("linkedin") == "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #AutomacaoEmpresarial"
+    # posts sem infográfico (acervo, RSS) usam as hashtags fixas do tema
+    assert _post().hashtags("linkedin") == content.HASHTAGS["servico"]["linkedin"]
+
+
+@pytest.mark.parametrize("rede,esperada", [("instagram", "#campinas"), ("facebook", "#Campinas")])
+def test_hashtag_de_praca_vem_primeiro_onde_a_descoberta_e_local(rede, esperada):
+    """Conta nova é achada por praça, não por marca: #campinas antes de #techdim."""
+    for tema in content.HASHTAGS:
+        tags = Post(theme=tema, titulo="t", pontos=["a", "b"]).hashtags(rede).split()
+        assert tags[0] == esperada, tema
+
+
+def test_hashtag_da_marca_nao_ocupa_a_primeira_posicao_no_linkedin():
+    tags = _post().hashtags("linkedin").split()
+    assert "#TECHDIM" in tags and tags[0] != "#TECHDIM"
+
+
+def test_pergunta_segue_a_ordem_pauta_curadoria_reserva():
+    """A pauta manda; depois a curadoria por IA; por último a reserva do tema."""
+    assert _post(pergunta_propria="Vocês têm servidor próprio?").pergunta == "Vocês têm servidor próprio?"
+    da_pauta = _post(pergunta_propria="da IA", infografico=bloco_infografico(pergunta="da pauta"))
+    assert da_pauta.pergunta == "da pauta"
+
+
+def test_pergunta_vem_da_pauta_e_tem_reserva_por_tema():
+    com_bloco = _post(infografico=bloco_infografico(pergunta="Quando você testou o backup?"))
+    assert com_bloco.pergunta == "Quando você testou o backup?"
+    assert _post(theme="dica").pergunta == content.PERGUNTA_PADRAO["dica"]
+    # nunca vazia: legenda sem pergunta é legenda que ninguém responde
+    assert all(Post(theme=t, titulo="t", pontos=["a", "b"]).pergunta for t in content.HASHTAGS)
+
+
+@pytest.mark.parametrize("rede", ["linkedin", "facebook", "instagram"])
+def test_toda_legenda_pede_interacao(rede):
+    assert _post().pergunta in _post().caption(rede)
+
+
+def test_legenda_do_instagram_pede_salvar_e_seguir():
+    """Salvamento e seguidor são os dois sinais que movem o alcance no Instagram."""
+    legenda = _post().caption("instagram")
+    assert "Salva este post" in legenda
+    assert config.IG_HANDLE in legenda
+    assert config.REGIAO in legenda
+
+
+def test_link_clicavel_leva_utm_e_o_do_instagram_nao():
+    """UTM só onde o clique existe; no Instagram o link não é clicável em lugar nenhum."""
+    assert "utm_source=facebook" in _post().comentario("facebook")
+    assert "utm_source=linkedin" in _post().caption("linkedin")
+    assert "utm_" not in _post().caption("instagram")
+
+
+def test_whatsapp_entra_no_comentario_do_facebook_quando_ha_numero(monkeypatch):
+    monkeypatch.setattr(config, "WHATSAPP", "5519999998888")
+    c = _post().comentario("facebook")
+    assert "wa.me/5519999998888" in c
+    assert "TECHDIM" in links.whatsapp("x") and "wa.me" in links.whatsapp("x")
+    monkeypatch.setattr(config, "WHATSAPP", "")
+    assert "wa.me" not in _post().comentario("facebook")   # sem número, cai no site
 
 
 @pytest.mark.parametrize("rede", ["linkedin", "facebook", "instagram"])
@@ -106,7 +165,8 @@ def test_legenda_respeita_o_limite_de_caracteres(rede):
 def test_comentario_leva_fontes_e_site():
     c = _post().comentario("facebook")
     assert "fonte.com" in c and "techdim.com.br" in c
-    assert _post(fontes=[]).comentario("instagram") == ""
+    # o comentário do Instagram nunca é vazio: é onde mora o convite para a bio
+    assert "link da bio" in _post(fontes=[]).comentario("instagram")
     assert _post().comentario("linkedin") == ""
 
 

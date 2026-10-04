@@ -74,6 +74,12 @@ Na aba **Variables** da mesma tela:
 | `FB_PAGE_ID` | id da Página do Facebook |
 | `IG_USER_ID` | id da conta comercial do Instagram |
 | `LINKEDIN_URN` | `urn:li:organization:123456` (Página) ou `urn:li:person:abc` (perfil) |
+| `WHATSAPP_NUMERO` | WhatsApp comercial só com dígitos, DDI+DDD (ex.: `5519999998888`) — opcional |
+
+Sem `WHATSAPP_NUMERO` nada quebra: o convite para conversar cai no site. Com
+ele, o primeiro comentário do Facebook passa a trazer um link que abre a
+conversa com a mensagem já escrita, citando o post que trouxe a pessoa — que é
+a única atribuição de origem que a Meta não entrega sozinha.
 
 Depois de cadastrar o `META_ACCESS_TOKEN`, rode o workflow **Descobrir IDs**
 uma vez: ele imprime o `FB_PAGE_ID` e o `IG_USER_ID` prontos para colar.
@@ -174,10 +180,37 @@ disparado manualmente com `tema=especial` (o mesmo formato, com bloco `infografi
 
 ## Stories, primeiro comentário e relatório semanal
 
-**Stories (Instagram):** os temas de notícia (Notícias de Tecnologia,
-Cibersegurança · IA · Hacker e Destaque) também saem nos Stories, numa arte
-9:16 com o título, "o que fazer" e a chamada para o post no perfil. Story não
-disputa alcance com o feed e some em 24 horas.
+**Stories (Instagram):** **todos** os temas saem nos Stories, numa arte 9:16
+com o título, "o que fazer", a chamada para o post no perfil e, encostado no
+campo de resposta do Instagram, o pedido "responde aqui embaixo" com a pergunta
+do post. Responder um Story é mandar uma DM: conta como interação para o
+alcance e abre conversa com quem pode virar cliente — é a única conversão que a
+API de Stories permite, porque o adesivo de link só é publicável à mão. Story
+não disputa alcance com o feed e some em 24 horas.
+
+**Pedido de interação:** toda legenda fecha com uma pergunta concreta sobre a
+empresa de quem lê. Comentário é o sinal mais forte para o algoritmo das três
+redes — mais que curtida — e é a única interação que começa uma conversa. A
+pergunta vem da pauta do dia; quando não vem, a curadoria por IA escreve uma; se
+nem isso, usa-se a reserva do tema. No Instagram a legenda ainda pede para
+salvar e para seguir, que são os dois outros sinais que movem alcance ali.
+
+**Hashtags:** no Instagram e no Facebook a praça vem primeiro (`#campinas`,
+`#ticampinas`, `#empresascampinas`). Conta nova não é achada por hashtag de
+marca (`#TECHDIM` só alcança quem já conhece) nem por hashtag gigante
+(`#tecnologia` tem milhões de posts e o nosso afunda em segundos): quem é achado
+é quem usa hashtag de praça e de nicho. O LinkedIn mantém o tom profissional,
+porque lá a descoberta é por assunto, não por cidade.
+
+**Janela de publicação:** nada sai entre 22h e 7h (Brasília). Em 02/10/2026
+quatro posts saíram entre 00h22 e 01h11 e tiveram alcance zero — as primeiras
+horas de um post são justamente as que o algoritmo mede. Para um teste
+proposital fora de hora, marque **forcar_fora_de_hora** ao disparar o workflow.
+
+**Links rastreáveis:** todo link clicável (Facebook e LinkedIn) sai com UTM que
+diz rede, tema e dia, então o Google Analytics do site mostra qual post trouxe
+visita. No Instagram o link não é clicável em lugar nenhum, então lá vai o
+endereço limpo e o clique de verdade acontece pela bio.
 
 **Primeiro comentário:** link no corpo do post reduz o alcance no Facebook e
 no LinkedIn. As fontes e o site vão para o primeiro comentário, publicado logo
@@ -193,7 +226,15 @@ rede, **ranking dos temas** (qual traz mais retorno), melhores posts e a tabela
 completa. Métricas usadas: Facebook — visualizações únicas (alcance),
 visualizações, cliques, reações, comentários e compartilhamentos; Instagram —
 alcance, visualizações, interações, curtidas, comentários, compartilhamentos e
-salvamentos. Stories não entram (a Meta só guarda essas métricas por 24 h).
+salvamentos. O relatório traz ainda **qual horário rende mais** e a **curva de
+seguidores** da semana.
+
+**Métricas do dia:** toda noite, por volta das 21h, o workflow "Métricas do dia"
+grava `registros/AAAA-MM-DD/metricas.json` e acumula `registros/seguidores.csv`
+no branch `assets`. Ele existe porque duas coisas somem se ninguém olhar no
+mesmo dia: a métrica de Story, que a Meta guarda por apenas 24 horas, e o número
+de seguidores, que é um retrato do instante — sem uma foto por dia não existe
+curva de crescimento, que é a meta principal da conta hoje.
 
 ## Diário de movimentações
 
@@ -279,6 +320,7 @@ python src/exemplos_infograficos.py historias
   testes.yml            ruff + pytest a cada mudança em código ou conteúdo
   token.yml             verificação semanal da validade dos tokens
   relatorio.yml         relatório semanal de alcance e engajamento
+  metricas.yml          coleta diária: seguidores e Stories (expiram em 24 h)
   apagar-posts.yml      exclusão de posts, com conferência e registro
   registrar-movimento.yml  anotações manuais no diário
   descobrir-ids.yml     imprime FB_PAGE_ID, IG_USER_ID e LINKEDIN_URN
@@ -289,7 +331,9 @@ content/
 docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md
 fonts/ fotos/ exemplos/ fontes OFL, foto de exemplo e imagens de exemplo
 src/
-  config.py             marca, formatos, credenciais, hora de Brasília
+  config.py             marca, praça, formatos, credenciais, janela de horário
+  links.py              UTM e link de WhatsApp (de onde veio cada visita)
+  metricas_dia.py       coleta diária de seguidores e Stories
   content.py            pauta, RSS, acervo e legendas por rede
   infografico.py        validação do bloco e desenho do infográfico
   cenas.py              biblioteca de cenas (composta, notícias, ensino, rede, dev, painel)

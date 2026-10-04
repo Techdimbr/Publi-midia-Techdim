@@ -149,11 +149,83 @@ def coletar(destino: pathlib.Path, inicio: dt.date, fim: dt.date, creds) -> list
     return linhas
 
 
+def coletar_diarias(destino: pathlib.Path, inicio: dt.date, fim: dt.date) -> list[dict]:
+    """Retratos diários gravados por metricas_dia.py (seguidores e Stories).
+
+    O relatório semanal não consegue buscar isso sozinho: a métrica de Story
+    expira em 24 h e o número de seguidores é do instante da consulta.
+    """
+    out = []
+    dia = inicio
+    while dia <= fim:
+        arq = destino / "registros" / dia.isoformat() / "metricas.json"
+        try:
+            out.append(json.loads(arq.read_text(encoding="utf-8")))
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass
+        dia += dt.timedelta(days=1)
+    return out
+
+
+def _bloco_crescimento(diarias: list[dict]) -> list[str]:
+    """Seguidores no começo e no fim da semana — a meta que mais importa agora."""
+    if not diarias:
+        return ["", "## Crescimento de seguidores", "",
+                "Sem coleta diária no período. O workflow *Métricas do dia* grava "
+                "`registros/AAAA-MM-DD/metricas.json` — sem ele não há curva de seguidores "
+                "nem métrica de Story (a da Meta expira em 24 h)."]
+    md = ["", "## Crescimento de seguidores", "",
+          "| Rede | No início | No fim | Variação |", "|---|---|---|---|"]
+    for rede in ("instagram", "facebook"):
+        valores = [
+            (d["data"], d.get("contas", {}).get(rede, {}).get("seguidores"))
+            for d in diarias
+            if d.get("contas", {}).get(rede, {}).get("seguidores") is not None
+        ]
+        if not valores:
+            continue
+        ini, fim_ = valores[0][1], valores[-1][1]
+        delta = fim_ - ini
+        md.append(f"| {rede.capitalize()} | {ini} | {fim_} | {delta:+d} |")
+
+    visitas = sum(d.get("contas", {}).get("instagram", {}).get("visitas_ao_perfil", 0) for d in diarias)
+    cliques = sum(d.get("contas", {}).get("instagram", {}).get("cliques_no_site", 0) for d in diarias)
+    md += ["", f"Instagram na semana: **{visitas}** visitas ao perfil e **{cliques}** cliques no site."]
+
+    sts = [s for d in diarias for s in d.get("stories", [])]
+    if sts:
+        alcance = sum(s["alcance"] for s in sts)
+        respostas = sum(s["respostas"] for s in sts)
+        md += ["", f"Stories: **{len(sts)}** publicados, alcance somado **{alcance}**, "
+                   f"**{respostas}** resposta(s)."]
+    return md
+
+
+def _bloco_horarios(linhas: list[dict]) -> list[str]:
+    """Qual horário rende mais. Serve para mexer na grade com dado, não com palpite."""
+    if not linhas:
+        return []
+    faixas: dict[str, dict] = {}
+    for x in linhas:
+        hora = f"{x['hora'][:2]}h"
+        f = faixas.setdefault(hora, {"n": 0, "alcance": 0, "inter": 0})
+        f["n"] += 1
+        f["alcance"] += x["alcance"]
+        f["inter"] += x["interacoes"]
+    ordem = sorted(faixas.items(), key=lambda kv: (kv[1]["inter"] / kv[1]["n"], kv[1]["alcance"] / kv[1]["n"]), reverse=True)
+    md = ["", "## Qual horário rende mais", "",
+          "| # | Horário | Entregas | Alcance médio | Interações médias |", "|---|---|---|---|---|"]
+    for n, (hora, f) in enumerate(ordem, 1):
+        md.append(f"| {n} | {hora} | {f['n']} | {f['alcance'] / f['n']:.0f} | {f['inter'] / f['n']:.1f} |")
+    return md
+
+
 def _taxa(inter: float, alcance: float) -> str:
     return f"{100 * inter / alcance:.1f}%" if alcance else "—"
 
 
-def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt.date) -> pathlib.Path:
+def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt.date,
+             diarias: list[dict] | None = None) -> pathlib.Path:
     ano, semana, _ = fim.isocalendar()
     pasta = destino / "registros" / "semanal"
     pasta.mkdir(parents=True, exist_ok=True)
@@ -199,6 +271,8 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
                 f"{t['inter'] / t['n']:.1f} | {_taxa(t['inter'], t['alcance'])} |"
             )
 
+        md += _bloco_horarios(linhas)
+
         top = sorted(linhas, key=lambda x: (x["interacoes"], x["alcance"]), reverse=True)[:3]
         md += ["", "## Melhores posts", ""]
         for x in top:
@@ -219,17 +293,21 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
                 f"{x['compartilhamentos']} | {x['salvamentos']} | {_taxa(x['interacoes'], x['alcance'])} |"
             )
 
+    md += _bloco_crescimento(diarias or [])
+
     md += ["", "## Observações", "",
            "- Engajamento = interações ÷ alcance. Interações: curtidas/reações, comentários, compartilhamentos e salvamentos.",
            "- O primeiro comentário publicado pela própria automação é descontado.",
            "- Stories não entram: a API da Meta só guarda as métricas de Story por 24 horas.",
            "- Métricas de posts muito recentes ainda estão crescendo; o retrato fiel é a partir de ~48 h.",
+           "- Stories e seguidores vêm da coleta diária (workflow *Métricas do dia*).",
            "- LinkedIn entra quando o token estiver configurado."]
 
     arq = pasta / f"{nome}.md"
     arq.write_text("\n".join(md) + "\n", encoding="utf-8")
     (pasta / f"{nome}.json").write_text(
-        json.dumps({"semana": nome, "inicio": inicio.isoformat(), "fim": fim.isoformat(), "posts": linhas},
+        json.dumps({"semana": nome, "inicio": inicio.isoformat(), "fim": fim.isoformat(),
+                    "posts": linhas, "diarias": diarias or []},
                    ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     relatorios = sorted((p.stem for p in pasta.glob("*-S*.md")), reverse=True)
@@ -259,7 +337,8 @@ def main(argv: list[str] | None = None) -> int:
     destino = pathlib.Path(args.dest)
 
     linhas = coletar(destino, inicio, fim, creds)
-    arq = escrever(linhas, destino, inicio, fim)
+    diarias = coletar_diarias(destino, inicio, fim)
+    arq = escrever(linhas, destino, inicio, fim, diarias)
     log.info("relatório gravado em %s (%d linhas)", arq.relative_to(destino), len(linhas))
 
     resumo = os.environ.get("GITHUB_STEP_SUMMARY")

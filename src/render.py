@@ -522,12 +522,25 @@ def render_story(post, out_dir: pathlib.Path, seed: int = 0) -> pathlib.Path:
     font_r, linhas_r, lead_r = _fit(
         draw, reco, "regular", box_w - 48, int((bottom - top) * 0.24), start=int(w * 0.048)
     )
+    # Pedido de resposta. Responder um Story é mandar uma DM: conta como
+    # interação para o alcance e abre conversa com quem pode virar cliente. É a
+    # única conversão que a API permite — o adesivo de link não é publicável por
+    # API, só à mão. Mede-se aqui, antes de centralizar, para caber de verdade.
+    pergunta = getattr(post, "pergunta", "")
+    pergunta_h = 0
+    if pergunta:
+        rotulo_p = int(w * 0.028)
+        font_p, linhas_p, lead_p = _fit(
+            draw, pergunta, "regular", box_w, int(w * 0.13), start=int(w * 0.042)
+        )
+        pergunta_h = 56 + rotulo_p + 18 + len(linhas_p) * lead_p
+
     chip_h = int(w * 0.024) + int(w * 0.024 * 0.9)
     rotulo_h = int(w * 0.030)
     bloco = (
         chip_h + 50 + len(linhas_t) * lead_t + 40 + 8 + 60
         + (28 + int(w * 0.024) if post.fontes else 0)
-        + rotulo_h + 24 + len(linhas_r) * lead_r + 70 + int(w * 0.11)
+        + rotulo_h + 24 + len(linhas_r) * lead_r + 70 + int(w * 0.11) + pergunta_h
     )
     y = top + max(0, (bottom - top - bloco) // 2)
 
@@ -557,6 +570,14 @@ def render_story(post, out_dir: pathlib.Path, seed: int = 0) -> pathlib.Path:
     draw.text((pad, y), "Post completo no perfil", font=_font("regular", int(w * 0.040)), fill=config.MUTED)
     y += int(w * 0.055)
     draw.text((pad, y), config.IG_HANDLE, font=_font("bold", int(w * 0.060)), fill=st["accent"])
+
+    if pergunta_h:
+        y += int(w * 0.075) + 56
+        draw.text((pad, y), "RESPONDE AQUI EMBAIXO", font=_font("monobold", rotulo_p), fill=st["second"])
+        y += rotulo_p + 18
+        for linha in linhas_p:
+            draw.text((pad, y), linha, font=font_p, fill=config.FG)
+            y += lead_p
 
     # marca, logo acima da faixa coberta pelo campo "responder"
     base = h - 330 + 90

@@ -17,6 +17,7 @@ import requests
 import config
 import curator
 import infografico
+import links
 from texto import cortar, uma_linha
 
 log = logging.getLogger(__name__)
@@ -45,38 +46,68 @@ FEEDS = {
     ],
 }
 
+# Hashtags por tema e rede.
+#
+# Regra que vale mais que a lista: conta nova não é achada por hashtag de marca
+# (#TECHDIM só alcança quem já conhece) nem por hashtag gigante (#tecnologia tem
+# milhões de posts e o nosso afunda em segundos). Quem é achado é quem usa
+# hashtag de PRAÇA e de NICHO: "#ticampinas" tem pouco post e exatamente o
+# público que compra. Por isso a geografia vem primeiro no Instagram e no
+# Facebook, onde a descoberta é local; o LinkedIn mantém o tom profissional,
+# porque lá a descoberta é por assunto.
+GEO_IG = "#campinas #ticampinas #empresascampinas"
+GEO_FB = "#Campinas #TIemCampinas"
+
 HASHTAGS = {
     "noticias": {
-        "linkedin": "#Tecnologia #InteligenciaArtificial #InovacaoDigital #TECHDIM",
-        "facebook": "#TECHDIM #Tecnologia #IA #Campinas",
-        "instagram": "#tecnologia #inteligenciaartificial #ia #inovacao #techdim #campinas #ti",
+        "linkedin": "#Tecnologia #InteligenciaArtificial #GestaoDeTI #Campinas #TECHDIM",
+        "facebook": f"{GEO_FB} #TIparaEmpresas #Tecnologia #TECHDIM",
+        "instagram": f"{GEO_IG} #tiparaempresas #tecnologia #inteligenciaartificial "
+                     "#pequenaempresa #gestaoempresarial #inovacao #techdim",
     },
     "hacker": {
-        "linkedin": "#CiberSeguranca #SegurancaDaInformacao #InfraestruturaDeTI #TECHDIM",
-        "facebook": "#TECHDIM #Seguranca #TI #Campinas",
-        "instagram": "#ciberseguranca #seguranca #hacker #ti #infraestrutura #techdim #campinas",
+        "linkedin": "#CiberSeguranca #SegurancaDaInformacao #GestaoDeTI #Campinas #TECHDIM",
+        "facebook": f"{GEO_FB} #SegurancaDigital #TIparaEmpresas #TECHDIM",
+        "instagram": f"{GEO_IG} #segurancadigital #ciberseguranca #tiparaempresas "
+                     "#protecaodedados #lgpd #pequenaempresa #techdim",
     },
     "dica": {
-        "linkedin": "#Conhecimento #TI #CiberSeguranca #GestaoDeTI #TECHDIM",
-        "facebook": "#TECHDIM #AprendaTI #Tecnologia #Campinas",
-        "instagram": "#conhecimento #aprendati #tecnologia #ti #ciberseguranca #techdim #campinas",
+        "linkedin": "#GestaoDeTI #CiberSeguranca #Produtividade #Campinas #TECHDIM",
+        "facebook": f"{GEO_FB} #DicaDeTI #TIparaEmpresas #TECHDIM",
+        "instagram": f"{GEO_IG} #dicadeti #tiparaempresas #produtividade "
+                     "#segurancadigital #pequenaempresa #empreendedorismo #techdim",
     },
     "especial": {
-        "linkedin": "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #Tecnologia #Campinas",
-        "facebook": "#TECHDIM #TI #Tecnologia #Campinas",
-        "instagram": "#techdim #ti #infraestrutura #tecnologia #ciberseguranca #campinas",
+        "linkedin": "#TransformacaoDigital #GestaoDeTI #InteligenciaArtificial #Campinas #TECHDIM",
+        "facebook": f"{GEO_FB} #TIparaEmpresas #SuporteDeTI #TECHDIM",
+        "instagram": f"{GEO_IG} #tiparaempresas #suportedeti #transformacaodigital "
+                     "#pequenaempresa #empreendedorismo #gestaoempresarial #techdim",
     },
     # Genéricas de propósito: o assunto do destaque muda todo dia.
     "destaque": {
-        "linkedin": "#Tecnologia #CiberSeguranca #InfraestruturaDeTI #TECHDIM",
-        "facebook": "#TECHDIM #Tecnologia #Seguranca #Campinas",
-        "instagram": "#tecnologia #ciberseguranca #ti #infraestrutura #techdim #campinas",
+        "linkedin": "#Tecnologia #CiberSeguranca #GestaoDeTI #Campinas #TECHDIM",
+        "facebook": f"{GEO_FB} #SegurancaDigital #Tecnologia #TECHDIM",
+        "instagram": f"{GEO_IG} #segurancadigital #tiparaempresas #tecnologia "
+                     "#protecaodedados #pequenaempresa #alerta #techdim",
     },
     "servico": {
-        "linkedin": "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #AutomacaoEmpresarial",
-        "facebook": "#TECHDIM #TI #Campinas #Seguranca",
-        "instagram": "#ti #suportetecnico #ciberseguranca #automacao #techdim #campinas",
+        "linkedin": "#SuporteDeTI #InfraestruturaDeTI #CiberSeguranca #Campinas #TECHDIM",
+        "facebook": f"{GEO_FB} #SuporteDeTI #TIparaEmpresas #TECHDIM",
+        "instagram": f"{GEO_IG} #suportedeti #tiparaempresas #infraestrutura "
+                     "#backup #pequenaempresa #gestaoempresarial #techdim",
     },
+}
+
+# Pergunta de fecho quando a pauta não traz uma. Comentário é o sinal mais forte
+# que existe para o algoritmo das três redes — mais que curtida — e é a única
+# interação que abre conversa com alguém que pode virar cliente.
+PERGUNTA_PADRAO = {
+    "noticias": "Isso muda alguma coisa no dia a dia da sua empresa?",
+    "hacker": "Sua empresa está exposta a isso?",
+    "dica": "Sua empresa já faz isso?",
+    "servico": "Como sua empresa resolve isso hoje?",
+    "destaque": "Sua empresa usa essa tecnologia?",
+    "especial": "Qual é o maior gargalo de TI da sua empresa hoje?",
 }
 
 
@@ -101,8 +132,9 @@ def _forma_tag(tag: str, network: str) -> str:
     return sem_acento  # CamelCase digitado (#IAGenerativa) e curtas (#TI) ficam como vieram
 
 
-# Quantas hashtags cada rede comporta numa legenda legível.
-LIMITE_HASHTAGS = {"linkedin": 5, "facebook": 4, "instagram": 8}
+# Quantas hashtags cada rede comporta numa legenda legível. O Instagram é o
+# único em que a hashtag ainda é porta de entrada, e lá cabem mais.
+LIMITE_HASHTAGS = {"linkedin": 5, "facebook": 5, "instagram": 12}
 # Limite de caracteres da legenda em cada rede.
 LIMITE_LEGENDA = {"linkedin": 3000, "facebook": 5000, "instagram": 2200}
 
@@ -116,6 +148,7 @@ class Post:
     pontos: list[str]
     fecho: str = ""
     fontes: list[tuple[str, str]] = field(default_factory=list)  # (nome, url)
+    pergunta_propria: str = ""  # escrita pela curadoria por IA
     curado_por_ia: bool = False
     motivo: str = ""  # por que esta pauta foi escolhida (curadoria)
     origem: str = ""  # "routine" quando veio da pauta do dia escrita pelo Claude
@@ -124,6 +157,20 @@ class Post:
     @property
     def label(self) -> str:
         return config.THEME_LABELS.get(self.theme, self.theme)
+
+    @property
+    def pergunta(self) -> str:
+        """Pergunta que fecha a legenda e pede comentário.
+
+        A Routine já escreve uma por pauta no bloco "infografico"; quando não
+        escreve, usa-se a do tema. Nunca fica vazia: legenda sem pergunta é
+        legenda que ninguém responde.
+        """
+        return (
+            uma_linha((self.infografico or {}).get("pergunta", ""))
+            or uma_linha(self.pergunta_propria)
+            or PERGUNTA_PADRAO.get(self.theme, "O que você acha disso?")
+        )
 
     @property
     def slides(self) -> list[dict]:
@@ -169,25 +216,34 @@ class Post:
         return texto if len(texto) <= limite else texto[: limite - 1].rstrip() + "…"
 
     def _legenda(self, network: str) -> str:
+        """Monta a legenda da rede.
+
+        A ordem é de propósito. Título primeiro, porque é o único pedaço que
+        aparece antes do "ver mais". Pergunta antes do contato, porque pedir
+        comentário vale mais para o alcance do que pedir clique. Hashtags por
+        último, porque atrapalham a leitura e não atrapalham o algoritmo.
+        """
         tags = self.hashtags(network)
         pontos = self.pontos[:4]
-        aviso_link = (
-            "🔗 Fontes e site no primeiro comentário"
-            if self.fontes
-            else "🔗 Link no primeiro comentário"
-        )
 
         if network == "linkedin":
             corpo = "\n".join(f"{i:02d}. {p}" for i, p in enumerate(pontos, 1))
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
+            partes += ["", f"💬 {self.pergunta}"]
             # A API de comentários do LinkedIn exige o produto Community
             # Management API; sem ele o comentário dá 403. Enquanto isso, fontes
             # e site vão no próprio texto do post.
             if self.fontes:
                 partes += ["", "Fontes: " + " · ".join(url for _, url in self.fontes[:2])]
-            partes += ["", f"TECHDIM — {config.TAGLINE}", config.SITE_URL, "", tags]
+            partes += [
+                "",
+                f"TECHDIM — {config.TAGLINE} · {config.REGIAO}",
+                links.site(self.theme, "linkedin"),
+                "",
+                tags,
+            ]
             return "\n".join(partes)
 
         if network == "facebook":
@@ -195,37 +251,69 @@ class Post:
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
-            partes += ["", f"Fale com a TECHDIM — {aviso_link.lower().replace('🔗 ', '')} 👇", "", tags]
+            partes += [
+                "",
+                f"💬 {self.pergunta} Comenta aqui 👇" if not self.pergunta.endswith("?") else f"💬 {self.pergunta}",
+                f"📍 TECHDIM — TI para empresas de {config.REGIAO}",
+                "📎 Fontes e contato no primeiro comentário" if self.fontes
+                else "📎 Contato no primeiro comentário",
+                "",
+                tags,
+            ]
             return "\n".join(partes)
 
-        # instagram: link não é clicável em legenda nem em comentário, então o
-        # site continua escrito aqui; as fontes vão para o comentário.
+        # instagram: link não é clicável nem na legenda nem no comentário, então
+        # aqui o endereço vai limpo e o clique de verdade acontece no Story e na
+        # bio. Em compensação, é a rede em que salvar e seguir movem o alcance.
         emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
         corpo = "\n".join(f"{emojis[i]} {p}" for i, p in enumerate(pontos))
-        partes = [f"{self.titulo}", ""] + ([] if self.infografico else ["Arraste para o lado →", ""]) + [corpo]
+        partes = [f"{self.titulo}", ""]
+        if not self.infografico:
+            partes += ["Arraste para o lado →", ""]
+        partes += [corpo]
         if self.fecho:
             partes += ["", self.fecho]
-        partes += ["", f"Saiba mais: {config.SITE}"]
+        partes += [
+            "",
+            f"💬 {self.pergunta}",
+            "📌 Salva este post para não perder",
+            f"➕ Segue {config.IG_HANDLE} — TI para empresas de {config.REGIAO}",
+            f"🔗 {config.SITE} (link na bio)",
+        ]
         if self.fontes:
             partes += ["Fontes no primeiro comentário 👇"]
         partes += ["", tags]
         return "\n".join(partes)
 
     def comentario(self, network: str) -> str:
-        """Primeiro comentário: fontes e site. Vazio quando não há o que pôr."""
+        """Primeiro comentário: fontes e o caminho mais curto até a conversa.
+
+        No Facebook é aqui que mora o link clicável, com UTM, porque link no
+        corpo do post derruba o alcance. No Instagram o link não é clicável em
+        lugar nenhum, então o comentário só credita as fontes e aponta a bio.
+        """
         if network in ("instagram_stories", "linkedin"):
             return ""  # LinkedIn: tudo no texto do post (ver caption)
+
         if network == "instagram":
-            if not self.fontes:
-                return ""  # o site já está na legenda
-            nomes = " · ".join(nome for nome, _ in self.fontes[:3])
-            return f"📎 Fontes: {nomes}"
+            linhas = []
+            if self.fontes:
+                linhas.append("📎 Fontes: " + " · ".join(n for n, _ in self.fontes[:3]))
+            linhas.append(f"🔗 Orçamento e contato no link da bio — {config.SITE}")
+            return "\n".join(linhas)
+
         linhas = []
         if self.fontes:
             linhas.append("📎 Fontes:")
             linhas += [f"• {nome}: {url}" for nome, url in self.fontes[:3]]
             linhas.append("")
-        linhas.append(f"🌐 TECHDIM — {config.TAGLINE}: {config.SITE_URL}")
+        zap = links.whatsapp(self.titulo, self.theme)
+        if zap:
+            linhas.append(f"💬 Fale agora com a TECHDIM no WhatsApp: {zap}")
+        linhas.append(
+            f"🌐 TECHDIM — {config.TAGLINE} · {config.REGIAO}: "
+            f"{links.site(self.theme, network)}"
+        )
         return "\n".join(linhas)
 
 
@@ -374,7 +462,7 @@ def _from_feeds(theme: str, seed: int) -> Post | None:
         else:
             return Post(theme=theme, titulo=c["titulo"], pontos=c["pontos"],
                         fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True,
-                        motivo=c.get("motivo", ""))
+                        pergunta_propria=c.get("pergunta", ""), motivo=c.get("motivo", ""))
     return _from_feeds_palavra_chave(theme, seed)
 
 

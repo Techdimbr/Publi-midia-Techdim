@@ -37,10 +37,15 @@ SISTEMA = """Você é o editor de conteúdo da TECHDIM, empresa de infraestrutur
 segurança e automação com IA que atende pequenas e médias empresas em Campinas (SP). \
 O público é dono de empresa e gestor de TI no Brasil.
 
+Quem lê é dono de empresa de 10 a 200 funcionários, não administrador de sistemas. Ele não sabe o que é CVE, sandbox ou gateway, e não liga para número de versão. Ele quer saber três coisas: isso me afeta? qual o prejuízo se eu ignorar? o que eu faço hoje?
+
 Regras:
 - Escreva em português do Brasil, tom profissional e direto, sem sensacionalismo.
 - Use somente fatos presentes no material fornecido. Não invente números, nomes, datas ou citações.
 - Preserve ressalvas do texto original (por exemplo, "pode ter", "segundo a empresa").
+- Traduza o jargão. Em vez de "escapa do sandbox de templates e executa comandos", escreva "o invasor consegue rodar comandos no servidor da empresa".
+- Número de versão e código de vulnerabilidade só entram quando o leitor precisa deles para agir, e sempre depois do impacto, nunca antes.
+- Diga sempre quem é afetado em palavras do dia a dia ("empresas que usam o Office 365", "quem tem servidor próprio"), para o leitor saber em dois segundos se é com ele.
 - Não cite telefone; o único contato é www.techdim.com.br."""
 
 ESQUEMA_ESCOLHA = {
@@ -67,8 +72,14 @@ ESQUEMA_POST = {
             "description": "o que uma empresa deve fazer diante disso, prático, até 170 caracteres",
         },
         "fecho": {"type": "string", "description": "uma frase ligando o tema ao trabalho da TECHDIM, até 130 caracteres"},
+        "pergunta": {
+            "type": "string",
+            "description": "pergunta curta e concreta sobre a realidade da empresa do leitor, "
+            "que ele consiga responder em uma linha, até 90 caracteres. Fecha a legenda e "
+            "serve para puxar comentário. Nada de pergunta retórica.",
+        },
     },
-    "required": ["titulo", "fatos", "recomendacao", "fecho"],
+    "required": ["titulo", "fatos", "recomendacao", "fecho", "pergunta"],
     "additionalProperties": False,
 }
 
@@ -165,6 +176,7 @@ def curar(theme: str, candidatos: list[dict]) -> dict:
         "titulo": post["titulo"].strip(),
         "pontos": fatos + [post["recomendacao"].strip()],
         "fecho": post["fecho"].strip(),
+        "pergunta": post.get("pergunta", "").strip(),
         "fonte": (item["source"], item["link"]),
         "motivo": escolha.get("motivo", ""),
     }
