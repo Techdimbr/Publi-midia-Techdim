@@ -165,9 +165,10 @@ def hoje() -> date:
 # ---------------------------------------------------------------- grade
 
 # Janela em que vale a pena publicar (hora de Brasília; início inclusivo, fim
-# exclusivo). Em 02/10/2026 quatro posts saíram entre 00h22 e 01h11 e tiveram
-# alcance zero: fora da janela o público-alvo não está na rede e o algoritmo lê
-# o post como fraco justamente nas primeiras horas, que são as que contam.
+# exclusivo): o horário em que donos e gestores de PME estão na rede. Em
+# 02/10/2026 quatro posts saíram entre 00h22 e 01h11, sem ninguém para
+# interagir. É uma premissa, não uma medição: o relatório semanal compara os
+# horários e é ele que deve ajustar esta janela.
 JANELA_PUBLICACAO = (7, 22)
 
 

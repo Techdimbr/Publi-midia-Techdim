@@ -46,61 +46,73 @@ FEEDS = {
     ],
 }
 
-# Hashtags por tema e rede.
+# Hashtags.
 #
-# Regra que vale mais que a lista: conta nova não é achada por hashtag de marca
-# (#TECHDIM só alcança quem já conhece) nem por hashtag gigante (#tecnologia tem
-# milhões de posts e o nosso afunda em segundos). Quem é achado é quem usa
-# hashtag de PRAÇA e de NICHO: "#ticampinas" tem pouco post e exatamente o
-# público que compra. Por isso a geografia vem primeiro no Instagram e no
-# Facebook, onde a descoberta é local; o LinkedIn mantém o tom profissional,
-# porque lá a descoberta é por assunto.
-GEO_IG = "#campinas #ticampinas #empresascampinas"
-GEO_FB = "#Campinas #TIemCampinas"
+# O Instagram limita cada post e Reel a 5 hashtags (anunciado em 18/12/2025; o
+# que passa disso não conta) e diz que poucas hashtags específicas rendem mais
+# que muitas genéricas. Por isso cada rede tem vagas contadas — praça, assunto e
+# marca — em vez de uma lista longa que o Instagram ignoraria justamente na
+# parte que importa.
+#
+# Praça: conta nova não é achada por hashtag de marca (#TECHDIM só alcança quem
+# já conhece) nem por hashtag gigante (#tecnologia tem milhões de posts e o
+# nosso afunda em segundos). Quem compra é dono de PME de Campinas, e é ele que
+# procura por praça. Vem uma local de nicho e uma ampla no Instagram; no
+# Facebook e no LinkedIn a descoberta por cidade é menor, então uma só.
+PRACA = {
+    "instagram": ["#ticampinas", "#campinas"],
+    "facebook": ["#Campinas"],
+    "linkedin": ["#Campinas"],
+}
 
+# (vagas de praça, vagas de assunto); a marca fecha a lista, então a soma + 1 é
+# o limite da rede. Instagram: 2 + 2 + 1 = 5, o teto oficial dele.
+VAGAS_HASHTAG = {"instagram": (2, 2), "facebook": (1, 2), "linkedin": (1, 3)}
+
+# Hashtags de assunto de RESERVA: valem quando a pauta não traz as suas (acervo
+# autoral e RSS). As da pauta do dia, escritas pela Routine, têm prioridade.
 HASHTAGS = {
     "noticias": {
-        "linkedin": "#Tecnologia #InteligenciaArtificial #GestaoDeTI #Campinas #TECHDIM",
-        "facebook": f"{GEO_FB} #TIparaEmpresas #Tecnologia #TECHDIM",
-        "instagram": f"{GEO_IG} #tiparaempresas #tecnologia #inteligenciaartificial "
-                     "#pequenaempresa #gestaoempresarial #inovacao #techdim",
+        "linkedin": "#Tecnologia #InteligenciaArtificial #GestaoDeTI",
+        "facebook": "#TIparaEmpresas #Tecnologia #IAparaEmpresas",
+        "instagram": "#tiparaempresas #tecnologia #inteligenciaartificial #pequenaempresa",
     },
     "hacker": {
-        "linkedin": "#CiberSeguranca #SegurancaDaInformacao #GestaoDeTI #Campinas #TECHDIM",
-        "facebook": f"{GEO_FB} #SegurancaDigital #TIparaEmpresas #TECHDIM",
-        "instagram": f"{GEO_IG} #segurancadigital #ciberseguranca #tiparaempresas "
-                     "#protecaodedados #lgpd #pequenaempresa #techdim",
+        "linkedin": "#CiberSeguranca #SegurancaDaInformacao #GestaoDeTI",
+        "facebook": "#SegurancaDigital #TIparaEmpresas #CiberSeguranca",
+        "instagram": "#segurancadigital #ciberseguranca #tiparaempresas #protecaodedados",
     },
     "dica": {
-        "linkedin": "#GestaoDeTI #CiberSeguranca #Produtividade #Campinas #TECHDIM",
-        "facebook": f"{GEO_FB} #DicaDeTI #TIparaEmpresas #TECHDIM",
-        "instagram": f"{GEO_IG} #dicadeti #tiparaempresas #produtividade "
-                     "#segurancadigital #pequenaempresa #empreendedorismo #techdim",
+        "linkedin": "#GestaoDeTI #CiberSeguranca #Produtividade",
+        "facebook": "#DicaDeTI #TIparaEmpresas #SegurancaDigital",
+        "instagram": "#dicadeti #tiparaempresas #segurancadigital #pequenaempresa",
     },
     "especial": {
-        "linkedin": "#TransformacaoDigital #GestaoDeTI #InteligenciaArtificial #Campinas #TECHDIM",
-        "facebook": f"{GEO_FB} #TIparaEmpresas #SuporteDeTI #TECHDIM",
-        "instagram": f"{GEO_IG} #tiparaempresas #suportedeti #transformacaodigital "
-                     "#pequenaempresa #empreendedorismo #gestaoempresarial #techdim",
+        "linkedin": "#TransformacaoDigital #GestaoDeTI #InteligenciaArtificial",
+        "facebook": "#TIparaEmpresas #SuporteDeTI #Tecnologia",
+        "instagram": "#tiparaempresas #suportedeti #transformacaodigital #pequenaempresa",
     },
     # Genéricas de propósito: o assunto do destaque muda todo dia.
     "destaque": {
-        "linkedin": "#Tecnologia #CiberSeguranca #GestaoDeTI #Campinas #TECHDIM",
-        "facebook": f"{GEO_FB} #SegurancaDigital #Tecnologia #TECHDIM",
-        "instagram": f"{GEO_IG} #segurancadigital #tiparaempresas #tecnologia "
-                     "#protecaodedados #pequenaempresa #alerta #techdim",
+        "linkedin": "#Tecnologia #CiberSeguranca #GestaoDeTI",
+        "facebook": "#SegurancaDigital #Tecnologia #TIparaEmpresas",
+        "instagram": "#segurancadigital #tiparaempresas #tecnologia #protecaodedados",
     },
     "servico": {
-        "linkedin": "#SuporteDeTI #InfraestruturaDeTI #CiberSeguranca #Campinas #TECHDIM",
-        "facebook": f"{GEO_FB} #SuporteDeTI #TIparaEmpresas #TECHDIM",
-        "instagram": f"{GEO_IG} #suportedeti #tiparaempresas #infraestrutura "
-                     "#backup #pequenaempresa #gestaoempresarial #techdim",
+        "linkedin": "#SuporteDeTI #InfraestruturaDeTI #CiberSeguranca",
+        "facebook": "#SuporteDeTI #TIparaEmpresas #InfraestruturaDeTI",
+        "instagram": "#suportedeti #tiparaempresas #infraestrutura #pequenaempresa",
     },
 }
 
-# Pergunta de fecho quando a pauta não traz uma. Comentário é o sinal mais forte
-# que existe para o algoritmo das três redes — mais que curtida — e é a única
-# interação que abre conversa com alguém que pode virar cliente.
+# Genéricas demais para ocupar uma das poucas vagas de assunto: #TI tem milhões
+# de posts, e a marca já fecha a lista por conta própria.
+HASHTAGS_GENERICAS = {"#ti", "#techdim"}
+
+# Pergunta de fecho quando a pauta não traz uma. Comentário é a única interação
+# que abre conversa com alguém que pode virar cliente — é onde nasce o lead. Não
+# é o sinal que o Instagram nomeia como mais pesado para o alcance (esse é o
+# envio por DM; ver a legenda do Instagram), então não se vende como tal.
 PERGUNTA_PADRAO = {
     "noticias": "Isso muda alguma coisa no dia a dia da sua empresa?",
     "hacker": "Sua empresa está exposta a isso?",
@@ -132,9 +144,8 @@ def _forma_tag(tag: str, network: str) -> str:
     return sem_acento  # CamelCase digitado (#IAGenerativa) e curtas (#TI) ficam como vieram
 
 
-# Quantas hashtags cada rede comporta numa legenda legível. O Instagram é o
-# único em que a hashtag ainda é porta de entrada, e lá cabem mais.
-LIMITE_HASHTAGS = {"linkedin": 5, "facebook": 5, "instagram": 12}
+# Quantas hashtags cada rede comporta: as vagas de praça e de assunto + a marca.
+LIMITE_HASHTAGS = {rede: praca + assunto + 1 for rede, (praca, assunto) in VAGAS_HASHTAG.items()}
 # Limite de caracteres da legenda em cada rede.
 LIMITE_LEGENDA = {"linkedin": 3000, "facebook": 5000, "instagram": 2200}
 
@@ -184,25 +195,37 @@ class Post:
         return out[: config.CAROUSEL_SLIDES]
 
     def hashtags(self, network: str) -> str:
-        """Hashtags da legenda: as do assunto do post primeiro, depois as do tema.
+        """Hashtags da legenda, em vagas contadas: assunto, praça e a marca.
 
-        Sempre termina com a marca. Sem acento (como as do tema), para casar com
-        o que as pessoas digitam; minúsculas no Instagram, como é costume, e
-        capitalizadas nas demais, porque TUDOMAIÚSCULO é ruim para quem usa
-        leitor de tela.
+        O assunto vem da pauta do dia (as hashtags que a Routine escreveu) e,
+        se faltar, das de reserva do tema. #TI e #TECHDIM não gastam vaga de
+        assunto: a primeira é genérica demais e a segunda fecha a lista sempre.
+        Sem acento (como as do tema), para casar com o que as pessoas digitam;
+        minúsculas no Instagram, como é costume, e capitalizadas nas demais,
+        porque TUDOMAIÚSCULO é ruim para quem usa leitor de tela. A soma nunca
+        passa de LIMITE_HASHTAGS, que no Instagram é o teto de 5 da plataforma.
         """
-        padrao = HASHTAGS.get(self.theme, {}).get(network, "#TECHDIM").split()
-        proprias = [_forma_tag(t, network) for t in (self.infografico or {}).get("hashtags", [])]
-        limite = LIMITE_HASHTAGS.get(network, 5)
-        todas: list[str] = []
-        for tag in proprias + padrao:
-            if _chave_tag(tag) not in (_chave_tag(t) for t in todas):
-                todas.append(tag)
-        todas = todas[:limite]
+        vagas_praca, vagas_assunto = VAGAS_HASHTAG.get(network, (1, 3))
         marca = "#techdim" if network == "instagram" else "#TECHDIM"
-        if _chave_tag(marca) not in (_chave_tag(t) for t in todas):
-            todas = todas[: limite - 1] + [marca]
-        return " ".join(todas)
+        usadas = {_chave_tag(marca)}
+
+        def pegar(candidatas: list[str], quantas: int) -> list[str]:
+            out: list[str] = []
+            for tag in candidatas:
+                chave = _chave_tag(tag)
+                if len(out) == quantas:
+                    break
+                if chave in usadas or chave in HASHTAGS_GENERICAS:
+                    continue
+                usadas.add(chave)
+                out.append(tag)
+            return out
+
+        proprias = [_forma_tag(t, network) for t in (self.infografico or {}).get("hashtags", [])]
+        reserva = HASHTAGS.get(self.theme, {}).get(network, "").split()
+        assunto = pegar(proprias + reserva, vagas_assunto)
+        praca = pegar(PRACA.get(network, []), vagas_praca)
+        return " ".join(assunto + praca + [marca])
 
     def caption(self, network: str) -> str:
         """Legenda por rede, dentro do limite de caracteres dela.
@@ -264,7 +287,11 @@ class Post:
 
         # instagram: link não é clicável nem na legenda nem no comentário, então
         # aqui o endereço vai limpo e o clique de verdade acontece no Story e na
-        # bio. Em compensação, é a rede em que salvar e seguir movem o alcance.
+        # bio. O pedido é "manda" porque envio por DM, por alcance, está entre os
+        # três sinais que o próprio Instagram diz pesar mais (os outros são o
+        # tempo de exibição e as curtidas, também por alcance). Também é como o
+        # post chega a quem decide a compra de TI na empresa, que raramente é
+        # quem o viu primeiro.
         emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
         corpo = "\n".join(f"{emojis[i]} {p}" for i, p in enumerate(pontos))
         partes = [f"{self.titulo}", ""]
@@ -276,7 +303,7 @@ class Post:
         partes += [
             "",
             f"💬 {self.pergunta}",
-            "📌 Salva este post para não perder",
+            "📲 Manda para quem cuida da TI da sua empresa",
             f"➕ Segue {config.IG_HANDLE} — TI para empresas de {config.REGIAO}",
             f"🔗 {config.SITE} (link na bio)",
         ]

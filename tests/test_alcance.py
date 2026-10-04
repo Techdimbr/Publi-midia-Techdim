@@ -21,7 +21,7 @@ def test_janela_de_publicacao(monkeypatch, hora, dentro):
 
 
 def test_publicacao_de_madrugada_e_barrada(monkeypatch, tmp_path):
-    """02/10/2026: quatro posts entre 00h22 e 01h11, alcance zero. Não de novo."""
+    """02/10/2026: quatro posts entre 00h22 e 01h11, sem público na rede. Não de novo."""
     monkeypatch.setattr(config, "agora", lambda: dt.datetime(2026, 10, 4, 1, 11))
     monkeypatch.delenv("FORCAR_FORA_DE_HORA", raising=False)
     monkeypatch.setattr(main, "OUT", tmp_path)

@@ -113,10 +113,12 @@ def generate(theme: str, networks: list[str]) -> dict:
 def _fora_de_hora() -> str:
     """Motivo para não publicar agora, ou "" quando o horário está liberado.
 
-    Em 02/10/2026 quatro posts saíram entre 00h22 e 01h11 e tiveram alcance
-    zero: as primeiras horas de um post são as que o algoritmo mede, e de
-    madrugada não há ninguém para engajar. Dá para forçar com
-    FORCAR_FORA_DE_HORA=true, para o caso de um teste proposital.
+    Em 02/10/2026 quatro posts saíram entre 00h22 e 01h11, quando quase
+    ninguém do público (donos e gestores de PME) está na rede: o post nasce sem
+    ninguém para interagir. Não há métrica que compare esses posts com os de
+    horário comercial — o relatório semanal passa a trazer essa comparação
+    ("qual horário rende mais"). Dá para forçar com FORCAR_FORA_DE_HORA=true,
+    para o caso de um teste proposital.
     """
     if os.environ.get("FORCAR_FORA_DE_HORA", "").strip().lower() in ("1", "true", "sim"):
         return ""

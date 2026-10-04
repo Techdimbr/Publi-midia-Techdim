@@ -189,23 +189,31 @@ API de Stories permite, porque o adesivo de link só é publicável à mão. Sto
 não disputa alcance com o feed e some em 24 horas.
 
 **Pedido de interação:** toda legenda fecha com uma pergunta concreta sobre a
-empresa de quem lê. Comentário é o sinal mais forte para o algoritmo das três
-redes — mais que curtida — e é a única interação que começa uma conversa. A
-pergunta vem da pauta do dia; quando não vem, a curadoria por IA escreve uma; se
-nem isso, usa-se a reserva do tema. No Instagram a legenda ainda pede para
-salvar e para seguir, que são os dois outros sinais que movem alcance ali.
+empresa de quem lê. Comentário é a única interação que começa uma conversa com
+quem pode virar cliente — é onde nasce o lead. A pergunta vem da pauta do dia;
+quando não vem, a curadoria por IA escreve uma; se nem isso, usa-se a reserva do
+tema. No Instagram a legenda pede também para **mandar para quem cuida da TI** e
+para seguir: os três sinais que o próprio Instagram diz pesar mais no ranking
+são tempo de exibição, envios por DM e curtidas, cada um medido por alcance
+(Adam Mosseri, jan/2025, reafirmado em 2026) — comentário não está na lista.
 
-**Hashtags:** no Instagram e no Facebook a praça vem primeiro (`#campinas`,
-`#ticampinas`, `#empresascampinas`). Conta nova não é achada por hashtag de
-marca (`#TECHDIM` só alcança quem já conhece) nem por hashtag gigante
-(`#tecnologia` tem milhões de posts e o nosso afunda em segundos): quem é achado
-é quem usa hashtag de praça e de nicho. O LinkedIn mantém o tom profissional,
-porque lá a descoberta é por assunto, não por cidade.
+**Hashtags:** o Instagram limita cada post a **5 hashtags** (anunciado em
+18/12/2025) e diz que poucas específicas rendem mais que muitas genéricas, então
+cada rede tem vagas contadas em vez de uma lista longa: no Instagram, 2 de
+assunto + 2 de praça (`#ticampinas`, `#campinas`) + a marca; no Facebook, 2 + 1
++ marca; no LinkedIn, 3 + 1 + marca. O assunto vem da pauta do dia e, se faltar,
+da reserva do tema; `#TI` não gasta vaga (é genérica demais) e a marca fecha a
+lista. Conta nova não é achada por hashtag de marca (`#TECHDIM` só alcança quem
+já conhece) nem por hashtag gigante: quem compra é dono de PME de Campinas, e é
+ele que procura por praça. O Instagram diz ainda que hashtag ajuda a busca, mas
+não aumenta o alcance — a palavra-chave no próprio texto da legenda pesa mais.
 
 **Janela de publicação:** nada sai entre 22h e 7h (Brasília). Em 02/10/2026
-quatro posts saíram entre 00h22 e 01h11 e tiveram alcance zero — as primeiras
-horas de um post são justamente as que o algoritmo mede. Para um teste
-proposital fora de hora, marque **forcar_fora_de_hora** ao disparar o workflow.
+quatro posts saíram entre 00h22 e 01h11, quando quase ninguém do público está na
+rede. É uma premissa, não uma medição: o relatório semanal traz "qual horário
+rende mais" e é ele que deve ajustar a janela (`JANELA_PUBLICACAO` em
+`src/config.py`). Para um teste proposital fora de hora, marque
+**forcar_fora_de_hora** ao disparar o workflow.
 
 **Links rastreáveis:** todo link clicável (Facebook e LinkedIn) sai com UTM que
 diz rede, tema e dia, então o Google Analytics do site mostra qual post trouxe
