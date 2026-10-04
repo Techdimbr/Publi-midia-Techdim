@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:08",
+    "tema": "hacker",
+    "titulo": "FortiMail: falha crítica (nota 9,8) já é explorada em ataques",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h08-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133292935390486",
+      "instagram": "https://www.instagram.com/p/DeEz-z1DBUO/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4000551123618136077",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512513738831482880/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133292935390486",
+      "instagram": "18145663495603035",
+      "instagram_stories": "17909743899516940",
+      "linkedin": "urn:li:share:7512513738831482880"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
