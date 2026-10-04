@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:24",
+    "tema": "dica",
+    "titulo": "Proteja o domínio da empresa contra e-mail falso: configure o DMARC passo a passo",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h24-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133326997390486",
+      "instagram": "https://www.instagram.com/p/DeFKb4Kj2Yk/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512563114689605633/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133326997390486",
+      "instagram": "18095008850140868",
+      "linkedin": "urn:li:share:7512563114689605633"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

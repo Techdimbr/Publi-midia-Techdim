@@ -30,3 +30,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:08 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 17909743899516940 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4000551123618136077) |
 | 12:46 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37214260073) |
 | 12:46 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37214260073) |
+| 14:24 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37220319162) |
+| 14:24 | 🗓️ planejado | Conhecimento |  | pauta: Proteja o domínio da empresa contra e-mail falso: configure o DMARC passo a passo — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:24 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7512563114689605633 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7512563114689605633/) |
+| 14:24 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122133326997390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133326997390486) |
+| 14:24 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133326997390486) |
+| 14:24 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | instagram | id 18095008850140868 | disparo manual |  | [abrir](https://www.instagram.com/p/DeFKb4Kj2Yk/) |
+| 14:24 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeFKb4Kj2Yk/) |
