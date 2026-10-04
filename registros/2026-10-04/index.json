@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "08:00",
+    "tema": "noticias",
+    "titulo": "IA achou falha em servidor de arquivos e ela foi explorada em até 24 horas",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h00-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133250845390486",
+      "instagram": "https://www.instagram.com/p/DeEee9ojlqw/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4000456618407679566",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512466429510721536/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133250845390486",
+      "instagram": "18211922125351602",
+      "instagram_stories": "18127364146836962",
+      "linkedin": "urn:li:share:7512466429510721536"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
