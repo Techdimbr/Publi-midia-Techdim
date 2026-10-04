@@ -51,7 +51,10 @@ jobs:
           IG_USER_ID: ${{ vars.IG_USER_ID }}
         run: python src/metricas_dia.py --dest /tmp/assets
 
+      # always(): se faltar o número de seguidores a coleta falha de propósito (para o
+      # GitHub avisar), mas o que foi coletado ainda é gravado.
       - name: Gravar no branch assets
+        if: ${{ always() }}
         run: |
           set -euo pipefail
           cd /tmp/assets

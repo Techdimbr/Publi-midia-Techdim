@@ -167,6 +167,11 @@ def coletar_diarias(destino: pathlib.Path, inicio: dt.date, fim: dt.date) -> lis
     return out
 
 
+def _presentes(diarias: list[dict], pegar) -> list:
+    """Valores que a coleta realmente trouxe; dado ausente (None) não entra na conta."""
+    return [v for v in (pegar(d) for d in diarias) if v is not None]
+
+
 def _bloco_crescimento(diarias: list[dict]) -> list[str]:
     """Seguidores no começo e no fim da semana — a meta que mais importa agora."""
     if not diarias:
@@ -177,27 +182,33 @@ def _bloco_crescimento(diarias: list[dict]) -> list[str]:
     md = ["", "## Crescimento de seguidores", "",
           "| Rede | No início | No fim | Variação |", "|---|---|---|---|"]
     for rede in ("instagram", "facebook"):
-        valores = [
-            (d["data"], d.get("contas", {}).get(rede, {}).get("seguidores"))
-            for d in diarias
-            if d.get("contas", {}).get(rede, {}).get("seguidores") is not None
-        ]
+        valores = _presentes(diarias, lambda d, r=rede: d.get("contas", {}).get(r, {}).get("seguidores"))
         if not valores:
             continue
-        ini, fim_ = valores[0][1], valores[-1][1]
-        delta = fim_ - ini
-        md.append(f"| {rede.capitalize()} | {ini} | {fim_} | {delta:+d} |")
+        ini, fim_ = valores[0], valores[-1]
+        md.append(f"| {rede.capitalize()} | {ini} | {fim_} | {fim_ - ini:+d} |")
 
-    visitas = sum(d.get("contas", {}).get("instagram", {}).get("visitas_ao_perfil", 0) for d in diarias)
-    cliques = sum(d.get("contas", {}).get("instagram", {}).get("cliques_no_site", 0) for d in diarias)
-    md += ["", f"Instagram na semana: **{visitas}** visitas ao perfil e **{cliques}** cliques no site."]
+    # Cada métrica entra só se alguma coleta a trouxe: "sem dado" não é zero.
+    rotulos = (
+        ("alcance", "alcance da conta"), ("visitas_ao_perfil", "visitas ao perfil"),
+        ("cliques_no_site", "cliques no site"), ("toques_nos_links", "toques nos links de contato"),
+    )
+    partes = []
+    for chave, rotulo in rotulos:
+        vals = _presentes(diarias, lambda d, c=chave: d.get("contas", {}).get("instagram", {}).get(c))
+        if vals:
+            partes.append(f"{rotulo} **{sum(vals)}**")
+    if partes:
+        md += ["", "Instagram na semana: " + ", ".join(partes) + "."]
 
     sts = [s for d in diarias for s in d.get("stories", [])]
     if sts:
-        alcance = sum(s["alcance"] for s in sts)
-        respostas = sum(s["respostas"] for s in sts)
-        md += ["", f"Stories: **{len(sts)}** publicados, alcance somado **{alcance}**, "
-                   f"**{respostas}** resposta(s)."]
+        linha = [f"**{len(sts)}** publicados"]
+        for chave, rotulo in (("alcance", "alcance somado"), ("respostas", "resposta(s)"),
+                              ("seguidores_novos", "seguidor(es) novo(s)")):
+            vals = _presentes([{"v": s.get(chave)} for s in sts], lambda d: d["v"])
+            linha.append(f"**{sum(vals)}** {rotulo}" if vals else f"{rotulo}: sem dado")
+        md += ["", "Stories: " + ", ".join(linha) + "."]
     return md
 
 

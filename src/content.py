@@ -48,11 +48,12 @@ FEEDS = {
 
 # Hashtags.
 #
-# O Instagram limita cada post e Reel a 5 hashtags (anunciado em 18/12/2025; o
-# que passa disso não conta) e diz que poucas hashtags específicas rendem mais
-# que muitas genéricas. Por isso cada rede tem vagas contadas — praça, assunto e
-# marca — em vez de uma lista longa que o Instagram ignoraria justamente na
-# parte que importa.
+# O Instagram limita cada post e Reel a 5 hashtags (anúncio oficial de
+# 18/12/2025) e diz que poucas hashtags específicas rendem mais que muitas
+# genéricas. O anúncio não diz o que acontece com o excedente (blogs dizem que é
+# ignorado; a API ainda aceitou 8 em 03/10), então o código nunca passa de 5:
+# cada rede tem vagas contadas — praça, assunto e marca — em vez de uma lista
+# longa cuja parte final pode ser descartada.
 #
 # Praça: conta nova não é achada por hashtag de marca (#TECHDIM só alcança quem
 # já conhece) nem por hashtag gigante (#tecnologia tem milhões de posts e o

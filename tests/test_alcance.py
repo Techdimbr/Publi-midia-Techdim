@@ -1,15 +1,20 @@
 """Os ajustes feitos para crescer: janela de horário, links rastreáveis e coleta diária."""
 from __future__ import annotations
 
+import csv
 import datetime as dt
 import json
 
 import pytest
+from PIL import Image
 
 import config
+import content
 import links
 import main
 import metricas_dia
+import render
+from texto import cortar
 
 # ------------------------------------------------------------------ janela de horário
 
@@ -90,8 +95,65 @@ def test_metricas_sem_credencial_nao_derrubam_o_job(monkeypatch, tmp_path):
     creds = config.Credentials()
     object.__setattr__(creds, "ig_user_id", "123")
     object.__setattr__(creds, "fb_page_id", "")
-    assert metricas_dia.contas(creds)["instagram"]["seguidores"] == 0
+    # API sem resposta = "sem dado" (None), nunca zero: zero falso estraga a curva
+    assert metricas_dia.contas(creds)["instagram"]["seguidores"] is None
     assert metricas_dia.stories(creds, dt.date(2026, 10, 4)) == []
+
+
+def test_dado_ausente_vai_em_branco_no_csv_e_zero_verdadeiro_continua_zero(tmp_path):
+    foto = {"contas": {"instagram": {"seguidores": 0, "alcance": None, "visitas_ao_perfil": None,
+                                     "cliques_no_site": 0},
+                       "facebook": {"seguidores": None}},
+            "stories": [{"id": "1", "alcance": None, "seguidores_novos": None},
+                        {"id": "2", "alcance": 12, "seguidores_novos": None}]}
+    metricas_dia.gravar(tmp_path, dt.date(2026, 10, 4), foto)
+    with (tmp_path / "registros" / "seguidores.csv").open(encoding="utf-8", newline="") as fh:
+        linha = next(csv.DictReader(fh))
+    assert linha["ig_seguidores"] == "0"          # zero verdadeiro
+    assert linha["ig_cliques_site"] == "0"
+    assert linha["ig_alcance"] == ""              # sem dado
+    assert linha["ig_visitas_perfil"] == ""
+    assert linha["fb_seguidores"] == ""
+    assert linha["stories_alcance"] == "12"       # soma só o que existe
+    assert linha["stories_seguidores_novos"] == ""   # nenhum Story trouxe o dado: vazio, não 0
+
+
+def test_coleta_sem_numero_de_seguidores_falha_de_proposito(monkeypatch, tmp_path):
+    """Falha visível (o GitHub avisa) em vez de um buraco silencioso na curva."""
+    monkeypatch.setenv("META_ACCESS_TOKEN", "t")
+    monkeypatch.setenv("IG_USER_ID", "123")
+    monkeypatch.setenv("FB_PAGE_ID", "")
+    monkeypatch.setattr(metricas_dia, "_get", lambda *a, **k: {})
+    assert metricas_dia.main(["--dest", str(tmp_path)]) == 1
+    # o que deu para coletar foi gravado mesmo assim
+    assert (tmp_path / "registros" / config.hoje().isoformat() / "metricas.json").exists()
+
+
+def test_coleta_com_seguidores_termina_bem(monkeypatch, tmp_path):
+    monkeypatch.setenv("META_ACCESS_TOKEN", "t")
+    monkeypatch.setenv("IG_USER_ID", "123")
+    monkeypatch.setenv("FB_PAGE_ID", "")
+
+    def resposta(caminho, token, **params):
+        return {"followers_count": 42, "follows_count": 10, "media_count": 5} if "fields" in params else {}
+
+    monkeypatch.setattr(metricas_dia, "_get", resposta)
+    assert metricas_dia.main(["--dest", str(tmp_path)]) == 0
+
+
+def test_relatorio_tolera_metrica_ausente_e_nao_inventa_zero():
+    import relatorio
+    diarias = [
+        {"data": "2026-10-03", "contas": {"instagram": {"seguidores": 10, "alcance": None, "visitas_ao_perfil": None}},
+         "stories": [{"alcance": None, "respostas": None, "seguidores_novos": None}]},
+        {"data": "2026-10-04", "contas": {"instagram": {"seguidores": 14, "alcance": 50, "visitas_ao_perfil": None}},
+         "stories": []},
+    ]
+    texto = "\n".join(relatorio._bloco_crescimento(diarias))
+    assert "| Instagram | 10 | 14 | +4 |" in texto
+    assert "alcance da conta **50**" in texto
+    assert "visitas ao perfil" not in texto          # nenhuma coleta trouxe: não aparece como 0
+    assert "alcance somado: sem dado" in texto
 
 
 # ------------------------------------------------------------------ grade
@@ -101,3 +163,41 @@ def test_todos_os_temas_publicam_story():
     """Story alcança quem já segue e é o único lugar do IG com link clicável."""
     for tema, redes in config.THEME_TARGETS.items():
         assert "instagram_stories" in redes, tema
+
+
+# ------------------------------------------------------------------ Story
+
+TEXTO_LONGO = ("Cadastros, orçamentos, agendas, painéis e controles sob medida para o seu processo, "
+               "sem planilha espalhada e sem retrabalho na equipe, com acesso por perfil ") * 3
+PERGUNTA_LONGA = "Qual é o maior problema de TI que a sua empresa enfrenta hoje e que ninguém resolve de verdade?"
+RODAPE_DO_STORY = 1640   # a linha do rodapé fica em 1654; daí para baixo só há marca e site
+
+
+def _rodape(caminho) -> bytes:
+    img = Image.open(caminho).convert("RGB")
+    return img.crop((0, RODAPE_DO_STORY, img.width, img.height)).tobytes()
+
+
+@pytest.mark.parametrize("tema", list(config.THEME_LABELS))
+def test_story_com_texto_no_limite_nao_invade_a_marca_do_rodape(tmp_path, tema):
+    """Regressão: com uma pauta real de serviço o bloco "responde aqui embaixo"
+    era desenhado por cima da marca TECHDIM do rodapé.
+
+    O fundo é determinístico por tema e semente, então o rodapé de um Story com
+    texto curto e o de um Story com texto no limite têm que ser idênticos pixel a
+    pixel. Qualquer texto que invada a faixa, por menor que seja ou por mais
+    longe que transborde, faz os dois diferirem.
+    """
+    curto = content.Post(
+        theme=tema, titulo="Título curto", pontos=["a", "b", "c curto"],
+        infografico={"pergunta": "Pergunta curta?"},
+    )
+    longo = content.Post(
+        theme=tema,
+        titulo=cortar(TEXTO_LONGO, 160),
+        pontos=[cortar(TEXTO_LONGO, 260)] * 3,
+        fontes=[("fonte-longa.com.br", "https://a.com/x"), ("outra.com", "https://b.com/y")],
+        infografico={"pergunta": cortar(PERGUNTA_LONGA, 100)},
+    )
+    assert _rodape(render.render_story(curto, tmp_path / "curto", seed=7)) == \
+           _rodape(render.render_story(longo, tmp_path / "longo", seed=7)), "texto invadiu o rodapé do Story"

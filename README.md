@@ -205,8 +205,8 @@ assunto + 2 de praça (`#ticampinas`, `#campinas`) + a marca; no Facebook, 2 + 1
 da reserva do tema; `#TI` não gasta vaga (é genérica demais) e a marca fecha a
 lista. Conta nova não é achada por hashtag de marca (`#TECHDIM` só alcança quem
 já conhece) nem por hashtag gigante: quem compra é dono de PME de Campinas, e é
-ele que procura por praça. O Instagram diz ainda que hashtag ajuda a busca, mas
-não aumenta o alcance — a palavra-chave no próprio texto da legenda pesa mais.
+ele que procura por praça. Segundo o chefe do Instagram, hashtag ajuda a busca,
+mas não aumenta o alcance.
 
 **Janela de publicação:** nada sai entre 22h e 7h (Brasília). Em 02/10/2026
 quatro posts saíram entre 00h22 e 01h11, quando quase ninguém do público está na

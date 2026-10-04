@@ -515,17 +515,11 @@ def render_story(post, out_dir: pathlib.Path, seed: int = 0) -> pathlib.Path:
     top, bottom = 290, h - 330
     box_w = w - pad * 2
     label = config.THEME_LABELS.get(post.theme, post.theme)
-    font_t, linhas_t, lead_t = _fit(
-        draw, post.titulo, "bold", box_w, int((bottom - top) * 0.40), start=int(w * 0.092)
-    )
-    reco = post.pontos[-1] if post.pontos else ""
-    font_r, linhas_r, lead_r = _fit(
-        draw, reco, "regular", box_w - 48, int((bottom - top) * 0.24), start=int(w * 0.048)
-    )
+
     # Pedido de resposta. Responder um Story é mandar uma DM: conta como
     # interação para o alcance e abre conversa com quem pode virar cliente. É a
     # única conversão que a API permite — o adesivo de link não é publicável por
-    # API, só à mão. Mede-se aqui, antes de centralizar, para caber de verdade.
+    # API, só à mão.
     pergunta = getattr(post, "pergunta", "")
     pergunta_h = 0
     if pergunta:
@@ -533,15 +527,31 @@ def render_story(post, out_dir: pathlib.Path, seed: int = 0) -> pathlib.Path:
         font_p, linhas_p, lead_p = _fit(
             draw, pergunta, "regular", box_w, int(w * 0.13), start=int(w * 0.042)
         )
-        pergunta_h = 56 + rotulo_p + 18 + len(linhas_p) * lead_p
+        # folga de 24: o "Post completo no perfil" + @perfil ocupam um pouco mais
+        # do que o 0,11·w reservado para eles no cálculo abaixo
+        pergunta_h = 56 + rotulo_p + 18 + len(linhas_p) * lead_p + 24
 
     chip_h = int(w * 0.024) + int(w * 0.024 * 0.9)
     rotulo_h = int(w * 0.030)
-    bloco = (
-        chip_h + 50 + len(linhas_t) * lead_t + 40 + 8 + 60
+
+    # Tudo que tem altura fixa vem primeiro; título e "o que fazer" dividem o que
+    # sobra, na proporção de sempre (62% / 38%). Antes cada um tinha um teto
+    # próprio, calibrado sem o pedido de resposta, e a soma passava do espaço: com
+    # uma pauta real de serviço o texto invadia a marca do rodapé.
+    fixo = (
+        chip_h + 50 + 40 + 8 + 60
         + (28 + int(w * 0.024) if post.fontes else 0)
-        + rotulo_h + 24 + len(linhas_r) * lead_r + 70 + int(w * 0.11) + pergunta_h
+        + rotulo_h + 24 + 70 + int(w * 0.11) + pergunta_h
     )
+    resto = max((bottom - top) - fixo, int((bottom - top) * 0.30))
+    font_t, linhas_t, lead_t = _fit(
+        draw, post.titulo, "bold", box_w, int(resto * 0.62), start=int(w * 0.092)
+    )
+    reco = post.pontos[-1] if post.pontos else ""
+    font_r, linhas_r, lead_r = _fit(
+        draw, reco, "regular", box_w - 48, int(resto * 0.38), start=int(w * 0.048)
+    )
+    bloco = fixo + len(linhas_t) * lead_t + len(linhas_r) * lead_r
     y = top + max(0, (bottom - top - bloco) // 2)
 
     y += _chip(draw, pad, y, label, st["accent"], w) + 50

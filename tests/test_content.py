@@ -119,7 +119,7 @@ def test_praca_entra_mesmo_quando_a_pauta_traz_cinco_hashtags_proprias(rede, pra
 
 
 def test_instagram_nunca_passa_de_cinco_hashtags():
-    """O Instagram limita a 5 desde dez/2025; mais que isso ele ignora."""
+    """O Instagram limita a 5 desde dez/2025; o código nunca passa disso."""
     for tema in content.HASHTAGS:
         for proprias in ([], HASHTAGS_DA_ROUTINE, [f"#tag{i}" for i in range(30)]):
             bloco = bloco_infografico(hashtags=proprias) if proprias else None
