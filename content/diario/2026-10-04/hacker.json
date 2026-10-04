@@ -1,0 +1,86 @@
+{
+  "titulo": "FortiMail: falha crítica (nota 9,8) já é explorada em ataques",
+  "pontos": [
+    "A CVE-2026-104286 (nota 9,8) deixa um atacante sem login gravar arquivos no FortiMail por requisições HTTP/HTTPS; a Fortinet confirma exploração",
+    "Afetadas as versões 7.2, 7.4, 7.6 e 8.0; na divulgação, as correções 7.4.9, 7.6.7 e 8.0.2 estavam previstas. Quem usa a 7.2 deve migrar para a 7.4 ou superior",
+    "Enquanto isso: restrinja a interface de gestão a redes confiáveis, tire-a da internet, desative o IBE se não usar e procure arquivos alterados"
+  ],
+  "fecho": "Gateway de e-mail precisa de acesso restrito e monitoramento. A TECHDIM revisa a exposição dos seus sistemas.",
+  "motivo": "Falha crítica com exploração ativa; as medidas de contenção valem para qualquer equipamento de borda exposto.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/fortinet-warns-of-critical-fortimail-flaw-exploited-in-zero-day-attacks/"
+    ],
+    [
+      "esecurityplanet.com",
+      "https://www.esecurityplanet.com/threats/news-fortimail-zero-day-cve-2026-104286-active-exploitation/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "alerta · Fortinet / CISA",
+    "terminal": [
+      [
+        "$ ",
+        "falha: CVE-2026-104286 (nota 9,8)",
+        "cmd"
+      ],
+      [
+        "",
+        "produto: FortiMail 7.2 / 7.4 / 7.6 / 8.0",
+        "txt"
+      ],
+      [
+        "",
+        "sem login: grava arquivos via HTTP(S)",
+        "risco"
+      ],
+      [
+        "",
+        "exploração ativa confirmada",
+        "risco"
+      ],
+      [
+        "",
+        "correção prevista: 7.4.9 / 7.6.7 / 8.0.2",
+        "txt"
+      ],
+      [
+        "$ ",
+        "mitigue: gestão só em rede confiável",
+        "cmd"
+      ],
+      [
+        "",
+        "desative o IBE se não usar",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Falha crítica no FortiMail já é",
+    "titulo_destaque": "explorada em ataques.",
+    "historia": "A Fortinet avisou que a falha CVE-2026-104286, nota 9,8, no FortiMail já é explorada. Quem alcança a interface de gestão sem login pode gravar arquivos. Na divulgação, as correções estavam previstas.",
+    "licoes": [
+      [
+        "Restrinja a gestão",
+        "Deixe a interface de administração só em rede confiável, fora da internet."
+      ],
+      [
+        "Siga o aviso oficial",
+        "Confira no aviso da Fortinet se as correções 7.4.9, 7.6.7 e 8.0.2 já saíram."
+      ],
+      [
+        "Procure sinais",
+        "Verifique arquivos alterados e requisições estranhas na interface de gestão."
+      ]
+    ],
+    "pergunta": "A gestão dos seus equipamentos de rede está fora da internet?",
+    "hashtags": [
+      "#Fortinet",
+      "#FortiMail",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

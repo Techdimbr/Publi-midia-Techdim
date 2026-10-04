@@ -1,0 +1,56 @@
+{
+  "titulo": "Proteja o domínio da empresa contra e-mail falso: configure o DMARC passo a passo",
+  "pontos": [
+    "Antes, configure SPF e DKIM no domínio: o DMARC só funciona se um dos dois alinha com o endereço do remetente (From)",
+    "No DNS, crie um registro TXT com nome _dmarc e valor v=DMARC1; p=none; rua=mailto:seu-email, para só monitorar e receber relatórios",
+    "Analise os relatórios e endureça aos poucos: p=none, depois p=quarantine (com pct de 10 a 100) e, por fim, p=reject, corrigindo envios legítimos"
+  ],
+  "fecho": "A TECHDIM configura SPF, DKIM e DMARC no seu domínio e acompanha os relatórios.",
+  "motivo": "Medida documentada pela Microsoft e pelo Google que dificulta a falsificação do e-mail da empresa em golpes e fraudes.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure"
+    ],
+    [
+      "knowledge.workspace.google.com",
+      "https://knowledge.workspace.google.com/admin/security/set-up-dmarc"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "nuvem",
+        "documento",
+        "escudo"
+      ],
+      "legenda": "E-MAIL AUTÊNTICO · DOMÍNIO PROTEGIDO"
+    },
+    "titulo_branco": "Impeça golpistas de enviar e-mail em",
+    "titulo_destaque": "nome da sua empresa.",
+    "historia": "O DMARC diz aos servidores de destino o que fazer com mensagens que dizem vir do seu domínio, mas não passam na verificação. Comece só monitorando e endureça aos poucos.",
+    "licoes": [
+      [
+        "SPF e DKIM primeiro",
+        "Configure os dois antes: o DMARC depende deles para validar o remetente."
+      ],
+      [
+        "Registro _dmarc",
+        "Crie um TXT em _dmarc com v=DMARC1; p=none e um e-mail para relatórios."
+      ],
+      [
+        "Endureça aos poucos",
+        "De none para quarantine e depois reject, revisando os relatórios."
+      ]
+    ],
+    "pergunta": "Seu domínio já tem DMARC publicado?",
+    "hashtags": [
+      "#DMARC",
+      "#Phishing",
+      "#SegurancaDeEmail",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

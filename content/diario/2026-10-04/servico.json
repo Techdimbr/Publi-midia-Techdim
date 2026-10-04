@@ -1,0 +1,47 @@
+{
+  "titulo": "Atualização em dia é defesa: gestão de patches e suporte de TI para sua empresa",
+  "pontos": [
+    "Falhas críticas em servidores, gateways e sistemas são divulgadas com frequência, e o tempo entre o aviso e o ataque pode ser curto",
+    "A TECHDIM cuida do inventário, das atualizações e do acompanhamento de alertas dos seus sistemas, com suporte de TI para a sua equipe",
+    "Quer saber o que está desatualizado na sua empresa? Fale com a TECHDIM em www.techdim.com.br e vamos conversar sobre o seu ambiente"
+  ],
+  "fecho": "Atualizar em dia reduz o risco. Conte com a TECHDIM: www.techdim.com.br.",
+  "motivo": "Propaganda do serviço de suporte de TI com gestão de atualizações, conectada às falhas críticas noticiadas.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "monitor",
+        "engrenagens",
+        "grafico"
+      ],
+      "legenda": "SISTEMAS ATUALIZADOS · RISCO MENOR"
+    },
+    "titulo_branco": "Patch crítico não pode esperar:",
+    "titulo_destaque": "deixe a TI com quem cuida.",
+    "historia": "Quando uma falha é divulgada, o tempo para corrigir é curto. A TECHDIM faz o inventário, acompanha os alertas e aplica as atualizações para a sua empresa não ficar para trás.",
+    "licoes": [
+      [
+        "Inventário",
+        "Saber o que existe na rede é o primeiro passo para atualizar."
+      ],
+      [
+        "Alertas",
+        "Acompanhamos os avisos dos fabricantes que afetam o seu ambiente."
+      ],
+      [
+        "Atualização segura",
+        "Aplicamos os patches de forma planejada, sem parar a operação."
+      ]
+    ],
+    "pergunta": "Você sabe o que está desatualizado na sua rede hoje?",
+    "hashtags": [
+      "#SuporteDeTI",
+      "#GestaoDePatches",
+      "#Seguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
