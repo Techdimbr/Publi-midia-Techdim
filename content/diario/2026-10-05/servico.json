@@ -1,0 +1,47 @@
+{
+  "titulo": "Acesso remoto sem abrir a porta: VPN, MFA e rede segmentada para sua empresa",
+  "pontos": [
+    "Equipes que trabalham fora do escritório dependem de acesso remoto, e equipamentos de acesso expostos à internet são alvo constante de ataques",
+    "A TECHDIM projeta e configura o acesso remoto da sua empresa: VPN, verificação em duas etapas, acesso mínimo por pessoa e rede separada por função",
+    "Quer revisar como a sua equipe acessa os sistemas? Fale com a TECHDIM em www.techdim.com.br e vamos conversar sobre o seu ambiente"
+  ],
+  "fecho": "Acesso remoto seguro mantém a equipe produtiva e a empresa protegida. www.techdim.com.br",
+  "motivo": "Propaganda do serviço de infraestrutura e redes (acesso remoto seguro), conectada ao alerta de segurança do dia.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "globo",
+        "escudo",
+        "notebook"
+      ],
+      "legenda": "ACESSO REMOTO · SEGURO E CONTROLADO"
+    },
+    "titulo_branco": "Trabalho remoto sem abrir a porta",
+    "titulo_destaque": "para quem não deve entrar.",
+    "historia": "A equipe precisa acessar os sistemas de qualquer lugar, mas o acesso remoto mal configurado é porta de entrada para ataques. A TECHDIM desenha e mantém esse acesso para a sua empresa.",
+    "licoes": [
+      [
+        "VPN bem configurada",
+        "Acesso por túnel criptografado e só aos sistemas que cada pessoa precisa."
+      ],
+      [
+        "Segunda etapa",
+        "Verificação em duas etapas em cada acesso, inclusive para administradores."
+      ],
+      [
+        "Rede segmentada",
+        "Separar áreas da rede reduz o estrago se um acesso for comprometido."
+      ]
+    ],
+    "pergunta": "Como sua equipe acessa os sistemas fora do escritório?",
+    "hashtags": [
+      "#AcessoRemoto",
+      "#VPN",
+      "#InfraestruturaDeTI",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

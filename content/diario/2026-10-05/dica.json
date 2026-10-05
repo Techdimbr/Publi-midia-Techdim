@@ -1,0 +1,52 @@
+{
+  "titulo": "Proteja pastas do Windows contra ransomware: ative o Acesso controlado a pastas",
+  "pontos": [
+    "O Acesso controlado a pastas só deixa apps confiáveis alterarem arquivos em pastas protegidas, como Documentos, Imagens e Vídeos. Vem desligado por padrão",
+    "Num PC: app Windows Security > Virus & threat protection > Manage settings > Manage controlled folder access e ative a chave. Pode adicionar outras pastas",
+    "Em empresas, use Intune ou Política de Grupo e comece em AuditMode; depois libere os apps legítimos que forem bloqueados e passe para Enabled"
+  ],
+  "fecho": "A TECHDIM ativa a proteção contra ransomware nos computadores da sua empresa, com testes antes de bloquear.",
+  "motivo": "Recurso nativo do Windows, documentado pela Microsoft, que dificulta a criptografia de arquivos por ransomware.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/defender-endpoint/controlled-folder-access-configure"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "notebook",
+        "documento",
+        "escudo"
+      ],
+      "legenda": "PASTAS PROTEGIDAS CONTRA RANSOMWARE"
+    },
+    "titulo_branco": "Só app confiável deve poder alterar",
+    "titulo_destaque": "seus arquivos.",
+    "historia": "O Acesso controlado a pastas bloqueia apps não confiáveis de alterar arquivos em pastas protegidas, como Documentos e Imagens. Vem desligado por padrão; ligue primeiro em modo de auditoria.",
+    "licoes": [
+      [
+        "Ative no Windows",
+        "No app Segurança do Windows, ligue o acesso controlado a pastas."
+      ],
+      [
+        "Comece em auditoria",
+        "Use AuditMode por PowerShell, Intune ou GPO antes de bloquear de fato."
+      ],
+      [
+        "Libere apps legítimos",
+        "Se um app confiável for bloqueado, adicione-o à lista de permitidos."
+      ]
+    ],
+    "pergunta": "Os PCs da sua empresa têm proteção contra ransomware ligada?",
+    "hashtags": [
+      "#Ransomware",
+      "#Windows",
+      "#Defender",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

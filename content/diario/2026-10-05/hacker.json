@@ -1,0 +1,86 @@
+{
+  "titulo": "Citrix NetScaler: nova falha explorada em ataques atinge equipamentos com SAML",
+  "pontos": [
+    "A CVE-2026-88779 (nota 8,7) afeta NetScaler ADC e Gateway configurados como provedor (SP) ou identidade (IdP) SAML; a Citrix confirma ataques dirigidos",
+    "A Citrix a descreve como negação de serviço, mas há relatos de comandos de shell que baixam e executam um arquivo. Instale a 14.1-73.41 ou a 13.1-64.28",
+    "Procure add authentication samlAction ou samlIdPProfile para saber se está exposto; após atualizar, revogue sessões, troque credenciais e revise sinais de invasão"
+  ],
+  "fecho": "Equipamento de acesso remoto é porta de entrada. A TECHDIM revisa, atualiza e monitora o seu.",
+  "motivo": "Falha explorada em equipamento de acesso remoto; a ação imediata é atualizar, trocar credenciais e revisar sinais de invasão.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/citrix-patches-netscaler-saml-zero-day-exploited-in-attacks/"
+    ],
+    [
+      "tenable.com",
+      "https://www.tenable.com/blog/frequently-asked-questions-about-reported-citrix-netscaler-zero-day-vulnerabilities"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "alerta · Citrix / NetScaler",
+    "terminal": [
+      [
+        "$ ",
+        "falha: CVE-2026-88779 (nota 8,7)",
+        "cmd"
+      ],
+      [
+        "",
+        "produto: NetScaler ADC / Gateway",
+        "txt"
+      ],
+      [
+        "",
+        "afeta quem usa SAML (SP ou IdP)",
+        "txt"
+      ],
+      [
+        "",
+        "ataques dirigidos confirmados",
+        "risco"
+      ],
+      [
+        "",
+        "relatos: comando de shell no usuário",
+        "risco"
+      ],
+      [
+        "$ ",
+        "corrija: 14.1-73.41 / 13.1-64.28",
+        "cmd"
+      ],
+      [
+        "",
+        "troque credenciais e revise sessões",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Equipamento de acesso remoto com falha",
+    "titulo_destaque": "já explorada em ataques.",
+    "historia": "A Citrix alertou para a CVE-2026-88779 em NetScaler ADC e Gateway com SAML. Há ataques dirigidos e relatos de comandos de shell. A correção é atualizar para a 14.1-73.41 ou a 13.1-64.28.",
+    "licoes": [
+      [
+        "Veja se há SAML",
+        "Procure samlAction ou samlIdPProfile na configuração do NetScaler."
+      ],
+      [
+        "Atualize já",
+        "Instale a 14.1-73.41 ou a 13.1-64.28; as versões 12.1 e 13.0 estão sem suporte."
+      ],
+      [
+        "Troque credenciais",
+        "Depois de atualizar, revogue sessões e troque senhas; procure sinais de invasão."
+      ]
+    ],
+    "pergunta": "Quem cuida das atualizações do seu acesso remoto?",
+    "hashtags": [
+      "#Citrix",
+      "#NetScaler",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
