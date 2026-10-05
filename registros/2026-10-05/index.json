@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:08",
+    "tema": "hacker",
+    "titulo": "Citrix NetScaler: nova falha explorada em ataques atinge equipamentos com SAML",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h08-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133522573390486",
+      "instagram": "https://www.instagram.com/p/DeHY2yNFkeu/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4001276251134642474",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512876297174278145/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133522573390486",
+      "instagram": "18108758186614332",
+      "instagram_stories": "18175438450451682",
+      "linkedin": "urn:li:share:7512876297174278145"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
