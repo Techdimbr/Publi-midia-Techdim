@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "07:59",
+    "tema": "noticias",
+    "titulo": "Modelo de IA aberto pode rodar dentro da empresa: Aleph Alpha lança o Kolibri",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "07h59-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133488175390486",
+      "instagram": "https://www.instagram.com/p/DeHDMcJFyV7/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4001180943033203638",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512828662879006720/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133488175390486",
+      "instagram": "18020400926730263",
+      "instagram_stories": "17937037032382343",
+      "linkedin": "urn:li:share:7512828662879006720"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
