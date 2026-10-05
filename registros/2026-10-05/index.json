@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:23",
+    "tema": "dica",
+    "titulo": "Proteja pastas do Windows contra ransomware: ative o Acesso controlado a pastas",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h23-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133562203390486",
+      "instagram": "https://www.instagram.com/p/DeHvMqIEUun/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512925433865080832/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133562203390486",
+      "instagram": "18354370945168493",
+      "linkedin": "urn:li:share:7512925433865080832"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
