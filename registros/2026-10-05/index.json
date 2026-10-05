@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "18:18",
+    "tema": "servico",
+    "titulo": "Acesso remoto sem abrir a porta: VPN, MFA e rede segmentada para sua empresa",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "18h18-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133606855390486",
+      "instagram": "https://www.instagram.com/p/DeIKFF0jZkt/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7512984529717043200/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133606855390486",
+      "instagram": "18145357267563198",
+      "linkedin": "urn:li:share:7512984529717043200"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]

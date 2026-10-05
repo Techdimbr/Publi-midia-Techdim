@@ -40,3 +40,12 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 14:23 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeHvMqIEUun/) |
 | 16:45 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37364406826) |
 | 16:45 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37364406826) |
+| 18:18 | ▶️ iniciado | TECHDIM · Serviços |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37373943177) |
+| 18:18 | 🗓️ planejado | TECHDIM · Serviços |  | pauta: Acesso remoto sem abrir a porta: VPN, MFA e rede segmentada para sua empresa — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 18:18 | 🖼️ gerado | TECHDIM · Serviços | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 18:18 | ✅ publicado | TECHDIM · Serviços | linkedin | id urn:li:share:7512984529717043200 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7512984529717043200/) |
+| 18:18 | 🖼️ gerado | TECHDIM · Serviços | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 18:18 | ✅ publicado | TECHDIM · Serviços | facebook | id 1167193706481148_122133606855390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133606855390486) |
+| 18:18 | 💬 comentou | TECHDIM · Serviços | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133606855390486) |
+| 18:18 | 🖼️ gerado | TECHDIM · Serviços | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 18:18 | ✅ publicado | TECHDIM · Serviços | instagram | id 18145357267563198 | disparo manual |  | [abrir](https://www.instagram.com/p/DeIKFF0jZkt/) |
