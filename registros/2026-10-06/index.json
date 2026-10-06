@@ -54,5 +54,30 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "11:11",
+    "tema": "hacker",
+    "titulo": "Zammad: falhas no sistema de chamados entram na lista de exploradas da CISA",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h11-hacker.md",
+    "redes": {
+      "facebook": "-",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "-"
+    },
+    "links": {
+      "facebook": "",
+      "instagram": "https://www.instagram.com/p/DeJ97haCbZa/",
+      "instagram_stories": "",
+      "linkedin": ""
+    },
+    "ids": {
+      "instagram": "18391493833163291"
+    },
+    "comentou": [
+      "instagram"
+    ]
   }
 ]
