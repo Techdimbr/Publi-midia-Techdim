@@ -18,6 +18,8 @@ log = logging.getLogger(__name__)
 
 POLL_INTERVAL = 5
 POLL_MAX = 24  # até 2 minutos esperando o Instagram processar
+PUBLISH_RETRIES = 4  # media_publish pode dizer "Media ID is not available" logo após FINISHED
+PUBLISH_RETRY_WAIT = 10
 
 
 def _container(ig_id: str, token: str, **fields) -> str:
@@ -50,6 +52,28 @@ def _wait_ready(container_id: str, token: str) -> None:
     raise PublishError(f"Instagram: container {container_id} não ficou pronto a tempo")
 
 
+def _media_publish(ig_id: str, creation_id: str, token: str) -> str:
+    """media_publish; repete só o erro 2207027 (container ainda não disponível).
+
+    Nesse erro nada foi publicado, então repetir não duplica o post.
+    """
+    for tentativa in range(1, PUBLISH_RETRIES + 1):
+        try:
+            resp = request(
+                "POST",
+                f"{config.GRAPH}/{ig_id}/media_publish",
+                data={"creation_id": creation_id, "access_token": token},
+                idempotent=False,
+            )
+            return resp.json().get("id", "")
+        except PublishError as exc:
+            if "2207027" not in str(exc) or tentativa == PUBLISH_RETRIES:
+                raise
+            log.warning("Instagram: mídia ainda indisponível, nova tentativa %d", tentativa + 1)
+            time.sleep(PUBLISH_RETRY_WAIT)
+    return ""
+
+
 def publish(creds, caption: str, image_urls: list[str]) -> str:
     if not image_urls:
         raise PublishError("Instagram: nenhuma imagem para publicar")
@@ -78,13 +102,7 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
 
     _wait_ready(creation_id, token)
 
-    resp = request(
-        "POST",
-        f"{config.GRAPH}/{ig_id}/media_publish",
-        data={"creation_id": creation_id, "access_token": token},
-        idempotent=False,
-    )
-    media_id = resp.json().get("id", "")
+    media_id = _media_publish(ig_id, creation_id, token)
     log.info("Instagram: publicado %s", media_id)
     return media_id
 
@@ -113,13 +131,7 @@ def publish_story(creds, image_url: str) -> str:
     ig_id, token = creds.ig_user_id, _token(creds)
     creation_id = _container(ig_id, token, image_url=image_url, media_type="STORIES")
     _wait_ready(creation_id, token)
-    resp = request(
-        "POST",
-        f"{config.GRAPH}/{ig_id}/media_publish",
-        data={"creation_id": creation_id, "access_token": token},
-        idempotent=False,
-    )
-    media_id = resp.json().get("id", "")
+    media_id = _media_publish(ig_id, creation_id, token)
     log.info("Instagram Stories: publicado %s", media_id)
     return media_id
 

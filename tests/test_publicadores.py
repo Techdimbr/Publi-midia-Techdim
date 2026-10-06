@@ -73,3 +73,46 @@ def test_linkedin_publicar_e_comentar_nao_repetem(monkeypatch, tmp_path: pathlib
 
 def test_linkedin_escapa_caracteres_reservados():
     assert linkedin.escape_commentary("a (b) #c") == r"a \(b\) \#c"
+
+
+def test_instagram_repete_media_publish_so_no_erro_2207027(monkeypatch):
+    chamadas = {"publish": 0}
+
+    def req(method, url, **kw):
+        if url.endswith("/media_publish"):
+            chamadas["publish"] += 1
+            if chamadas["publish"] < 3:
+                raise instagram.PublishError('HTTP 400: {"error":{"error_subcode":2207027}}')
+            return Resp({"id": "99"})
+        if method == "GET":
+            return Resp({"status_code": "FINISHED"})
+        return Resp({"id": "123"})
+
+    monkeypatch.setattr(instagram, "request", req)
+    monkeypatch.setattr(instagram, "page_token", lambda *a: "pagina")
+    monkeypatch.setattr(instagram.time, "sleep", lambda s: None)
+    assert instagram.publish(creds(), "legenda", ["https://x/a.png"]) == "99"
+    assert chamadas["publish"] == 3
+
+
+def test_instagram_nao_repete_outros_erros_do_media_publish(monkeypatch):
+    chamadas = {"publish": 0}
+
+    def req(method, url, **kw):
+        if url.endswith("/media_publish"):
+            chamadas["publish"] += 1
+            raise instagram.PublishError("HTTP 400: token expirado")
+        if method == "GET":
+            return Resp({"status_code": "FINISHED"})
+        return Resp({"id": "123"})
+
+    monkeypatch.setattr(instagram, "request", req)
+    monkeypatch.setattr(instagram, "page_token", lambda *a: "pagina")
+    monkeypatch.setattr(instagram.time, "sleep", lambda s: None)
+    try:
+        instagram.publish(creds(), "legenda", ["https://x/a.png"])
+    except instagram.PublishError:
+        pass
+    else:
+        raise AssertionError("deveria falhar")
+    assert chamadas["publish"] == 1
