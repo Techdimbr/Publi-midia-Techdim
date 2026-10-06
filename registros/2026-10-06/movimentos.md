@@ -34,3 +34,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:11 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeJ97haCbZa/) |
 | 14:10 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37501380960) |
 | 14:10 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37501380960) |
+| 14:23 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37503119534) |
+| 14:23 | 🗓️ planejado | Conhecimento |  | pauta: Firewall do Windows desligado? Confira os 3 perfis em minutos — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:23 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7513287828332662784 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7513287828332662784/) |
+| 14:23 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122133817953390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133817953390486) |
+| 14:23 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133817953390486) |
+| 14:23 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | instagram | id 17929321797421724 | disparo manual |  | [abrir](https://www.instagram.com/p/DeKT_vXlMZs/) |
+| 14:23 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeKT_vXlMZs/) |

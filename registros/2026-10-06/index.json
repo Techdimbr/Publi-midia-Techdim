@@ -79,5 +79,33 @@
     "comentou": [
       "instagram"
     ]
+  },
+  {
+    "hora": "14:23",
+    "tema": "dica",
+    "titulo": "Firewall do Windows desligado? Confira os 3 perfis em minutos",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h23-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133817953390486",
+      "instagram": "https://www.instagram.com/p/DeKT_vXlMZs/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513287828332662784/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133817953390486",
+      "instagram": "17929321797421724",
+      "linkedin": "urn:li:share:7513287828332662784"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
