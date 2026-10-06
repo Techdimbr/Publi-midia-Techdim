@@ -55,3 +55,5 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 17:23 | 💬 comentou | TECHDIM · Serviços | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122133845787390486) |
 | 17:23 | 🖼️ gerado | TECHDIM · Serviços | instagram | 1 imagem(ns) | disparo manual |  |  |
 | 17:23 | ✅ publicado | TECHDIM · Serviços | instagram | id 18110716112613225 | disparo manual |  | [abrir](https://www.instagram.com/p/DeKolxOmMoi/) |
+| 18:41 | ▶️ iniciado | Conhecimento |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37535628252) |
+| 18:41 | ⚠️ pulado | Conhecimento |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37535628252) |
