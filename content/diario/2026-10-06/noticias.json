@@ -1,0 +1,56 @@
+{
+  "titulo": "Anthropic investe US$ 100 milhões para formar 10 mil engenheiros de IA para empresas",
+  "pontos": [
+    "A Anthropic criou a Claude Frontier Academy, com US$ 100 milhões para formar 10 mil engenheiros até o fim de 2027",
+    "O formato lembra residência médica: curso presencial de vários dias e 12 semanas aplicando um projeto real na empresa do aluno",
+    "As primeiras turmas são em Londres, Nova York e São Francisco, por indicação de grandes consultorias e empresas parceiras"
+  ],
+  "fecho": "Comprar IA é fácil; difícil é ter quem a implante bem. Vale para empresa grande e pequena.",
+  "motivo": "Mostra que a falta de gente preparada para implantar IA virou prioridade do mercado, o que afeta a contratação e a escolha de parceiros em PMEs.",
+  "fontes": [
+    [
+      "aiweekly.co",
+      "https://aiweekly.co/alerts/anthropic-launches-claude-frontier-academy-commits-100m-to-train-10000"
+    ],
+    [
+      "resultsense.com",
+      "https://www.resultsense.com/news/2026-10-05-anthropic-claude-frontier-academy/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "notebook",
+        "grafico",
+        "globo"
+      ],
+      "legenda": "FORMAÇÃO EM IA · PROJETO REAL"
+    },
+    "titulo_branco": "US$ 100 mi para",
+    "titulo_destaque": "capacitar em IA",
+    "historia": "A Anthropic anunciou um programa para formar 10 mil engenheiros até 2027, com curso e 12 semanas em projeto real. O recado: o difícil não é comprar IA, é ter quem a implante bem.",
+    "licoes": [
+      [
+        "Pessoas primeiro",
+        "A ferramenta sozinha não entrega resultado: alguém precisa implantar e acompanhar."
+      ],
+      [
+        "Comece por um caso",
+        "O programa parte de um projeto real. Escolha um processo e teste ali primeiro."
+      ],
+      [
+        "Compare fornecedores",
+        "Quem implanta a IA pode favorecer uma marca. Peça opções e critérios claros."
+      ]
+    ],
+    "pergunta": "Quem cuida da IA na sua empresa hoje?",
+    "hashtags": [
+      "#IAGenerativa",
+      "#Capacitacao",
+      "#TransformacaoDigital",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

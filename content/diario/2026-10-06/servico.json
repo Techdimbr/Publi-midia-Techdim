@@ -1,0 +1,47 @@
+{
+  "titulo": "Automação com IA: seu atendimento responde rápido sem perder o controle",
+  "pontos": [
+    "A TECHDIM cria automações com IA para o dia a dia: triagem de e-mails, classificação de pedidos e rascunhos de resposta para sua equipe revisar",
+    "Usamos ferramentas como Claude Code, Gemini e Antigravity, com regras claras sobre quais dados a IA pode ver e o que sempre passa por uma pessoa",
+    "Começamos por um processo só, medimos o que melhora e ampliamos aos poucos, sem trocar o que já funciona na sua empresa"
+  ],
+  "fecho": "Conte qual tarefa repetitiva mais consome sua equipe: www.techdim.com.br",
+  "motivo": "Apresenta o serviço de automação com IA com foco em controle e segurança dos dados, sem prometer resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "chip",
+        "engrenagens",
+        "documento"
+      ],
+      "legenda": "AUTOMAÇÃO COM IA · COM CONTROLE"
+    },
+    "titulo_branco": "IA no atendimento,",
+    "titulo_destaque": "com você no controle",
+    "historia": "Tarefa repetitiva toma tempo de gente que poderia resolver o que é complexo. Automatizamos a triagem e o rascunho; sua equipe revisa e decide. Começamos pequeno, com regras claras para os dados.",
+    "licoes": [
+      [
+        "Um processo por vez",
+        "Escolhemos a tarefa mais repetitiva e começamos só por ela."
+      ],
+      [
+        "Pessoa no comando",
+        "A IA sugere e organiza; a decisão final continua com a sua equipe."
+      ],
+      [
+        "Dados protegidos",
+        "Definimos o que a IA pode acessar e o que fica fora do alcance dela."
+      ]
+    ],
+    "pergunta": "Qual tarefa consome mais o tempo da sua equipe?",
+    "hashtags": [
+      "#AutomacaoComIA",
+      "#IAParaEmpresas",
+      "#Produtividade",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "titulo": "Zammad: falhas no sistema de chamados entram na lista de exploradas da CISA",
+  "pontos": [
+    "A CISA incluiu duas falhas do Zammad, o CVE-2026-102489 e o CVE-2026-102490, na lista de vulnerabilidades exploradas",
+    "A primeira permite executar código sem login no Zammad 6.5 e anteriores; a partir da versão 7 não é explorável nas condições atuais",
+    "A segunda eleva o acesso a root, exige acesso prévio ao servidor e, segundo o aviso, a correção ainda estava em desenvolvimento"
+  ],
+  "fecho": "Se usa Zammad, atualize para a versão 7 ou superior e limite quem acessa o servidor.",
+  "motivo": "Sistemas de chamados guardam dados de clientes e são comuns em empresas que montam o próprio suporte; há exploração ativa e uma falha ainda sem correção.",
+  "fontes": [
+    [
+      "zammad.com",
+      "https://zammad.com/en/advisories/cve-2026-102489-cve-2026-102490"
+    ],
+    [
+      "techtimes.com",
+      "https://www.techtimes.com/articles/328387/20261001/ai-agent-hacked-cybersecurity-nonprofit-divd-via-zammad-zero-days-root-flaw-unpatched.htm"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "zammad · chamados (helpdesk)",
+    "terminal": [
+      [
+        "$ ",
+        "consulta CISA KEV: Zammad",
+        "cmd"
+      ],
+      [
+        "",
+        "CVE-2026-102489 exploração ativa",
+        "risco"
+      ],
+      [
+        "",
+        "  afeta Zammad 6.5 e anteriores",
+        "txt"
+      ],
+      [
+        "",
+        "  executa código sem login",
+        "risco"
+      ],
+      [
+        "",
+        "CVE-2026-102490 sobe a root",
+        "risco"
+      ],
+      [
+        "",
+        "  exige acesso prévio ao servidor",
+        "txt"
+      ],
+      [
+        "$ ",
+        "ação: atualizar para versão 7+",
+        "cmd"
+      ],
+      [
+        "",
+        "restringir acesso ao servidor",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Helpdesk na mira:",
+    "titulo_destaque": "falhas no Zammad",
+    "historia": "Duas falhas no Zammad, sistema de chamados de código aberto, entraram na lista da CISA. O DIVD relatou um ataque feito por agente de IA autônomo. A segunda falha ainda aguarda correção.",
+    "licoes": [
+      [
+        "Versão em suporte",
+        "O Zammad 6.5 e anteriores não recebem mais atualizações de segurança."
+      ],
+      [
+        "Servidor restrito",
+        "Só administradores de confiança devem acessar o servidor do sistema."
+      ],
+      [
+        "Procure sinais",
+        "O DIVD publicou um script para checar sinais de invasão. Rode-o."
+      ]
+    ],
+    "pergunta": "Seu sistema de chamados está atualizado?",
+    "hashtags": [
+      "#Zammad",
+      "#CISA",
+      "#Vulnerabilidade",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

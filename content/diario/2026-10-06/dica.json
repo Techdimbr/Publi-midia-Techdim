@@ -1,0 +1,55 @@
+{
+  "titulo": "Firewall do Windows desligado? Confira os 3 perfis em minutos",
+  "pontos": [
+    "O Firewall do Windows vem ligado por padrão e bloqueia o que entra sem pedido ou regra. Mas alguém pode tê-lo desligado para \"resolver um problema\"",
+    "Abra Segurança do Windows > Firewall e proteção de rede e veja os perfis Domínio, Particular e Pública: os três devem estar ativos",
+    "Prefira o PowerShell como administrador: Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True liga os três de uma vez"
+  ],
+  "fecho": "Se um programa exigir o firewall desligado, crie uma regra para ele. Não desligue a proteção inteira.",
+  "motivo": "Firewall desligado de forma improvisada é uma brecha comum em PMEs e é corrigida em minutos com recurso nativo do Windows.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/"
+    ],
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/powershell/module/netsecurity/set-netfirewallprofile"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "monitor",
+        "escudo"
+      ],
+      "legenda": "FIREWALL ATIVO NOS 3 PERFIS"
+    },
+    "titulo_branco": "Firewall do Windows:",
+    "titulo_destaque": "confira os 3 perfis",
+    "historia": "O Firewall do Windows já vem ligado e bloqueia o que entra sem regra. O risco é alguém desligá-lo para testar algo e esquecer. Em um minuto você confere e religa, sem instalar nada.",
+    "licoes": [
+      [
+        "Veja os 3 perfis",
+        "Em Segurança do Windows > Firewall: Domínio, Particular e Pública ativos."
+      ],
+      [
+        "Ligue por comando",
+        "No PowerShell (administrador): Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True"
+      ],
+      [
+        "Crie uma exceção",
+        "Para um programa específico, crie uma regra de exceção só para ele."
+      ]
+    ],
+    "pergunta": "Quando foi a última vez que você olhou o firewall?",
+    "hashtags": [
+      "#Firewall",
+      "#Windows",
+      "#SegurancaDaInformacao",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
