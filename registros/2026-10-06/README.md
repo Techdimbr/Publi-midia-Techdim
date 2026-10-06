@@ -8,5 +8,6 @@ Tudo que a automação publicou (ou tentou publicar) neste dia.
 | 11:08 | Cibersegurança · IA · Hacker | [Zammad: falhas no sistema de chamados entram na lista de exploradas da CISA](11h08-hacker.md) | [✅](https://www.facebook.com/122132402349390486/posts/122133779193390486) | ❌ | [✅](https://www.instagram.com/stories/techdimbr/4002001018083449833) | [✅](https://www.linkedin.com/feed/update/urn:li:share:7513238708758917120/) |
 | 11:11 | Cibersegurança · IA · Hacker | [Zammad: falhas no sistema de chamados entram na lista de exploradas da CISA](11h11-hacker.md) | — | [✅](https://www.instagram.com/p/DeJ97haCbZa/) | — | — |
 | 14:23 | Conhecimento | [Firewall do Windows desligado? Confira os 3 perfis em minutos](14h23-dica.md) | [✅](https://www.facebook.com/122132402349390486/posts/122133817953390486) | [✅](https://www.instagram.com/p/DeKT_vXlMZs/) | — | [✅](https://www.linkedin.com/feed/update/urn:li:share:7513287828332662784/) |
+| 17:23 | TECHDIM · Serviços | [Automação com IA: seu atendimento responde rápido sem perder o controle](17h23-servico.md) | [✅](https://www.facebook.com/122132402349390486/posts/122133845787390486) | [✅](https://www.instagram.com/p/DeKolxOmMoi/) | — | [✅](https://www.linkedin.com/feed/update/urn:li:share:7513333086382755841/) |
 
 ✅ publicado · ❌ falhou · ⚠️ rede não configurada · ⏸️ não executado · — não se aplica

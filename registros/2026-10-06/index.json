@@ -107,5 +107,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:23",
+    "tema": "servico",
+    "titulo": "Automação com IA: seu atendimento responde rápido sem perder o controle",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h23-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133845787390486",
+      "instagram": "https://www.instagram.com/p/DeKolxOmMoi/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513333086382755841/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133845787390486",
+      "instagram": "18110716112613225",
+      "linkedin": "urn:li:share:7513333086382755841"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
