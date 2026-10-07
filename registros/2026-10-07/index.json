@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "Exchange Server: atualização fora de ciclo corrige leitura indevida de caixas de e-mail",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134041759390486",
+      "instagram": "https://www.instagram.com/p/DeMif93F0ao/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4002726027957068487",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513601196872462337/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134041759390486",
+      "instagram": "18197452594391324",
+      "instagram_stories": "18125741086856344",
+      "linkedin": "urn:li:share:7513601196872462337"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
