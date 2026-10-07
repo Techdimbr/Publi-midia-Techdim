@@ -1,0 +1,85 @@
+name: Blog do site
+
+# Um post por dia no blog do site (repositório Techdimbr/techdimbr, GitHub Pages).
+# O post é montado por src/blog.py a partir da pauta do dia (content/diario/<data>/),
+# então ele sai logo depois que a Routine "Pauta do Dia" grava a pauta em main.
+# O cron é só reserva (o agendador do GitHub atrasa); rodar de novo não duplica nada,
+# porque o post de cada dia ocupa sempre a mesma pasta blog/<data>/.
+#
+# Exige o segredo SITE_REPO_TOKEN: token com permissão de escrita (Contents) no
+# repositório do site. Sem ele o job só avisa e não faz nada (não deixa o CI vermelho).
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/diario/**", "src/blog.py"]
+  schedule:
+    - cron: "37 12 * * *"   # 09:37 BRT, reserva
+  workflow_dispatch:
+    inputs:
+      datas:
+        description: "Datas AAAA-MM-DD separadas por espaço (vazio = todas as que faltam)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog
+  cancel-in-progress: false
+
+jobs:
+  blog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SITE_REPO: Techdimbr/techdimbr
+      DATAS: ${{ github.event.inputs.datas }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Conferir o segredo do site
+        id: segredo
+        env:
+          SITE_REPO_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
+        run: |
+          if [ -z "$SITE_REPO_TOKEN" ]; then
+            echo "::warning::Falta o segredo SITE_REPO_TOKEN (token com escrita em $SITE_REPO); blog não publicado."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.segredo.outputs.ok == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SITE_REPO }}
+          token: ${{ secrets.SITE_REPO_TOKEN }}
+          path: site
+
+      - if: steps.segredo.outputs.ok == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Gerar o blog
+        if: steps.segredo.outputs.ok == 'true'
+        run: |
+          args=""
+          for d in $DATAS; do args="$args --data $d"; done
+          python src/blog.py --site site $args
+
+      - name: Publicar no site
+        if: steps.segredo.outputs.ok == 'true'
+        working-directory: site
+        run: |
+          git config user.name "techdim-blog"
+          git config user.email "blog@techdim.com.br"
+          git add blog sitemap.xml index.html
+          if git diff --cached --quiet; then
+            echo "blog já está em dia"
+            exit 0
+          fi
+          git commit -m "blog: atualiza o radar diário"
+          git push origin HEAD
