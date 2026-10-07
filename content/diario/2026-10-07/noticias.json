@@ -1,0 +1,55 @@
+{
+  "titulo": "Só 22% das empresas conseguiram escalar a IA; quem mede o retorno acerta mais",
+  "pontos": [
+    "Pesquisa do Gartner com 1.303 organizações aponta que só 22% escalaram a IA em várias áreas, mesmo com 85% dos líderes planejando gastar mais em 2026",
+    "Quem acompanha o retorno relatou resultado positivo em 81% das iniciativas; quem não acompanha não sabia o retorno de 29% dos seus projetos",
+    "A amostra são empresas com faturamento de ao menos US$ 50 milhões, e o estudo não prova que medir seja a causa do bom resultado"
+  ],
+  "fecho": "Antes de ampliar a IA, defina quanto custa, o que ela deve melhorar e como você vai medir.",
+  "motivo": "Dá uma régua prática para PMEs que estão testando IA: medir o retorno de cada iniciativa antes de ampliar o gasto.",
+  "fontes": [
+    [
+      "techinformed.com",
+      "https://techinformed.com/gartner-finds-only-22-have-successfully-scaled-ai/"
+    ],
+    [
+      "hpcwire.com",
+      "https://www.hpcwire.com/aiwire/2026/09/01/gartner-finds-just-22-of-organizations-have-scaled-ai-across-business-units/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "grafico",
+        "chip"
+      ],
+      "legenda": "IA EM ESCALA · MEÇA O RETORNO"
+    },
+    "titulo_branco": "Só 22% escalaram a IA:",
+    "titulo_destaque": "medir faz diferença",
+    "historia": "O Gartner ouviu 1.303 organizações. Poucas escalaram a IA, e as que acompanham o retorno relatam resultado positivo em 81% das iniciativas. O estudo não prova que medir seja a causa disso, mas é um bom ponto de partida.",
+    "licoes": [
+      [
+        "Defina o objetivo",
+        "Escolha o que a IA deve melhorar: tempo, custo ou erro. Um objetivo por teste."
+      ],
+      [
+        "Meça o retorno",
+        "Anote o custo e o ganho de cada iniciativa. Sem número, não há decisão."
+      ],
+      [
+        "Escale aos poucos",
+        "Amplie só o que mostrou resultado. O resto pode esperar."
+      ]
+    ],
+    "pergunta": "Você sabe quanto sua IA já devolveu?",
+    "hashtags": [
+      "#IAGenerativa",
+      "#Gartner",
+      "#RetornoSobreInvestimento",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

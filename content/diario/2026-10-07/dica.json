@@ -1,0 +1,51 @@
+{
+  "titulo": "LGPD sem susto: comece com o modelo de registro da ANPD para pequenas empresas",
+  "pontos": [
+    "A ANPD oferece, para agentes de tratamento de pequeno porte, um guia de segurança, um checklist e um formulário-modelo de registro (Excel e PDF)",
+    "Passo 1: baixe o formulário no site da ANPD. Passo 2: liste onde há dados pessoais: planilhas, e-mail, sistemas, papéis e celulares",
+    "Passo 3: para cada item, anote a finalidade, quem acessa e onde fica guardado. Depois use o checklist para ver o que falta proteger"
+  ],
+  "fecho": "Um registro simples hoje evita correria quando um cliente pedir informação sobre os dados dele.",
+  "motivo": "Dá um primeiro passo concreto e gratuito de LGPD para PMEs, usando material oficial da ANPD.",
+  "fontes": [
+    [
+      "gov.br",
+      "https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "documento",
+        "escudo"
+      ],
+      "legenda": "LGPD · REGISTRO EM 3 PASSOS"
+    },
+    "titulo_branco": "LGPD sem susto:",
+    "titulo_destaque": "mapeie seus dados",
+    "historia": "Você não precisa começar com um projeto grande. A ANPD publica um modelo simples de registro para pequenas empresas. Preencha com o que já existe e descubra onde estão os dados dos seus clientes.",
+    "licoes": [
+      [
+        "Baixe o modelo",
+        "No site da ANPD, procure o formulário de registro para pequeno porte."
+      ],
+      [
+        "Liste onde estão",
+        "Planilhas, e-mail, sistemas, papéis e celulares: tudo que guarda dados."
+      ],
+      [
+        "Anote o essencial",
+        "Finalidade, quem acessa e onde fica. Depois, siga o checklist."
+      ]
+    ],
+    "pergunta": "Sua empresa sabe onde ficam os dados dos clientes?",
+    "hashtags": [
+      "#LGPD",
+      "#ANPD",
+      "#ProtecaoDeDados",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titulo": "Hardening: servidores e estações configurados para dar menos brechas aos invasores",
+  "pontos": [
+    "A TECHDIM revisa a configuração de servidores, estações e rede da sua empresa e fecha o que não precisa estar aberto",
+    "Entram contas e permissões, serviços desnecessários, atualizações, firewall e registros de acesso, com tudo documentado para sua equipe",
+    "Você recebe um relatório simples, em português, com o que foi encontrado e o que foi ajustado, sem prometer risco zero"
+  ],
+  "fecho": "Quer saber como está a configuração do seu ambiente? Fale conosco: www.techdim.com.br",
+  "motivo": "Apresenta o serviço de segurança e hardening com linguagem acessível e sem promessas de resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "escudo",
+        "engrenagens"
+      ],
+      "legenda": "HARDENING · MENOS BRECHAS ABERTAS"
+    },
+    "titulo_branco": "Ambiente de TI",
+    "titulo_destaque": "com menos brechas",
+    "historia": "Muita invasão começa em algo esquecido: uma conta antiga, um serviço aberto, uma atualização atrasada. Revisamos a configuração e deixamos tudo documentado, sem prometer risco zero.",
+    "licoes": [
+      [
+        "Revisão completa",
+        "Servidores, estações e rede: contas, permissões e serviços ativos."
+      ],
+      [
+        "Ajuste seguro",
+        "Fechamos o que não é necessário, com cuidado para não parar o trabalho."
+      ],
+      [
+        "Relatório claro",
+        "Você recebe o que foi achado e ajustado, em português simples."
+      ]
+    ],
+    "pergunta": "Quando foi a última revisão da sua configuração?",
+    "hashtags": [
+      "#Hardening",
+      "#SegurancaDaInformacao",
+      "#InfraestruturaDeTI",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "titulo": "Exchange Server: atualização fora de ciclo corrige leitura indevida de caixas de e-mail",
+  "pontos": [
+    "A Microsoft liberou atualização para o CVE-2026-96940 (nota 8,8): usuário autenticado pode ler e-mails e anexos de outros na mesma organização",
+    "Afeta Exchange Server Subscription RTM, 2019 (CU14 e CU15) e 2016 (CU23); o Exchange Online já recebeu a correção no serviço",
+    "A Microsoft diz não ter notícia de exploração, mas vê o problema como explorável; instale a atualização em todos os servidores Exchange"
+  ],
+  "fecho": "Usa Exchange próprio? Aplique a atualização de setembro (V2) em todos os servidores.",
+  "motivo": "E-mail concentra dados sensíveis; a falha exige login válido e não há exploração conhecida, mas o patch é recomendado com urgência.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/microsoft-exchange-flaw-lets.html"
+    ],
+    [
+      "helpnetsecurity.com",
+      "https://www.helpnetsecurity.com/2026/10/05/exchange-server-vulnerability-cve-2026-96940/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "exchange · atualização fora de ciclo",
+    "terminal": [
+      [
+        "$ ",
+        "Get-ExchangeServer | ft Name,AdminDisplayVersion",
+        "cmd"
+      ],
+      [
+        "",
+        "CVE-2026-96940 · nota 8,8",
+        "risco"
+      ],
+      [
+        "",
+        "  usuário logado lê e-mail de outro",
+        "risco"
+      ],
+      [
+        "",
+        "  sem exploração conhecida (Microsoft)",
+        "txt"
+      ],
+      [
+        "",
+        "Exchange Online: corrigido no serviço",
+        "ok"
+      ],
+      [
+        "",
+        "Local: atualização de setembro V2",
+        "txt"
+      ],
+      [
+        "$ ",
+        "instalar em TODOS os servidores Exchange",
+        "cmd"
+      ],
+      [
+        "",
+        "reiniciar e conferir a versão",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Exchange:",
+    "titulo_destaque": "leitura indevida de e-mails",
+    "historia": "A Microsoft publicou uma atualização fora do ciclo para o Exchange Server. A falha exige login válido e permite ler caixas de outros usuários. Não há exploração conhecida, mas o patch deve ser aplicado logo.",
+    "licoes": [
+      [
+        "Confira a versão",
+        "Veja se seu Exchange é Subscription, 2019 (CU14/15) ou 2016 (CU23)."
+      ],
+      [
+        "Aplique em todos",
+        "Instale nos servidores e nas máquinas com as ferramentas de gerenciamento."
+      ],
+      [
+        "Use contas mínimas",
+        "Menos contas com acesso ao e-mail reduz o estrago de uma credencial roubada."
+      ]
+    ],
+    "pergunta": "Seu Exchange está com o patch de setembro V2?",
+    "hashtags": [
+      "#Exchange",
+      "#Microsoft",
+      "#Patch",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
