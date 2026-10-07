@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "08:01",
+    "tema": "noticias",
+    "titulo": "Só 22% das empresas conseguiram escalar a IA; quem mede o retorno acerta mais",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h01-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122133986241390486",
+      "instagram": "https://www.instagram.com/p/DeMNDeZmlV9/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4002631696867410260",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513554036420321280/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122133986241390486",
+      "instagram": "18093374561657032",
+      "instagram_stories": "18219867892352984",
+      "linkedin": "urn:li:share:7513554036420321280"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
