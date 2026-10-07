@@ -38,3 +38,5 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 14:24 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
 | 14:24 | ✅ publicado | Conhecimento | instagram | id 18417974113159117 | disparo manual |  | [abrir](https://www.instagram.com/p/DeM43mjGGBl/) |
 | 14:24 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeM43mjGGBl/) |
+| 14:47 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37661787860) |
+| 14:47 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37661787860) |
