@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:24",
+    "tema": "dica",
+    "titulo": "LGPD sem susto: comece com o modelo de registro da ANPD para pequenas empresas",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h24-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134092537390486",
+      "instagram": "https://www.instagram.com/p/DeM43mjGGBl/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513650382271873024/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134092537390486",
+      "instagram": "18417974113159117",
+      "linkedin": "urn:li:share:7513650382271873024"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
