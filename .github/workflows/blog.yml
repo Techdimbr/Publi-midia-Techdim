@@ -1,26 +1,28 @@
 name: Blog do site
 
-# Um post por dia no blog do site (repositório Techdimbr/techdimbr, GitHub Pages).
-# O post é montado por src/blog.py a partir da pauta do dia (content/diario/<data>/),
-# então ele sai logo depois que a Routine "Pauta do Dia" grava a pauta em main.
-# O cron é só reserva (o agendador do GitHub atrasa); rodar de novo não duplica nada,
-# porque o post de cada dia ocupa sempre a mesma pasta blog/<data>/.
+# Blog do site (repositório Techdimbr/techdimbr, GitHub Pages): um resumo por dia e um artigo
+# por assunto, montados por src/blog.py a partir da pauta do dia (content/diario/<data>/).
+# Depois de publicar, src/indexnow.py avisa Bing, Yandex, Naver e Seznam das páginas novas.
 #
-# Exige o segredo SITE_REPO_TOKEN: token com permissão de escrita (Contents) no
-# repositório do site. Sem ele o job só avisa e não faz nada (não deixa o CI vermelho).
+# Este workflow é a SEGUNDA via. A via principal é a Routine "Pauta do Dia" (passo 4B do prompt),
+# que gera e envia o blog logo depois de gravar a pauta, sem precisar de segredo. Se os dois
+# rodarem, o segundo não encontra o que mudar: tudo é idempotente.
+#
+# Exige o segredo SITE_REPO_TOKEN: token com permissão de escrita (Contents) no repositório do
+# site. Sem ele o job só avisa e não faz nada (não deixa o CI vermelho).
 
 on:
   push:
     branches: [main]
-    paths: ["content/diario/**", "src/blog.py"]
+    paths: ["content/diario/**", "src/blog.py", "src/indexnow.py"]
   schedule:
     - cron: "37 12 * * *"   # 09:37 BRT, reserva
   workflow_dispatch:
     inputs:
-      datas:
-        description: "Datas AAAA-MM-DD separadas por espaço (vazio = todas as que faltam)"
-        required: false
-        default: ""
+      forcar_imagens:
+        description: "Redesenhar a capa de todos os artigos"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -32,10 +34,10 @@ concurrency:
 jobs:
   blog:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       SITE_REPO: Techdimbr/techdimbr
-      DATAS: ${{ github.event.inputs.datas }}
+      FORCAR_IMAGENS: ${{ github.event.inputs.forcar_imagens }}
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +47,7 @@ jobs:
           SITE_REPO_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
         run: |
           if [ -z "$SITE_REPO_TOKEN" ]; then
-            echo "::warning::Falta o segredo SITE_REPO_TOKEN (token com escrita em $SITE_REPO); blog não publicado."
+            echo "::warning::Falta o segredo SITE_REPO_TOKEN (token com escrita em $SITE_REPO); blog não publicado por aqui."
             echo "ok=false" >> "$GITHUB_OUTPUT"
           else
             echo "ok=true" >> "$GITHUB_OUTPUT"
@@ -62,24 +64,37 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependências
+        if: steps.segredo.outputs.ok == 'true'
+        run: pip install -r requirements.txt
 
       - name: Gerar o blog
         if: steps.segredo.outputs.ok == 'true'
         run: |
-          args=""
-          for d in $DATAS; do args="$args --data $d"; done
-          python src/blog.py --site site $args
+          flags=""
+          if [ "$FORCAR_IMAGENS" = "true" ]; then flags="--forcar-imagens"; fi
+          PYTHONPATH=src python src/blog.py --site site $flags
 
       - name: Publicar no site
+        id: publicar
         if: steps.segredo.outputs.ok == 'true'
         working-directory: site
         run: |
           git config user.name "techdim-blog"
           git config user.email "blog@techdim.com.br"
-          git add blog sitemap.xml index.html
+          git add -A
           if git diff --cached --quiet; then
             echo "blog já está em dia"
+            echo "mudou=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "blog: atualiza o radar diário"
-          git push origin HEAD
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "mudou=true" >> "$GITHUB_OUTPUT"
+
+      - name: Avisar os buscadores (IndexNow)
+        if: steps.segredo.outputs.ok == 'true' && steps.publicar.outputs.mudou == 'true'
+        run: python src/indexnow.py --site site
