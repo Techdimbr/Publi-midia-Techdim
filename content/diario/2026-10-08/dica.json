@@ -1,0 +1,60 @@
+{
+  "titulo": "Inventário de TI com PowerShell: saiba o que usa antes do próximo alerta de falha",
+  "pontos": [
+    "No Windows, abra o PowerShell e rode Get-ComputerInfo: ele reúne as propriedades do sistema, como nome, versão do Windows, fabricante, modelo e memória",
+    "Para os programas, rode winget list: mostra os aplicativos instalados e as versões, mesmo os instalados por outros meios. Com --upgrade-available, só os desatualizados",
+    "Anote em planilha dono, local, garantia e se o sistema (ERP, VPN, Jira) fica exposto à internet. Revise todo mês e a cada alerta de falha"
+  ],
+  "fecho": "Com a lista pronta, você responde em minutos se um alerta de falha atinge a sua empresa.",
+  "motivo": "Saber o que existe na rede é o primeiro passo dos CIS Controls; sem inventário não dá para checar alertas de falha nem planejar a renovação de equipamentos.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-computerinfo"
+    ],
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/windows/package-manager/winget/list"
+    ],
+    [
+      "cisecurity.org",
+      "https://www.cisecurity.org/controls/inventory-and-control-of-enterprise-assets"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "notebook",
+        "monitor",
+        "documento"
+      ],
+      "legenda": "INVENTÁRIO EM DIA · ALERTA SOB CONTROLE"
+    },
+    "titulo_branco": "Inventário de TI",
+    "titulo_destaque": "simples, com PowerShell",
+    "historia": "Quando sai um alerta de falha, a primeira pergunta é: eu uso isso? Quem tem a lista de computadores, programas e servidores responde em minutos. Quem não tem, descobre tarde.",
+    "licoes": [
+      [
+        "Liste as máquinas",
+        "No PowerShell, Get-ComputerInfo mostra nome, Windows, modelo e memória."
+      ],
+      [
+        "Liste os programas",
+        "winget list traz o que está instalado e a versão. Inclua sistemas e servidores."
+      ],
+      [
+        "Veja o que é exposto",
+        "Anote dono, garantia e o que fica aberto na internet. Revise todo mês."
+      ]
+    ],
+    "pergunta": "Você sabe quais sistemas da sua empresa estão abertos para a internet?",
+    "hashtags": [
+      "#InventarioDeTI",
+      "#Seguranca",
+      "#PowerShell",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

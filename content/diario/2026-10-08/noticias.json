@@ -1,0 +1,60 @@
+{
+  "titulo": "Memória e SSD podem encarecer: Samsung projeta lucro recorde com a demanda de IA",
+  "pontos": [
+    "A Samsung estimou lucro operacional de 107,4 trilhões de wons no 3º trimestre, alta de 782% em um ano, puxado pela memória usada em servidores e IA",
+    "A TrendForce projeta, para o 4º trimestre, alta de 10% a 15% nos preços de contrato da DRAM convencional e de 15% a 20% nos da memória NAND (SSD)",
+    "São projeções, não preços de loja: o efeito em servidores e notebooks varia por fornecedor. Cote cedo e dimensione memória e SSD pelo uso real"
+  ],
+  "fecho": "Vai renovar servidores ou notebooks? Meça o uso real de memória e SSD antes de comprar.",
+  "motivo": "A demanda de IA aperta a oferta de memória e SSD; quem renova equipamentos neste fim de ano precisa planejar o orçamento.",
+  "fontes": [
+    [
+      "olhardigital.com.br",
+      "https://olhardigital.com.br/2026/10/07/pro/samsung-preve-lucro-recorde-de-r-426-bilhoes-com-explosao-da-demanda-por-ia/"
+    ],
+    [
+      "pt.euronews.com",
+      "https://pt.euronews.com/2026/10/08/samsung-preve-lucros-recorde-de-80-mil-m-com-salto-de-783-boom-da-ia-impulsiona-vendas-da"
+    ],
+    [
+      "trendforce.com",
+      "https://www.trendforce.com/presscenter/news/20260930-13258.html"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "chip",
+        "rack",
+        "grafico"
+      ],
+      "legenda": "MEMÓRIA EM ALTA · PLANEJE A COMPRA"
+    },
+    "titulo_branco": "Demanda de IA:",
+    "titulo_destaque": "memória e SSD devem subir",
+    "historia": "A Samsung antecipou lucro recorde no 3º trimestre, puxado pela memória de servidores de IA. A TrendForce projeta nova alta de DRAM e NAND no 4º trimestre. São projeções, não preços de loja.",
+    "licoes": [
+      [
+        "Meça o uso real",
+        "Veja quanta memória e disco seus servidores e PCs usam hoje antes de comprar mais."
+      ],
+      [
+        "Cote com antecedência",
+        "Peça orçamentos com prazo de validade e compare mais de um fornecedor."
+      ],
+      [
+        "Renove por risco",
+        "Troque primeiro o que está sem suporte ou gera risco; o resto pode esperar."
+      ]
+    ],
+    "pergunta": "Você sabe quando seus servidores e notebooks precisam ser renovados?",
+    "hashtags": [
+      "#InfraestruturaDeTI",
+      "#MemoriaRAM",
+      "#IA",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "titulo": "Atlassian CVE-2026-21589: falha crítica no Jira e Confluence já atrai tentativas de ataque",
+  "pontos": [
+    "A Atlassian publicou o CVE-2026-21589 (nota 9,3): sem login, o invasor lê arquivos da pasta web do Jira, Confluence, Bitbucket e outros produtos Data Center",
+    "Em até 2 horas após a prova de conceito pública da watchTowr, honeypots da Previdian registraram tentativas de ataque; a Atlassian pede que se confira os logs",
+    "Atualize para as versões corrigidas do aviso. Sem como atualizar já, tire a instância da internet ou aplique a regra de WAF ou do Tomcat. A nuvem já foi corrigida"
+  ],
+  "fecho": "Tem Jira, Confluence ou Bitbucket no seu servidor? Atualize hoje e confira os logs de acesso.",
+  "motivo": "Falha crítica, sem login, em ferramentas muito usadas por times de TI e desenvolvimento, com prova de conceito público e tentativas de ataque já registradas.",
+  "fontes": [
+    [
+      "confluence.atlassian.com",
+      "https://confluence.atlassian.com/security/cve-2026-21589-arbitrary-file-access-vulnerability-impacts-multiple-products-1870495748.html"
+    ],
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-atlassian-flaw-after-public-poc-release/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "atlassian · CVE-2026-21589",
+    "terminal": [
+      [
+        "$ ",
+        "atlassian-advisory CVE-2026-21589",
+        "cmd"
+      ],
+      [
+        "",
+        "nota 9,3 · crítica · sem login",
+        "risco"
+      ],
+      [
+        "",
+        "lê arquivos da pasta web (nome exato)",
+        "risco"
+      ],
+      [
+        "",
+        "Data Center: todas as versões afetadas",
+        "txt"
+      ],
+      [
+        "",
+        "PoC público · tentativas de ataque",
+        "risco"
+      ],
+      [
+        "",
+        "Cloud: já corrigido pela Atlassian",
+        "ok"
+      ],
+      [
+        "$ ",
+        "atualizar OU tirar da internet",
+        "cmd"
+      ],
+      [
+        "",
+        "conferir os logs de acesso",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Atlassian:",
+    "titulo_destaque": "falha crítica atrai ataques",
+    "historia": "A Atlassian corrigiu uma falha crítica no Jira, Confluence e outros produtos Data Center, instalados em servidor próprio. O ataque não precisa de login e já houve tentativas após a prova de conceito pública.",
+    "licoes": [
+      [
+        "Confira a versão",
+        "Veja se seu Jira, Confluence, Bitbucket, Bamboo ou Crowd Data Center está nas versões corrigidas."
+      ],
+      [
+        "Tire da internet",
+        "Se não puder atualizar já, restrinja o acesso externo ou use as regras de WAF e Tomcat do aviso."
+      ],
+      [
+        "Revise os logs",
+        "Veja o log de acesso do servidor em busca de pedidos estranhos e acione sua equipe de segurança."
+      ]
+    ],
+    "pergunta": "Seu Jira ou Confluence está acessível pela internet?",
+    "hashtags": [
+      "#Atlassian",
+      "#Jira",
+      "#Patch",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

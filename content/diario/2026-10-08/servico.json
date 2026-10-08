@@ -1,0 +1,47 @@
+{
+  "titulo": "Infraestrutura de rede: Wi-Fi estável, cabeamento organizado e redes separadas",
+  "pontos": [
+    "A rede é como o encanamento do prédio: ninguém lembra dela até a videoconferência travar, o sistema ficar lento ou o Wi-Fi cair na hora do atendimento",
+    "A TECHDIM mapeia sua rede, organiza o cabeamento, configura roteadores, switches e Wi-Fi e separa as redes de equipe, visitantes e câmeras",
+    "Tudo fica documentado, com acessos sob controle, para sua equipe ou qualquer técnico saber o que existe e onde está cada ponto"
+  ],
+  "fecho": "Quer uma rede organizada para sua empresa? Fale conosco: www.techdim.com.br",
+  "motivo": "Apresenta o serviço de infraestrutura e redes com uma analogia do dia a dia e sem promessas de resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "rack",
+        "globo",
+        "engrenagens"
+      ],
+      "legenda": "REDE ORGANIZADA · EMPRESA CONECTADA"
+    },
+    "titulo_branco": "Sua rede",
+    "titulo_destaque": "organizada e documentada",
+    "historia": "Rede é como encanamento: só se fala dela quando vaza. Wi-Fi mal dimensionado, cabos bagunçados e equipamentos sem configuração aparecem justo na hora de atender o cliente.",
+    "licoes": [
+      [
+        "Mapeie a rede",
+        "Saiba quais equipamentos existem, onde estão e quem acessa o quê."
+      ],
+      [
+        "Separe as redes",
+        "Equipe, visitantes e câmeras em redes diferentes: um problema não contamina o outro."
+      ],
+      [
+        "Documente tudo",
+        "Diagrama e configurações guardados: qualquer técnico entende e dá suporte."
+      ]
+    ],
+    "pergunta": "Alguém na sua empresa sabe onde passa cada cabo da rede?",
+    "hashtags": [
+      "#InfraestruturaDeTI",
+      "#RedesCorporativas",
+      "#WiFi",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
