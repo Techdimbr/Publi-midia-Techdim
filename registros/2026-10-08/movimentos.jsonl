@@ -45,3 +45,5 @@
 {"hora": "17:24:10", "teste": false, "tema": "TECHDIM · Serviços", "origem": "disparo manual", "link": "https://www.facebook.com/122132402349390486/posts/122134429467390486", "rede": "facebook", "tipo": "comentou", "detalhe": "primeiro comentário com fontes e site"}
 {"hora": "17:24:10", "teste": false, "tema": "TECHDIM · Serviços", "origem": "disparo manual", "link": "", "rede": "instagram", "tipo": "gerado", "detalhe": "1 imagem(ns)"}
 {"hora": "17:24:10", "teste": false, "tema": "TECHDIM · Serviços", "origem": "disparo manual", "link": "https://www.instagram.com/p/DePyOe_jVnV/", "rede": "instagram", "tipo": "publicado", "detalhe": "id 17890833018682835"}
+{"hora": "19:10:47", "teste": false, "tema": "Conhecimento", "origem": "agendamento automático", "link": "https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37851760964", "tipo": "iniciado", "detalhe": "execução iniciada"}
+{"hora": "19:10:47", "teste": false, "tema": "Conhecimento", "origem": "agendamento automático", "link": "https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/37851760964", "tipo": "pulado", "detalhe": "tema já publicado hoje em todas as redes; execução ignorada"}
