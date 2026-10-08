@@ -82,6 +82,27 @@ SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
 # ----------------------------------------------------------------- utilidades ---
 
+JS_MENU = """<script>
+    (function () {
+      var b = document.getElementById('mobileToggle'), m = document.getElementById('navMenu');
+      if (!b || !m) return;
+      function fechar() { m.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); }
+      b.addEventListener('click', function () {
+        var aberto = m.classList.toggle('open');
+        b.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && m.classList.contains('open')) { fechar(); b.focus(); }
+      });
+      document.addEventListener('click', function (e) {
+        if (m.classList.contains('open') && !m.contains(e.target) && !b.contains(e.target)) fechar();
+      });
+      window.addEventListener('resize', function () { if (window.innerWidth > 1180) fechar(); });
+      m.querySelectorAll('.nav-link').forEach(function (a) { a.addEventListener('click', fechar); });
+    })();
+  </script>"""
+
+
 def e(texto: object) -> str:
     return html.escape(str(texto), quote=True)
 
@@ -383,7 +404,7 @@ def topo_site(p: str) -> str:
         </ul>
       </nav>
       <div class="nav-cta-group">
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu" aria-expanded="false">
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu" aria-controls="navMenu" aria-expanded="false">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
@@ -403,16 +424,7 @@ def rodape_site(p: str) -> str:
       </nav>
     </div>
   </footer>
-  <script>
-    (function () {{
-      var b = document.getElementById('mobileToggle'), m = document.getElementById('navMenu');
-      if (!b || !m) return;
-      b.addEventListener('click', function () {{
-        var aberto = m.classList.toggle('open');
-        b.setAttribute('aria-expanded', aberto ? 'true' : 'false');
-      }});
-    }})();
-  </script>"""
+  {JS_MENU}"""
 
 
 def pagina(m: Meta, p: str, corpo: str) -> str:
@@ -728,7 +740,7 @@ CSS = """/* Blog TECHDIM: complementa o styles.css do site */
 .blog-rodape-nav a { color: var(--cyan-neon); }
 /* Bloco "Blog" da página inicial */
 .blog-home { padding: 5rem 0; }
-.blog-home-grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.blog-home-grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
 .blog-home-card { display: block; padding: 1.3rem 1.4rem; border: 1px solid var(--border-cyber); border-radius: var(--radius-md); background: var(--bg-card); text-decoration: none; transition: background .25s var(--ease), transform .25s var(--ease); }
 .blog-home-card:hover, .blog-home-card:focus-visible { background: var(--bg-card-hover); transform: translateY(-2px); }
 .blog-home-card h3 { font-family: var(--font-display); font-size: 1.1rem; line-height: 1.35; color: var(--text-pure); margin: .5rem 0 .6rem; }
