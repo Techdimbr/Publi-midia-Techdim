@@ -1,7 +1,7 @@
 {
   "titulo": "Atlassian CVE-2026-21589: falha crítica no Jira e Confluence já atrai tentativas de ataque",
   "pontos": [
-    "A Atlassian publicou o CVE-2026-21589 (nota 9,3): sem login, o invasor lê arquivos da pasta web do Jira, Confluence, Bitbucket e outros produtos Data Center",
+    "CVE-2026-21589 (nota 9,3): sem login, o invasor lê arquivos da pasta web, se souber o nome exato, no Jira, Confluence, Bitbucket e outros produtos Data Center",
     "Em até 2 horas após a prova de conceito pública da watchTowr, honeypots da Previdian registraram tentativas de ataque; a Atlassian pede que se confira os logs",
     "Atualize para as versões corrigidas do aviso. Sem como atualizar já, tire a instância da internet ou aplique a regra de WAF ou do Tomcat. A nuvem já foi corrigida"
   ],
