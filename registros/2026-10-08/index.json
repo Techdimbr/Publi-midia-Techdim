@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "08:00",
+    "tema": "noticias",
+    "titulo": "Memória e SSD podem encarecer: Samsung projeta lucro recorde com a demanda de IA",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h00-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134301379390486",
+      "instagram": "https://www.instagram.com/p/DeOxryIjPZS/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4003355762151427971",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513916058588594179/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134301379390486",
+      "instagram": "18117653968787732",
+      "instagram_stories": "18136652278657562",
+      "linkedin": "urn:li:share:7513916058588594179"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
