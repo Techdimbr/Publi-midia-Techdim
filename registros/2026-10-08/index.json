@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:24",
+    "tema": "dica",
+    "titulo": "Inventário de TI com PowerShell: saiba o que usa antes do próximo alerta de falha",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h24-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134392975390486",
+      "instagram": "https://www.instagram.com/p/DePdpBjm6A5/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7514012730287099905/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134392975390486",
+      "instagram": "17996344847833917",
+      "linkedin": "urn:li:share:7514012730287099905"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
