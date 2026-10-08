@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "Infraestrutura de rede: Wi-Fi estável, cabeamento organizado e redes separadas",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134429467390486",
+      "instagram": "https://www.instagram.com/p/DePyOe_jVnV/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7514057982016380928/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134429467390486",
+      "instagram": "17890833018682835",
+      "linkedin": "urn:li:share:7514057982016380928"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
