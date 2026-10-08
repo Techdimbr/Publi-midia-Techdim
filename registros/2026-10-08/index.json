@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:08",
+    "tema": "hacker",
+    "titulo": "Atlassian CVE-2026-21589: falha crítica no Jira e Confluence já atrai tentativas de ataque",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h08-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134347633390486",
+      "instagram": "https://www.instagram.com/p/DePHPhumv4_/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4003450567296921880",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7513963466999898112/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134347633390486",
+      "instagram": "18011428865986540",
+      "instagram_stories": "18009934922773707",
+      "linkedin": "urn:li:share:7513963466999898112"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
