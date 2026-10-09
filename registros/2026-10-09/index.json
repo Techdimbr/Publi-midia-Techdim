@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "16:28",
+    "tema": "hacker",
+    "titulo": "Alerta de segurança — o que saiu hoje",
+    "curadoria": "filtro por palavra-chave",
+    "arquivo": "16h28-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134761573390486",
+      "instagram": "https://www.instagram.com/p/DeSQoWqDrqc/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4004336260068370384",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7514406195189907459/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134761573390486",
+      "instagram": "18107418587624320",
+      "instagram_stories": "18086572127705413",
+      "linkedin": "urn:li:share:7514406195189907459"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
