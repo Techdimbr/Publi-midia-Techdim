@@ -1,0 +1,47 @@
+{
+  "titulo": "Citrix NetScaler: falha crítica (nota 9,5) pode permitir execução remota de código em SAML",
+  "pontos": [
+    "CVE-2026-107406 (nota 9,5): estouro de memória no NetScaler ADC e Gateway que pode levar a execução remota de código ou queda do equipamento",
+    "Só atinge aparelhos configurados como provedor (IdP) ou cliente (SP) de SAML. Procure 'authentication samlAction' ou 'samlIdPProfile' na configuração. Não há exploração registrada até agora",
+    "Atualize para 14.1-73.46 ou superior, ou 13.1-64.29 ou superior (FIPS: 13.1-37.283). O Shadowserver vê cerca de 21 mil NetScaler expostos na internet"
+  ],
+  "fecho": "Usa NetScaler para login SAML? Confira a versão e atualize antes que apareça um ataque.",
+  "motivo": "Falha crítica em equipamento de borda que fica exposto à internet; a janela para corrigir antes de exploração é agora.",
+  "fontes": [
+    ["thehackernews.com", "https://thehackernews.com/2026/10/citrix-patches-critical-netscaler-flaw.html"],
+    ["bleepingcomputer.com", "https://www.bleepingcomputer.com/news/security/citrix-warns-admins-to-patch-new-netscaler-rce-flaw-immediately/"]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "citrix · CVE-2026-107406",
+    "terminal": [
+      ["$ ", "citrix-advisory CTX697191", "cmd"],
+      ["", "nota 9,5 · crítica", "risco"],
+      ["", "estouro de memória → RCE ou DoS", "risco"],
+      ["", "só com SAML IdP ou SP ativo", "txt"],
+      ["", "sem exploração registrada", "ok"],
+      ["$ ", "grep samlAction samlIdPProfile", "cmd"],
+      ["", "14.1-73.46 / 13.1-64.29 ou mais", "ok"],
+      ["", "atualizar o quanto antes", "ok"]
+    ],
+    "titulo_branco": "NetScaler:",
+    "titulo_destaque": "falha crítica em SAML",
+    "historia": "A Citrix corrigiu uma falha crítica no NetScaler ADC e Gateway que pode permitir execução remota de código. Só afeta quem usa SAML, e ainda não há ataques registrados.",
+    "licoes": [
+      [
+        "Veja se usa SAML",
+        "Procure samlAction ou samlIdPProfile na configuração do aparelho."
+      ],
+      [
+        "Atualize a versão",
+        "Vá para 14.1-73.46 ou 13.1-64.29 (ou mais novas) conforme o aviso."
+      ],
+      [
+        "Monitore o acesso",
+        "Acompanhe os logs do aparelho e avise sua equipe de segurança."
+      ]
+    ],
+    "pergunta": "Seu NetScaler está na versão corrigida?",
+    "hashtags": ["#Citrix", "#NetScaler", "#Patch", "#TI", "#TECHDIM"]
+  }
+}
