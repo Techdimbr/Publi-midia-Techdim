@@ -56,5 +56,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "18:46",
+    "tema": "dica",
+    "titulo": "MFA: por que senha forte já não basta",
+    "curadoria": "acervo autoral",
+    "arquivo": "18h46-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134782951390486",
+      "instagram": "https://www.instagram.com/p/DeSgcjUAOY-/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7514440965210681344/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134782951390486",
+      "instagram": "17885171178505109",
+      "linkedin": "urn:li:share:7514440965210681344"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
