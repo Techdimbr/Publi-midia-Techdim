@@ -3,7 +3,9 @@ import json
 
 import pytest
 
+import config
 import content
+import links
 from conftest import DIA, bloco_infografico, pauta
 from content import Post
 
@@ -76,7 +78,7 @@ def test_legenda_do_story_e_vazia():
 
 def test_hashtags_do_assunto_vem_primeiro_sem_acento_e_com_a_marca():
     post = _post(infografico=bloco_infografico(hashtags=["#IAGenerativa", "#GOVERNANÇA", "#TI", "#TECHDIM"]))
-    assert post.hashtags("instagram").split()[:3] == ["#iagenerativa", "#governanca", "#ti"]
+    assert post.hashtags("instagram").split()[:2] == ["#iagenerativa", "#governanca"]   # #TI não gasta vaga de assunto
     assert post.hashtags("linkedin").split()[:2] == ["#IAGenerativa", "#Governanca"]   # CamelCase mantido; CAIXA ALTA vira Capitalizada
     for rede, limite in content.LIMITE_HASHTAGS.items():
         tags = post.hashtags(rede).split()
@@ -90,9 +92,98 @@ def test_hashtags_sem_duplicata_de_acento_ou_caixa():
     assert len([t for t in tags if t == "#ciberseguranca"]) == 1
 
 
-def test_legenda_antiga_continua_com_as_hashtags_do_tema():
-    # posts sem infográfico (acervo, RSS) não mudam
-    assert _post().hashtags("linkedin") == "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #AutomacaoEmpresarial"
+def test_post_sem_hashtags_proprias_usa_as_de_reserva_do_tema():
+    # acervo e RSS não trazem hashtags: valem as de reserva, mais a praça e a marca
+    assert _post().hashtags("linkedin") == "#SuporteDeTI #InfraestruturaDeTI #CiberSeguranca #Campinas #TECHDIM"
+    assert _post().hashtags("instagram") == "#suportedeti #tiparaempresas #ticampinas #campinas #techdim"
+
+
+# Hashtags como a Routine realmente escreve: 5 próprias, com #TI e #TECHDIM no fim.
+HASHTAGS_DA_ROUTINE = ["#GitLab", "#DevSecOps", "#IASegura", "#TI", "#TECHDIM"]
+
+
+@pytest.mark.parametrize("rede,praca", [
+    ("instagram", {"#ticampinas", "#campinas"}),
+    ("facebook", {"#campinas"}),
+    ("linkedin", {"#campinas"}),
+])
+def test_praca_entra_mesmo_quando_a_pauta_traz_cinco_hashtags_proprias(rede, praca):
+    """Regressão: a praça ficava depois das hashtags da pauta e era cortada.
+
+    Com 5 hashtags próprias a lista enchia e nenhuma de Campinas sobrava — no
+    Instagram, onde só as 5 primeiras contam, e nas outras redes também.
+    """
+    post = _post(infografico=bloco_infografico(hashtags=HASHTAGS_DA_ROUTINE))
+    tags = [content._chave_tag(t) for t in post.hashtags(rede).split()]
+    assert praca <= set(tags), f"{rede}: {tags}"
+
+
+def test_instagram_nunca_passa_de_cinco_hashtags():
+    """O Instagram limita a 5 desde dez/2025; o código nunca passa disso."""
+    for tema in content.HASHTAGS:
+        for proprias in ([], HASHTAGS_DA_ROUTINE, [f"#tag{i}" for i in range(30)]):
+            bloco = bloco_infografico(hashtags=proprias) if proprias else None
+            post = Post(theme=tema, titulo="t", pontos=["a", "b"], infografico=bloco)
+            assert len(post.hashtags("instagram").split()) <= 5, (tema, proprias[:2])
+    assert content.LIMITE_HASHTAGS["instagram"] == 5
+
+
+def test_hashtag_generica_nao_gasta_vaga_de_assunto():
+    post = _post(infografico=bloco_infografico(hashtags=["#TI", "#GitLab", "#DevSecOps", "#TECHDIM"]))
+    tags = post.hashtags("instagram").split()
+    assert tags[:2] == ["#gitlab", "#devsecops"]          # as do assunto
+    assert tags.count("#techdim") == 1 and tags[-1] == "#techdim"
+    assert "#ti" not in tags
+
+
+def test_hashtag_da_marca_fecha_a_lista_e_nao_abre():
+    for rede in ("instagram", "facebook", "linkedin"):
+        tags = _post(infografico=bloco_infografico(hashtags=HASHTAGS_DA_ROUTINE)).hashtags(rede).split()
+        assert tags[-1].lower() == "#techdim" and tags[0].lower() != "#techdim"
+
+
+def test_pergunta_segue_a_ordem_pauta_curadoria_reserva():
+    """A pauta manda; depois a curadoria por IA; por último a reserva do tema."""
+    assert _post(pergunta_propria="Vocês têm servidor próprio?").pergunta == "Vocês têm servidor próprio?"
+    da_pauta = _post(pergunta_propria="da IA", infografico=bloco_infografico(pergunta="da pauta"))
+    assert da_pauta.pergunta == "da pauta"
+
+
+def test_pergunta_vem_da_pauta_e_tem_reserva_por_tema():
+    com_bloco = _post(infografico=bloco_infografico(pergunta="Quando você testou o backup?"))
+    assert com_bloco.pergunta == "Quando você testou o backup?"
+    assert _post(theme="dica").pergunta == content.PERGUNTA_PADRAO["dica"]
+    # nunca vazia: legenda sem pergunta é legenda que ninguém responde
+    assert all(Post(theme=t, titulo="t", pontos=["a", "b"]).pergunta for t in content.HASHTAGS)
+
+
+@pytest.mark.parametrize("rede", ["linkedin", "facebook", "instagram"])
+def test_toda_legenda_pede_interacao(rede):
+    assert _post().pergunta in _post().caption(rede)
+
+
+def test_legenda_do_instagram_pede_enviar_e_seguir():
+    """Envio por DM está entre os 3 sinais que o Instagram diz pesar mais; seguir é a meta."""
+    legenda = _post().caption("instagram")
+    assert "Manda para quem cuida da TI" in legenda
+    assert config.IG_HANDLE in legenda
+    assert config.REGIAO in legenda
+
+
+def test_link_clicavel_leva_utm_e_o_do_instagram_nao():
+    """UTM só onde o clique existe; no Instagram o link não é clicável em lugar nenhum."""
+    assert "utm_source=facebook" in _post().comentario("facebook")
+    assert "utm_source=linkedin" in _post().caption("linkedin")
+    assert "utm_" not in _post().caption("instagram")
+
+
+def test_whatsapp_entra_no_comentario_do_facebook_quando_ha_numero(monkeypatch):
+    monkeypatch.setattr(config, "WHATSAPP", "5519999998888")
+    c = _post().comentario("facebook")
+    assert "wa.me/5519999998888" in c
+    assert "TECHDIM" in links.whatsapp("x") and "wa.me" in links.whatsapp("x")
+    monkeypatch.setattr(config, "WHATSAPP", "")
+    assert "wa.me" not in _post().comentario("facebook")   # sem número, cai no site
 
 
 @pytest.mark.parametrize("rede", ["linkedin", "facebook", "instagram"])
@@ -106,7 +197,8 @@ def test_legenda_respeita_o_limite_de_caracteres(rede):
 def test_comentario_leva_fontes_e_site():
     c = _post().comentario("facebook")
     assert "fonte.com" in c and "techdim.com.br" in c
-    assert _post(fontes=[]).comentario("instagram") == ""
+    # o comentário do Instagram nunca é vazio: é onde mora o convite para a bio
+    assert "link da bio" in _post(fontes=[]).comentario("instagram")
     assert _post().comentario("linkedin") == ""
 
 

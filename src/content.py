@@ -17,6 +17,7 @@ import requests
 import config
 import curator
 import infografico
+import links
 from texto import cortar, uma_linha
 
 log = logging.getLogger(__name__)
@@ -45,38 +46,81 @@ FEEDS = {
     ],
 }
 
+# Hashtags.
+#
+# O Instagram limita cada post e Reel a 5 hashtags (anúncio oficial de
+# 18/12/2025) e diz que poucas hashtags específicas rendem mais que muitas
+# genéricas. O anúncio não diz o que acontece com o excedente (blogs dizem que é
+# ignorado; a API ainda aceitou 8 em 03/10), então o código nunca passa de 5:
+# cada rede tem vagas contadas — praça, assunto e marca — em vez de uma lista
+# longa cuja parte final pode ser descartada.
+#
+# Praça: conta nova não é achada por hashtag de marca (#TECHDIM só alcança quem
+# já conhece) nem por hashtag gigante (#tecnologia tem milhões de posts e o
+# nosso afunda em segundos). Quem compra é dono de PME de Campinas, e é ele que
+# procura por praça. Vem uma local de nicho e uma ampla no Instagram; no
+# Facebook e no LinkedIn a descoberta por cidade é menor, então uma só.
+PRACA = {
+    "instagram": ["#ticampinas", "#campinas"],
+    "facebook": ["#Campinas"],
+    "linkedin": ["#Campinas"],
+}
+
+# (vagas de praça, vagas de assunto); a marca fecha a lista, então a soma + 1 é
+# o limite da rede. Instagram: 2 + 2 + 1 = 5, o teto oficial dele.
+VAGAS_HASHTAG = {"instagram": (2, 2), "facebook": (1, 2), "linkedin": (1, 3)}
+
+# Hashtags de assunto de RESERVA: valem quando a pauta não traz as suas (acervo
+# autoral e RSS). As da pauta do dia, escritas pela Routine, têm prioridade.
 HASHTAGS = {
     "noticias": {
-        "linkedin": "#Tecnologia #InteligenciaArtificial #InovacaoDigital #TECHDIM",
-        "facebook": "#TECHDIM #Tecnologia #IA #Campinas",
-        "instagram": "#tecnologia #inteligenciaartificial #ia #inovacao #techdim #campinas #ti",
+        "linkedin": "#Tecnologia #InteligenciaArtificial #GestaoDeTI",
+        "facebook": "#TIparaEmpresas #Tecnologia #IAparaEmpresas",
+        "instagram": "#tiparaempresas #tecnologia #inteligenciaartificial #pequenaempresa",
     },
     "hacker": {
-        "linkedin": "#CiberSeguranca #SegurancaDaInformacao #InfraestruturaDeTI #TECHDIM",
-        "facebook": "#TECHDIM #Seguranca #TI #Campinas",
-        "instagram": "#ciberseguranca #seguranca #hacker #ti #infraestrutura #techdim #campinas",
+        "linkedin": "#CiberSeguranca #SegurancaDaInformacao #GestaoDeTI",
+        "facebook": "#SegurancaDigital #TIparaEmpresas #CiberSeguranca",
+        "instagram": "#segurancadigital #ciberseguranca #tiparaempresas #protecaodedados",
     },
     "dica": {
-        "linkedin": "#Conhecimento #TI #CiberSeguranca #GestaoDeTI #TECHDIM",
-        "facebook": "#TECHDIM #AprendaTI #Tecnologia #Campinas",
-        "instagram": "#conhecimento #aprendati #tecnologia #ti #ciberseguranca #techdim #campinas",
+        "linkedin": "#GestaoDeTI #CiberSeguranca #Produtividade",
+        "facebook": "#DicaDeTI #TIparaEmpresas #SegurancaDigital",
+        "instagram": "#dicadeti #tiparaempresas #segurancadigital #pequenaempresa",
     },
     "especial": {
-        "linkedin": "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #Tecnologia #Campinas",
-        "facebook": "#TECHDIM #TI #Tecnologia #Campinas",
-        "instagram": "#techdim #ti #infraestrutura #tecnologia #ciberseguranca #campinas",
+        "linkedin": "#TransformacaoDigital #GestaoDeTI #InteligenciaArtificial",
+        "facebook": "#TIparaEmpresas #SuporteDeTI #Tecnologia",
+        "instagram": "#tiparaempresas #suportedeti #transformacaodigital #pequenaempresa",
     },
     # Genéricas de propósito: o assunto do destaque muda todo dia.
     "destaque": {
-        "linkedin": "#Tecnologia #CiberSeguranca #InfraestruturaDeTI #TECHDIM",
-        "facebook": "#TECHDIM #Tecnologia #Seguranca #Campinas",
-        "instagram": "#tecnologia #ciberseguranca #ti #infraestrutura #techdim #campinas",
+        "linkedin": "#Tecnologia #CiberSeguranca #GestaoDeTI",
+        "facebook": "#SegurancaDigital #Tecnologia #TIparaEmpresas",
+        "instagram": "#segurancadigital #tiparaempresas #tecnologia #protecaodedados",
     },
     "servico": {
-        "linkedin": "#TECHDIM #InfraestruturaDeTI #CiberSeguranca #AutomacaoEmpresarial",
-        "facebook": "#TECHDIM #TI #Campinas #Seguranca",
-        "instagram": "#ti #suportetecnico #ciberseguranca #automacao #techdim #campinas",
+        "linkedin": "#SuporteDeTI #InfraestruturaDeTI #CiberSeguranca",
+        "facebook": "#SuporteDeTI #TIparaEmpresas #InfraestruturaDeTI",
+        "instagram": "#suportedeti #tiparaempresas #infraestrutura #pequenaempresa",
     },
+}
+
+# Genéricas demais para ocupar uma das poucas vagas de assunto: #TI tem milhões
+# de posts, e a marca já fecha a lista por conta própria.
+HASHTAGS_GENERICAS = {"#ti", "#techdim"}
+
+# Pergunta de fecho quando a pauta não traz uma. Comentário é a única interação
+# que abre conversa com alguém que pode virar cliente — é onde nasce o lead. Não
+# é o sinal que o Instagram nomeia como mais pesado para o alcance (esse é o
+# envio por DM; ver a legenda do Instagram), então não se vende como tal.
+PERGUNTA_PADRAO = {
+    "noticias": "Isso muda alguma coisa no dia a dia da sua empresa?",
+    "hacker": "Sua empresa está exposta a isso?",
+    "dica": "Sua empresa já faz isso?",
+    "servico": "Como sua empresa resolve isso hoje?",
+    "destaque": "Sua empresa usa essa tecnologia?",
+    "especial": "Qual é o maior gargalo de TI da sua empresa hoje?",
 }
 
 
@@ -101,8 +145,8 @@ def _forma_tag(tag: str, network: str) -> str:
     return sem_acento  # CamelCase digitado (#IAGenerativa) e curtas (#TI) ficam como vieram
 
 
-# Quantas hashtags cada rede comporta numa legenda legível.
-LIMITE_HASHTAGS = {"linkedin": 5, "facebook": 4, "instagram": 8}
+# Quantas hashtags cada rede comporta: as vagas de praça e de assunto + a marca.
+LIMITE_HASHTAGS = {rede: praca + assunto + 1 for rede, (praca, assunto) in VAGAS_HASHTAG.items()}
 # Limite de caracteres da legenda em cada rede.
 LIMITE_LEGENDA = {"linkedin": 3000, "facebook": 5000, "instagram": 2200}
 
@@ -116,6 +160,7 @@ class Post:
     pontos: list[str]
     fecho: str = ""
     fontes: list[tuple[str, str]] = field(default_factory=list)  # (nome, url)
+    pergunta_propria: str = ""  # escrita pela curadoria por IA
     curado_por_ia: bool = False
     motivo: str = ""  # por que esta pauta foi escolhida (curadoria)
     origem: str = ""  # "routine" quando veio da pauta do dia escrita pelo Claude
@@ -124,6 +169,20 @@ class Post:
     @property
     def label(self) -> str:
         return config.THEME_LABELS.get(self.theme, self.theme)
+
+    @property
+    def pergunta(self) -> str:
+        """Pergunta que fecha a legenda e pede comentário.
+
+        A Routine já escreve uma por pauta no bloco "infografico"; quando não
+        escreve, usa-se a do tema. Nunca fica vazia: legenda sem pergunta é
+        legenda que ninguém responde.
+        """
+        return (
+            uma_linha((self.infografico or {}).get("pergunta", ""))
+            or uma_linha(self.pergunta_propria)
+            or PERGUNTA_PADRAO.get(self.theme, "O que você acha disso?")
+        )
 
     @property
     def slides(self) -> list[dict]:
@@ -137,25 +196,37 @@ class Post:
         return out[: config.CAROUSEL_SLIDES]
 
     def hashtags(self, network: str) -> str:
-        """Hashtags da legenda: as do assunto do post primeiro, depois as do tema.
+        """Hashtags da legenda, em vagas contadas: assunto, praça e a marca.
 
-        Sempre termina com a marca. Sem acento (como as do tema), para casar com
-        o que as pessoas digitam; minúsculas no Instagram, como é costume, e
-        capitalizadas nas demais, porque TUDOMAIÚSCULO é ruim para quem usa
-        leitor de tela.
+        O assunto vem da pauta do dia (as hashtags que a Routine escreveu) e,
+        se faltar, das de reserva do tema. #TI e #TECHDIM não gastam vaga de
+        assunto: a primeira é genérica demais e a segunda fecha a lista sempre.
+        Sem acento (como as do tema), para casar com o que as pessoas digitam;
+        minúsculas no Instagram, como é costume, e capitalizadas nas demais,
+        porque TUDOMAIÚSCULO é ruim para quem usa leitor de tela. A soma nunca
+        passa de LIMITE_HASHTAGS, que no Instagram é o teto de 5 da plataforma.
         """
-        padrao = HASHTAGS.get(self.theme, {}).get(network, "#TECHDIM").split()
-        proprias = [_forma_tag(t, network) for t in (self.infografico or {}).get("hashtags", [])]
-        limite = LIMITE_HASHTAGS.get(network, 5)
-        todas: list[str] = []
-        for tag in proprias + padrao:
-            if _chave_tag(tag) not in (_chave_tag(t) for t in todas):
-                todas.append(tag)
-        todas = todas[:limite]
+        vagas_praca, vagas_assunto = VAGAS_HASHTAG.get(network, (1, 3))
         marca = "#techdim" if network == "instagram" else "#TECHDIM"
-        if _chave_tag(marca) not in (_chave_tag(t) for t in todas):
-            todas = todas[: limite - 1] + [marca]
-        return " ".join(todas)
+        usadas = {_chave_tag(marca)}
+
+        def pegar(candidatas: list[str], quantas: int) -> list[str]:
+            out: list[str] = []
+            for tag in candidatas:
+                chave = _chave_tag(tag)
+                if len(out) == quantas:
+                    break
+                if chave in usadas or chave in HASHTAGS_GENERICAS:
+                    continue
+                usadas.add(chave)
+                out.append(tag)
+            return out
+
+        proprias = [_forma_tag(t, network) for t in (self.infografico or {}).get("hashtags", [])]
+        reserva = HASHTAGS.get(self.theme, {}).get(network, "").split()
+        assunto = pegar(proprias + reserva, vagas_assunto)
+        praca = pegar(PRACA.get(network, []), vagas_praca)
+        return " ".join(assunto + praca + [marca])
 
     def caption(self, network: str) -> str:
         """Legenda por rede, dentro do limite de caracteres dela.
@@ -169,25 +240,34 @@ class Post:
         return texto if len(texto) <= limite else texto[: limite - 1].rstrip() + "…"
 
     def _legenda(self, network: str) -> str:
+        """Monta a legenda da rede.
+
+        A ordem é de propósito. Título primeiro, porque é o único pedaço que
+        aparece antes do "ver mais". Pergunta antes do contato, porque pedir
+        comentário vale mais para o alcance do que pedir clique. Hashtags por
+        último, porque atrapalham a leitura e não atrapalham o algoritmo.
+        """
         tags = self.hashtags(network)
         pontos = self.pontos[:4]
-        aviso_link = (
-            "🔗 Fontes e site no primeiro comentário"
-            if self.fontes
-            else "🔗 Link no primeiro comentário"
-        )
 
         if network == "linkedin":
             corpo = "\n".join(f"{i:02d}. {p}" for i, p in enumerate(pontos, 1))
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
+            partes += ["", f"💬 {self.pergunta}"]
             # A API de comentários do LinkedIn exige o produto Community
             # Management API; sem ele o comentário dá 403. Enquanto isso, fontes
             # e site vão no próprio texto do post.
             if self.fontes:
                 partes += ["", "Fontes: " + " · ".join(url for _, url in self.fontes[:2])]
-            partes += ["", f"TECHDIM — {config.TAGLINE}", config.SITE_URL, "", tags]
+            partes += [
+                "",
+                f"TECHDIM — {config.TAGLINE} · {config.REGIAO}",
+                links.site(self.theme, "linkedin"),
+                "",
+                tags,
+            ]
             return "\n".join(partes)
 
         if network == "facebook":
@@ -195,37 +275,73 @@ class Post:
             partes = [f"{self.titulo}", "", corpo]
             if self.fecho:
                 partes += ["", self.fecho]
-            partes += ["", f"Fale com a TECHDIM — {aviso_link.lower().replace('🔗 ', '')} 👇", "", tags]
+            partes += [
+                "",
+                f"💬 {self.pergunta} Comenta aqui 👇" if not self.pergunta.endswith("?") else f"💬 {self.pergunta}",
+                f"📍 TECHDIM — TI para empresas de {config.REGIAO}",
+                "📎 Fontes e contato no primeiro comentário" if self.fontes
+                else "📎 Contato no primeiro comentário",
+                "",
+                tags,
+            ]
             return "\n".join(partes)
 
-        # instagram: link não é clicável em legenda nem em comentário, então o
-        # site continua escrito aqui; as fontes vão para o comentário.
+        # instagram: link não é clicável nem na legenda nem no comentário, então
+        # aqui o endereço vai limpo e o clique de verdade acontece no Story e na
+        # bio. O pedido é "manda" porque envio por DM, por alcance, está entre os
+        # três sinais que o próprio Instagram diz pesar mais (os outros são o
+        # tempo de exibição e as curtidas, também por alcance). Também é como o
+        # post chega a quem decide a compra de TI na empresa, que raramente é
+        # quem o viu primeiro.
         emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
         corpo = "\n".join(f"{emojis[i]} {p}" for i, p in enumerate(pontos))
-        partes = [f"{self.titulo}", ""] + ([] if self.infografico else ["Arraste para o lado →", ""]) + [corpo]
+        partes = [f"{self.titulo}", ""]
+        if not self.infografico:
+            partes += ["Arraste para o lado →", ""]
+        partes += [corpo]
         if self.fecho:
             partes += ["", self.fecho]
-        partes += ["", f"Saiba mais: {config.SITE}"]
+        partes += [
+            "",
+            f"💬 {self.pergunta}",
+            "📲 Manda para quem cuida da TI da sua empresa",
+            f"➕ Segue {config.IG_HANDLE} — TI para empresas de {config.REGIAO}",
+            f"🔗 {config.SITE} (link na bio)",
+        ]
         if self.fontes:
             partes += ["Fontes no primeiro comentário 👇"]
         partes += ["", tags]
         return "\n".join(partes)
 
     def comentario(self, network: str) -> str:
-        """Primeiro comentário: fontes e site. Vazio quando não há o que pôr."""
+        """Primeiro comentário: fontes e o caminho mais curto até a conversa.
+
+        No Facebook é aqui que mora o link clicável, com UTM, porque link no
+        corpo do post derruba o alcance. No Instagram o link não é clicável em
+        lugar nenhum, então o comentário só credita as fontes e aponta a bio.
+        """
         if network in ("instagram_stories", "linkedin"):
             return ""  # LinkedIn: tudo no texto do post (ver caption)
+
         if network == "instagram":
-            if not self.fontes:
-                return ""  # o site já está na legenda
-            nomes = " · ".join(nome for nome, _ in self.fontes[:3])
-            return f"📎 Fontes: {nomes}"
+            linhas = []
+            if self.fontes:
+                linhas.append("📎 Fontes: " + " · ".join(n for n, _ in self.fontes[:3]))
+            linhas.append(f"🔗 Orçamento e contato no link da bio — {config.SITE}")
+            return "\n".join(linhas)
+
         linhas = []
         if self.fontes:
             linhas.append("📎 Fontes:")
             linhas += [f"• {nome}: {url}" for nome, url in self.fontes[:3]]
             linhas.append("")
-        linhas.append(f"🌐 TECHDIM — {config.TAGLINE}: {config.SITE_URL}")
+        zap = links.whatsapp(self.titulo, self.theme)
+        if zap:
+            linhas.append(f"💬 Fale agora com a TECHDIM no WhatsApp: {zap}")
+        linhas.append(
+            f"🌐 TECHDIM — {config.TAGLINE} · {config.REGIAO}: "
+            f"{links.site(self.theme, network)}"
+        )
         return "\n".join(linhas)
 
 
@@ -374,7 +490,7 @@ def _from_feeds(theme: str, seed: int) -> Post | None:
         else:
             return Post(theme=theme, titulo=c["titulo"], pontos=c["pontos"],
                         fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True,
-                        motivo=c.get("motivo", ""))
+                        pergunta_propria=c.get("pergunta", ""), motivo=c.get("motivo", ""))
     return _from_feeds_palavra_chave(theme, seed)
 
 

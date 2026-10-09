@@ -110,9 +110,39 @@ def generate(theme: str, networks: list[str]) -> dict:
 # ---------------------------------------------------------------- publish
 
 
+def _fora_de_hora() -> str:
+    """Motivo para não publicar agora, ou "" quando o horário está liberado.
+
+    Em 02/10/2026 quatro posts saíram entre 00h22 e 01h11, quando quase
+    ninguém do público (donos e gestores de PME) está na rede: o post nasce sem
+    ninguém para interagir. Não há métrica que compare esses posts com os de
+    horário comercial — o relatório semanal passa a trazer essa comparação
+    ("qual horário rende mais"). Dá para forçar com FORCAR_FORA_DE_HORA=true,
+    para o caso de um teste proposital.
+    """
+    if os.environ.get("FORCAR_FORA_DE_HORA", "").strip().lower() in ("1", "true", "sim"):
+        return ""
+    if config.dentro_da_janela():
+        return ""
+    inicio, fim = config.JANELA_PUBLICACAO
+    return (
+        f"{config.agora():%H:%M} está fora da janela de publicação "
+        f"({inicio:02d}h–{fim:02d}h de Brasília)"
+    )
+
+
 def publish(creds: config.Credentials) -> int:
     if not MANIFEST.exists():
         log.error("manifesto ausente — a fase generate não rodou")
+        return 1
+
+    motivo = _fora_de_hora()
+    if motivo:
+        log.error("não publiquei: %s", motivo)
+        OUT.mkdir(parents=True, exist_ok=True)
+        RESULTADO.write_text(
+            json.dumps({"redes": {}, "pulado": motivo}, ensure_ascii=False, indent=2), "utf-8"
+        )
         return 1
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))

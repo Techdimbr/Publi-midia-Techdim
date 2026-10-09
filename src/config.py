@@ -20,6 +20,12 @@ SITE = "www.techdim.com.br"
 SITE_URL = "https://www.techdim.com.br"
 IG_HANDLE = "@techdimbr"
 
+# Praça de atendimento. Entra nas hashtags e no texto porque é por geografia que
+# uma conta nova é descoberta por quem pode virar cliente: "#campinas" tem
+# público; "#TECHDIM" só tem quem já conhece a marca.
+CIDADE = "Campinas"
+REGIAO = "Campinas e região"
+
 # Identidade visual por tema: cor de acento, cor secundária e motivo de fundo.
 THEME_STYLE = {
     "noticias": {
@@ -90,6 +96,11 @@ def _env(name: str, default: str = "") -> str:
     return (os.environ.get(name) or default).strip()
 
 
+# WhatsApp comercial, só dígitos com DDI e DDD (ex.: 5519999998888). Vem do
+# ambiente para não ficar no código; sem ele, o CTA cai no site.
+WHATSAPP = _env("WHATSAPP_NUMERO").replace("+", "").replace(" ", "").replace("-", "")
+
+
 @dataclass
 class Credentials:
     """Credenciais lidas do ambiente (GitHub Secrets em produção)."""
@@ -153,15 +164,28 @@ def hoje() -> date:
 
 # ---------------------------------------------------------------- grade
 
+# Janela em que vale a pena publicar (hora de Brasília; início inclusivo, fim
+# exclusivo): o horário em que donos e gestores de PME estão na rede. Em
+# 02/10/2026 quatro posts saíram entre 00h22 e 01h11, sem ninguém para
+# interagir. É uma premissa, não uma medição: o relatório semanal compara os
+# horários e é ele que deve ajustar esta janela.
+JANELA_PUBLICACAO = (7, 22)
+
+
+def dentro_da_janela(quando: datetime | None = None) -> bool:
+    inicio, fim = JANELA_PUBLICACAO
+    return inicio <= (quando or agora()).hour < fim
+
+
 # Quais redes recebem post de feed em cada tema.
 # Editar aqui é o jeito de reduzir volume sem mexer em código.
 THEME_TARGETS = {
     "noticias": ["linkedin", "facebook", "instagram", "instagram_stories"],
     "hacker": ["linkedin", "facebook", "instagram", "instagram_stories"],
-    "dica": ["linkedin", "facebook", "instagram"],
-    "servico": ["linkedin", "facebook", "instagram"],
+    "dica": ["linkedin", "facebook", "instagram", "instagram_stories"],
+    "servico": ["linkedin", "facebook", "instagram", "instagram_stories"],
     "destaque": ["linkedin", "facebook", "instagram", "instagram_stories"],
-    "especial": ["linkedin", "facebook", "instagram"],
+    "especial": ["linkedin", "facebook", "instagram", "instagram_stories"],
 }
 
 THEME_LABELS = {

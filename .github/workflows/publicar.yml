@@ -51,6 +51,11 @@ on:
         required: false
         type: boolean
         default: false
+      forcar_fora_de_hora:
+        description: "Publicar mesmo fora da janela de 07h–22h (Brasília)"
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: publicar
@@ -138,6 +143,7 @@ jobs:
         env:
           PYTHONPATH: src
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WHATSAPP_NUMERO: ${{ vars.WHATSAPP_NUMERO }}
           TEMA: ${{ steps.tema.outputs.tema }}
           REDES: ${{ steps.dup.outputs.redes }}
         run: python src/main.py generate --theme "$TEMA" --networks "$REDES"
@@ -243,7 +249,10 @@ jobs:
           FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
           IG_USER_ID: ${{ vars.IG_USER_ID }}
           LINKEDIN_URN: ${{ vars.LINKEDIN_URN }}
+          WHATSAPP_NUMERO: ${{ vars.WHATSAPP_NUMERO }}
           ASSET_BASE_URL: ${{ steps.assets.outputs.base }}
+          # A trava de horário vive em src/main.py; aqui só se abre a exceção.
+          FORCAR_FORA_DE_HORA: ${{ inputs.forcar_fora_de_hora }}
         run: python src/main.py publish --theme "$TEMA"
 
       # Roda mesmo se a publicação falhar: o registro da falha é o que mais
