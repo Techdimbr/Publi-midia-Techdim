@@ -83,5 +83,32 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "21:08",
+    "tema": "servico",
+    "titulo": "Backup gerenciado e recuperação testada",
+    "curadoria": "acervo autoral",
+    "arquivo": "21h08-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122134804869390486",
+      "instagram": "https://www.instagram.com/p/DeSwo3Pjyto/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7514476552026238976/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122134804869390486",
+      "instagram": "18341072863275148",
+      "linkedin": "urn:li:share:7514476552026238976"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
