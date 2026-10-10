@@ -28,3 +28,12 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 15:29 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/DeUup7zjOIN/) |
 | 15:29 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
 | 15:29 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18034208267895634 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4005031305229906376) |
+| 17:36 | ▶️ iniciado | Conhecimento |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38084303524) |
+| 17:36 | 🗓️ planejado | Conhecimento |  | pauta: Seu firewall está configurado ou só ligado? — curadoria: acervo autoral | agendamento automático |  |  |
+| 17:36 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | agendamento automático |  |  |
+| 17:36 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7514785647790891008 | agendamento automático |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7514785647790891008/) |
+| 17:36 | 🖼️ gerado | Conhecimento | facebook | 4 imagem(ns) | agendamento automático |  |  |
+| 17:36 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122135055855390486 | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135055855390486) |
+| 17:36 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135055855390486) |
+| 17:36 | 🖼️ gerado | Conhecimento | instagram | 4 imagem(ns) | agendamento automático |  |  |
+| 17:36 | ✅ publicado | Conhecimento | instagram | id 18026629745916615 | agendamento automático |  | [abrir](https://www.instagram.com/p/DeU9MqhFzTN/) |

@@ -56,5 +56,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:36",
+    "tema": "dica",
+    "titulo": "Seu firewall está configurado ou só ligado?",
+    "curadoria": "acervo autoral",
+    "arquivo": "17h36-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135055855390486",
+      "instagram": "https://www.instagram.com/p/DeU9MqhFzTN/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7514785647790891008/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135055855390486",
+      "instagram": "18026629745916615",
+      "linkedin": "urn:li:share:7514785647790891008"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
