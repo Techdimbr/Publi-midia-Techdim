@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "13:39",
+    "tema": "noticias",
+    "titulo": "Resumo do dia — Tecnologia & IA",
+    "curadoria": "filtro por palavra-chave",
+    "arquivo": "13h39-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135277531390486",
+      "instagram": "https://www.instagram.com/p/DeXG2oRjN2m/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4005700668282925135",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515088346990342146/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135277531390486",
+      "instagram": "18080612003419769",
+      "instagram_stories": "17961966744232524",
+      "linkedin": "urn:li:share:7515088346990342146"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
