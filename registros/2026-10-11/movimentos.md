@@ -28,3 +28,12 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 15:48 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/DeXVrecgSsd/) |
 | 15:48 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
 | 15:48 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18138573748627232 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4005765876430257916) |
+| 18:00 | ▶️ iniciado | Conhecimento |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38174444602) |
+| 18:00 | 🗓️ planejado | Conhecimento |  | pauta: Shadow IT: o risco que ninguém aprovou — curadoria: acervo autoral | agendamento automático |  |  |
+| 18:00 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | agendamento automático |  |  |
+| 18:00 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7515154072681795584 | agendamento automático |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7515154072681795584/) |
+| 18:00 | 🖼️ gerado | Conhecimento | facebook | 4 imagem(ns) | agendamento automático |  |  |
+| 18:00 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122135327295390486 | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135327295390486) |
+| 18:00 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135327295390486) |
+| 18:00 | 🖼️ gerado | Conhecimento | instagram | 4 imagem(ns) | agendamento automático |  |  |
+| 18:00 | ✅ publicado | Conhecimento | instagram | id 18104892857200370 | agendamento automático |  | [abrir](https://www.instagram.com/p/DeXku5Zl8r3/) |

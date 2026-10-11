@@ -56,5 +56,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "18:00",
+    "tema": "dica",
+    "titulo": "Shadow IT: o risco que ninguém aprovou",
+    "curadoria": "acervo autoral",
+    "arquivo": "18h00-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135327295390486",
+      "instagram": "https://www.instagram.com/p/DeXku5Zl8r3/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515154072681795584/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135327295390486",
+      "instagram": "18104892857200370",
+      "linkedin": "urn:li:share:7515154072681795584"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
