@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "08:00",
+    "tema": "noticias",
+    "titulo": "Windows Update: certificados vencem em 2027 e PCs sem atualização perdem o acesso",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h00-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135459523390486",
+      "instagram": "https://www.instagram.com/p/DeZE1bRjwj-/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4006254710113772854",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515365552555646976/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135459523390486",
+      "instagram": "18128117440851209",
+      "instagram_stories": "18117645268771138",
+      "linkedin": "urn:li:share:7515365552555646976"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
