@@ -1,0 +1,47 @@
+{
+  "titulo": "Software sob medida: conte sua ideia e a TECHDIM ajuda a transformá-la em sistema ou app",
+  "pontos": [
+    "Roupa pronta serve em muita gente; a sob medida veste você. Software é igual: em vez de adaptar a empresa ao sistema, o sistema segue o seu jeito de trabalhar",
+    "A TECHDIM desenvolve sistemas web, programas para computador e aplicativos de celular, usando ferramentas de IA como Claude Code, Gemini e Antigravity",
+    "Você conta a ideia ou o problema do dia a dia e a equipe ajuda a definir o que construir primeiro e como validar com quem vai usar"
+  ],
+  "fecho": "Tem uma ideia de sistema ou aplicativo? Conte para a gente: www.techdim.com.br",
+  "motivo": "Apresenta o serviço de software sob medida e o uso de ferramentas de IA, com uma analogia do dia a dia e sem promessas de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "monitor",
+        "celular",
+        "engrenagens"
+      ],
+      "legenda": "SEU SISTEMA · FEITO SOB MEDIDA"
+    },
+    "titulo_branco": "Seu sistema",
+    "titulo_destaque": "sob medida, do seu jeito",
+    "historia": "Roupa pronta serve em muita gente; sob medida, só em você. Sistema de prateleira faz a empresa se adaptar a ele. O sob medida segue o seu jeito de trabalhar. Conte a ideia e a TECHDIM ajuda a construir.",
+    "licoes": [
+      [
+        "Conte a ideia",
+        "Descreva o problema ou o processo que você quer resolver, mesmo que ainda esteja confuso."
+      ],
+      [
+        "Web, PC ou celular",
+        "Sistemas na web, programas para computador e aplicativos de celular."
+      ],
+      [
+        "IA no desenvolvimento",
+        "Ferramentas como Claude Code, Gemini e Antigravity entram no nosso trabalho."
+      ]
+    ],
+    "pergunta": "Se pudesse ter um sistema só seu, o que ele faria primeiro?",
+    "hashtags": [
+      "#SoftwareSobMedida",
+      "#Desenvolvimento",
+      "#IA",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

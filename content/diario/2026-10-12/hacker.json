@@ -1,0 +1,91 @@
+{
+  "titulo": "Bricksforge CVE-2026-85097: falha crítica em plugin do WordPress já é explorada",
+  "pontos": [
+    "O plugin Bricksforge, do WordPress, tem falha crítica (CVE-2026-85097): sem login, o invasor envia um arquivo e executa código PHP no site. Vai até a versão 3.1.8.9",
+    "A Patchstack registrou tentativas de ataque desde 07/10 e dá nota 10 (CVSS). A correção é atualizar o plugin para a versão 3.1.8.10 ou superior",
+    "Procure arquivos .php inesperados em uploads/bricksforge/tmp e, nos logs, chamadas a form_submit com temporaryFileUploads. Se achar, trate como possível invasão"
+  ],
+  "fecho": "Seu site usa WordPress? Confira se o Bricksforge está instalado e atualize hoje.",
+  "motivo": "Falha crítica sem login em plugin do WordPress, já explorada e com correção disponível: sites que não atualizam plugins ficam expostos.",
+  "fontes": [
+    [
+      "patchstack.com",
+      "https://patchstack.com/articles/critical-unauthenticated-arbitrary-file-upload-vulnerability-exploited-in-bricksforge-plugin/"
+    ],
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/attackers-exploit-cvss-100-bricksforge.html"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "wordpress · CVE-2026-85097",
+    "terminal": [
+      [
+        "$ ",
+        "wp plugin list | grep -i bricksforge",
+        "cmd"
+      ],
+      [
+        "",
+        "até 3.1.8.9 = vulnerável",
+        "risco"
+      ],
+      [
+        "",
+        "upload sem login · roda PHP no site",
+        "risco"
+      ],
+      [
+        "",
+        "ataques desde 07/out (Patchstack)",
+        "risco"
+      ],
+      [
+        "",
+        "CVSS 10,0 segundo a Patchstack",
+        "txt"
+      ],
+      [
+        "",
+        "correção: 3.1.8.10 ou superior",
+        "ok"
+      ],
+      [
+        "$ ",
+        "ls uploads/bricksforge/tmp/",
+        "cmd"
+      ],
+      [
+        "",
+        "arquivo .php inesperado = investigar",
+        "risco"
+      ]
+    ],
+    "titulo_branco": "Bricksforge:",
+    "titulo_destaque": "falha crítica no WordPress",
+    "historia": "O plugin Bricksforge, do WordPress, tem falha crítica já explorada: sem login, o invasor envia um arquivo e executa código no site. Atualize para a versão 3.1.8.10 ou superior e confira os arquivos do servidor.",
+    "licoes": [
+      [
+        "Confira o plugin",
+        "Veja se o site usa o Bricksforge e a versão. Até a 3.1.8.9 está vulnerável."
+      ],
+      [
+        "Atualize já",
+        "Instale a 3.1.8.10 ou superior. Sem atualizar, o site fica aberto a execução de código."
+      ],
+      [
+        "Procure sinais",
+        "Veja arquivos .php inesperados em uploads/bricksforge/tmp e os logs do servidor."
+      ]
+    ],
+    "pergunta": "Quem atualiza os plugins do site da sua empresa?",
+    "hashtags": [
+      "#WordPress",
+      "#Bricksforge",
+      "#Seguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

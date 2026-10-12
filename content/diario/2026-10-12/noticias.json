@@ -1,0 +1,56 @@
+{
+  "titulo": "Windows Update: certificados vencem em 2027 e PCs sem atualização perdem o acesso",
+  "pontos": [
+    "A Microsoft avisou em 08/10 que certificados do Windows Update vencem em 17/05 e 19/06/2027; PCs sem os novos perdem o acesso ao Windows Update",
+    "A atualização de julho/2026 ou mais nova traz os novos (Windows 10, 11 e Server 2022). No 11 24H2 e no Server 2025 vale a de setembro/2025; o 25H2 não exige nada",
+    "Server 2016, Server 2019 e Windows 10 LTSC 2019 têm prazo até 17/05/2027. WSUS não é afetado. Versões sem suporte devem migrar para uma com suporte"
+  ],
+  "fecho": "Confira a versão e a data da última atualização de cada PC e servidor antes do prazo.",
+  "motivo": "Aviso oficial da Microsoft com prazo claro: PCs e servidores esquecidos ou fora de suporte podem perder o Windows Update.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/windows/release-health/windows-message-center"
+    ],
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/microsoft/microsoft-outdated-windows-devices-will-lose-security-protection-next-year/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "monitor",
+        "nuvem",
+        "engrenagens"
+      ],
+      "legenda": "WINDOWS UPDATE · ATUALIZE ANTES DE 2027"
+    },
+    "titulo_branco": "Windows Update:",
+    "titulo_destaque": "certificados vencem em 2027",
+    "historia": "A Microsoft avisou que os certificados do Windows Update vencem em 2027. Sem os novos, o PC perde o acesso ao serviço. A atualização de julho de 2026 ou mais nova traz os novos na maioria das versões.",
+    "licoes": [
+      [
+        "Confira as versões",
+        "Veja a versão do Windows e a data da última atualização de cada PC e servidor."
+      ],
+      [
+        "Atualize já",
+        "Instale a atualização de julho de 2026 ou mais nova (no 11 24H2: setembro de 2025)."
+      ],
+      [
+        "Sem suporte, migre",
+        "Versões sem suporte do Windows devem migrar para uma versão com suporte."
+      ]
+    ],
+    "pergunta": "Você sabe qual versão do Windows cada PC da empresa usa?",
+    "hashtags": [
+      "#Windows",
+      "#Microsoft",
+      "#Atualizacoes",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
