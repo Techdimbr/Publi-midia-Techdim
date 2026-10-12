@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:23",
+    "tema": "dica",
+    "titulo": "Desligar funcionário no Microsoft 365: 7 passos para cortar o acesso sem perder dados",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h23-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135579913390486",
+      "instagram": "https://www.instagram.com/p/DeZwwuyjRX6/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515462138870571008/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135579913390486",
+      "instagram": "18039008705838867",
+      "linkedin": "urn:li:share:7515462138870571008"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

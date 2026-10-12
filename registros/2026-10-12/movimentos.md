@@ -28,3 +28,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:09 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeZageqDIXE/) |
 | 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 11:09 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18113770217116916 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4006350033682772904) |
+| 14:23 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38283822634) |
+| 14:23 | 🗓️ planejado | Conhecimento |  | pauta: Desligar funcionário no Microsoft 365: 7 passos para cortar o acesso sem perder dados — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:23 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7515462138870571008 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7515462138870571008/) |
+| 14:23 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122135579913390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135579913390486) |
+| 14:23 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135579913390486) |
+| 14:23 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | instagram | id 18039008705838867 | disparo manual |  | [abrir](https://www.instagram.com/p/DeZwwuyjRX6/) |
+| 14:23 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeZwwuyjRX6/) |
