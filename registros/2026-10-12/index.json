@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "Bricksforge CVE-2026-85097: falha crítica em plugin do WordPress já é explorada",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135501727390486",
+      "instagram": "https://www.instagram.com/p/DeZageqDIXE/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4006350033682772904",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515413210103996416/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135501727390486",
+      "instagram": "17922396900435750",
+      "instagram_stories": "18113770217116916",
+      "linkedin": "urn:li:share:7515413210103996416"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

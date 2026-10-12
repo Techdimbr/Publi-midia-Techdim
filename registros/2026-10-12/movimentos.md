@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:00 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeZE1bRjwj-/) |
 | 08:00 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 08:00 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18117645268771138 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4006254710113772854) |
+| 11:09 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38260742150) |
+| 11:09 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: Bricksforge CVE-2026-85097: falha crítica em plugin do WordPress já é explorada — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7515413210103996416 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7515413210103996416/) |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122135501727390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135501727390486) |
+| 11:09 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135501727390486) |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 17922396900435750 | disparo manual |  | [abrir](https://www.instagram.com/p/DeZageqDIXE/) |
+| 11:09 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DeZageqDIXE/) |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18113770217116916 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4006350033682772904) |
