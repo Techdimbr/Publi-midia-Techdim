@@ -51,3 +51,5 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 17:24 | ✅ publicado | TECHDIM · Serviços | instagram | id 18114081098157437 | disparo manual |  | [abrir](https://www.instagram.com/p/DeaFaopoKZ3/) |
 | 19:04 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38314473379) |
 | 19:04 | ⚠️ pulado | Cibersegurança · IA · Hacker |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38314473379) |
+| 20:39 | ▶️ iniciado | Conhecimento |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38323215950) |
+| 20:39 | ⚠️ pulado | Conhecimento |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38323215950) |
