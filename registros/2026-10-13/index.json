@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "08:00",
+    "tema": "noticias",
+    "titulo": "Gemini Enterprise processará dados no Brasil a partir de 15/10 com o Gemini 3.5 Flash",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h00-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135752791390486",
+      "instagram": "https://www.instagram.com/p/DebpqtHoOON/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4006979700542866217",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515727990455099394/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135752791390486",
+      "instagram": "18096206594542243",
+      "instagram_stories": "18078074831743762",
+      "linkedin": "urn:li:share:7515727990455099394"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
