@@ -40,3 +40,5 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 14:24 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DecVmBPmLZX/) |
 | 15:13 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38444914458) |
 | 15:13 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38444914458) |
+| 17:11 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38460807399) |
+| 17:11 | ⚠️ pulado | Cibersegurança · IA · Hacker |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38460807399) |
