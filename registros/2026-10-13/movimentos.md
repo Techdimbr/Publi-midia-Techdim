@@ -28,3 +28,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:08 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/Deb_NFTjvo4/) |
 | 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 11:08 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18129026929886290 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4007074391829436807) |
+| 14:24 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38438224474) |
+| 14:24 | 🗓️ planejado | Conhecimento |  | pauta: Restaurar o OneDrive: desfaça em 5 passos o estrago de ransomware ou exclusão em massa — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:24 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7515824591458717696 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7515824591458717696/) |
+| 14:24 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122135820759390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135820759390486) |
+| 14:24 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135820759390486) |
+| 14:24 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | instagram | id 18425835787150517 | disparo manual |  | [abrir](https://www.instagram.com/p/DecVmBPmLZX/) |
+| 14:24 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DecVmBPmLZX/) |
