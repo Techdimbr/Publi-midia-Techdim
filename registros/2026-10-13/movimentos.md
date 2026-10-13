@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:00 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DebpqtHoOON/) |
 | 08:00 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 08:00 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18078074831743762 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4006979700542866217) |
+| 11:08 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38410679963) |
+| 11:08 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: SonicWall SMA 1000 CVE-2026-102255: falha nota 10 já sofre tentativas de ataque — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7515775368759402496 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7515775368759402496/) |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122135793261390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135793261390486) |
+| 11:08 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122135793261390486) |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 18128354269868061 | disparo manual |  | [abrir](https://www.instagram.com/p/Deb_NFTjvo4/) |
+| 11:08 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/Deb_NFTjvo4/) |
+| 11:08 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
+| 11:08 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18129026929886290 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4007074391829436807) |

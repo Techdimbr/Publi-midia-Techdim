@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:08",
+    "tema": "hacker",
+    "titulo": "SonicWall SMA 1000 CVE-2026-102255: falha nota 10 já sofre tentativas de ataque",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h08-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135793261390486",
+      "instagram": "https://www.instagram.com/p/Deb_NFTjvo4/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4007074391829436807",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515775368759402496/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135793261390486",
+      "instagram": "18128354269868061",
+      "instagram_stories": "18129026929886290",
+      "linkedin": "urn:li:share:7515775368759402496"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
