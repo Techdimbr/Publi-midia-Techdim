@@ -152,7 +152,9 @@ def main() -> int:
     if args.simular:
         print(json.dumps(corpo_do_envio(urls, chave), ensure_ascii=False, indent=2))
         return 0
-    if not args.sem_esperar and not esperar_no_ar([f"{BASE_URL}/{chave}.txt", urls[0]]):
+    # espera a chave e TODAS as páginas do envio: esperar só a primeira (a home, já no ar) avisava os
+    # buscadores antes de as páginas novas existirem e eles recebiam 404
+    if not args.sem_esperar and not esperar_no_ar([f"{BASE_URL}/{chave}.txt", *urls]):
         print("IndexNow: o site ainda não publicou a chave/páginas; tente de novo daqui a pouco", file=sys.stderr)
         return 3
     codigo = enviar(urls, chave)

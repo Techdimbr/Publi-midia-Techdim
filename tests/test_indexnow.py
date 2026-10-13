@@ -126,6 +126,19 @@ def test_esperar_no_ar_tenta_de_novo_ate_publicar(monkeypatch):
     assert indexnow.esperar_no_ar(["https://x/"], tentativas=3, intervalo=1) is False
 
 
+def test_cli_espera_todas_as_paginas_do_envio(tmp_path, monkeypatch):
+    site = site_com_git(tmp_path)
+    (site / f"{CHAVE}.txt").write_text(CHAVE, encoding="utf-8")
+    esperadas = []
+    monkeypatch.setattr(indexnow.sys, "argv", ["indexnow", "--site", str(site)])
+    monkeypatch.setattr(indexnow, "esperar_no_ar", lambda urls, *a, **k: esperadas.extend(urls) or True)
+    monkeypatch.setattr(indexnow, "enviar", lambda urls, chave: 200)
+    assert indexnow.main() == 0
+    # a página nova entra na espera, não só a primeira da lista (a home, que já estava no ar)
+    assert f"{indexnow.BASE_URL}/blog/2026-10-08/" in esperadas
+    assert f"{indexnow.BASE_URL}/{CHAVE}.txt" in esperadas
+
+
 def test_cli_simular_nao_envia_nada(tmp_path, monkeypatch, capsys):
     site = site_com_git(tmp_path)
     (site / f"{CHAVE}.txt").write_text(CHAVE, encoding="utf-8")
