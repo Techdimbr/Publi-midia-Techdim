@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "Check-up de TI: diagnóstico da infraestrutura e da segurança antes que algo pare a empresa",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135842749390486",
+      "instagram": "https://www.instagram.com/p/DecqPmymEd1/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7515870015019970560/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135842749390486",
+      "instagram": "18040383590833941",
+      "linkedin": "urn:li:share:7515870015019970560"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
