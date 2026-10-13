@@ -1,0 +1,56 @@
+{
+  "titulo": "Gemini Enterprise processará dados no Brasil a partir de 15/10 com o Gemini 3.5 Flash",
+  "pontos": [
+    "A partir de 15/10, o Gemini Enterprise na web passa a ter processamento de dados no Brasil com o Gemini 3.5 Flash, anunciou o Google Cloud no Brazil Summit",
+    "O objetivo é atender empresas com regras sobre onde processar dados e reduzir a latência. O Google diz que apoia a adequação regulatória, sem garantir conformidade",
+    "Segundo o Canaltech, vale para determinadas cargas, e a latência menor é possibilidade. O armazenamento para agentes já era no país; só o 3.5 Flash foi citado"
+  ],
+  "fecho": "Sua empresa usa IA com dados de clientes? Pergunte ao fornecedor onde cada etapa é processada.",
+  "motivo": "Empresas com regras sobre onde os dados são processados ganham uma opção no país, com escopo limitado que vale conferir antes de contar com ela.",
+  "fontes": [
+    [
+      "canaltech.com.br",
+      "https://canaltech.com.br/inteligencia-artificial/gemini-ganha-processamento-local-no-brasil-e-deve-ficar-mais-rapido/"
+    ],
+    [
+      "googlecloudpresscorner.com",
+      "https://www.googlecloudpresscorner.com/2026-09-24-Google-Cloud-Expands-in-Brazil-to-Power-the-Next-Generation-of-Agentic-AI"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "globo",
+        "chip",
+        "rack"
+      ],
+      "legenda": "PROCESSAMENTO LOCAL · DADOS NO BRASIL"
+    },
+    "titulo_branco": "Gemini Enterprise:",
+    "titulo_destaque": "processamento local em 15/10",
+    "historia": "A partir de 15/10, o Gemini Enterprise na web passa a processar dados no Brasil com o Gemini 3.5 Flash. Para quem tem regras sobre onde a informação é tratada, é uma opção com escopo que vale conferir.",
+    "licoes": [
+      [
+        "Guardar x processar",
+        "Guardar dados no país não garante que o modelo os processe aqui. Pergunte onde cada etapa acontece."
+      ],
+      [
+        "Confira o escopo",
+        "O anúncio cita o Gemini 3.5 Flash na versão web do Gemini Enterprise. Veja se o seu uso entra."
+      ],
+      [
+        "Sem garantia legal",
+        "O Google diz que o recurso apoia a adequação regulatória, mas não garante conformidade."
+      ]
+    ],
+    "pergunta": "Você sabe onde a IA da sua empresa processa os dados?",
+    "hashtags": [
+      "#GeminiEnterprise",
+      "#IAGenerativa",
+      "#LGPD",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

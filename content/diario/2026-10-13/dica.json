@@ -1,0 +1,56 @@
+{
+  "titulo": "Restaurar o OneDrive: desfaça em 5 passos o estrago de ransomware ou exclusão em massa",
+  "pontos": [
+    "Com Microsoft 365, o Restaurar o OneDrive desfaz alterações dos últimos 30 dias. Antes, passe o antivírus em todos os dispositivos da conta, para não criptografar de novo",
+    "Em onedrive.com, abra Configurações > Restaurar o OneDrive e escolha o período (ex.: Ontem) ou Data e hora personalizadas. Com ransomware detectado, a data vem sugerida",
+    "Veja o gráfico de atividades; em Data e hora personalizadas, marque a ação mais antiga a desfazer e clique em Restaurar. Arquivos criados depois vão para a lixeira"
+  ],
+  "fecho": "Seus arquivos estão no OneDrive? Aprenda o caminho de volta antes de precisar dele.",
+  "motivo": "Passo a passo oficial da Microsoft para desfazer ransomware ou exclusão em massa no OneDrive, um caminho de recuperação que pouca empresa conhece.",
+  "fontes": [
+    [
+      "support.microsoft.com",
+      "https://support.microsoft.com/pt-br/office/restaurar-o-onedrive-fa231298-759d-41cf-bcd0-25ac53eb8a15"
+    ],
+    [
+      "support.microsoft.com",
+      "https://support.microsoft.com/onedrive/how-to-detect-ransomware-and-recover-files-using-onedrive"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "nuvem",
+        "documento",
+        "escudo"
+      ],
+      "legenda": "ONEDRIVE · VOLTE NO TEMPO EM ATÉ 30 DIAS"
+    },
+    "titulo_branco": "Ransomware no OneDrive?",
+    "titulo_destaque": "volte no tempo em 5 passos",
+    "historia": "Com Microsoft 365, o OneDrive permite desfazer ações dos últimos 30 dias. Se um ransomware criptografar ou apagar seus arquivos, dá para voltar no tempo, mas só depois de limpar os PCs com antivírus.",
+    "licoes": [
+      [
+        "Limpe primeiro",
+        "Passe o antivírus em todos os dispositivos da conta. Senão, os arquivos podem ser criptografados de novo."
+      ],
+      [
+        "Escolha o período",
+        "Use Ontem ou Data e hora personalizadas. Com ransomware detectado, a data vem sugerida."
+      ],
+      [
+        "Restaure e confira",
+        "Com data personalizada, marque a ação mais antiga a desfazer. O que foi criado depois vai para a lixeira."
+      ]
+    ],
+    "pergunta": "Se um ransomware criptografar a pasta da empresa hoje, você sabe como voltar?",
+    "hashtags": [
+      "#OneDrive",
+      "#Ransomware",
+      "#Microsoft365",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "titulo": "SonicWall SMA 1000 CVE-2026-102255: falha nota 10 já sofre tentativas de ataque",
+  "pontos": [
+    "O SonicWall SMA 1000 (modelos 6210, 7210 e 8200v) tem falha nota 10 (CVE-2026-102255): sem login, o invasor faz o equipamento enviar pedidos a serviços internos",
+    "Defused Cyber e Previdian viram tentativas de exploração desde 8/10. Não se sabe se alguma deu certo. Nas reportagens, o aviso da SonicWall não citava ataques",
+    "A correção está nos hotfixes 12.4.3-03670 e 12.5.0-03082 (ou superiores). A linha SMA 100 e o SSL-VPN dos firewalls SonicWall não são afetados"
+  ],
+  "fecho": "Sua empresa usa SonicWall SMA 1000? Confira o modelo e a versão e aplique o hotfix hoje.",
+  "motivo": "Falha de gravidade máxima em equipamento de acesso remoto, com tentativas de ataque registradas e correção disponível: vale conferir hoje se há um SMA 1000 na empresa.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/critical-sonicwall-sma-1000-flaw.html"
+    ],
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/max-severity-sonicwall-sma1000-flaw-now-exploited-in-attacks/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "sonicwall · CVE-2026-102255",
+    "terminal": [
+      [
+        "$ ",
+        "alerta SNWLID-2026-0017 · SMA 1000",
+        "cmd"
+      ],
+      [
+        "",
+        "SSRF sem login · gravidade 10,0",
+        "risco"
+      ],
+      [
+        "",
+        "modelos 6210, 7210 e 8200v",
+        "txt"
+      ],
+      [
+        "",
+        "tentativas desde 8/out (Defused)",
+        "risco"
+      ],
+      [
+        "",
+        "sucesso dos ataques: não confirmado",
+        "txt"
+      ],
+      [
+        "",
+        "SMA 100 e firewalls: não afetados",
+        "ok"
+      ],
+      [
+        "$ ",
+        "aplicar hotfix 12.4.3-03670 ou 12.5.0-03082",
+        "cmd"
+      ],
+      [
+        "",
+        "ou superior = corrigido",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Falha nota 10",
+    "titulo_destaque": "no SonicWall SMA 1000",
+    "historia": "O acesso remoto SonicWall SMA 1000 tem falha nota 10: sem login, o invasor faz o equipamento enviar pedidos a serviços internos. Há tentativas de ataque desde 8/10. Aplique o hotfix da SonicWall.",
+    "licoes": [
+      [
+        "Veja se você usa",
+        "Confira se há um SMA 1000 (6210, 7210 ou 8200v) na empresa. SMA 100 e firewalls não são afetados."
+      ],
+      [
+        "Aplique o hotfix",
+        "Instale o 12.4.3-03670 ou o 12.5.0-03082 (ou superior). As reportagens só citam a atualização."
+      ],
+      [
+        "Acompanhe o aviso",
+        "Veja o SNWLID-2026-0017: nas reportagens, a SonicWall ainda não o atualizara com os ataques."
+      ]
+    ],
+    "pergunta": "Quem na sua empresa acompanha os avisos de segurança da rede?",
+    "hashtags": [
+      "#SonicWall",
+      "#AcessoRemoto",
+      "#Seguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

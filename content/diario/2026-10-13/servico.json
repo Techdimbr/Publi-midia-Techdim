@@ -1,0 +1,47 @@
+{
+  "titulo": "Check-up de TI: diagnóstico da infraestrutura e da segurança antes que algo pare a empresa",
+  "pontos": [
+    "Você faz check-up antes de sentir dor? A TI também precisa: o diagnóstico mostra o que está frágil antes de virar parada, perda de dados ou invasão",
+    "A TECHDIM levanta a rede, os servidores e os dispositivos da empresa e entrega um relatório com os riscos ordenados por impacto",
+    "Com o relatório, você decide o que corrigir primeiro: o plano de correção segue a ordem de prioridade, para investir antes no que mais pesa"
+  ],
+  "fecho": "Quer saber onde sua TI está exposta? Fale com a TECHDIM: www.techdim.com.br",
+  "motivo": "Apresenta o diagnóstico de infraestrutura e segurança com a analogia do check-up médico, sem promessas de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "notebook",
+        "monitor",
+        "grafico"
+      ],
+      "legenda": "CHECK-UP DE TI · RISCOS À VISTA"
+    },
+    "titulo_branco": "Check-up de TI:",
+    "titulo_destaque": "veja os riscos antes da pane",
+    "historia": "Ninguém espera a dor para fazer um check-up. Na TI é igual: um diagnóstico da rede, dos servidores e da segurança mostra o que está frágil antes da parada. A TECHDIM ajuda a enxergar os riscos.",
+    "licoes": [
+      [
+        "Levantamento",
+        "Rede, servidores e dispositivos da empresa, mapeados em um só lugar."
+      ],
+      [
+        "Riscos priorizados",
+        "Um relatório que mostra o que está mais exposto, ordenado por impacto."
+      ],
+      [
+        "Plano de correção",
+        "Você decide o que corrigir primeiro, com um plano em ordem de prioridade."
+      ]
+    ],
+    "pergunta": "Quando foi o último check-up da TI da sua empresa?",
+    "hashtags": [
+      "#DiagnosticoDeTI",
+      "#Infraestrutura",
+      "#Seguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
