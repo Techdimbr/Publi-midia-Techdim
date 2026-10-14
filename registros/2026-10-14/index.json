@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "Windows Shell CVE-2026-96951: falha explorada burla o aviso de arquivos da internet",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136033963390486",
+      "instagram": "https://www.instagram.com/p/DeekCPeFAmx/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4007799358594808914",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516137841622605824/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136033963390486",
+      "instagram": "18087877823286270",
+      "instagram_stories": "17993657286058469",
+      "linkedin": "urn:li:share:7516137841622605824"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
