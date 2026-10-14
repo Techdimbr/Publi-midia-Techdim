@@ -1,0 +1,91 @@
+{
+  "titulo": "Windows Shell CVE-2026-96951: falha explorada burla o aviso de arquivos da internet",
+  "pontos": [
+    "A Microsoft corrigiu no Patch Tuesday de outubro a CVE-2026-96951, no Windows Shell, já explorada: ela burla o Mark of the Web e o arquivo abre sem o aviso de perigo",
+    "O ataque exige que a pessoa abra o arquivo, que pode vir por e-mail, Teams, Slack ou download. Não há atribuição confirmada nem detalhes da exploração",
+    "O pacote tem mais de 1.400 correções, recorde. Segundo o BleepingComputer, o Windows 11 24H2 Home e Pro encerra o suporte com esta atualização"
+  ],
+  "fecho": "Instale as atualizações de outubro nos PCs e confira quais ainda estão no Windows 11 24H2.",
+  "motivo": "Falha do Windows já explorada, com correção no pacote de outubro: afeta qualquer empresa com PCs Windows e a defesa é atualizar.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/microsoft/microsoft-october-2026-patch-tuesday-fixes-1-411-flaws-3-zero-days/"
+    ],
+    [
+      "helpnetsecurity.com",
+      "https://www.helpnetsecurity.com/2026/10/14/microsoft-patch-tuesday-cve-2026-96951-motw-bypass/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "windows · CVE-2026-96951",
+    "terminal": [
+      [
+        "$ ",
+        "patch tuesday · outubro de 2026",
+        "cmd"
+      ],
+      [
+        "",
+        "Windows Shell · CVE-2026-96951",
+        "risco"
+      ],
+      [
+        "",
+        "burla o Mark of the Web (aviso)",
+        "risco"
+      ],
+      [
+        "",
+        "explorada em ataques reais",
+        "risco"
+      ],
+      [
+        "",
+        "exige abrir o arquivo (e-mail, Teams)",
+        "txt"
+      ],
+      [
+        "",
+        "sem atribuição confirmada",
+        "txt"
+      ],
+      [
+        "$ ",
+        "instalar as atualizações de outubro",
+        "cmd"
+      ],
+      [
+        "",
+        "corrigida no pacote do Patch Tuesday",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Windows Shell:",
+    "titulo_destaque": "falha explorada burla o aviso",
+    "historia": "A Microsoft corrigiu uma falha do Windows Shell já explorada: ela burla o Mark of the Web, e o arquivo da internet abre sem o aviso de perigo. Instale as atualizações de outubro.",
+    "licoes": [
+      [
+        "Atualize os PCs",
+        "Instale as atualizações de outubro do Windows. A falha CVE-2026-96951 já é explorada."
+      ],
+      [
+        "Cuidado com arquivos",
+        "Ela exige abrir o arquivo, vindo de e-mail, Teams, Slack ou site. Desconfie dos inesperados."
+      ],
+      [
+        "Veja a versão",
+        "O Windows 11 24H2 Home e Pro saiu de suporte. Confira os PCs e migre para versão com suporte."
+      ]
+    ],
+    "pergunta": "Quem na sua empresa instala as atualizações do Windows quando elas saem?",
+    "hashtags": [
+      "#Windows",
+      "#PatchTuesday",
+      "#Seguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

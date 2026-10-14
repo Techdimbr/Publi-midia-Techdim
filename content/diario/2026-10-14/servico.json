@@ -1,0 +1,47 @@
+{
+  "titulo": "Migração de servidor: planeje a troca antes que o suporte do Windows Server 2016 acabe",
+  "pontos": [
+    "Quem muda de casa etiqueta as caixas, combina o caminhão e guarda a chave antiga. Migrar servidor é igual, e o suporte do Windows Server 2016 acaba em janeiro de 2027",
+    "A TECHDIM planeja a migração com janela combinada fora do horário comercial e valida o ambiente novo antes de virar a chave",
+    "O plano de volta fica escrito antes de começar, e a equipe acompanha os primeiros dias de uso do servidor novo"
+  ],
+  "fecho": "Seu servidor está ficando velho? Fale com a TECHDIM: www.techdim.com.br",
+  "motivo": "Apresenta o serviço de migração de servidor com a analogia da mudança de casa e o fim do suporte do Windows Server 2016 (Microsoft Lifecycle), sem promessas de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "notebook"
+      ],
+      "legenda": "MIGRAÇÃO PLANEJADA · COM PLANO DE VOLTA"
+    },
+    "titulo_branco": "Migração de servidor:",
+    "titulo_destaque": "com plano de volta escrito",
+    "historia": "Ninguém muda de casa sem etiquetar as caixas e guardar a chave antiga. Com servidor é igual: janela combinada, ambiente novo testado antes da troca e plano de volta escrito. A TECHDIM ajuda a planejar.",
+    "licoes": [
+      [
+        "Planeje a janela",
+        "Combine a troca fora do horário comercial, para atrapalhar o mínimo possível."
+      ],
+      [
+        "Teste antes",
+        "O ambiente novo é validado antes da virada, não depois."
+      ],
+      [
+        "Tenha plano de volta",
+        "Se algo falhar, o plano de retorno já está escrito e pronto para uso."
+      ]
+    ],
+    "pergunta": "Seu servidor está perto do fim do suporte? Já existe plano de troca?",
+    "hashtags": [
+      "#MigracaoDeServidor",
+      "#WindowsServer",
+      "#Infraestrutura",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

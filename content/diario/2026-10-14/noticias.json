@@ -1,0 +1,56 @@
+{
+  "titulo": "Totvs apresenta o Corten: gestão com mais de 30 agentes de IA e supervisão humana",
+  "pontos": [
+    "Na terça (13/10), a Totvs apresentou o Corten, um “sistema operacional de gestão” que reúne backoffice, clientes, serviços financeiros, nuvem e IA em uma só interface",
+    "São mais de 30 agentes de IA, criados sobre o Lynn, para tarefas como faturamento e conciliação. Agem nos sistemas com permissão e há supervisão humana quando necessário",
+    "Preços e prazos não foram detalhados: cada produto segue seu roadmap. O Totvs Pay, de pagamentos, chega em dezembro para educação e construção civil, segundo o Baguete"
+  ],
+  "fecho": "Usa ERP e quer agentes de IA? Pergunte quais tarefas o agente faz e quem aprova pagamentos.",
+  "motivo": "Fornecedora de ERP com mais de 70 mil clientes leva agentes de IA para dentro da gestão, e vale entender permissões, aprovação humana, custos e prazos antes de adotar.",
+  "fontes": [
+    [
+      "itforum.com.br",
+      "https://itforum.com.br/noticias/totvs-corten-agentes-ia-erp/"
+    ],
+    [
+      "baguete.com.br",
+      "https://www.baguete.com.br/noticias/totvs-define-o-futuro-do-seu-erp"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "chip",
+        "engrenagens",
+        "grafico"
+      ],
+      "legenda": "AGENTES DE IA NA GESTÃO · COM SUPERVISÃO"
+    },
+    "titulo_branco": "Totvs Corten:",
+    "titulo_destaque": "mais de 30 agentes de IA",
+    "historia": "A Totvs apresentou o Corten, que reúne gestão, finanças, nuvem e IA em uma só interface, com mais de 30 agentes para tarefas como faturamento e conciliação. Eles agem com permissão e supervisão humana.",
+    "licoes": [
+      [
+        "Defina permissões",
+        "Agentes agem nos sistemas só com permissão. Liste o que cada um pode ver e fazer."
+      ],
+      [
+        "Mantenha a aprovação",
+        "Pagamentos e contratações podem seguir com uma pessoa. Defina quem aprova cada tarefa."
+      ],
+      [
+        "Custos e prazos",
+        "Preços e prazos não saíram. Peça o roadmap e a forma de cobrança antes de decidir."
+      ]
+    ],
+    "pergunta": "Quem aprovaria o que um agente de IA fizer na sua empresa?",
+    "hashtags": [
+      "#Totvs",
+      "#AgentesDeIA",
+      "#ERP",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

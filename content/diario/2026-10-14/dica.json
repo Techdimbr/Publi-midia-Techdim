@@ -1,0 +1,56 @@
+{
+  "titulo": "Encaminhamento automático de e-mail: como bloquear no Google Workspace e no Microsoft 365",
+  "pontos": [
+    "No Google Workspace: Admin Console > Apps > Google Workspace > Gmail > Acesso do usuário final > Encaminhamento automático (exige o privilégio Configurações do Gmail)",
+    "Desmarque Permitir que os usuários encaminhem automaticamente e-mails recebidos, ou deixe só endereços internos, e clique em Salvar. O padrão vem ativado",
+    "No Microsoft 365: Defender > Email & collaboration > Policies & rules > Threat policies > Anti-spam > política de saída > Automatic forwarding rules > Off"
+  ],
+  "fecho": "Seu e-mail corporativo permite encaminhar para fora? Confira hoje e feche essa porta.",
+  "motivo": "Passo a passo oficial para controlar o encaminhamento automático de e-mail para fora da empresa, que pode vazar informações, no Google Workspace e no Microsoft 365.",
+  "fontes": [
+    [
+      "knowledge.workspace.google.com",
+      "https://knowledge.workspace.google.com/admin/gmail/let-users-automatically-forward-their-own-gmail-emails?hl=pt-BR"
+    ],
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/pt-br/defender-office-365/outbound-spam-policies-external-email-forwarding"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "documento",
+        "globo",
+        "escudo"
+      ],
+      "legenda": "E-MAIL SEGURO · SEM ENCAMINHAR PARA FORA"
+    },
+    "titulo_branco": "E-mail sendo",
+    "titulo_destaque": "encaminhado para fora?",
+    "historia": "O e-mail da empresa pode sair sozinho por encaminhamento automático, o que pode vazar informações. Dá para desativar no Google Workspace ou limitar a endereços internos, e há opção equivalente no Microsoft 365.",
+    "licoes": [
+      [
+        "Veja o padrão",
+        "No Google Workspace o encaminhamento automático vem ativado. Confira como está o seu."
+      ],
+      [
+        "Bloqueie ou limite",
+        "Desmarque a opção ou permita só endereços internos. Dá para aplicar por equipe."
+      ],
+      [
+        "Microsoft 365",
+        "Na política anti-spam de saída, use Automatic forwarding rules > Off - Forwarding is disabled."
+      ]
+    ],
+    "pergunta": "Você sabe quais caixas da empresa encaminham e-mail para fora?",
+    "hashtags": [
+      "#GoogleWorkspace",
+      "#Microsoft365",
+      "#Seguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
