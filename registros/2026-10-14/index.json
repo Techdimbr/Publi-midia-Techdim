@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:23",
+    "tema": "servico",
+    "titulo": "Migração de servidor: planeje a troca antes que o suporte do Windows Server 2016 acabe",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h23-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136086181390486",
+      "instagram": "https://www.instagram.com/p/DefO8GQl-Fr/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516232188246405121/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136086181390486",
+      "instagram": "17912614332512981",
+      "linkedin": "urn:li:share:7516232188246405121"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
