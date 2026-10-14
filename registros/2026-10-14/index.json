@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "07:59",
+    "tema": "noticias",
+    "titulo": "Totvs apresenta o Corten: gestão com mais de 30 agentes de IA e supervisão humana",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "07h59-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122135997171390486",
+      "instagram": "https://www.instagram.com/p/DeeOYg_lCFK/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4007704102679360619",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516090231775756288/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122135997171390486",
+      "instagram": "18145153846583167",
+      "instagram_stories": "18013128164971941",
+      "linkedin": "urn:li:share:7516090231775756288"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
