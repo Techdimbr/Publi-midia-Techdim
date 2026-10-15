@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "Ataque a geladeiras de supermercados na França: firmware desatualizado abriu a porta",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136277011390486",
+      "instagram": "https://www.instagram.com/p/DehI1FNF354/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4008524105410657396",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516500236719001601/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136277011390486",
+      "instagram": "18106806119245864",
+      "instagram_stories": "18435525106178107",
+      "linkedin": "urn:li:share:7516500236719001601"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
