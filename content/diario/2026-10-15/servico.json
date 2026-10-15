@@ -1,0 +1,47 @@
+{
+  "titulo": "LGPD: incidente com risco relevante pede aviso à ANPD em 3 dias úteis; tenha plano pronto",
+  "pontos": [
+    "Nota fiscal você sabe onde está, por que guarda e por quanto tempo. Com dados pessoais, a LGPD pede a mesma organização: mapa de dados, base legal e prazo de guarda",
+    "Se um incidente puder causar risco ou dano relevante aos titulares, o controlador comunica a ANPD em até 3 dias úteis (Resolução CD/ANPD nº 15/2024)",
+    "A TECHDIM ajuda a mapear os dados, documentar base legal e retenção, montar o canal do titular e o plano de resposta a incidente, e a implantar os controles técnicos"
+  ],
+  "fecho": "Sua empresa sabe onde estão os dados dos clientes? Fale com a TECHDIM: www.techdim.com.br",
+  "motivo": "Apresenta o serviço de adequação à LGPD com a analogia da nota fiscal e o prazo oficial de comunicação de incidente da ANPD, sem promessas de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "documento",
+        "escudo",
+        "grafico"
+      ],
+      "legenda": "LGPD NA PRÁTICA · DADOS ORGANIZADOS"
+    },
+    "titulo_branco": "LGPD na prática:",
+    "titulo_destaque": "organize antes do incidente",
+    "historia": "Você sabe onde está cada nota fiscal e por quanto tempo a guarda. Com dados pessoais é igual: mapa, base legal e plano de incidente. Com risco relevante, a ANPD pede aviso em 3 dias úteis. A TECHDIM ajuda.",
+    "licoes": [
+      [
+        "Mapeie os dados",
+        "Liste quais dados pessoais a empresa coleta, onde ficam e quem acessa."
+      ],
+      [
+        "Documente a base",
+        "Registre por que cada dado é tratado e por quanto tempo será guardado."
+      ],
+      [
+        "Prepare o incidente",
+        "Defina plano e responsável: com risco relevante, a ANPD pede aviso em 3 dias úteis."
+      ]
+    ],
+    "pergunta": "Se houvesse um vazamento hoje, sua empresa saberia quem faz o quê?",
+    "hashtags": [
+      "#LGPD",
+      "#ProtecaoDeDados",
+      "#ANPD",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

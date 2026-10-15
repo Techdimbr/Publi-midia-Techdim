@@ -1,0 +1,56 @@
+{
+  "titulo": "SSH com chave em vez de senha: proteja o acesso ao servidor Linux em 5 passos",
+  "pontos": [
+    "No seu PC, gere o par de chaves com ssh-keygen -t ed25519 e envie a pública ao servidor com ssh-copy-id usuario@servidor. Confirme que o login por chave funciona",
+    "No servidor, use PasswordAuthentication no e KbdInteractiveAuthentication no em /etc/ssh/sshd_config. O OpenSSH vale o primeiro valor: confira sshd_config.d",
+    "Rode sudo sshd -t, mantenha uma sessão aberta e reinicie (Ubuntu: sudo systemctl restart ssh.service). Teste um novo login: erro de configuração pode trancar você fora"
+  ],
+  "fecho": "Seu servidor Linux ainda aceita senha no SSH? Troque por chave, com uma sessão aberta de segurança.",
+  "motivo": "Passo a passo baseado na documentação oficial do OpenSSH e da Ubuntu para acessar servidores Linux por chave SSH, em vez de senha.",
+  "fontes": [
+    [
+      "ubuntu.com",
+      "https://ubuntu.com/server/docs/how-to/security/openssh-server/"
+    ],
+    [
+      "man.openbsd.org",
+      "https://man.openbsd.org/sshd_config"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "notebook",
+        "rack",
+        "escudo"
+      ],
+      "legenda": "SSH POR CHAVE · SERVIDOR LINUX MAIS SEGURO"
+    },
+    "titulo_branco": "Servidor Linux:",
+    "titulo_destaque": "troque a senha do SSH por chave",
+    "historia": "O SSH é a porta de entrada dos servidores Linux. Gere uma chave, copie a pública para o servidor, desative a senha e teste com uma sessão aberta. A chave privada fica só com você.",
+    "licoes": [
+      [
+        "Gere e envie a chave",
+        "Use ssh-keygen -t ed25519 e ssh-copy-id para colocar a chave pública no servidor."
+      ],
+      [
+        "Desligue a senha",
+        "Defina PasswordAuthentication no. Vale o primeiro valor: veja também sshd_config.d."
+      ],
+      [
+        "Teste sem se trancar",
+        "Valide com sshd -t e teste um novo login antes de fechar a sessão aberta."
+      ]
+    ],
+    "pergunta": "Quantos servidores da sua empresa ainda aceitam senha no SSH?",
+    "hashtags": [
+      "#SSH",
+      "#Linux",
+      "#Hardening",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "titulo": "Ataque a geladeiras de supermercados na França: firmware desatualizado abriu a porta",
+  "pontos": [
+    "Hackers elevaram a temperatura de geladeiras de centenas de supermercados na França para até 50 °C, estragando alimentos e provocando incêndios em algumas lojas",
+    "A fabricante Danfoss diz que os equipamentos usavam firmware desatualizado. Segundo fonte do governo, a ANSSI achou falha no software; ninguém assumiu o ataque",
+    "A lição vale para qualquer equipamento conectado: atualize o firmware, troque o que perdeu suporte, segmente a rede e controle o acesso remoto"
+  ],
+  "fecho": "Sua empresa tem geladeira, câmera ou ar-condicionado na rede? Confira o firmware e quem acessa de fora.",
+  "motivo": "Caso real de ataque a equipamentos conectados por causa de firmware desatualizado, com lições diretas para varejo, restaurantes e qualquer empresa com dispositivos na rede.",
+  "fontes": [
+    [
+      "aljazeera.com",
+      "https://aljazeera.com/news/2026/10/13/unprecedented-cyberattack-hits-french-supermarkets-causing-food-losses"
+    ],
+    [
+      "convergenciadigital.com.br",
+      "https://convergenciadigital.com.br/mercado/software-desatualizado-abriu-frente-para-ataques-em-larga-escala-de-hackers-aos-supermercados-na-franca/"
+    ],
+    [
+      "itforum.com.br",
+      "https://itforum.com.br/noticias/ataque-cibernetico-temperatura-supermercados/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "refrigeração · supermercados",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · refrigeração de supermercados",
+        "cmd"
+      ],
+      [
+        "",
+        "temperatura forçada até 50 °C",
+        "risco"
+      ],
+      [
+        "",
+        "centenas de lojas na França",
+        "risco"
+      ],
+      [
+        "",
+        "firmware desatualizado (Danfoss)",
+        "risco"
+      ],
+      [
+        "",
+        "sem autoria assumida · em investigação",
+        "txt"
+      ],
+      [
+        "$ ",
+        "conferir o firmware dos equipamentos",
+        "cmd"
+      ],
+      [
+        "",
+        "trocar o que perdeu suporte",
+        "ok"
+      ],
+      [
+        "",
+        "segmentar a rede · limitar acesso remoto",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Geladeiras atacadas:",
+    "titulo_destaque": "firmware velho abriu a porta",
+    "historia": "Hackers forçaram geladeiras de centenas de supermercados franceses a até 50 °C. A Danfoss diz que os equipamentos usavam firmware desatualizado. A lição vale para qualquer equipamento ligado à rede.",
+    "licoes": [
+      [
+        "Atualize o firmware",
+        "Câmeras, refrigeração e ar-condicionado também precisam de atualização, não só os PCs."
+      ],
+      [
+        "Troque o que parou",
+        "Equipamento sem suporte do fabricante não recebe correção. Planeje a troca."
+      ],
+      [
+        "Isole e controle",
+        "Separe esses equipamentos do resto da rede e limite o acesso remoto."
+      ]
+    ],
+    "pergunta": "Quais equipamentos conectados da sua empresa ninguém atualiza?",
+    "hashtags": [
+      "#IoT",
+      "#Firmware",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

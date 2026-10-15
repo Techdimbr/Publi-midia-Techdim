@@ -1,0 +1,56 @@
+{
+  "titulo": "Windows 11: Remote Desktop pode falhar para usuários comuns após atualização (0xC000000D)",
+  "pontos": [
+    "A Microsoft confirmou: após a prévia de 22/09 (KB5124010) ou atualizações seguintes, usuários comuns podem falhar ao conectar por Remote Desktop, com o erro 0xC000000D",
+    "Atinge o Windows 11 (24H2, 25H2, 26H1 e 26H2) com Administrator protection ligado, sobretudo PCs de empresas. As linhas de base da Microsoft já o ativam por padrão",
+    "Solução alternativa: desligar o Administrator protection por política (Intune ou GPO). A correção virá em atualização futura, sem data; avalie o risco antes de desligar"
+  ],
+  "fecho": "Usa Remote Desktop em PCs com Windows 11? Teste o acesso de um usuário comum antes de atualizar todos.",
+  "motivo": "Aviso oficial da Microsoft sobre falha de acesso remoto após atualização, com solução alternativa para quem administra PCs com Windows 11.",
+  "fontes": [
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-25h2"
+    ],
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/microsoft-recent-windows-updates-may-trigger-remote-desktop-failures/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "monitor",
+        "globo",
+        "engrenagens"
+      ],
+      "legenda": "REMOTE DESKTOP · TESTE ANTES DE ATUALIZAR"
+    },
+    "titulo_branco": "Remote Desktop:",
+    "titulo_destaque": "falha para usuário comum",
+    "historia": "Atualizações recentes do Windows 11 podem impedir usuários comuns de conectar por Remote Desktop (erro 0xC000000D) quando o Administrator protection está ligado. A correção ainda não tem data.",
+    "licoes": [
+      [
+        "Veja se afeta você",
+        "Vale para o Windows 11 com Administrator protection ligado, comum em PCs com as linhas de base da Microsoft."
+      ],
+      [
+        "Teste antes",
+        "Antes de atualizar todos os PCs, teste a conexão por Remote Desktop com um usuário comum."
+      ],
+      [
+        "Solução alternativa",
+        "Se afetar, a Microsoft indica desligar o Administrator protection por política (Intune ou GPO)."
+      ]
+    ],
+    "pergunta": "Quem acessa seus PCs por Remote Desktop é administrador ou usuário comum?",
+    "hashtags": [
+      "#Windows11",
+      "#RemoteDesktop",
+      "#Microsoft",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
