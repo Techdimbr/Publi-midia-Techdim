@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "LGPD: incidente com risco relevante pede aviso à ANPD em 3 dias úteis; tenha plano pronto",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136342405390486",
+      "instagram": "https://www.instagram.com/p/Dehz2xhktaX/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516594788540846080/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136342405390486",
+      "instagram": "18109826078185005",
+      "linkedin": "urn:li:share:7516594788540846080"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
