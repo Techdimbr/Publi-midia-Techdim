@@ -49,8 +49,10 @@ jobs:
             "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/assets
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          python src/apagar.py --dest /tmp/assets --posts "$POSTS" --motivo "$MOTIVO"
-          rc=$?
+          # o shell do Actions roda com -e: sem o "|| rc=$?" uma falha abortaria aqui e o diário da rodada
+          # (inclusive o que foi apagado com sucesso) nunca chegaria ao branch assets
+          rc=0
+          python src/apagar.py --dest /tmp/assets --posts "$POSTS" --motivo "$MOTIVO" || rc=$?
           cd /tmp/assets
           git add registros
           git commit -q -m "apagou: $(TZ=America/Sao_Paulo date +'%F %H:%M')" || exit $rc

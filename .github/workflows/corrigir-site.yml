@@ -75,8 +75,10 @@ jobs:
           [ -n "$POSTS" ] && args+=(--so "$POSTS")
           [ "$LIMITE" != "0" ] && args+=(--limite "$LIMITE")
           [ -n "$DESFAZER" ] && args+=(--desfazer "$DESFAZER")
-          python src/corrigir_site.py "${args[@]}"
-          rc=$?
+          # o shell do Actions roda com -e: sem o "|| rc=$?" uma falha abortaria aqui e o backup e o diário
+          # da rodada nunca chegariam ao branch assets
+          rc=0
+          python src/corrigir_site.py "${args[@]}" || rc=$?
           cd /tmp/assets
           git add registros
           git commit -q -m "corrigir site: $(TZ=America/Sao_Paulo date +'%F %H:%M')" || exit $rc
