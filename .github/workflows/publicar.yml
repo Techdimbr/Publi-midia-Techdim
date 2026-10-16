@@ -31,7 +31,7 @@ on:
         description: "Tema a publicar"
         required: true
         type: choice
-        options: [noticias, hacker, dica, servico, destaque, especial]
+        options: [noticias, hacker, dica, servico, destaque, especial, video]
       redes:
         description: "Redes (vazio = todas do tema)"
         required: false
@@ -56,6 +56,10 @@ on:
         required: false
         type: boolean
         default: false
+      video:
+        description: "tema=video: nome da pauta em content/videos/<nome>.json (o MP4 vem do branch assets)"
+        required: false
+        type: string
 
 concurrency:
   group: publicar
@@ -98,7 +102,7 @@ jobs:
             *)             tema="$TEMA_INFORMADO" ;;
           esac
           case "$tema" in
-            noticias|hacker|dica|servico|destaque|especial) ;;
+            noticias|hacker|dica|servico|destaque|especial|video) ;;
             *) echo "::error::tema inválido ou ausente: '$tema'"; exit 1 ;;
           esac
           echo "tema=$tema" >> "$GITHUB_OUTPUT"
@@ -138,6 +142,21 @@ jobs:
             echo "O tema $TEMA já saiu hoje em todas as redes: execução ignorada." | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
+      # Vídeo não entra no histórico do código: fica no branch assets (videos/AAAA-MM-DD/...) e
+      # é trazido para out/ aqui, onde o gerador e o publicador o esperam.
+      - name: Buscar o vídeo no branch assets
+        if: ${{ steps.tema.outputs.tema == 'video' && steps.dup.outputs.pular != 'true' }}
+        env:
+          PYTHONPATH: src
+          VIDEO: ${{ inputs.video }}
+        run: |
+          set -euo pipefail
+          arquivo=$(python src/video.py arquivo "$VIDEO")
+          git fetch -q --depth 1 origin assets
+          mkdir -p "out/$(dirname "$arquivo")"
+          git show "FETCH_HEAD:$arquivo" > "out/$arquivo"
+          ls -l "out/$arquivo"
+
       - name: Gerar conteúdo e imagens
         if: ${{ steps.dup.outputs.pular != 'true' }}
         env:
@@ -147,6 +166,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           SO_GEMINI: ${{ inputs.so_gemini }}
+          VIDEO: ${{ inputs.video }}
           TEMA: ${{ steps.tema.outputs.tema }}
           REDES: ${{ steps.dup.outputs.redes }}
         run: python src/main.py generate --theme "$TEMA" --networks "$REDES"
@@ -169,7 +189,9 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: imagens-${{ steps.tema.outputs.tema }}-${{ github.run_id }}
-          path: out/
+          path: |
+            out/
+            !out/videos/**
           retention-days: 14
 
       - name: Publicar as imagens no branch de assets
@@ -208,7 +230,8 @@ jobs:
             fi
           done
 
-          cp -r out/posts /tmp/assets/
+          # vídeo já mora no branch assets (videos/...), não há out/posts
+          if [ -d out/posts ]; then cp -r out/posts /tmp/assets/; fi
           git -C /tmp/assets add -A
           git -C /tmp/assets commit -m "assets: $TEMA $(date -u +%F)" || {
             echo "nada novo para commitar"; exit 0; }

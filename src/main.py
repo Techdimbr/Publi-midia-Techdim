@@ -22,6 +22,7 @@ import gemini
 import movimentos
 import registro
 import render
+import video
 from publishers import facebook, instagram, linkedin
 from publishers.common import PublishError, redact
 
@@ -67,7 +68,22 @@ def _curadoria(post) -> str:
     return "filtro por palavra-chave"
 
 
+def _gerar_video(networks: list[str]) -> dict:
+    """Tema video: a pauta vem de content/videos/<VIDEO>.json e o MP4 já foi trazido para out/ pelo workflow."""
+    today = config.hoje()
+    manifest = video.gerar(os.environ.get("VIDEO", "").strip(), networks, today, OUT)
+    for rede, dados in manifest["networks"].items():
+        log.info("%s: legenda de %d caractere(s) para %s", rede, len(dados["caption"]), manifest["video"]["arquivo"])
+    for aviso in manifest["video"]["avisos"]:
+        log.warning("vídeo: %s", aviso)
+    OUT.mkdir(parents=True, exist_ok=True)
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), "utf-8")
+    return manifest
+
+
 def generate(theme: str, networks: list[str]) -> dict:
+    if theme == "video":
+        return _gerar_video(networks)
     today = config.hoje()
     so_gemini = os.environ.get("SO_GEMINI", "").strip().lower() == "true"
     if so_gemini:
@@ -124,6 +140,7 @@ def publish(creds: config.Credentials) -> int:
         return 1
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    filme = manifest.get("video")  # manifesto de vídeo: cada rede recebe o MP4 em vez de imagens
     base = creds.asset_base_url.rstrip("/")
     falhas: list[str] = []
     sucessos: list[str] = []
@@ -143,24 +160,34 @@ def publish(creds: config.Credentials) -> int:
                     log.warning("Facebook: não configurado, pulando")
                     sem_credencial.append("facebook")
                     continue
-                if not base:
-                    raise PublishError("ASSET_BASE_URL não definido")
-                ident = facebook.publish(creds, caption, urls)
+                if filme:
+                    ident = facebook.publish_reel(creds, caption, local[0], title=filme["titulo"])
+                else:
+                    if not base:
+                        raise PublishError("ASSET_BASE_URL não definido")
+                    ident = facebook.publish(creds, caption, urls)
 
             elif network == "instagram":
                 if not creds.has_instagram:
                     log.warning("Instagram: não configurado, pulando")
                     sem_credencial.append("instagram")
                     continue
-                if not base:
-                    raise PublishError("ASSET_BASE_URL não definido")
-                ident = instagram.publish(creds, caption, urls)
+                if filme:
+                    ident = instagram.publish_reel(
+                        creds, caption, local[0], ai_generated=filme["ia"], thumb_offset_ms=filme.get("capa_ms")
+                    )
+                else:
+                    if not base:
+                        raise PublishError("ASSET_BASE_URL não definido")
+                    ident = instagram.publish(creds, caption, urls)
 
             elif network == "instagram_stories":
                 if not creds.has_instagram:
                     log.warning("Instagram Stories: não configurado, pulando")
                     sem_credencial.append("instagram_stories")
                     continue
+                if filme:
+                    raise PublishError("Stories com vídeo ainda não é suportado")
                 if not base:
                     raise PublishError("ASSET_BASE_URL não definido")
                 ident = instagram.publish_story(creds, urls[0])
@@ -170,7 +197,10 @@ def publish(creds: config.Credentials) -> int:
                     log.warning("LinkedIn: não configurado, pulando")
                     sem_credencial.append("linkedin")
                     continue
-                ident = linkedin.publish(creds, caption, local, alt=manifest["titulo"])
+                if filme:
+                    ident = linkedin.publish_video(creds, caption, local[0], title=filme["titulo"])
+                else:
+                    ident = linkedin.publish(creds, caption, local, alt=manifest["titulo"])
 
             else:
                 log.warning("rede desconhecida: %s", network)
@@ -357,6 +387,14 @@ def pendentes(theme: str, networks: list[str], indice: str) -> int:
     return 0
 
 
+def _material(manifest: dict, dados: dict) -> str:
+    """O que foi gerado para a rede: imagens, ou o vídeo (duração e tamanho)."""
+    filme = manifest.get("video")
+    if filme:
+        return f"vídeo de {filme['duracao']:.0f} s ({filme['tamanho'] / 2**20:.1f} MB)"
+    return f"{len(dados['files'])} imagem(ns)"
+
+
 def _eventos(theme, manifest, resultado, ensaio, run_url, pulado="") -> list[dict]:
     """Movimentos desta execução, para o diário do dia."""
     evento = os.environ.get("EVENTO", "")
@@ -373,9 +411,9 @@ def _eventos(theme, manifest, resultado, ensaio, run_url, pulado="") -> list[dic
     for rede, dados in manifest["networks"].items():
         b = {**base, "rede": rede, "link": ""}
         if ensaio:
-            ev.append({**b, "tipo": "ensaio", "detalhe": f"{len(dados['files'])} imagem(ns) geradas; nada publicado"})
+            ev.append({**b, "tipo": "ensaio", "detalhe": f"{_material(manifest, dados)} conferido(s); nada publicado"})
             continue
-        ev.append({**b, "tipo": "gerado", "detalhe": f"{len(dados['files'])} imagem(ns)"})
+        ev.append({**b, "tipo": "gerado", "detalhe": _material(manifest, dados)})
         r = redes.get(rede, {})
         st = r.get("status", "não executado")
         if st == "publicado":

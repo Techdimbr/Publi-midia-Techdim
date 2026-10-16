@@ -106,8 +106,11 @@ def escrever(
             linhas += ["```text", dados["caption"], "```", ""]
         if dados.get("comentario"):
             linhas += ["Primeiro comentário:", "", "```text", dados["comentario"], "```", ""]
-        # caminho relativo: registros/<dia>/arquivo.md -> posts/<dia>/...
-        linhas += [f"![{rede} {i}](../../{f})" for i, f in enumerate(dados["files"], 1)]
+        # caminho relativo: registros/<dia>/arquivo.md -> posts/<dia>/...; vídeo vira link (o GitHub não mostra MP4 como imagem)
+        linhas += [
+            f"[vídeo {i}](../../{f})" if f.lower().endswith(".mp4") else f"![{rede} {i}](../../{f})"
+            for i, f in enumerate(dados["files"], 1)
+        ]
 
     arquivo.write_text(_limpo("\n".join(linhas)) + "\n", encoding="utf-8")
     _indice(pasta, dia, arquivo.name, manifest, redes, agora)

@@ -132,6 +132,8 @@ class Credentials:
 # v21.0 funciona até 21/01/2027 — atualizar antes dessa data.
 GRAPH_VERSION = "v21.0"
 GRAPH = f"https://graph.facebook.com/{GRAPH_VERSION}"
+# Envio de vídeo (Reels do Facebook e do Instagram) vai direto por este host, com o arquivo no corpo do pedido.
+RUPLOAD = "https://rupload.facebook.com"
 LINKEDIN_API = "https://api.linkedin.com"
 # LinkedIn mantém cada versão por ~1 ano; versão vencida devolve HTTP 426.
 # 202609 vale até ~09/2027 — atualizar uma vez por ano.
@@ -169,6 +171,8 @@ THEME_TARGETS = {
     "servico": ["linkedin", "facebook", "instagram"],
     "destaque": ["linkedin", "facebook", "instagram", "instagram_stories"],
     "especial": ["linkedin", "facebook", "instagram"],
+    # vídeo: Reels no Instagram e no Facebook, vídeo no LinkedIn (sem Stories)
+    "video": ["linkedin", "facebook", "instagram"],
 }
 
 THEME_LABELS = {
@@ -178,4 +182,5 @@ THEME_LABELS = {
     "servico": "TECHDIM · Serviços",
     "destaque": "Destaque do Dia",
     "especial": "TECHDIM + IA",
+    "video": "TECHDIM · Vídeo",
 }

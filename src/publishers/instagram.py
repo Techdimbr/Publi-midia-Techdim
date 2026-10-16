@@ -3,11 +3,14 @@
 Carrossel em 3 etapas: um container por imagem (is_carousel_item=true), um
 container CAROUSEL agrupando os filhos, e o media_publish. O Instagram busca
 cada image_url no servidor dele — a URL precisa ser pública.
+Reels: o container nasce com upload_type=resumable e o arquivo vai direto ao
+rupload.facebook.com (sem URL pública), depois o mesmo media_publish.
 Docs: https://developers.facebook.com/docs/instagram-platform/content-publishing
 """
 from __future__ import annotations
 
 import logging
+import pathlib
 import time
 
 import config
@@ -20,6 +23,8 @@ POLL_INTERVAL = 5
 POLL_MAX = 24  # até 2 minutos esperando o Instagram processar
 PUBLISH_RETRIES = 4  # media_publish pode dizer "Media ID is not available" logo após FINISHED
 PUBLISH_RETRY_WAIT = 10
+REEL_POLL_MAX = 60  # vídeo demora mais para processar: até 5 minutos
+TIMEOUT_ENVIO = (15, 600)  # (conexão, leitura) do envio do arquivo
 
 
 def _container(ig_id: str, token: str, **fields) -> str:
@@ -32,9 +37,9 @@ def _container(ig_id: str, token: str, **fields) -> str:
     return cid
 
 
-def _wait_ready(container_id: str, token: str) -> None:
+def _wait_ready(container_id: str, token: str, maximo: int = POLL_MAX) -> None:
     """Espera o container sair de IN_PROGRESS. ERROR/EXPIRED aborta."""
-    for _ in range(POLL_MAX):
+    for _ in range(maximo):
         resp = request(
             "GET",
             f"{config.GRAPH}/{container_id}",
@@ -104,6 +109,54 @@ def publish(creds, caption: str, image_urls: list[str]) -> str:
 
     media_id = _media_publish(ig_id, creation_id, token)
     log.info("Instagram: publicado %s", media_id)
+    return media_id
+
+
+def publish_reel(
+    creds,
+    caption: str,
+    video_path: pathlib.Path,
+    *,
+    ai_generated: bool = False,
+    thumb_offset_ms: int | None = None,
+) -> str:
+    """Publica o vídeo como Reel (aparece também no feed). Devolve o id da mídia.
+
+    ai_generated liga a autodeclaração de conteúdo feito com IA (is_ai_generated)."""
+    ig_id, token = creds.ig_user_id, _token(creds)
+    campos = {
+        "media_type": "REELS",
+        "upload_type": "resumable",
+        "caption": caption,
+        "share_to_feed": "true",
+    }
+    if ai_generated:
+        campos["is_ai_generated"] = "true"
+    if thumb_offset_ms is not None:
+        campos["thumb_offset"] = str(int(thumb_offset_ms))
+
+    resp = request("POST", f"{config.GRAPH}/{ig_id}/media", data={**campos, "access_token": token})
+    dados = resp.json()
+    container = dados.get("id")
+    if not container:
+        raise PublishError(f"Instagram não devolveu container do Reel: {resp.text[:300]}")
+    destino = dados.get("uri") or f"{config.RUPLOAD}/ig-api-upload/{config.GRAPH_VERSION}/{container}"
+
+    conteudo = video_path.read_bytes()
+    envio = request(
+        "POST",
+        destino,
+        headers={"Authorization": f"OAuth {token}", "offset": "0", "file_size": str(len(conteudo))},
+        data=conteudo,
+        timeout=TIMEOUT_ENVIO,
+    ).json()
+    if not envio.get("success"):
+        raise PublishError(f"Instagram recusou o envio do vídeo: {str(envio)[:300]}")
+    log.info("Instagram: vídeo enviado ao container %s (%d bytes)", container, len(conteudo))
+
+    _wait_ready(container, token, maximo=REEL_POLL_MAX)
+    media_id = _media_publish(ig_id, container, token)
+    log.info("Instagram: Reel publicado %s", media_id)
     return media_id
 
 

@@ -291,8 +291,9 @@ python src/exemplos_infograficos.py historias
 content/
   diario/AAAA-MM-DD/    pauta do dia escrita pela Routine
   destaques/ especiais/ posts escritos sob demanda
+  videos/<nome>.json    pauta de um vídeo (o MP4 fica no branch assets; ver docs/VIDEO.md)
   dicas.json servicos.json   acervo autoral (reserva)
-docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md, SEO.md, BLOG.md, CRESCIMENTO.md (plano de seguidores), GEMINI.md (reserva com o Gemini)
+docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md, SEO.md, BLOG.md, CRESCIMENTO.md (plano de seguidores), GEMINI.md (reserva com o Gemini), VIDEO.md (vídeos e Reels)
 fonts/ fotos/ exemplos/ fontes OFL, foto de exemplo e imagens de exemplo
 src/
   config.py             marca, formatos, credenciais, hora de Brasília
@@ -307,7 +308,8 @@ src/
   validar_pauta.py     confere a pauta do dia antes de ela ir para o ar
   apagar.py token_check.py discover.py linkedin_ids.py curator.py radar.py
   gemini.py pauta_reserva.py   reserva com o Gemini (cliente da API e pauta do dia)
+  video.py              vídeo: confere o MP4, monta legendas e manifesto (ver docs/VIDEO.md)
   seguranca.py texto.py utilitários (redação de credenciais, corte de texto)
-  publishers/           facebook.py, instagram.py, linkedin.py, common.py
+  publishers/           facebook.py, instagram.py, linkedin.py (imagem e vídeo), common.py
 tests/                  pytest
 ```
