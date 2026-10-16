@@ -60,3 +60,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:11 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18254757004308896 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4009250061679061767) |
 | 12:21 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38923238420) |
 | 12:21 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38923238420) |
+| 14:23 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38939259802) |
+| 14:23 | 🗓️ planejado | Conhecimento |  | pauta: SPF, DKIM e DMARC: dificulte a falsificação do e-mail da sua empresa em 5 passos — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:23 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7516911715758993410 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7516911715758993410/) |
+| 14:23 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122136515895390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122136515895390486) |
+| 14:23 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122136515895390486) |
+| 14:23 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | instagram | id 18109170904926770 | disparo manual |  | [abrir](https://www.instagram.com/p/DekD9djIFxQ/) |
+| 14:23 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DekD9djIFxQ/) |
