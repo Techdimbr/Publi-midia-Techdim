@@ -71,5 +71,28 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "08:15",
+    "tema": "video",
+    "titulo": "Acompanhe a TECHDIM: análises técnicas todos os dias",
+    "curadoria": "vídeo da TECHDIM (gerado por IA, declarado na legenda)",
+    "arquivo": "08h15-video.md",
+    "redes": {
+      "facebook": "-",
+      "instagram": "-",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "",
+      "instagram": "",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7516819118000553984/"
+    },
+    "ids": {
+      "linkedin": "urn:li:ugcPost:7516819118000553984"
+    },
+    "comentou": []
   }
 ]

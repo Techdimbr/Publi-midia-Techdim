@@ -33,3 +33,7 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:14 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DejZpSqj973/) |
 | 08:14 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 08:14 | 📱 story | Notícias de Tecnologia | instagram_stories | id 17998717100824426 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4009160980885777796) |
+| 08:15 | ▶️ iniciado | TECHDIM · Vídeo |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38892514112) |
+| 08:15 | 🗓️ planejado | TECHDIM · Vídeo |  | pauta: Acompanhe a TECHDIM: análises técnicas todos os dias — curadoria: vídeo da TECHDIM (gerado por IA, declarado na legenda) | disparo manual |  |  |
+| 08:15 | 🖼️ gerado | TECHDIM · Vídeo | linkedin | vídeo de 10 s (17.6 MB) | disparo manual |  |  |
+| 08:15 | ✅ publicado | TECHDIM · Vídeo | linkedin | id urn:li:ugcPost:7516819118000553984 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:ugcPost:7516819118000553984/) |
