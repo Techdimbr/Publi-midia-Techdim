@@ -19,5 +19,28 @@
     },
     "ids": {},
     "comentou": []
+  },
+  {
+    "hora": "04:04",
+    "tema": "servico",
+    "titulo": "Suporte de TI: não espere a falha para ter ajuda especializada",
+    "curadoria": "Gemini (reserva) — pauta escrita pela API do Gemini",
+    "arquivo": "04h04-servico.md",
+    "redes": {
+      "facebook": "-",
+      "instagram": "-",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "",
+      "instagram": "",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516755967896653824/"
+    },
+    "ids": {
+      "linkedin": "urn:li:share:7516755967896653824"
+    },
+    "comentou": []
   }
 ]
