@@ -37,3 +37,8 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:15 | 🗓️ planejado | TECHDIM · Vídeo |  | pauta: Acompanhe a TECHDIM: análises técnicas todos os dias — curadoria: vídeo da TECHDIM (gerado por IA, declarado na legenda) | disparo manual |  |  |
 | 08:15 | 🖼️ gerado | TECHDIM · Vídeo | linkedin | vídeo de 10 s (17.6 MB) | disparo manual |  |  |
 | 08:15 | ✅ publicado | TECHDIM · Vídeo | linkedin | id urn:li:ugcPost:7516819118000553984 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:ugcPost:7516819118000553984/) |
+| 08:16 | ▶️ iniciado | TECHDIM · Vídeo |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38892624799) |
+| 08:16 | 🗓️ planejado | TECHDIM · Vídeo |  | pauta: Acompanhe a TECHDIM: análises técnicas todos os dias — curadoria: vídeo da TECHDIM (gerado por IA, declarado na legenda) | disparo manual |  |  |
+| 08:16 | 🖼️ gerado | TECHDIM · Vídeo | facebook | vídeo de 10 s (17.6 MB) | disparo manual |  |  |
+| 08:16 | ✅ publicado | TECHDIM · Vídeo | facebook | id 1013109551188554 | disparo manual |  | [abrir](https://www.facebook.com/reel/1013109551188554/) |
+| 08:16 | 💬 comentou | TECHDIM · Vídeo | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/reel/1013109551188554/) |
