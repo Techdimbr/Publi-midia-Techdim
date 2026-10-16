@@ -18,6 +18,7 @@ import sys
 
 import config
 import content
+import gemini
 import movimentos
 import registro
 import render
@@ -52,8 +53,9 @@ def _curadoria(post) -> str:
     if getattr(post, "origem", "") == "routine":
         return "Claude (Routine) — pauta do dia"
     if getattr(post, "origem", "") == "gemini":
+        modelo = f" (modelo {gemini.ultimo_modelo()})" if gemini.ultimo_modelo() else ""
         return ("IA (API do Gemini) — curadoria de reserva" if post.curado_por_ia
-                else "Gemini (reserva) — pauta escrita pela API do Gemini")
+                else "Gemini (reserva) — pauta escrita pela API do Gemini") + modelo
     if post.theme == "especial":
         return "publicação especial, escrita sob demanda"
     if post.theme == "destaque":

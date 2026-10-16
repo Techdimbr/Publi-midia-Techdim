@@ -302,6 +302,19 @@ def test_so_gemini_so_vale_para_os_temas_da_pauta(conteudo, com_chave):
             content.build(tema, DIA, so_gemini=True)
 
 
+def test_curadoria_do_gemini_diz_qual_modelo_respondeu(monkeypatch):
+    import main
+    from types import SimpleNamespace
+
+    post = SimpleNamespace(origem="gemini", curado_por_ia=False, theme="servico", fontes=[])
+    monkeypatch.setattr(gemini, "ultimo_modelo", lambda: "gemini-2.5-flash")
+    assert main._curadoria(post) == "Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash)"
+    post.curado_por_ia = True
+    assert main._curadoria(post) == "IA (API do Gemini) — curadoria de reserva (modelo gemini-2.5-flash)"
+    monkeypatch.setattr(gemini, "ultimo_modelo", lambda: "")
+    assert main._curadoria(post) == "IA (API do Gemini) — curadoria de reserva"   # sem modelo informado, texto de sempre
+
+
 def test_generate_liga_o_so_gemini_pela_variavel_de_ambiente(conteudo, com_chave, monkeypatch):
     import main
 
