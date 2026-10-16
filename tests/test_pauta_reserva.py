@@ -1,6 +1,7 @@
 """Pauta de reserva com o Gemini: esquema, escolha da manchete, reescrita, verificação e a cadeia do content.build."""
 import datetime as dt
 import json
+from types import SimpleNamespace
 
 import pytest
 
@@ -304,7 +305,6 @@ def test_so_gemini_so_vale_para_os_temas_da_pauta(conteudo, com_chave):
 
 def test_curadoria_do_gemini_diz_qual_modelo_respondeu(monkeypatch):
     import main
-    from types import SimpleNamespace
 
     post = SimpleNamespace(origem="gemini", curado_por_ia=False, theme="servico", fontes=[])
     monkeypatch.setattr(gemini, "ultimo_modelo", lambda: "gemini-2.5-flash")
