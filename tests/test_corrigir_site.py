@@ -183,7 +183,9 @@ class Redes:
         self.instagram_recusa = ""
         self.ignora_edicao = False
         self.quebra_em: set[str] = set()
-        for nome in ("linkedin_ler", "linkedin_editar", "facebook_ler", "facebook_editar", "facebook_comentarios",
+        self.perfil_fb = {"website": ANTIGO_URL, "about": "TECHDIM", "description": ""}
+        self.perfil_ig = {"website": ANTIGO_URL, "biography": "Infra e segurança"}
+        for nome in ("facebook_perfil", "facebook_editar_perfil", "instagram_perfil", "linkedin_ler", "linkedin_editar", "facebook_ler", "facebook_editar", "facebook_comentarios",
                      "facebook_editar_comentario", "instagram_ler", "instagram_editar"):
             monkeypatch.setattr(cs, nome, getattr(self, nome))
 
@@ -220,6 +222,16 @@ class Redes:
         for c in self.comentarios["1_22"]:
             if c["id"] == cid:
                 c["message"] = texto
+
+    def facebook_perfil(self, creds):
+        return dict(self.perfil_fb)
+
+    def facebook_editar_perfil(self, creds, campo, valor):
+        self.edicoes.append(("perfil", campo, valor))
+        self.perfil_fb[campo] = valor
+
+    def instagram_perfil(self, creds):
+        return dict(self.perfil_ig)
 
     def instagram_ler(self, creds, media_id):
         if media_id in self.nao_existem:
@@ -426,3 +438,40 @@ def test_main_desfazer(assets, redes, ambiente, capsys):
     backup = next((assets / "registros").glob("*/correcao-site-*.jsonl"))
     assert cs.main(["--dest", str(assets), "--desfazer", str(backup.relative_to(assets))]) == 0
     assert redes.instagram == original
+
+
+# ------------------------------------------------------------------ perfis e versão da API
+
+
+def test_perfis_no_ensaio_mostram_o_site_antigo_e_nao_editam(redes):
+    resultados = cs.corrigir_perfis(Creds(), False, cs.Backup(None))
+    assert [(r.alvo.rede, r.campo, r.situacao) for r in resultados] == [
+        ("facebook", "perfil:website", "trocar"), ("facebook", "perfil:about", "sem mudança"),
+        ("facebook", "perfil:description", "sem mudança"),
+        ("instagram", "perfil:website", "não editável"), ("instagram", "perfil:biography", "sem mudança"),
+    ]
+    assert resultados[1].detalhe == "hoje: 'TECHDIM'" and resultados[2].detalhe == "vazio"
+    assert config.SITE_URL in resultados[3].detalhe and redes.edicoes == []
+
+
+def test_perfis_aplicar_corrige_a_pagina_guarda_o_original_e_so_avisa_do_instagram(redes, tmp_path):
+    backup = cs.Backup(tmp_path / "b.jsonl")
+    resultados = cs.corrigir_perfis(Creds(), True, backup)
+    assert redes.perfil_fb["website"] == config.SITE_URL
+    assert redes.perfil_ig["website"] == ANTIGO_URL   # o Instagram só se edita no app
+    assert [e[0] for e in redes.edicoes] == ["perfil"]
+    eventos = cs._eventos(resultados, "teste")
+    assert {(e["tipo"], e["rede"]) for e in eventos} == {("observacao", "instagram"), ("editou", "facebook")}
+    assert any("do perfil" in e["detalhe"] for e in eventos if e["tipo"] == "editou")
+    cs.desfazer(Creds(), backup.caminho)   # o backup restaura o campo do perfil
+    assert redes.perfil_fb["website"] == ANTIGO_URL
+
+
+def test_main_perfis_e_versao_da_graph_api(redes, ambiente, tmp_path, capsys, monkeypatch):
+    monkeypatch.setattr(config, "GRAPH", config.GRAPH)   # devolve o valor original ao fim do teste
+    assert cs.main(["--dest", str(tmp_path), "--perfis", "--graph-versao", "v26.0"]) == 0
+    saida = capsys.readouterr().out
+    assert "Graph API: v26.0" in saida and "perfil:website" in saida and "trocar" in saida
+    assert config.GRAPH == "https://graph.facebook.com/v26.0"
+    assert redes.edicoes == [] and not list(tmp_path.rglob("*.jsonl"))
+

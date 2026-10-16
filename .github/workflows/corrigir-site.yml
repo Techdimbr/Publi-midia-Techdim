@@ -32,6 +32,14 @@ on:
         description: "Restaurar os textos originais de um backup (ex.: registros/2026-10-16/correcao-site-0030.jsonl); vazio = não desfaz"
         type: string
         default: ""
+      perfis:
+        description: "Em vez dos posts, conferir o site/descrição do perfil do Facebook e do Instagram (com 'aplicar', corrige o da Página)"
+        type: boolean
+        default: false
+      graph:
+        description: "Versão da Graph API para esta rodada (ex.: v26.0); vazio = a de config.py"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -64,6 +72,8 @@ jobs:
           POSTS: ${{ inputs.posts }}
           LIMITE: ${{ inputs.limite }}
           DESFAZER: ${{ inputs.desfazer }}
+          PERFIS: ${{ inputs.perfis }}
+          GRAPH: ${{ inputs.graph }}
         run: |
           set -uo pipefail
           git clone -q --depth 1 --branch assets \
@@ -75,6 +85,8 @@ jobs:
           [ -n "$POSTS" ] && args+=(--so "$POSTS")
           [ "$LIMITE" != "0" ] && args+=(--limite "$LIMITE")
           [ -n "$DESFAZER" ] && args+=(--desfazer "$DESFAZER")
+          [ "$PERFIS" = "true" ] && args+=(--perfis)
+          [ -n "$GRAPH" ] && args+=(--graph-versao "$GRAPH")
           # o shell do Actions roda com -e: sem o "|| rc=$?" uma falha abortaria aqui e o backup e o diário
           # da rodada nunca chegariam ao branch assets
           rc=0

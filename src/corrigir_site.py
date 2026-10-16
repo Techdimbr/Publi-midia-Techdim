@@ -9,6 +9,8 @@ que a própria automação publicou.
   python src/corrigir_site.py --dest /tmp/assets --aplicar          # edita de verdade
   python src/corrigir_site.py --dest /tmp/assets --aplicar --so "facebook:123_456,linkedin:urn:li:share:7511"
   python src/corrigir_site.py --dest /tmp/assets --desfazer registros/2026-10-16/correcao-site-0030.jsonl
+  python src/corrigir_site.py --dest /tmp/assets --perfis [--aplicar]   # site/descrição do perfil do Facebook e do Instagram
+  python src/corrigir_site.py ... --graph-versao v26.0                  # testa outra versão da Graph API
 
 O que NÃO dá para corrigir: as imagens (o endereço está desenhado nelas) e, no Instagram, a legenda
 só muda se a API aceitar; se recusar, o script avisa e a legenda é editada à mão no app.
@@ -232,6 +234,31 @@ def instagram_editar(creds, media_id: str, texto: str) -> None:
     request("POST", f"{config.GRAPH}/{media_id}", data={"caption": texto, "access_token": instagram._token(creds)})
 
 
+PERFIL_FACEBOOK = ("website", "about", "description")
+PERFIL_INSTAGRAM = ("website", "biography")
+
+
+def facebook_perfil(creds) -> dict:
+    """Campos de texto da Página que podem citar o site."""
+    resp = request(
+        "GET", f"{config.GRAPH}/{creds.fb_page_id}",
+        params={"fields": ",".join(PERFIL_FACEBOOK), "access_token": _token_meta(creds)}, attempts=2,
+    )
+    return resp.json()
+
+
+def facebook_editar_perfil(creds, campo: str, valor: str) -> None:
+    request("POST", f"{config.GRAPH}/{creds.fb_page_id}", data={campo: valor, "access_token": _token_meta(creds)})
+
+
+def instagram_perfil(creds) -> dict:
+    resp = request(
+        "GET", f"{config.GRAPH}/{creds.ig_user_id}",
+        params={"fields": ",".join(PERFIL_INSTAGRAM), "access_token": instagram._token(creds)}, attempts=2,
+    )
+    return resp.json()
+
+
 # ---------------------------------------------------------------- correção
 
 
@@ -403,6 +430,44 @@ def corrigir(creds, alvos: list[Alvo], aplicar: bool, backup: Backup) -> list[Re
     return resultados
 
 
+def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "instagram")) -> list[Resultado]:
+    """Site/descrição do perfil: o da Página do Facebook a API pode editar (se o app tiver a permissão); a bio
+    do Instagram só se edita no app, então aqui ela é só conferida e, se citar o domínio antigo, avisada."""
+    dia = f"{config.hoje():%Y-%m-%d}"
+    resultados: list[Resultado] = []
+    if "facebook" in redes:
+        a = Alvo(dia=dia, hora="", tema="perfil", rede="facebook", ident=creds.fb_page_id)
+        try:
+            dados = facebook_perfil(creds)
+        except PublishError as exc:
+            dados = None
+            resultados.append(Resultado(a, "perfil", "falhou", detalhe=_curto(exc)))
+        for campo in PERFIL_FACEBOOK if dados is not None else ():
+            valor = dados.get(campo) or ""
+            r = _aplicar(a, f"perfil:{campo}", valor, aplicar,
+                         lambda t, c=campo: facebook_editar_perfil(creds, c, t),
+                         lambda c=campo: facebook_perfil(creds).get(c, ""), backup,
+                         {"rede": "facebook", "id": creds.fb_page_id, "dia": dia})
+            if r.situacao == "sem mudança":
+                r.detalhe = f"hoje: {valor[:90]!r}" if valor else "vazio"
+            resultados.append(r)
+    if "instagram" in redes:
+        a = Alvo(dia=dia, hora="", tema="perfil", rede="instagram", ident=creds.ig_user_id)
+        try:
+            dados = instagram_perfil(creds)
+        except PublishError as exc:
+            return resultados + [Resultado(a, "perfil", "falhou", detalhe=_curto(exc))]
+        for campo in PERFIL_INSTAGRAM:
+            valor = dados.get(campo) or ""
+            if tem_endereco_antigo(valor):
+                resultados.append(Resultado(a, f"perfil:{campo}", "não editável", valor, corrigir_texto(valor),
+                                            f"o Instagram só deixa trocar no app: use {config.SITE_URL}"))
+            else:
+                resultados.append(Resultado(a, f"perfil:{campo}", "sem mudança",
+                                            detalhe=f"hoje: {valor[:90]!r}" if valor else "vazio"))
+    return resultados
+
+
 def desfazer(creds, arquivo: pathlib.Path) -> list[Resultado]:
     """Restaura os textos originais guardados num backup (um passo por edição que não falhou)."""
     ultimo: dict[tuple, dict] = {}
@@ -421,6 +486,8 @@ def desfazer(creds, arquivo: pathlib.Path) -> list[Resultado]:
                 linkedin_editar(creds, ident, antes)
             elif rede == "facebook" and campo == "comentário":
                 facebook_editar_comentario(creds, cid, antes)
+            elif rede == "facebook" and campo.startswith("perfil:"):
+                facebook_editar_perfil(creds, campo.split(":", 1)[1], antes)
             elif rede == "facebook":
                 facebook_editar(creds, ident, antes)
             else:
@@ -449,14 +516,21 @@ def _eventos(resultados: list[Resultado], origem: str) -> list[dict]:
         a = r.alvo
         base = {"rede": a.rede, "tema": config.THEME_LABELS.get(a.tema, a.tema), "origem": origem, "link": a.link}
         if r.situacao == "ok":
+            onde = "do perfil" if a.tema == "perfil" else f"do post de {a.dia}"
             eventos.append({**base, "tipo": "editou",
-                            "detalhe": f"{r.campo} do post de {a.dia}: {config.SITE_FORA_DO_AR} → {config.SITE}"
+                            "detalhe": f"{r.campo} {onde}: {config.SITE_FORA_DO_AR} → {config.SITE}"
                                        + (f" ({r.detalhe})" if r.detalhe else "")})
         elif r.situacao == "falhou":
+            onde = "do perfil" if a.tema == "perfil" else f"do post de {a.dia}"
             eventos.append({**base, "tipo": "falhou",
-                            "detalhe": f"não consegui corrigir o {r.campo} do post de {a.dia} ({a.ident}): {r.detalhe}"})
+                            "detalhe": f"não consegui corrigir o {r.campo} {onde} ({a.ident}): {r.detalhe}"})
+    for r in resultados:
+        if r.situacao == "não editável" and r.alvo.tema == "perfil":
+            eventos.append({"rede": r.alvo.rede, "origem": origem, "tipo": "observacao",
+                            "detalhe": f"o {r.campo} do Instagram ainda cita {config.SITE_FORA_DO_AR}: {r.detalhe}"})
     for rede in REDES_QUE_PODEM_RECUSAR:
-        nao_editaveis = [r for r in resultados if r.situacao == "não editável" and r.alvo.rede == rede]
+        nao_editaveis = [r for r in resultados
+                         if r.situacao == "não editável" and r.alvo.rede == rede and r.alvo.tema != "perfil"]
         if nao_editaveis:
             eventos.append({"rede": rede, "origem": origem, "tipo": "observacao",
                             "detalhe": f"{len(nao_editaveis)} posts não puderam ser editados pela API; "
@@ -472,9 +546,14 @@ def main(argv=None) -> int:
     ap.add_argument("--so", default="", help="só estes posts: rede:id separados por vírgula")
     ap.add_argument("--limite", type=int, default=0, help="máximo de posts a processar (0 = todos)")
     ap.add_argument("--desfazer", default="", help="restaura os textos de um arquivo correcao-site-*.jsonl")
+    ap.add_argument("--perfis", action="store_true", help="em vez dos posts, confere o site/descrição do perfil do Facebook e do Instagram")
+    ap.add_argument("--graph-versao", default="", help="versão da Graph API (ex.: v26.0); padrão: a de config.py")
     a = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
+    if a.graph_versao:
+        config.GRAPH = f"https://graph.facebook.com/{a.graph_versao}"
+        print(f"Graph API: {a.graph_versao}")
     dest = pathlib.Path(a.dest)
     creds = config.Credentials()
     origem = "workflow Corrigir site"
@@ -489,6 +568,19 @@ def main(argv=None) -> int:
              else f"não consegui restaurar {r.campo} de {r.alvo.ident}: {r.detalhe}"}
             for r in resultados
         ])
+        return 1 if any(r.situacao == "falhou" for r in resultados) else 0
+
+    if a.perfis:
+        caminho = dest / "registros" / f"{config.hoje():%Y-%m-%d}" / f"correcao-site-{config.agora():%H%M}.jsonl"
+        backup = Backup(caminho if a.aplicar else None)
+        redes_perfil = [r for r, ok in (("facebook", creds.has_facebook), ("instagram", creds.has_instagram)) if ok]
+        resultados = corrigir_perfis(creds, a.aplicar, backup, redes_perfil)
+        for r in resultados:
+            print(_linha(r))
+            for antes, depois in linhas_trocadas(r.antes, r.depois):
+                print(f"    - {antes[:150]}\n    + {depois[:150]}")
+        if a.aplicar:
+            movimentos.registrar(dest, _eventos(resultados, origem))
         return 1 if any(r.situacao == "falhou" for r in resultados) else 0
 
     redes = [r.strip() for r in a.redes.split(",") if r.strip()]
