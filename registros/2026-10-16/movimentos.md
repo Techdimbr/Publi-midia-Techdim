@@ -16,3 +16,8 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 04:04 | 🗓️ planejado | TECHDIM · Serviços |  | pauta: Suporte de TI: não espere a falha para ter ajuda especializada — curadoria: Gemini (reserva) — pauta escrita pela API do Gemini | disparo manual |  |  |
 | 04:04 | 🖼️ gerado | TECHDIM · Serviços | linkedin | 1 imagem(ns) | disparo manual |  |  |
 | 04:04 | ✅ publicado | TECHDIM · Serviços | linkedin | id urn:li:share:7516755967896653824 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7516755967896653824/) |
+| 08:00 | ▶️ iniciado | TECHDIM · Vídeo |  | ensaio: nada será publicado | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38890929538) |
+| 08:00 | 🗓️ planejado | TECHDIM · Vídeo |  | pauta: Acompanhe a TECHDIM: análises técnicas todos os dias — curadoria: vídeo da TECHDIM (gerado por IA, declarado na legenda) | disparo manual | 🧪 |  |
+| 08:00 | 🧪 ensaio | TECHDIM · Vídeo | linkedin | vídeo de 10 s (17.6 MB) conferido(s); nada publicado | disparo manual | 🧪 |  |
+| 08:00 | 🧪 ensaio | TECHDIM · Vídeo | facebook | vídeo de 10 s (17.6 MB) conferido(s); nada publicado | disparo manual | 🧪 |  |
+| 08:00 | 🧪 ensaio | TECHDIM · Vídeo | instagram | vídeo de 10 s (17.6 MB) conferido(s); nada publicado | disparo manual | 🧪 |  |
