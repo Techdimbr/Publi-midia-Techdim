@@ -235,6 +235,16 @@ def instagram_editar(creds, media_id: str, texto: str) -> None:
 
 
 PERFIL_FACEBOOK = ("website", "about", "description")
+
+
+def _sem_repeticao(lista: str) -> str:
+    """"a, a, b" -> "a, b": o campo Site da Página do Facebook guarda o endereço mais de uma vez."""
+    return ", ".join(dict.fromkeys(x.strip() for x in lista.split(",") if x.strip()))
+
+
+def corrigir_site_da_pagina(valor: str) -> str:
+    """Troca o endereço antigo no campo Site da Página e tira as repetições (só quando há o que trocar)."""
+    return _sem_repeticao(corrigir_texto(valor)) if tem_endereco_antigo(valor) else valor
 PERFIL_INSTAGRAM = ("website", "biography")
 
 
@@ -306,9 +316,9 @@ def _forma_linkedin(vivo: str, registrada: str) -> str | None:
 
 
 def _aplicar(a: Alvo, campo: str, antes: str, aplicar: bool, editar, reler, backup: Backup,
-             chave: dict, extra: str = "") -> Resultado:
+             chave: dict, extra: str = "", corrige=corrigir_texto) -> Resultado:
     """Troca o endereço em `antes` e, com --aplicar, edita, confere no ar e guarda o original."""
-    depois = corrigir_texto(antes)
+    depois = corrige(antes)
     if depois == antes:
         return Resultado(a, campo, "sem mudança", detalhe=extra)
     if not aplicar:
@@ -447,7 +457,8 @@ def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "in
             r = _aplicar(a, f"perfil:{campo}", valor, aplicar,
                          lambda t, c=campo: facebook_editar_perfil(creds, c, t),
                          lambda c=campo: facebook_perfil(creds).get(c, ""), backup,
-                         {"rede": "facebook", "id": creds.fb_page_id, "dia": dia})
+                         {"rede": "facebook", "id": creds.fb_page_id, "dia": dia},
+                         corrige=corrigir_site_da_pagina if campo == "website" else corrigir_texto)
             if r.situacao == "sem mudança":
                 r.detalhe = f"hoje: {valor[:90]!r}" if valor else "vazio"
             resultados.append(r)
