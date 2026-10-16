@@ -3,6 +3,7 @@ import json
 
 import pytest
 
+import config
 import content
 from conftest import DIA, bloco_infografico, pauta
 from content import Post
@@ -13,7 +14,7 @@ def test_pauta_valida_vira_post_com_infografico(conteudo):
     escrever("servico", pauta())
     post = content.build("servico", DIA)
     assert post.origem == "routine" and post.infografico["cena"] == "composta"
-    assert post.fontes == [("techdim.com.br", "https://www.techdim.com.br")]
+    assert post.fontes == [("exemplo.com.br", "https://www.exemplo.com.br")]
 
 
 @pytest.mark.parametrize(
@@ -105,7 +106,7 @@ def test_legenda_respeita_o_limite_de_caracteres(rede):
 
 def test_comentario_leva_fontes_e_site():
     c = _post().comentario("facebook")
-    assert "fonte.com" in c and "techdim.com.br" in c
+    assert "fonte.com" in c and config.SITE_URL in c
     assert _post(fontes=[]).comentario("instagram") == ""
     assert _post().comentario("linkedin") == ""
 

@@ -2,6 +2,7 @@ import json
 
 import pytest
 
+import config
 import validar_pauta
 from conftest import DIA, bloco_infografico, pauta
 
@@ -88,3 +89,29 @@ def test_pauta_real_de_hoje_passa(dia, monkeypatch):
     import datetime as dt
     problemas, _ = validar_pauta.verificar(dt.date.fromisoformat(dia))
     assert problemas == []
+
+
+@pytest.mark.parametrize("onde", ["fecho", "ponto", "fonte", "infografico"])
+def test_citar_o_dominio_fora_do_ar_e_problema(conteudo, onde):
+    """O domínio próprio está fora do ar: pauta que o cita reprova, em qualquer campo."""
+    tudo_certo(conteudo[1])
+    dominio = f"www.{config.SITE_FORA_DO_AR}"
+    item = pauta()
+    if onde == "fecho":
+        item["fecho"] = f"Fale com a TECHDIM: {dominio}"
+    elif onde == "ponto":
+        item["pontos"][1] = f"Informe sua ideia em {dominio} e vamos conversar"
+    elif onde == "fonte":
+        item["fontes"] = [["TECHDIM", f"https://{dominio}"]]
+    else:
+        item["infografico"]["licoes"][0][1] = f"Conheça: https://{dominio.upper()}"
+    conteudo[1]("servico", item)
+    problemas, _ = rodar(conteudo)
+    assert any(p.startswith("servico: cita techdim.com.br") and config.SITE in p for p in problemas)
+
+
+def test_divulgar_o_site_atual_nao_e_problema(conteudo):
+    tudo_certo(conteudo[1])
+    conteudo[1]("servico", pauta(fecho=f"Fale com a TECHDIM: {config.SITE}"))
+    assert rodar(conteudo)[0] == []
+

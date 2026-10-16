@@ -48,6 +48,23 @@ def _avisos_de_tamanho(item: dict) -> list[str]:
     return avisos
 
 
+def _textos(valor: object):
+    """Todos os textos de um JSON, em qualquer nível."""
+    if isinstance(valor, str):
+        yield valor
+    elif isinstance(valor, dict):
+        for v in valor.values():
+            yield from _textos(v)
+    elif isinstance(valor, (list, tuple)):
+        for v in valor:
+            yield from _textos(v)
+
+
+def cita_dominio_fora_do_ar(item: object) -> bool:
+    """True se algum texto da pauta cita o domínio que está fora do ar (config.SITE_FORA_DO_AR)."""
+    return any(config.SITE_FORA_DO_AR in t.lower() for t in _textos(item))
+
+
 def verificar(dia: dt.date, pasta: pathlib.Path | None = None) -> tuple[list[str], list[str]]:
     """(problemas, avisos) da pauta do dia. Problema = o post perderia algo; aviso = só atenção."""
     base = (pasta or content.CONTENT_DIR / "diario") / dia.isoformat()
@@ -66,6 +83,11 @@ def verificar(dia: dt.date, pasta: pathlib.Path | None = None) -> tuple[list[str
         except (json.JSONDecodeError, ValueError) as exc:
             problemas.append(f"{tema}: arquivo inválido ({exc}) — usará o conteúdo de reserva")
             continue
+
+        if cita_dominio_fora_do_ar(item):
+            problemas.append(
+                f"{tema}: cita {config.SITE_FORA_DO_AR}, que está fora do ar — divulgue só {config.SITE}"
+            )
 
         bloco = item.get("infografico")
         if bloco is None:

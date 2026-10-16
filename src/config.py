@@ -16,8 +16,15 @@ GRID = "#161B22"        # linhas e caixas
 
 BRAND = "TECHDIM"
 TAGLINE = "Infraestrutura · Segurança · IA"
-SITE = "www.techdim.com.br"
-SITE_URL = "https://www.techdim.com.br"
+# Endereço que legendas, comentários e imagens divulgam. O domínio próprio
+# (www.techdim.com.br) ainda não responde, então tudo aponta para o site no GitHub Pages.
+# Quando o domínio voltar, troque SITE e SITE_URL aqui e rode o workflow "Corrigir site"
+# (src/corrigir_site.py) para atualizar também os posts já publicados.
+SITE = "techdimbr.github.io/techdimbr"
+SITE_URL = "https://techdimbr.github.io/techdimbr/"
+# Domínio fora do ar: nenhum texto novo pode citá-lo (validar_pauta reprova) e
+# corrigir_site.py o troca por SITE nos posts já publicados.
+SITE_FORA_DO_AR = "techdim.com.br"
 IG_HANDLE = "@techdimbr"
 
 # Identidade visual por tema: cor de acento, cor secundária e motivo de fundo.

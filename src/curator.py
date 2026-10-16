@@ -21,6 +21,8 @@ import re
 import anthropic
 import requests
 
+import config
+
 log = logging.getLogger(__name__)
 
 MODEL = "claude-opus-5-5"
@@ -41,7 +43,7 @@ Regras:
 - Escreva em português do Brasil, tom profissional e direto, sem sensacionalismo.
 - Use somente fatos presentes no material fornecido. Não invente números, nomes, datas ou citações.
 - Preserve ressalvas do texto original (por exemplo, "pode ter", "segundo a empresa").
-- Não cite telefone; o único contato é www.techdim.com.br."""
+- Não cite telefone; o único contato é """ + config.SITE + "."
 
 ESQUEMA_ESCOLHA = {
     "type": "object",

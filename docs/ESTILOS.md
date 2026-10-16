@@ -2,7 +2,10 @@
 
 Cada post sai como um infográfico 1080×1350 (LinkedIn, Facebook e Instagram), gerado por
 `src/infografico.py`: título em duas cores, texto curto, "3 lições táticas", pergunta final
-com chamada "Vamos conversar?", hashtags e rodapé TECHDIM + www.techdim.com.br.
+com chamada "Vamos conversar?", hashtags e rodapé TECHDIM + techdimbr.github.io/techdimbr.
+
+O único endereço a divulgar é o de `config.SITE` (hoje techdimbr.github.io/techdimbr). O domínio
+www.techdim.com.br está fora do ar: não o cite em nenhum campo da pauta (o `validar_pauta` reprova).
 
 A cena ilustrada muda conforme o assunto (campo `cena` do bloco `infografico`):
 

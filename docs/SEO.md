@@ -69,6 +69,24 @@ LinkedIn e na página do Facebook; link do blog na assinatura de e-mail.
 - Posição no Google depende de conteúdo útil e constante, de tempo (semanas) e de links. Nada garante primeira página.
 - Não repita nem resubmeta endereços sem mudança no IndexNow; o script só envia o que mudou no último commit.
 
+## Endereço divulgado nos posts
+
+Enquanto o domínio próprio não responde, legendas, comentários e o rodapé das imagens divulgam o site no
+GitHub Pages. O endereço mora em um lugar só, `config.SITE` / `config.SITE_URL`; o `validar_pauta` reprova
+qualquer pauta que cite `config.SITE_FORA_DO_AR` (www.techdim.com.br), e o `curator` e a Routine usam o mesmo.
+
+Posts **já publicados** são corrigidos pelo workflow **Corrigir site** (`src/corrigir_site.py`), que lê o diário
+(branch assets), troca o endereço na legenda e no primeiro comentário e guarda o texto original:
+
+1. Actions → Corrigir site → Run workflow, **sem** marcar "aplicar" (ensaio): mostra, post a post, o que mudaria.
+2. Teste num post por rede (campo "posts", ex.: `facebook:ID,linkedin:urn:li:share:ID`) com "aplicar" marcado.
+3. Rode com "aplicar" para todos. Para voltar atrás, informe em "desfazer" o arquivo
+   `registros/<dia>/correcao-site-*.jsonl` que a rodada gravou no branch assets.
+
+Não dá para corrigir pela API: o endereço **desenhado nas imagens** já publicadas e, no Instagram, a legenda (se a
+API recusar, o script avisa e a edição é manual, no app). Quando o domínio próprio voltar, troque `SITE`, `SITE_URL`
+e `SITE_FORA_DO_AR` em `config.py` (e `BASE_URL` em `blog.py` e `indexnow.py`) e adapte o script para fazer o caminho inverso.
+
 ## Conferência rápida
 
     python src/indexnow.py --site /home/user/techdimbr --simular   # o que seria enviado

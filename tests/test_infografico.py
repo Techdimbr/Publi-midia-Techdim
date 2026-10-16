@@ -2,8 +2,9 @@
 import copy
 
 import pytest
-from PIL import Image
+from PIL import Image, ImageDraw
 
+import config
 import infografico
 from conftest import bloco_infografico
 from infografico import InfograficoInvalido, validar
@@ -134,6 +135,8 @@ def test_texto_gigante_nao_estoura_nem_levanta_erro(tmp_path):
     arq = infografico.renderizar(b, "servico", "pior-caso", tmp_path / "x.png")
     img = Image.open(arq).convert("RGB")
     assert img.size == (1080, 1350)
-    # a faixa de rodapé (abaixo da linha em y=1282) continua só com a marca: nada invadiu
-    faixa = img.crop((300, 1290, 800, 1340)).getcolors(maxcolors=1 << 20)
+    # o rodapé (abaixo da linha em y=1282) tem só a marca à esquerda e o endereço do site à direita;
+    # entre os dois nada invadiu
+    inicio_site = 1040 - ImageDraw.Draw(img).textlength(config.SITE, font=infografico.rob(24, 600))
+    faixa = img.crop((300, 1290, int(inicio_site) - 20, 1340)).getcolors(maxcolors=1 << 20)
     assert faixa is not None and len(faixa) < 40   # fundo liso, sem texto passando por ali

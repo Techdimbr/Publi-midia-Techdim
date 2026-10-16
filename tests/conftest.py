@@ -40,7 +40,7 @@ def pauta(**extra) -> dict:
         "pontos": ["O problema do cliente", "O que a TECHDIM faz", "O resultado esperado"],
         "fecho": "Fale com a TECHDIM.",
         "motivo": "Serviço de backup testado.",
-        "fontes": [["techdim.com.br", "https://www.techdim.com.br"]],
+        "fontes": [["exemplo.com.br", "https://www.exemplo.com.br"]],
         "infografico": bloco_infografico(),
     }
     base.update(extra)
