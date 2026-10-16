@@ -1,0 +1,4 @@
+{"quando": "2026-10-15T22:17:22-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-15", "campo": "perfil:website", "estado": "tentando", "antes": "http://www.techdim.com.br/, http://www.techdim.com.br/", "depois": "https://techdimbr.github.io/techdimbr/"}
+{"quando": "2026-10-15T22:17:23-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-15", "campo": "perfil:website", "estado": "falhou", "erro": "o texto no ar não mudou"}
+{"quando": "2026-10-15T22:17:23-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-15", "campo": "perfil:about", "estado": "tentando", "antes": "www.techdim.com.br", "depois": "techdimbr.github.io/techdimbr"}
+{"quando": "2026-10-15T22:17:26-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-15", "campo": "perfil:about", "estado": "ok"}
