@@ -431,8 +431,9 @@ def corrigir(creds, alvos: list[Alvo], aplicar: bool, backup: Backup) -> list[Re
 
 
 def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "instagram")) -> list[Resultado]:
-    """Site/descrição do perfil: o da Página do Facebook a API pode editar (se o app tiver a permissão); a bio
-    do Instagram só se edita no app, então aqui ela é só conferida e, se citar o domínio antigo, avisada."""
+    """Site/descrição do perfil. O "Sobre" da Página a API edita; o campo Site da Página (a API só acrescenta) e a
+    bio do Instagram (a API não edita) só se trocam no app, então aqui são conferidos e, se citarem o domínio
+    antigo, avisados."""
     dia = f"{config.hoje():%Y-%m-%d}"
     resultados: list[Resultado] = []
     if "facebook" in redes:
@@ -444,6 +445,14 @@ def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "in
             resultados.append(Resultado(a, "perfil", "falhou", detalhe=_curto(exc)))
         for campo in PERFIL_FACEBOOK if dados is not None else ():
             valor = dados.get(campo) or ""
+            if campo == "website":
+                # a API trata o Site como lista e ACRESCENTA em vez de substituir (visto em 16/10/2026: cada POST
+                # somou uma entrada e a antiga ficou), então este campo só se troca no app
+                resultados.append(
+                    Resultado(a, f"perfil:{campo}", "não editável", valor, corrigir_texto(valor),
+                              f"troque no app, deixando só {config.SITE_URL}") if tem_endereco_antigo(valor)
+                    else Resultado(a, f"perfil:{campo}", "sem mudança", detalhe=f"hoje: {valor[:90]!r}" if valor else "vazio"))
+                continue
             r = _aplicar(a, f"perfil:{campo}", valor, aplicar,
                          lambda t, c=campo: facebook_editar_perfil(creds, c, t),
                          lambda c=campo: facebook_perfil(creds).get(c, ""), backup,
@@ -527,7 +536,7 @@ def _eventos(resultados: list[Resultado], origem: str) -> list[dict]:
     for r in resultados:
         if r.situacao == "não editável" and r.alvo.tema == "perfil":
             eventos.append({"rede": r.alvo.rede, "origem": origem, "tipo": "observacao",
-                            "detalhe": f"o {r.campo} do Instagram ainda cita {config.SITE_FORA_DO_AR}: {r.detalhe}"})
+                            "detalhe": f"o {r.campo} da {r.alvo.rede} ainda cita {config.SITE_FORA_DO_AR}: {r.detalhe}"})
     for rede in REDES_QUE_PODEM_RECUSAR:
         nao_editaveis = [r for r in resultados
                          if r.situacao == "não editável" and r.alvo.rede == rede and r.alvo.tema != "perfil"]

@@ -446,32 +446,36 @@ def test_main_desfazer(assets, redes, ambiente, capsys):
 def test_perfis_no_ensaio_mostram_o_site_antigo_e_nao_editam(redes):
     resultados = cs.corrigir_perfis(Creds(), False, cs.Backup(None))
     assert [(r.alvo.rede, r.campo, r.situacao) for r in resultados] == [
-        ("facebook", "perfil:website", "trocar"), ("facebook", "perfil:about", "sem mudança"),
+        ("facebook", "perfil:website", "não editável"), ("facebook", "perfil:about", "sem mudança"),
         ("facebook", "perfil:description", "sem mudança"),
         ("instagram", "perfil:website", "não editável"), ("instagram", "perfil:biography", "sem mudança"),
     ]
     assert resultados[1].detalhe == "hoje: 'TECHDIM'" and resultados[2].detalhe == "vazio"
-    assert config.SITE_URL in resultados[3].detalhe and redes.edicoes == []
+    assert config.SITE_URL in resultados[0].detalhe and config.SITE_URL in resultados[3].detalhe and redes.edicoes == []
 
 
-def test_perfis_aplicar_corrige_a_pagina_guarda_o_original_e_so_avisa_do_instagram(redes, tmp_path):
+def test_perfis_aplicar_corrige_o_sobre_guarda_o_original_e_so_avisa_do_resto(redes, tmp_path):
+    redes.perfil_fb["about"] = ANTIGO
     backup = cs.Backup(tmp_path / "b.jsonl")
     resultados = cs.corrigir_perfis(Creds(), True, backup)
-    assert redes.perfil_fb["website"] == config.SITE_URL
-    assert redes.perfil_ig["website"] == ANTIGO_URL   # o Instagram só se edita no app
-    assert [e[0] for e in redes.edicoes] == ["perfil"]
+    assert redes.perfil_fb["about"] == config.SITE
+    assert redes.perfil_fb["website"] == ANTIGO_URL and redes.perfil_ig["website"] == ANTIGO_URL   # só se trocam no app
+    assert [(e[0], e[1]) for e in redes.edicoes] == [("perfil", "about")]
     eventos = cs._eventos(resultados, "teste")
-    assert {(e["tipo"], e["rede"]) for e in eventos} == {("observacao", "instagram"), ("editou", "facebook")}
+    assert {(e["tipo"], e["rede"]) for e in eventos} == {("observacao", "instagram"), ("observacao", "facebook"),
+                                                         ("editou", "facebook")}
     assert any("do perfil" in e["detalhe"] for e in eventos if e["tipo"] == "editou")
     cs.desfazer(Creds(), backup.caminho)   # o backup restaura o campo do perfil
-    assert redes.perfil_fb["website"] == ANTIGO_URL
+    assert redes.perfil_fb["about"] == ANTIGO
 
 
-def test_site_da_pagina_com_dois_enderecos_troca_cada_um(redes):
-    """A Página guarda até dois sites; cada endereço antigo vira o novo, sem mudar a quantidade."""
-    redes.perfil_fb["website"] = f"http://{ANTIGO}/, https://exemplo.com.br/, http://{ANTIGO}/"
-    resultados = cs.corrigir_perfis(Creds(), False, cs.Backup(None), ["facebook"])
-    assert resultados[0].depois == f"{config.SITE_URL}, https://exemplo.com.br/, {config.SITE_URL}"
+def test_site_da_pagina_nunca_e_editado_pela_api(redes):
+    """A API do Facebook acrescenta em vez de substituir no campo Site; por isso ele só é avisado."""
+    redes.perfil_fb["website"] = f"http://{ANTIGO}/, http://{ANTIGO}/"
+    resultados = cs.corrigir_perfis(Creds(), True, cs.Backup(None), ["facebook"])
+    assert resultados[0].situacao == "não editável" and redes.edicoes == []
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}"
+    assert cs.corrigir_perfis(Creds(), True, cs.Backup(None), ["facebook"])[0].situacao == "sem mudança"
 
 
 def test_main_perfis_e_versao_da_graph_api(redes, ambiente, tmp_path, capsys, monkeypatch):
