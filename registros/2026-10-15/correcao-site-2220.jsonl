@@ -1,0 +1,2 @@
+{"quando": "2026-10-15T22:20:38-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-15", "campo": "perfil:website", "estado": "tentando", "antes": "https://techdimbr.github.io/techdimbr/, http://www.techdim.com.br/", "depois": "https://techdimbr.github.io/techdimbr/, https://techdimbr.github.io/techdimbr/"}
+{"quando": "2026-10-15T22:20:39-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-15", "campo": "perfil:website", "estado": "falhou", "erro": "o texto no ar não mudou"}
