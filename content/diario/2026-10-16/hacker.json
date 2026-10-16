@@ -1,0 +1,91 @@
+{
+  "titulo": "Zero-day no BeyondTrust Remote Support: falha foi explorada desde o fim de agosto",
+  "pontos": [
+    "A BeyondTrust avisou que o Remote Support (até a versão 26.2.3) tem uma falha crítica, a CVE-2026-102764, explorada como zero-day desde o fim de agosto",
+    "A Mandiant (Google) atribui os ataques a um grupo suspeito de ligação com a China. Os invasores viraram root, acessaram credenciais guardadas e se moveram pela rede",
+    "A versão em nuvem já foi corrigida. Quem hospeda o servidor precisa aplicar o patch manualmente e tratar o equipamento exposto à internet como possivelmente comprometido"
+  ],
+  "fecho": "Sua empresa ou seu fornecedor usa BeyondTrust no próprio servidor? Confirme a versão e aplique o patch hoje.",
+  "motivo": "Falha crítica em ferramenta de suporte remoto usada por equipes de TI, explorada como zero-day e divulgada hoje (16/10), com ações práticas para quem administra o produto.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/beyondtrust-patches-zero-day-exploited-in-attacks-since-august/"
+    ],
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/china-linked-hackers-exploited.html"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "acesso remoto · BeyondTrust",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · BeyondTrust Remote Support",
+        "cmd"
+      ],
+      [
+        "",
+        "falha crítica · CVE-2026-102764",
+        "risco"
+      ],
+      [
+        "",
+        "explorada desde o fim de agosto",
+        "risco"
+      ],
+      [
+        "",
+        "versões até 26.2.3 · servidor próprio",
+        "risco"
+      ],
+      [
+        "",
+        "grupo ligado à China · diz a Mandiant",
+        "txt"
+      ],
+      [
+        "$ ",
+        "aplicar o patch da BeyondTrust",
+        "cmd"
+      ],
+      [
+        "",
+        "tratar acesso exposto como suspeito",
+        "ok"
+      ],
+      [
+        "",
+        "renovar credenciais e revisar acessos",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Zero-day no BeyondTrust:",
+    "titulo_destaque": "explorado desde agosto",
+    "historia": "Falha crítica no BeyondTrust Remote Support foi explorada como zero-day desde agosto, segundo a Mandiant, por um grupo suspeito de ligação com a China. A nuvem já foi corrigida; o servidor próprio exige patch manual.",
+    "licoes": [
+      [
+        "Atualize já",
+        "Quem hospeda o Remote Support precisa aplicar o patch. A versão em nuvem já foi corrigida."
+      ],
+      [
+        "Trate como suspeito",
+        "Equipamento exposto à internet em versão vulnerável deve ser revisado, orienta a Mandiant."
+      ],
+      [
+        "Troque credenciais",
+        "Os invasores acessaram credenciais guardadas: renove senhas e revise os acessos."
+      ]
+    ],
+    "pergunta": "O acesso remoto da sua empresa está atualizado e fora da internet aberta?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#ZeroDay",
+      "#AcessoRemoto",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "titulo": "Google dá mais destaque a links nas respostas de IA e testa seção de páginas oficiais",
+  "pontos": [
+    "O Google diz ter aumentado de forma substancial os links no Modo IA e nas visões gerais de IA, exibindo-os mais acima, com mais frequência e, no fim, com miniaturas",
+    "Carrosséis de notícias, que destacam as fontes preferidas do usuário, chegam a mais países e idiomas. O uso das fontes preferidas cresceu mais de 7 vezes em 2026",
+    "Em teste: seção no topo com as páginas oficiais para concluir uma tarefa. Mantenha serviços, contato e horário claros e atualizados no site e nos perfis da empresa"
+  ],
+  "fecho": "Seu site mostra com clareza o que sua empresa faz e como falar com ela? Revise antes que o cliente pergunte à IA.",
+  "motivo": "Mudança anunciada pelo Google em 15/10 sobre links na busca com IA, que afeta como clientes chegam ao site da empresa, com orientação prática de revisão.",
+  "fontes": [
+    [
+      "blog.google",
+      "https://blog.google/products-and-platforms/products/search/updates-ai-mode-overviews-explore-web/"
+    ],
+    [
+      "9to5google.com",
+      "https://9to5google.com/2026/10/15/google-ai-mode-overviews-links/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "monitor",
+        "globo",
+        "documento"
+      ],
+      "legenda": "BUSCA COM IA · LINKS EM MAIS DESTAQUE"
+    },
+    "titulo_branco": "Busca com IA:",
+    "titulo_destaque": "links ganham mais destaque",
+    "historia": "O Google aumentou os links nas respostas do Modo IA e das visões gerais de IA e os mostra mais acima. Também testa uma seção com as páginas oficiais de cada tarefa. Vale manter site e perfis da empresa claros e atualizados.",
+    "licoes": [
+      [
+        "Links mais acima",
+        "O Google aumentou os links nas respostas de IA e os exibe mais no topo."
+      ],
+      [
+        "Páginas oficiais",
+        "Em teste: seção no topo com os lugares oficiais para concluir uma tarefa, e por que cada link é útil."
+      ],
+      [
+        "Revise seu site",
+        "Mantenha serviços, contato e horário claros e atualizados no site e nos perfis da empresa."
+      ]
+    ],
+    "pergunta": "Quando alguém pergunta à IA sobre seu ramo, seu site aparece como fonte?",
+    "hashtags": [
+      "#Google",
+      "#BuscaComIA",
+      "#SEO",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

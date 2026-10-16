@@ -1,0 +1,47 @@
+{
+  "titulo": "Automação com IA: comece pela tarefa que sua equipe repete todo dia",
+  "pontos": [
+    "Toda empresa tem tarefas repetidas: copiar dados entre planilhas, montar o mesmo relatório, responder as mesmas dúvidas. IA e automação ajudam, com revisão humana",
+    "A TECHDIM mapeia o que consome tempo da sua equipe, automatiza atendimento, relatório e tarefa repetitiva, e integra com as ferramentas que você já usa",
+    "Você define quem confere o resultado e quais dados a IA pode acessar, com atenção à segurança e à LGPD. O time é treinado para operar sem depender de nós"
+  ],
+  "fecho": "Qual tarefa repetida consome horas da sua equipe? Fale com a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de automação e IA aplicada ao processo, partindo da tarefa repetida e com revisão humana, sem promessas de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "chip",
+        "notebook",
+        "grafico"
+      ],
+      "legenda": "AUTOMAÇÃO COM IA · MENOS TAREFA REPETIDA"
+    },
+    "titulo_branco": "Automação com IA:",
+    "titulo_destaque": "comece pela tarefa repetida",
+    "historia": "Toda empresa tem tarefas que se repetem todos os dias. Comece por uma: mapeie o passo a passo, automatize com IA, defina quem confere o resultado e proteja os dados. A TECHDIM ajuda em cada etapa.",
+    "licoes": [
+      [
+        "Escolha uma tarefa",
+        "Comece pelo que se repete todo dia: planilha, relatório ou resposta padrão."
+      ],
+      [
+        "Humano confere",
+        "Defina quem revisa o resultado da IA antes de ele chegar ao cliente."
+      ],
+      [
+        "Proteja os dados",
+        "Decida quais dados a IA pode acessar, com atenção à LGPD e às regras da empresa."
+      ]
+    ],
+    "pergunta": "Qual tarefa da sua equipe você gostaria de nunca mais fazer à mão?",
+    "hashtags": [
+      "#AutomacaoComIA",
+      "#InteligenciaArtificial",
+      "#Produtividade",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
