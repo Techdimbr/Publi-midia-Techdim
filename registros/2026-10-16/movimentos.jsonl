@@ -1,0 +1,1 @@
+{"hora": "02:25:42", "teste": false, "rede": "facebook", "origem": "workflow Corrigir site", "tipo": "observacao", "detalhe": "o perfil:website da facebook ainda cita techdim.com.br: a API não limpa o campo (hoje: 'http://www.techdim.com.br/'); troque no app, deixando só https://techdimbr.github.io/techdimbr/"}

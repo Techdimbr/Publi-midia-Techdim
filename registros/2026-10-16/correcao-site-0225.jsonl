@@ -1,0 +1,2 @@
+{"quando": "2026-10-16T02:25:31-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-16", "campo": "perfil:website", "estado": "tentando", "antes": "https://techdimbr.github.io/techdimbr/, https://techdimbr.github.io/techdimbr/, http://www.techdim.com.br/", "depois": "https://techdimbr.github.io/techdimbr/"}
+{"quando": "2026-10-16T02:25:39-03:00", "rede": "facebook", "id": "1167193706481148", "dia": "2026-10-16", "campo": "perfil:website", "estado": "falhou", "erro": "a API não limpou o campo"}
