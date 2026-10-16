@@ -467,11 +467,11 @@ def test_perfis_aplicar_corrige_a_pagina_guarda_o_original_e_so_avisa_do_instagr
     assert redes.perfil_fb["website"] == ANTIGO_URL
 
 
-def test_site_da_pagina_com_endereco_repetido_vira_um_so(redes):
-    redes.perfil_fb["website"] = f"http://{ANTIGO}/, http://{ANTIGO}/"
+def test_site_da_pagina_com_dois_enderecos_troca_cada_um(redes):
+    """A Página guarda até dois sites; cada endereço antigo vira o novo, sem mudar a quantidade."""
+    redes.perfil_fb["website"] = f"http://{ANTIGO}/, https://exemplo.com.br/, http://{ANTIGO}/"
     resultados = cs.corrigir_perfis(Creds(), False, cs.Backup(None), ["facebook"])
-    assert resultados[0].depois == config.SITE_URL
-    assert cs.corrigir_site_da_pagina("https://outro.com.br, https://outro.com.br") == "https://outro.com.br, https://outro.com.br"
+    assert resultados[0].depois == f"{config.SITE_URL}, https://exemplo.com.br/, {config.SITE_URL}"
 
 
 def test_main_perfis_e_versao_da_graph_api(redes, ambiente, tmp_path, capsys, monkeypatch):
