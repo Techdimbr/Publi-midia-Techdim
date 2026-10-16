@@ -1,0 +1,32 @@
+{
+ "facebook": {
+  "campos": {
+   "name": "Techdim",
+   "link": "https://www.facebook.com/1167193706481148",
+   "category": "Company",
+   "about": "techdimbr.github.io/techdimbr",
+   "website": "http://www.techdim.com.br/, https://techdimbr.github.io/techdimbr/",
+   "emails": [
+    "techdimbrasil@gmail.com"
+   ],
+   "phone": "+5519996153276",
+   "single_line_address": "Brasil",
+   "followers_count": 47,
+   "fan_count": 47,
+   "verification_status": "not_verified",
+   "is_published": true
+  },
+  "indisponiveis": []
+ },
+ "instagram": {
+  "campos": {
+   "username": "techdimbr",
+   "name": "Techdim",
+   "biography": "Em construção 🚧 \nTechdim Inova Simples (I.S)",
+   "followers_count": 20,
+   "follows_count": 92,
+   "media_count": 81
+  },
+  "indisponiveis": []
+ }
+}
