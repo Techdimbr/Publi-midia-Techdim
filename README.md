@@ -280,6 +280,7 @@ python src/exemplos_infograficos.py historias
   token.yml             verificação semanal da validade dos tokens
   relatorio.yml         relatório semanal de alcance, engajamento e seguidores
   corrigir-site.yml     troca o endereço do site nos posts e perfis já publicados (ver docs/SEO.md)
+  radar.yml             só leitura: confere contas do Instagram e mostra os perfis da TECHDIM (ver docs/CRESCIMENTO.md)
   apagar-posts.yml      exclusão de posts, com conferência e registro
   registrar-movimento.yml  anotações manuais no diário
   descobrir-ids.yml     imprime FB_PAGE_ID, IG_USER_ID e LINKEDIN_URN
@@ -287,7 +288,7 @@ content/
   diario/AAAA-MM-DD/    pauta do dia escrita pela Routine
   destaques/ especiais/ posts escritos sob demanda
   dicas.json servicos.json   acervo autoral (reserva)
-docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md
+docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md, SEO.md, BLOG.md, CRESCIMENTO.md (plano de seguidores)
 fonts/ fotos/ exemplos/ fontes OFL, foto de exemplo e imagens de exemplo
 src/
   config.py             marca, formatos, credenciais, hora de Brasília
@@ -300,7 +301,7 @@ src/
   main.py               generate / publish / preview / pendentes / registrar
   registro.py movimentos.py relatorio.py   diário, movimentos e relatório
   validar_pauta.py     confere a pauta do dia antes de ela ir para o ar
-  apagar.py token_check.py discover.py linkedin_ids.py curator.py
+  apagar.py token_check.py discover.py linkedin_ids.py curator.py radar.py
   seguranca.py texto.py utilitários (redação de credenciais, corte de texto)
   publishers/           facebook.py, instagram.py, linkedin.py, common.py
 tests/                  pytest

@@ -242,7 +242,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     resultados = validar(creds, carregar_lista(args.lista), pausa=args.pausa)
-    _gravar(args.dest, "perfis", dia, resultados, relatorio_md(resultados, dia))
+    _gravar(args.dest, f"radar-{args.lista.stem}", dia, resultados, relatorio_md(resultados, dia))   # uma por lista: não sobrescreve
     print(f"validação: {_resumo_validacao(resultados)}")
     for r in resultados:
         if r["situacao"] == "ok":

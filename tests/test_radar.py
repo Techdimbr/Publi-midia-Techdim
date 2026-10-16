@@ -168,7 +168,7 @@ def test_main_grava_o_resultado_no_destino_e_falha_sem_nenhuma_conta_ok(monkeypa
     monkeypatch.setattr(radar, "request", lambda *a, **kw: Resposta({"business_discovery": conta("acme")}))
     assert radar.main(["--dest", str(tmp_path), "--acao", "validar-lista", "--lista", str(lista)]) == 0
     arquivos = sorted(p.name for p in (tmp_path / "registros" / "radar").iterdir())
-    assert len(arquivos) == 2 and arquivos[0].startswith("perfis-") and arquivos[0].endswith(".json")
+    assert len(arquivos) == 2 and arquivos[0].startswith("radar-l-") and arquivos[0].endswith(".json")
     assert "validação: 1 ok" in capsys.readouterr().out
 
     monkeypatch.setattr(radar, "request", lambda *a, **kw: (_ for _ in ()).throw(erro("falha", status=500)))
