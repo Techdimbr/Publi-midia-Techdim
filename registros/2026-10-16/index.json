@@ -142,5 +142,34 @@
       "instagram": "18113958715846170"
     },
     "comentou": []
+  },
+  {
+    "hora": "11:11",
+    "tema": "hacker",
+    "titulo": "Zero-day no BeyondTrust Remote Support: falha foi explorada desde o fim de agosto",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h11-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136487629390486",
+      "instagram": "https://www.instagram.com/p/Dejt5L-l5R8/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4009250061679061767",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516863107156103168/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136487629390486",
+      "instagram": "17898645360397937",
+      "instagram_stories": "18254757004308896",
+      "linkedin": "urn:li:share:7516863107156103168"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

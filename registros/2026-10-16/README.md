@@ -10,5 +10,6 @@ Tudo que a automação publicou (ou tentou publicar) neste dia.
 | 08:15 | TECHDIM · Vídeo | [Acompanhe a TECHDIM: análises técnicas todos os dias](08h15-video.md) | — | — | — | [✅](https://www.linkedin.com/feed/update/urn:li:ugcPost:7516819118000553984/) |
 | 08:16 | TECHDIM · Vídeo | [Acompanhe a TECHDIM: análises técnicas todos os dias](08h16-video.md) | [✅](https://www.facebook.com/reel/1013109551188554/) | — | — | — |
 | 08:17 | TECHDIM · Vídeo | [Acompanhe a TECHDIM: análises técnicas todos os dias](08h17-video.md) | — | [✅](https://www.instagram.com/reel/DejaBwPE3bb/) | — | — |
+| 11:11 | Cibersegurança · IA · Hacker | [Zero-day no BeyondTrust Remote Support: falha foi explorada desde o fim de agosto](11h11-hacker.md) | [✅](https://www.facebook.com/122132402349390486/posts/122136487629390486) | [✅](https://www.instagram.com/p/Dejt5L-l5R8/) | [✅](https://www.instagram.com/stories/techdimbr/4009250061679061767) | [✅](https://www.linkedin.com/feed/update/urn:li:share:7516863107156103168/) |
 
 ✅ publicado · ❌ falhou · ⚠️ rede não configurada · ⏸️ não executado · — não se aplica
