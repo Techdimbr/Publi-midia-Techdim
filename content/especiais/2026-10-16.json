@@ -1,0 +1,47 @@
+{
+  "titulo": "Infraestrutura de TI: diagnóstico para organizar a rede e os servidores",
+  "pontos": [
+    "Problemas na rede, lentidão e falhas em servidores afetam a produtividade e a segurança de pequenas e médias empresas.",
+    "O diagnóstico de infraestrutura e segurança da TECHDIM mapeia o ambiente para identificar gargalos e vulnerabilidades.",
+    "Com uma visão clara da TI, o gestor pode planejar melhorias e manter a operação estável."
+  ],
+  "fecho": "Conheça o diagnóstico de infraestrutura da TECHDIM em techdimbr.github.io/techdimbr.",
+  "motivo": "Empresas precisam de estabilidade e segurança na infraestrutura para operar sem interrupções.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Infraestrutura de TI sem",
+    "titulo_destaque": "visibilidade é risco.",
+    "historia": "Sem um mapa claro da rede e dos servidores, falhas e lentidões pegam a equipe de surpresa, prejudicando o atendimento ao cliente e a rotina do negócio.",
+    "licoes": [
+      [
+        "Mapeie os ativos",
+        "Saiba exatamente quais equipamentos e sistemas formam a rede."
+      ],
+      [
+        "Avalie falhas",
+        "Identifique pontos vulneráveis antes de incidentes."
+      ],
+      [
+        "Planeje melhorias",
+        "Use dados reais para investir com foco em estabilidade."
+      ]
+    ],
+    "pergunta": "Como está a saúde da infraestrutura da sua empresa hoje?",
+    "hashtags": [
+      "#Infraestrutura",
+      "#Redes",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "monitor",
+        "nuvem"
+      ],
+      "legenda": "DIAGNÓSTICO DE TI"
+    }
+  },
+  "gerado_por": "gemini (gemini-flash-lite-latest), pauta de reserva"
+}
