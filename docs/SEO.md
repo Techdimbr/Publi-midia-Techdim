@@ -83,9 +83,21 @@ Posts **já publicados** são corrigidos pelo workflow **Corrigir site** (`src/c
 3. Rode com "aplicar" para todos. Para voltar atrás, informe em "desfazer" o arquivo
    `registros/<dia>/correcao-site-*.jsonl` que a rodada gravou no branch assets.
 
-Não dá para corrigir pela API: o endereço **desenhado nas imagens** já publicadas e, no Instagram, a legenda (se a
-API recusar, o script avisa e a edição é manual, no app). Quando o domínio próprio voltar, troque `SITE`, `SITE_URL`
-e `SITE_FORA_DO_AR` em `config.py` (e `BASE_URL` em `blog.py` e `indexnow.py`) e adapte o script para fazer o caminho inverso.
+Limites confirmados na prática (16/10/2026):
+
+- **LinkedIn**: o app não tem permissão de leitura (GET devolve 403), então o script parte do texto gravado no diário
+  e edita sem reler; confira pela página pública do post (os links `lnkd.in` do texto apontam para o endereço novo).
+  A edição em si (Posts API, atualização parcial do `commentary`) funciona e não mexe na imagem.
+- **Facebook**: legenda e primeiro comentário da página são editados e relidos para conferir.
+- **Instagram**: a API **não permite editar legenda** (erro #100: só aceita `comment_enabled` e `status`). As legendas
+  antigas só mudam à mão, no app (Editar legenda); o que vale mais é trocar o link do perfil (bio).
+- **Imagens** já publicadas (post e Story) trazem o endereço desenhado e não dá para trocá-lo sem apagar e republicar.
+
+Quando o domínio próprio voltar, troque `SITE`, `SITE_URL` e `SITE_FORA_DO_AR` em `config.py` (e `BASE_URL` em
+`blog.py` e `indexnow.py`) e adapte o script para fazer o caminho inverso. Com o domínio configurado no GitHub Pages
+(arquivo `CNAME` no repositório do site), o GitHub costuma redirecionar (301) o endereço `techdimbr.github.io/techdimbr`
+para ele (exemplo observado: `jekyll.github.io/jekyll` → `jekyllrb.com`); confirme com `curl -I` depois de configurar. Se
+redirecionar, os posts já publicados com o endereço do GitHub Pages continuam funcionando sem nova edição em massa.
 
 ## Conferência rápida
 
