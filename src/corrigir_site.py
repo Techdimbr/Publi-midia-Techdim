@@ -40,7 +40,10 @@ log = logging.getLogger("corrigir_site")
 
 REDES = ("linkedin", "facebook", "instagram")
 PAUSA_ENTRE_EDICOES = 0.6  # segundos: as APIs toleram, mas não há pressa
-INSTAGRAM_DESISTE_APOS = 2  # recusas seguidas: o Instagram não aceita editar legenda, para de insistir
+# Redes em que a API pode recusar TODA edição (permissão que o app não tem): depois de duas recusas
+# seguidas o script deixa de insistir e marca o resto como "não editável".
+REDES_QUE_PODEM_RECUSAR = {"linkedin": "LinkedIn", "instagram": "Instagram"}
+DESISTE_APOS = 2
 
 # O endereço antigo, com ou sem esquema/"www." e com caminho opcional. Não casa dentro de outra
 # palavra nem depois de "@" (e-mail), "." (subdomínio) ou "/" (outro endereço).
@@ -252,6 +255,13 @@ def _curto(exc: Exception) -> str:
     return redigir(re.sub(r"\s+", " ", str(exc)))[:220]
 
 
+def _erro_de_leitura(a: Alvo, exc: Exception) -> Resultado:
+    """Post que a Graph API diz não existir (apagado direto no app) não é falha; o resto é."""
+    if "does not exist" in str(exc) or "HTTP 404" in str(exc):
+        return Resultado(a, "legenda", "não existe mais", detalhe="não encontrado (apagado no app?)")
+    return Resultado(a, "legenda", "falhou", detalhe=_curto(exc))
+
+
 def _normalizar(texto: str) -> str:
     return re.sub(r"\s+", " ", texto or "").strip()
 
@@ -327,7 +337,7 @@ def _corrigir_facebook(creds, a: Alvo, aplicar: bool, backup: Backup) -> list[Re
     try:
         vivo = facebook_ler(creds, a.ident)
     except PublishError as exc:
-        return [Resultado(a, "legenda", "falhou", detalhe=_curto(exc))]
+        return [_erro_de_leitura(a, exc)]
     resultados.append(_aplicar(
         a, "legenda", vivo, aplicar, lambda t: facebook_editar(creds, a.ident, t),
         lambda: facebook_ler(creds, a.ident), backup, chave,
@@ -359,7 +369,7 @@ def _corrigir_instagram(creds, a: Alvo, aplicar: bool, backup: Backup) -> list[R
     try:
         vivo = instagram_ler(creds, a.ident)
     except PublishError as exc:
-        return [Resultado(a, "legenda", "falhou", detalhe=_curto(exc))]
+        return [_erro_de_leitura(a, exc)]
     return [_aplicar(a, "legenda", vivo, aplicar, lambda t: instagram_editar(creds, a.ident, t),
                      lambda: instagram_ler(creds, a.ident), backup, chave)]
 
@@ -368,27 +378,28 @@ _CORRETORES = {"linkedin": _corrigir_linkedin, "facebook": _corrigir_facebook, "
 
 
 def corrigir(creds, alvos: list[Alvo], aplicar: bool, backup: Backup) -> list[Resultado]:
-    """Corrige cada post; falha num não impede os demais. O Instagram, se recusar a edição de
-    legenda duas vezes seguidas, é dado como não editável e deixa de ser consultado."""
+    """Corrige cada post; falha num não impede os demais. Se o LinkedIn ou o Instagram recusarem a
+    edição duas vezes seguidas, o resto daquela rede é dado como não editável (e não é mais consultado)."""
     resultados: list[Resultado] = []
-    recusas_instagram = 0
-    instagram_nao_edita = ""
+    recusas = dict.fromkeys(REDES_QUE_PODEM_RECUSAR, 0)
+    desistiu: dict[str, str] = {}
     for a in alvos:
-        if a.rede == "instagram" and instagram_nao_edita:
-            resultados.append(Resultado(a, "legenda", "não editável", detalhe=instagram_nao_edita))
+        if a.rede in desistiu:
+            resultados.append(Resultado(a, "legenda", "não editável", detalhe=desistiu[a.rede]))
             continue
         try:
             novos = _CORRETORES[a.rede](creds, a, aplicar, backup)
         except Exception as exc:  # noqa: BLE001 — um post com erro não pode parar os outros
             novos = [Resultado(a, "legenda", "falhou", detalhe=_curto(exc))]
         resultados += novos
-        if a.rede == "instagram" and aplicar:
-            if any(r.situacao == "falhou" and r.antes for r in novos):  # leu, mas a edição foi recusada
-                recusas_instagram += 1
-                if recusas_instagram >= INSTAGRAM_DESISTE_APOS:
-                    instagram_nao_edita = f"a API do Instagram recusou a edição de legenda: {novos[0].detalhe}"
+        if a.rede in recusas and aplicar:
+            recusada = [r for r in novos if r.situacao == "falhou" and r.antes]  # leu/preparou, mas a edição foi recusada
+            if recusada:
+                recusas[a.rede] += 1
+                if recusas[a.rede] >= DESISTE_APOS:
+                    desistiu[a.rede] = f"a API do {REDES_QUE_PODEM_RECUSAR[a.rede]} recusou a edição: {recusada[0].detalhe}"
             elif any(r.situacao == "ok" for r in novos):
-                recusas_instagram = 0
+                recusas[a.rede] = 0
     return resultados
 
 
@@ -432,9 +443,8 @@ def _linha(r: Resultado) -> str:
 
 
 def _eventos(resultados: list[Resultado], origem: str) -> list[dict]:
-    """Movimentos do diário: uma linha por edição feita e por falha; o Instagram recusado vira um aviso só."""
+    """Movimentos do diário: uma linha por edição feita e por falha; a rede que recusou vira um aviso só."""
     eventos: list[dict] = []
-    nao_editaveis = [r for r in resultados if r.situacao == "não editável"]
     for r in resultados:
         a = r.alvo
         base = {"rede": a.rede, "tema": config.THEME_LABELS.get(a.tema, a.tema), "origem": origem, "link": a.link}
@@ -445,10 +455,12 @@ def _eventos(resultados: list[Resultado], origem: str) -> list[dict]:
         elif r.situacao == "falhou":
             eventos.append({**base, "tipo": "falhou",
                             "detalhe": f"não consegui corrigir o {r.campo} do post de {a.dia} ({a.ident}): {r.detalhe}"})
-    if nao_editaveis:
-        eventos.append({"rede": nao_editaveis[0].alvo.rede, "origem": origem, "tipo": "observacao",
-                        "detalhe": f"{len(nao_editaveis)} posts não puderam ser editados pela API; "
-                                   f"troque à mão no app: {nao_editaveis[0].detalhe}"})
+    for rede in REDES_QUE_PODEM_RECUSAR:
+        nao_editaveis = [r for r in resultados if r.situacao == "não editável" and r.alvo.rede == rede]
+        if nao_editaveis:
+            eventos.append({"rede": rede, "origem": origem, "tipo": "observacao",
+                            "detalhe": f"{len(nao_editaveis)} posts não puderam ser editados pela API; "
+                                       f"troque o endereço à mão no app: {nao_editaveis[0].detalhe}"})
     return eventos
 
 

@@ -178,6 +178,8 @@ class Redes:
         self.instagram = {"333": f"Texto do Instagram\nSaiba mais: {ANTIGO}"}
         self.edicoes: list[tuple] = []
         self.linkedin_leitura_recusada = False
+        self.linkedin_edicao_recusada = False
+        self.nao_existem: set[str] = set()
         self.instagram_recusa = ""
         self.ignora_edicao = False
         self.quebra_em: set[str] = set()
@@ -194,10 +196,14 @@ class Redes:
 
     def linkedin_editar(self, creds, urn, texto):
         self.edicoes.append(("linkedin", urn, texto))
+        if self.linkedin_edicao_recusada:
+            raise PublishError("POST x -> HTTP 403: Not enough permissions")
         if not self.ignora_edicao:
             self.linkedin[urn] = texto
 
     def facebook_ler(self, creds, post_id):
+        if post_id in self.nao_existem:
+            raise PublishError("GET x -> HTTP 400: Unsupported get request. Object with ID 'x' does not exist")
         if post_id in self.quebra_em:
             raise PublishError("GET x -> HTTP 500: erro")
         return self.facebook[post_id]
@@ -216,6 +222,8 @@ class Redes:
                 c["message"] = texto
 
     def instagram_ler(self, creds, media_id):
+        if media_id in self.nao_existem:
+            raise PublishError("GET x -> HTTP 400: Unsupported get request. Object with ID 'x' does not exist")
         return self.instagram[media_id]
 
     def instagram_editar(self, creds, media_id, texto):
@@ -346,6 +354,30 @@ def test_instagram_que_recusa_edicao_para_de_ser_consultado(assets, redes, tmp_p
     assert [r.situacao for r in ig] == ["falhou", "falhou", "não editável", "não editável", "não editável"]
     assert len([e for e in redes.edicoes if e[0] == "instagram"]) == 2   # não insistiu nos outros
     assert "recusou" in ig[-1].detalhe
+
+
+def test_linkedin_que_recusa_a_edicao_para_de_insistir_e_vira_um_aviso_no_diario(assets, redes, tmp_path):
+    """Como no ambiente real: o LinkedIn não deixa ler e, sem a permissão, também recusa editar."""
+    redes.linkedin_leitura_recusada = True
+    redes.linkedin_edicao_recusada = True
+    entradas = [entrada(f"1{i}:00", "servico", "17h24-servico.md", {"linkedin": f"urn:li:share:2{i}"},
+                        status={"linkedin": "publicado"}) for i in range(4)]
+    (assets / "registros" / "2026-10-14" / "index.json").write_text(json.dumps(entradas), encoding="utf-8")
+    resultados, _ = rodar(assets, True, tmp_path)
+    # os 4 novos mais o post de 13/10 que o diário de teste já tinha
+    assert [r.situacao for r in resultados] == ["falhou", "falhou", "não editável", "não editável", "não editável"]
+    assert len(redes.edicoes) == 2   # depois de duas recusas não tentou mais
+    eventos = cs._eventos(resultados, "teste")
+    assert [e["tipo"] for e in eventos] == ["falhou", "falhou", "observacao"]
+    assert "3 posts" in eventos[-1]["detalhe"] and "LinkedIn" in eventos[-1]["detalhe"]
+
+
+def test_post_que_a_graph_api_diz_nao_existir_nao_e_falha(assets, redes, tmp_path):
+    redes.nao_existem = {"333", "1_22"}
+    resultados, _ = rodar(assets, False, tmp_path)
+    assert ("instagram", "legenda", "não existe mais") in situacoes(resultados)
+    assert ("facebook", "legenda", "não existe mais") in situacoes(resultados)
+    assert "falhou" not in {s for _, _, s in situacoes(resultados)}
 
 
 # ------------------------------------------------------------------ linha de comando
