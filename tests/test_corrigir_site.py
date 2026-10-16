@@ -185,7 +185,8 @@ class Redes:
         self.quebra_em: set[str] = set()
         self.perfil_fb = {"website": ANTIGO_URL, "about": "TECHDIM", "description": ""}
         self.perfil_ig = {"website": ANTIGO_URL, "biography": "Infra e segurança"}
-        self.site_ignora_limpeza = False
+        self.site_manual: list[str] = []   # sites cadastrados à mão no Facebook: a API não mexe neles
+        self.site_acrescenta = False       # API que acrescenta em vez de substituir o que ela cadastrou
         for nome in ("facebook_audiencia", "instagram_audiencia", "facebook_perfil", "facebook_editar_perfil", "instagram_perfil", "linkedin_ler", "linkedin_editar", "facebook_ler", "facebook_editar", "facebook_comentarios",
                      "facebook_editar_comentario", "instagram_ler", "instagram_editar"):
             monkeypatch.setattr(cs, nome, getattr(self, nome))
@@ -229,8 +230,12 @@ class Redes:
 
     def facebook_editar_perfil(self, creds, campo, valor):
         self.edicoes.append(("perfil", campo, valor))
-        if campo == "website" and valor == "" and self.site_ignora_limpeza:
-            return   # como a API real: aceita e não muda
+        if campo == "website" and (self.site_manual or self.site_acrescenta):
+            enviados = [x.strip() for x in valor.split(",") if x.strip()]
+            atuais = [x.strip() for x in self.perfil_fb["website"].split(",") if x.strip()]
+            mantidos = atuais if self.site_acrescenta else [x for x in atuais if x in self.site_manual]
+            self.perfil_fb["website"] = ", ".join(enviados + mantidos)
+            return
         self.perfil_fb[campo] = valor
 
     def facebook_audiencia(self, creds):
@@ -502,34 +507,44 @@ def test_perfis_mostram_os_seguidores_e_o_que_a_api_recusou(redes):
     assert linhas["instagram"] == "seguidores 34 · posts 59"   # "seguindo" ficou de fora: a API não devolveu
 
 
-def test_limpar_site_da_pagina_limpa_e_grava_so_um(redes, tmp_path):
-    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}, http://{ANTIGO}/"
+def test_limpar_site_da_pagina_deixa_o_novo_uma_vez_e_avisa_do_cadastro_feito_a_mao(redes, tmp_path):
+    antigo = f"http://{ANTIGO}/"
+    redes.site_manual = [antigo]
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}, {antigo}"
     backup = cs.Backup(tmp_path / "b.jsonl")
     r = cs.limpar_site_da_pagina(Creds(), backup)
-    assert r.situacao == "ok" and redes.perfil_fb["website"] == config.SITE_URL
+    assert r.situacao == "ok" and redes.perfil_fb["website"] == f"{config.SITE_URL}, {antigo}"
     assert redes.edicoes == [("perfil", "website", ""), ("perfil", "website", config.SITE_URL)]
-    assert r.antes.endswith(f"http://{ANTIGO}/") and '"estado": "ok"' in backup.caminho.read_text(encoding="utf-8")
+    assert "apague no app" in r.detalhe and ANTIGO in r.detalhe
+    assert r.antes.endswith(antigo) and '"estado": "ok"' in backup.caminho.read_text(encoding="utf-8")
 
 
-def test_limpar_site_da_pagina_para_quando_a_api_ignora_a_limpeza(redes):
-    redes.perfil_fb["website"] = f"{config.SITE_URL}, http://{ANTIGO}/"
-    redes.site_ignora_limpeza = True
+def test_limpar_site_da_pagina_sem_cadastro_manual_fica_so_o_novo(redes):
+    redes.site_manual = ["x"]   # liga o modelo de lista da API; "x" não está no campo
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}"
     r = cs.limpar_site_da_pagina(Creds(), cs.Backup(None))
-    assert r.situacao == "não editável" and "troque no app" in r.detalhe
-    assert redes.edicoes == [("perfil", "website", "")]   # não gravou nada por cima
+    assert r.situacao == "ok" and redes.perfil_fb["website"] == config.SITE_URL and r.detalhe == "campo limpo e gravado de novo"
+
+
+def test_limpar_site_da_pagina_falha_se_a_api_acrescenta_em_vez_de_substituir(redes):
+    redes.site_acrescenta = True
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, http://{ANTIGO}/"
+    r = cs.limpar_site_da_pagina(Creds(), cs.Backup(None))
+    assert r.situacao == "falhou" and "ficou" in r.detalhe
 
 
 def test_limpar_site_da_pagina_ja_certa_nao_faz_nada(redes):
-    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}"
+    redes.perfil_fb["website"] = f"{config.SITE_URL}"
     assert cs.limpar_site_da_pagina(Creds(), cs.Backup(None)).situacao == "sem mudança"
     assert redes.edicoes == []
 
 
 def test_corrigir_perfis_so_limpa_o_site_com_o_pedido_e_com_aplicar(redes):
+    redes.site_manual = [f"http://{ANTIGO}/"]
     redes.perfil_fb["website"] = f"http://{ANTIGO}/"
     cs.corrigir_perfis(Creds(), False, cs.Backup(None), limpar_site=True)   # ensaio: nada
     cs.corrigir_perfis(Creds(), True, cs.Backup(None))                      # aplicar sem o pedido: nada no Site
     assert not [e for e in redes.edicoes if e[1] == "website"]
     cs.corrigir_perfis(Creds(), True, cs.Backup(None), limpar_site=True)
-    assert redes.perfil_fb["website"] == config.SITE_URL
+    assert redes.perfil_fb["website"] == f"{config.SITE_URL}, http://{ANTIGO}/"
 

@@ -517,40 +517,43 @@ PAUSA_LEITURA = 6  # segundos: o Facebook leva um instante para refletir a ediç
 
 
 def limpar_site_da_pagina(creds, backup: Backup) -> Resultado:
-    """Tenta deixar o campo Site da Página só com o endereço novo: limpa e grava de novo. A API trata o campo
-    como lista e acrescenta ao gravar; se não aceitar limpar, o resultado é "não editável" e a troca é no app."""
+    """Deixa o campo Site da Página com o endereço novo uma única vez.
+
+    Observado em 16/10/2026: a API só gerencia as entradas que ela mesma cadastrou. Gravar substitui essas entradas
+    (uma por endereço enviado) e gravar vazio apaga todas elas; o cadastro feito à mão no Facebook não é tocado e
+    só se remove no app. Por isso: limpa o que o app cadastrou, grava o endereço novo e confere que ele aparece uma
+    única vez, em primeiro lugar. O que sobrar (o cadastro antigo feito à mão) vai no detalhe, para remover no app."""
     dia = f"{config.hoje():%Y-%m-%d}"
     a = Alvo(dia=dia, hora="", tema="perfil", rede="facebook", ident=creds.fb_page_id)
     campo, alvo = "perfil:website", config.SITE_URL
     chave = {"rede": "facebook", "id": creds.fb_page_id, "dia": dia}
     antes = (facebook_perfil(creds).get("website") or "").strip()
-    if _sem_repeticao(antes) == alvo:
+    if _entradas(antes) == [alvo]:
         return Resultado(a, campo, "sem mudança", detalhe=f"hoje: {antes[:90]!r}")
     backup.registrar(**chave, campo=campo, estado="tentando", antes=antes, depois=alvo)
     try:
         facebook_editar_perfil(creds, "website", "")
         time.sleep(PAUSA_LEITURA)
-        restou = (facebook_perfil(creds).get("website") or "").strip()
-        if restou:
-            backup.registrar(**chave, campo=campo, estado="falhou", erro="a API não limpou o campo")
-            return Resultado(a, campo, "não editável", antes, alvo,
-                             f"a API não limpa o campo (hoje: {restou[:90]!r}); troque no app, deixando só {alvo}")
         facebook_editar_perfil(creds, "website", alvo)
         time.sleep(PAUSA_LEITURA)
         final = (facebook_perfil(creds).get("website") or "").strip()
     except PublishError as exc:
         backup.registrar(**chave, campo=campo, estado="falhou", erro=_curto(exc))
         return Resultado(a, campo, "falhou", antes, alvo, _curto(exc))
-    if _sem_repeticao(final) != alvo or "," in final:
+    entradas = _entradas(final)
+    if entradas.count(alvo) != 1 or entradas[0] != alvo:
         backup.registrar(**chave, campo=campo, estado="falhou", erro=f"ficou {final!r}")
         return Resultado(a, campo, "falhou", antes, alvo, f"depois de limpar e gravar, o campo ficou {final[:90]!r}")
     backup.registrar(**chave, campo=campo, estado="ok")
-    return Resultado(a, campo, "ok", antes, final, "campo limpo e gravado de novo")
+    sobra = [x for x in entradas if x != alvo]
+    detalhe = (f"sobrou o cadastro feito à mão no Facebook ({', '.join(sobra)[:80]}): a API não o remove, "
+               "apague no app" if sobra else "campo limpo e gravado de novo")
+    return Resultado(a, campo, "ok", antes, final, detalhe)
 
 
-def _sem_repeticao(lista: str) -> str:
-    """"a, a" -> "a": só para comparar o campo Site da Página, que guarda o endereço mais de uma vez."""
-    return ", ".join(dict.fromkeys(x.strip() for x in lista.split(",") if x.strip()))
+def _entradas(lista: str) -> list[str]:
+    """Os endereços do campo Site da Página (separados por vírgula)."""
+    return [x.strip() for x in lista.split(",") if x.strip()]
 
 
 def desfazer(creds, arquivo: pathlib.Path) -> list[Resultado]:
