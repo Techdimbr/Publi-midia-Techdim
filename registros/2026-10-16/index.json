@@ -199,5 +199,31 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "Automação com IA: comece pela tarefa que sua equipe repete todo dia",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "-"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136545337390486",
+      "instagram": "https://www.instagram.com/p/DekYm7ZjPZp/",
+      "instagram_stories": "",
+      "linkedin": ""
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136545337390486",
+      "instagram": "17942386977098305"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]

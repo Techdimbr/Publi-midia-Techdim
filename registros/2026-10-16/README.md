@@ -12,5 +12,6 @@ Tudo que a automação publicou (ou tentou publicar) neste dia.
 | 08:17 | TECHDIM · Vídeo | [Acompanhe a TECHDIM: análises técnicas todos os dias](08h17-video.md) | — | [✅](https://www.instagram.com/reel/DejaBwPE3bb/) | — | — |
 | 11:11 | Cibersegurança · IA · Hacker | [Zero-day no BeyondTrust Remote Support: falha foi explorada desde o fim de agosto](11h11-hacker.md) | [✅](https://www.facebook.com/122132402349390486/posts/122136487629390486) | [✅](https://www.instagram.com/p/Dejt5L-l5R8/) | [✅](https://www.instagram.com/stories/techdimbr/4009250061679061767) | [✅](https://www.linkedin.com/feed/update/urn:li:share:7516863107156103168/) |
 | 14:23 | Conhecimento | [SPF, DKIM e DMARC: dificulte a falsificação do e-mail da sua empresa em 5 passos](14h23-dica.md) | [✅](https://www.facebook.com/122132402349390486/posts/122136515895390486) | [✅](https://www.instagram.com/p/DekD9djIFxQ/) | — | [✅](https://www.linkedin.com/feed/update/urn:li:share:7516911715758993410/) |
+| 17:24 | TECHDIM · Serviços | [Automação com IA: comece pela tarefa que sua equipe repete todo dia](17h24-servico.md) | [✅](https://www.facebook.com/122132402349390486/posts/122136545337390486) | [✅](https://www.instagram.com/p/DekYm7ZjPZp/) | — | — |
 
 ✅ publicado · ❌ falhou · ⚠️ rede não configurada · ⏸️ não executado · — não se aplica
