@@ -81,6 +81,19 @@ declarar a origem por conta própria. Com `"ia": true` o sistema:
 
 Se a edição foi só o texto na tela e você preferir manter o selo original, publique o arquivo **sem reeditar**.
 
+## Verificado em produção (16/10/2026)
+
+Primeira publicação real do `apresentacao-techdim`, uma rede por execução (`redes=linkedin`, depois `facebook`, depois
+`instagram`). O passo "Publicar nas redes" levou cerca de 12 s no LinkedIn, 30 s no Facebook e 39 s no Instagram.
+
+- **LinkedIn:** post de vídeo publicado (`urn:li:ugcPost:…`), com o vídeo já `AVAILABLE` antes de criar o post.
+- **Facebook:** Reel publicado e primeiro comentário com o site.
+- **Instagram:** Reel publicado; a página mostra o selo "AI content", que vem do `is_ai_generated`.
+- A Graph API v21.0 aceitou `video_reels` e o envio resumível do Instagram. A documentação da Meta já descreve a v25.0;
+  a v21.0 vale até 21/01/2027 (`config.GRAPH_VERSION`).
+- O arquivo aprovado: H.264 High 1080×1920, 24 fps, áudio AAC-LC 48 kHz estéreo, 10 s. Atende aos requisitos de Reel do
+  Facebook (9:16, mínimo 540×960, 24 a 60 fps, AAC-LC 48 kHz estéreo de 128 kbps ou mais, 3 a 90 s).
+
 ## Erros comuns
 
 | Mensagem | O que fazer |
