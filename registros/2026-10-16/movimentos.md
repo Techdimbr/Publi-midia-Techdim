@@ -42,3 +42,7 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:16 | 🖼️ gerado | TECHDIM · Vídeo | facebook | vídeo de 10 s (17.6 MB) | disparo manual |  |  |
 | 08:16 | ✅ publicado | TECHDIM · Vídeo | facebook | id 1013109551188554 | disparo manual |  | [abrir](https://www.facebook.com/reel/1013109551188554/) |
 | 08:16 | 💬 comentou | TECHDIM · Vídeo | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/reel/1013109551188554/) |
+| 08:17 | ▶️ iniciado | TECHDIM · Vídeo |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/38892721240) |
+| 08:17 | 🗓️ planejado | TECHDIM · Vídeo |  | pauta: Acompanhe a TECHDIM: análises técnicas todos os dias — curadoria: vídeo da TECHDIM (gerado por IA, declarado na legenda) | disparo manual |  |  |
+| 08:17 | 🖼️ gerado | TECHDIM · Vídeo | instagram | vídeo de 10 s (17.6 MB) | disparo manual |  |  |
+| 08:17 | ✅ publicado | TECHDIM · Vídeo | instagram | id 18113958715846170 | disparo manual |  | [abrir](https://www.instagram.com/reel/DejaBwPE3bb/) |
