@@ -187,6 +187,7 @@ class Redes:
         self.perfil_ig = {"website": ANTIGO_URL, "biography": "Infra e segurança"}
         self.site_manual: list[str] = []   # sites cadastrados à mão no Facebook: a API não mexe neles
         self.site_acrescenta = False       # API que acrescenta em vez de substituir o que ela cadastrou
+        self.site_manual_na_frente = False  # o cadastro feito à mão aparece antes do que a API grava (visto no Facebook)
         for nome in ("facebook_audiencia", "instagram_audiencia", "facebook_perfil", "facebook_editar_perfil", "instagram_perfil", "linkedin_ler", "linkedin_editar", "facebook_ler", "facebook_editar", "facebook_comentarios",
                      "facebook_editar_comentario", "instagram_ler", "instagram_editar"):
             monkeypatch.setattr(cs, nome, getattr(self, nome))
@@ -234,7 +235,8 @@ class Redes:
             enviados = [x.strip() for x in valor.split(",") if x.strip()]
             atuais = [x.strip() for x in self.perfil_fb["website"].split(",") if x.strip()]
             mantidos = atuais if self.site_acrescenta else [x for x in atuais if x in self.site_manual]
-            self.perfil_fb["website"] = ", ".join(enviados + mantidos)
+            ordem = mantidos + enviados if self.site_manual_na_frente else enviados + mantidos
+            self.perfil_fb["website"] = ", ".join(ordem)
             return
         self.perfil_fb[campo] = valor
 
@@ -517,6 +519,17 @@ def test_limpar_site_da_pagina_deixa_o_novo_uma_vez_e_avisa_do_cadastro_feito_a_
     assert redes.edicoes == [("perfil", "website", ""), ("perfil", "website", config.SITE_URL)]
     assert "apague no app" in r.detalhe and ANTIGO in r.detalhe
     assert r.antes.endswith(antigo) and '"estado": "ok"' in backup.caminho.read_text(encoding="utf-8")
+
+
+def test_limpar_site_da_pagina_aceita_o_cadastro_manual_na_frente_do_novo(redes):
+    # foi o que a rodada real de 16/10/2026 deixou: "http://www.techdim.com.br/, https://techdimbr.github.io/techdimbr/"
+    antigo = f"http://{ANTIGO}/"
+    redes.site_manual = [antigo]
+    redes.site_manual_na_frente = True
+    redes.perfil_fb["website"] = antigo
+    r = cs.limpar_site_da_pagina(Creds(), cs.Backup(None))
+    assert r.situacao == "ok" and redes.perfil_fb["website"] == f"{antigo}, {config.SITE_URL}"
+    assert "apague no app" in r.detalhe and ANTIGO in r.detalhe
 
 
 def test_limpar_site_da_pagina_sem_cadastro_manual_fica_so_o_novo(redes):

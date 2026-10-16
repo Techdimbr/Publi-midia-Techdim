@@ -96,7 +96,9 @@ Limites confirmados na prática (16/10/2026):
   Página a API trata como lista e **acrescenta** em vez de substituir (cada POST somou uma entrada), então o script
   não mexe nele, a menos que se peça `--limpar-site` (input "limpar_site"): a API só gerencia as entradas que ela
   mesma cadastrou, então o script limpa essas, grava o endereço novo uma vez e avisa do que sobrou. O cadastro antigo
-  feito à mão no Facebook a API não remove: apague no app (Página → Editar informações → Contato).
+  feito à mão no Facebook a API não remove: apague no app (Página → Editar informações → Contato). Resultado da
+  rodada de 16/10/2026: o campo terminou `http://www.techdim.com.br/, https://techdimbr.github.io/techdimbr/`
+  (o endereço novo uma vez; o antigo, feito à mão, na frente), então só falta apagar o antigo no app.
 - **Imagens** já publicadas (post e Story) trazem o endereço desenhado e não dá para trocá-lo sem apagar e republicar.
 
 Quando o domínio próprio voltar, troque `SITE`, `SITE_URL` e `SITE_FORA_DO_AR` em `config.py` (e `BASE_URL` em

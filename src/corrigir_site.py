@@ -522,7 +522,8 @@ def limpar_site_da_pagina(creds, backup: Backup) -> Resultado:
     Observado em 16/10/2026: a API só gerencia as entradas que ela mesma cadastrou. Gravar substitui essas entradas
     (uma por endereço enviado) e gravar vazio apaga todas elas; o cadastro feito à mão no Facebook não é tocado e
     só se remove no app. Por isso: limpa o que o app cadastrou, grava o endereço novo e confere que ele aparece uma
-    única vez, em primeiro lugar. O que sobrar (o cadastro antigo feito à mão) vai no detalhe, para remover no app."""
+    única vez. A ordem não é da API: o cadastro feito à mão pode ficar na frente (visto na rodada de 16/10/2026,
+    em que o campo terminou "antigo, novo"). O que sobrar vai no detalhe, para remover no app."""
     dia = f"{config.hoje():%Y-%m-%d}"
     a = Alvo(dia=dia, hora="", tema="perfil", rede="facebook", ident=creds.fb_page_id)
     campo, alvo = "perfil:website", config.SITE_URL
@@ -541,7 +542,7 @@ def limpar_site_da_pagina(creds, backup: Backup) -> Resultado:
         backup.registrar(**chave, campo=campo, estado="falhou", erro=_curto(exc))
         return Resultado(a, campo, "falhou", antes, alvo, _curto(exc))
     entradas = _entradas(final)
-    if entradas.count(alvo) != 1 or entradas[0] != alvo:
+    if entradas.count(alvo) != 1:
         backup.registrar(**chave, campo=campo, estado="falhou", erro=f"ficou {final!r}")
         return Resultado(a, campo, "falhou", antes, alvo, f"depois de limpar e gravar, o campo ficou {final[:90]!r}")
     backup.registrar(**chave, campo=campo, estado="ok")
