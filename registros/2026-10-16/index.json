@@ -42,5 +42,34 @@
       "linkedin": "urn:li:share:7516755967896653824"
     },
     "comentou": []
+  },
+  {
+    "hora": "08:14",
+    "tema": "noticias",
+    "titulo": "Google dá mais destaque a links nas respostas de IA e testa seção de páginas oficiais",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h14-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136459483390486",
+      "instagram": "https://www.instagram.com/p/DejZpSqj973/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4009160980885777796",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7516818681985789952/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136459483390486",
+      "instagram": "18131620172498997",
+      "instagram_stories": "17998717100824426",
+      "linkedin": "urn:li:share:7516818681985789952"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
