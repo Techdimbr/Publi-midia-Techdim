@@ -32,6 +32,16 @@ que falta ou reprova (com "forcar" e "temas", sobrescreve). Localmente:
     GEMINI_API_KEY=... PYTHONPATH=src python src/pauta_reserva.py --dia 2026-10-16 --saida /tmp/pauta --gravar
     PYTHONPATH=src python src/validar_pauta.py 2026-10-16        # com a pasta no lugar de content/diario
 
+## Como testar publicando do zero
+
+Actions → **Publicar** → Run workflow, com `tema` = noticias, hacker, dica ou servico, `redes` = a rede do teste (por
+exemplo `linkedin`) e **so_gemini** marcado. O publicador ignora a pauta do Claude do dia, o Gemini escreve o post do
+zero dentro do GitHub, a arte é desenhada e a rede recebe o post. Se o Gemini não conseguir (sem chave, sem cota, pauta
+reprovada), a execução **falha** e nada é publicado: o teste nunca "passa" com o acervo autoral no lugar. O diário do
+dia (branch `assets`, `registros/AAAA-MM-DD/`) marca o post como "Gemini (reserva)". Sem `evitar_duplicado`, o teste
+publica mesmo que o tema já tenha saído na rede; use uma rede e um tema que você aceite ver duplicados, ou apague o post
+depois pelo workflow **Apagar posts**.
+
 ## Como funciona
 
 - **noticias e hacker:** o Gemini escolhe uma manchete dos feeds RSS (sem repetir os últimos 14 dias), o código baixa

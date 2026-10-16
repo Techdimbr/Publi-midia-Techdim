@@ -522,17 +522,22 @@ def _da_pauta(theme: str, today: dt.date) -> Post | None:
         return None
 
 
-def _da_reserva_gemini(theme: str, today: dt.date) -> Post | None:
+def _da_reserva_gemini(theme: str, today: dt.date, *, estrito: bool = False) -> Post | None:
     """Pauta de reserva escrita pelo Gemini (pauta_reserva) quando a da Routine falta ou reprova.
 
-    Só roda com GEMINI_API_KEY; qualquer falha devolve None e a cadeia segue (curadoria, RSS, acervo)."""
+    Só roda com GEMINI_API_KEY; qualquer falha devolve None e a cadeia segue (curadoria, RSS, acervo).
+    Com estrito=True (teste da reserva) a falha sobe: o teste não pode "passar" publicando outra coisa."""
     if not gemini.disponivel():
+        if estrito:
+            raise ValueError("so_gemini: GEMINI_API_KEY não configurada (Settings > Secrets and variables > Actions)")
         return None
     try:
         import pauta_reserva  # importa content: por isso o import fica aqui dentro
 
         return _post_do_json(theme, pauta_reserva.gerar_item(theme, today), origem="gemini")
     except Exception as exc:  # noqa: BLE001 — a reserva nunca pode derrubar o horário
+        if estrito:
+            raise
         log.warning("pauta de reserva com Gemini indisponível para %s (%s); usando a próxima camada", theme, exc)
         return None
 
@@ -542,15 +547,23 @@ def _semente(texto: str) -> int:
     return sum(ord(c) for c in texto)
 
 
-def build(theme: str, today: dt.date | None = None) -> Post:
+def build(theme: str, today: dt.date | None = None, *, so_gemini: bool = False) -> Post:
     """Monta o post do tema para a data dada (determinístico por dia).
 
     Ordem: pauta do dia escrita pela Routine; depois a pauta de reserva do Gemini
     (se houver chave); depois a curadoria por IA ou o filtro de RSS (notícias); por
     fim o acervo autoral (conhecimento e serviços).
+
+    so_gemini (teste da reserva): ignora a pauta da Routine, exige que o Gemini escreva o post e
+    levanta erro se ele não conseguir — nunca cai nas camadas seguintes.
     """
     today = today or config.hoje()
     seed = today.toordinal()
+
+    if so_gemini:
+        if theme not in PAUTA:
+            raise ValueError(f"so_gemini vale só para {', '.join(PAUTA)} (recebeu {theme})")
+        return _da_reserva_gemini(theme, today, estrito=True)
 
     if theme in PAUTA:
         post = _da_pauta(theme, today) or _da_reserva_gemini(theme, today)

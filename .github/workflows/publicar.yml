@@ -51,6 +51,11 @@ on:
         required: false
         type: boolean
         default: false
+      so_gemini:
+        description: "Teste da reserva: ignora a pauta do Claude e o Gemini escreve o post do zero (se ele falhar, nada é publicado). Só noticias, hacker, dica e servico"
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: publicar
@@ -141,6 +146,7 @@ jobs:
           # reserva do Claude: sem pauta do dia, o Gemini (plano gratuito) escreve a pauta; sem a chave, nada muda
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          SO_GEMINI: ${{ inputs.so_gemini }}
           TEMA: ${{ steps.tema.outputs.tema }}
           REDES: ${{ steps.dup.outputs.redes }}
         run: python src/main.py generate --theme "$TEMA" --networks "$REDES"

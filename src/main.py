@@ -67,7 +67,10 @@ def _curadoria(post) -> str:
 
 def generate(theme: str, networks: list[str]) -> dict:
     today = config.hoje()
-    post = content.build(theme, today)
+    so_gemini = os.environ.get("SO_GEMINI", "").strip().lower() == "true"
+    if so_gemini:
+        log.warning("SO_GEMINI ligado (teste da reserva): a pauta do Claude é ignorada e o Gemini escreve o post do zero")
+    post = content.build(theme, today, so_gemini=so_gemini)
     log.info("tema=%s titulo=%r curadoria=%s", theme, post.titulo, _curadoria(post))
 
     stamp = today.isoformat()

@@ -264,3 +264,56 @@ def test_build_cai_no_gemini_quando_falta_a_pauta_e_depois_no_acervo(conteudo, c
 def test_build_sem_chave_segue_como_antes(conteudo, monkeypatch):
     monkeypatch.setattr(pr, "gerar_item", lambda *a, **k: pytest.fail("sem chave o Gemini não entra"))
     assert content.build("dica", DIA).origem == ""
+
+
+# ------------------------------------------------------------------ so_gemini: o teste da reserva do zero
+
+
+def test_so_gemini_ignora_a_pauta_do_claude_que_esta_de_pe(conteudo, com_chave, monkeypatch):
+    pasta, escrever = conteudo
+    escrever("dica", pauta(titulo="Pauta do Claude"))
+    monkeypatch.setattr(pr, "gerar_item", lambda tema, dia: pauta(titulo="Pauta do Gemini"))
+    post = content.build("dica", DIA, so_gemini=True)
+    assert post.origem == "gemini" and post.titulo == "Pauta do Gemini"
+    assert content.build("dica", DIA).titulo == "Pauta do Claude"   # sem o interruptor, nada muda
+
+
+def test_so_gemini_nunca_publica_outra_coisa_quando_o_gemini_falha(conteudo, com_chave, monkeypatch):
+    def quebra(tema, dia):
+        raise pr.ReservaIndisponivel("sem cota")
+
+    monkeypatch.setattr(pr, "gerar_item", quebra)
+    with pytest.raises(pr.ReservaIndisponivel, match="sem cota"):
+        content.build("dica", DIA, so_gemini=True)          # o acervo autoral NÃO assume
+    monkeypatch.setattr(pr, "gerar_item", lambda tema, dia: {"titulo": "", "pontos": []})
+    with pytest.raises(ValueError):
+        content.build("dica", DIA, so_gemini=True)          # pauta devolvida sem o essencial também falha
+
+
+def test_so_gemini_sem_chave_falha_dizendo_o_que_falta(conteudo, monkeypatch):
+    monkeypatch.setattr(pr, "gerar_item", lambda *a, **k: pytest.fail("sem chave o Gemini não entra"))
+    with pytest.raises(ValueError, match="GEMINI_API_KEY"):
+        content.build("dica", DIA, so_gemini=True)
+
+
+def test_so_gemini_so_vale_para_os_temas_da_pauta(conteudo, com_chave):
+    for tema in ("especial", "destaque"):
+        with pytest.raises(ValueError, match="so_gemini"):
+            content.build(tema, DIA, so_gemini=True)
+
+
+def test_generate_liga_o_so_gemini_pela_variavel_de_ambiente(conteudo, com_chave, monkeypatch):
+    import main
+
+    visto = {}
+
+    def falso(tema, hoje, *, so_gemini=False):
+        visto["so_gemini"] = so_gemini
+        raise RuntimeError("parou aqui")
+
+    monkeypatch.setattr(main.content, "build", falso)
+    for valor, esperado in (("true", True), ("True", True), ("", False), ("false", False)):
+        monkeypatch.setenv("SO_GEMINI", valor)
+        with pytest.raises(RuntimeError):
+            main.generate("dica", ["linkedin"])
+        assert visto["so_gemini"] is esperado, valor
