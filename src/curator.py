@@ -1,4 +1,4 @@
-"""Curadoria de notícias por IA (Claude).
+"""Curadoria de notícias por IA (Claude; o Gemini entra se a chave da Anthropic faltar ou falhar).
 
 Duas chamadas por post:
   1. escolher, entre as manchetes do dia, a mais relevante para empresas que
@@ -7,8 +7,9 @@ Duas chamadas por post:
      dois fatos e uma recomendação prática ("o que sua empresa deve fazer").
 
 O texto do post é escrito só a partir do conteúdo da matéria passado na
-chamada, para não inventar fato. Sem ANTHROPIC_API_KEY, ou se qualquer etapa
-falhar, quem chama cai no filtro por palavra-chave.
+chamada, para não inventar fato. Provedores, nesta ordem: Claude (ANTHROPIC_API_KEY) e Gemini
+(GEMINI_API_KEY, plano gratuito). Sem chave, ou se qualquer etapa falhar nos dois, quem chama
+cai no filtro por palavra-chave.
 """
 from __future__ import annotations
 
@@ -22,6 +23,7 @@ import anthropic
 import requests
 
 import config
+import gemini
 
 log = logging.getLogger(__name__)
 
@@ -79,8 +81,12 @@ class CuradoriaIndisponivel(RuntimeError):
     """A curadoria não pôde produzir um post; usar o caminho sem IA."""
 
 
-def disponivel() -> bool:
+def _tem_anthropic() -> bool:
     return bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
+
+
+def disponivel() -> bool:
+    return _tem_anthropic() or gemini.disponivel()
 
 
 def _chamar(client: anthropic.Anthropic, esquema: dict, prompt: str) -> dict:
@@ -119,20 +125,13 @@ def _texto_da_materia(url: str, limite: int = 12000) -> str:
     return texto[:limite]
 
 
-def curar(theme: str, candidatos: list[dict]) -> dict:
-    """Devolve {titulo, pontos, fecho, fonte} ou levanta CuradoriaIndisponivel."""
-    if not disponivel():
-        raise CuradoriaIndisponivel("ANTHROPIC_API_KEY não configurada")
-    if not candidatos:
-        raise CuradoriaIndisponivel("nenhuma manchete candidata")
-
-    client = anthropic.Anthropic()
+def _curar(theme: str, candidatos: list[dict], chamar, erros_da_api: tuple, provedor: str) -> dict:
+    """Escolha da manchete + texto do post, com o provedor dado: chamar(esquema, prompt) -> dict."""
     lista = "\n".join(
         f"[{i}] {c['title']} — {c['source']}\n    {c['summary']}" for i, c in enumerate(candidatos)
     )
     try:
-        escolha = _chamar(
-            client,
+        escolha = chamar(
             ESQUEMA_ESCOLHA,
             f"Foco deste post: {FOCO[theme]}.\n\n"
             "Escolha a manchete mais relevante e útil para empresas brasileiras que dependem de TI. "
@@ -145,18 +144,17 @@ def curar(theme: str, candidatos: list[dict]) -> dict:
         if not 0 <= i < len(candidatos):
             raise CuradoriaIndisponivel(f"nenhuma manchete relevante ({escolha['motivo']})")
         item = candidatos[i]
-        log.info("IA escolheu [%d] %s — %s", i, item["title"], escolha["motivo"])
+        log.info("IA (%s) escolheu [%d] %s — %s", provedor, i, item["title"], escolha["motivo"])
 
         materia = _texto_da_materia(item["link"]) or item["summary"]
-        post = _chamar(
-            client,
+        post = chamar(
             ESQUEMA_POST,
             f"Escreva o post da TECHDIM sobre esta matéria.\n\n"
             f"Manchete original: {item['title']}\nFonte: {item['source']}\n\n"
             f"Texto da matéria:\n{materia}",
         )
-    except anthropic.APIError as exc:
-        raise CuradoriaIndisponivel(f"erro na API da Anthropic: {exc}") from exc
+    except erros_da_api as exc:
+        raise CuradoriaIndisponivel(f"erro na API do {provedor}: {exc}") from exc
     except (json.JSONDecodeError, KeyError) as exc:
         raise CuradoriaIndisponivel(f"resposta fora do formato: {exc}") from exc
 
@@ -169,4 +167,32 @@ def curar(theme: str, candidatos: list[dict]) -> dict:
         "fecho": post["fecho"].strip(),
         "fonte": (item["source"], item["link"]),
         "motivo": escolha.get("motivo", ""),
+        "provedor": provedor,
     }
+
+
+def curar(theme: str, candidatos: list[dict]) -> dict:
+    """Devolve {titulo, pontos, fecho, fonte, motivo, provedor} ou levanta CuradoriaIndisponivel.
+
+    Tenta o Claude (se há chave da Anthropic) e, se faltar ou falhar, o Gemini (se há chave)."""
+    if not disponivel():
+        raise CuradoriaIndisponivel("ANTHROPIC_API_KEY e GEMINI_API_KEY não configuradas")
+    if not candidatos:
+        raise CuradoriaIndisponivel("nenhuma manchete candidata")
+
+    falhas: list[str] = []
+    if _tem_anthropic():
+        client = anthropic.Anthropic()
+        try:
+            return _curar(theme, candidatos, lambda esquema, prompt: _chamar(client, esquema, prompt),
+                          (anthropic.APIError,), "Anthropic")
+        except CuradoriaIndisponivel as exc:
+            falhas.append(f"Claude: {exc}")
+    if gemini.disponivel():
+        try:
+            return _curar(theme, candidatos,
+                          lambda esquema, prompt: gemini.gerar_json(prompt, esquema, sistema=SISTEMA, temperatura=0.3, max_tokens=4096),
+                          (gemini.GeminiIndisponivel,), "Gemini")
+        except CuradoriaIndisponivel as exc:
+            falhas.append(f"Gemini: {exc}")
+    raise CuradoriaIndisponivel("; ".join(falhas))

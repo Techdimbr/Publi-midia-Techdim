@@ -16,6 +16,7 @@ import requests
 
 import config
 import curator
+import gemini
 import infografico
 from texto import cortar, uma_linha
 
@@ -118,7 +119,7 @@ class Post:
     fontes: list[tuple[str, str]] = field(default_factory=list)  # (nome, url)
     curado_por_ia: bool = False
     motivo: str = ""  # por que esta pauta foi escolhida (curadoria)
-    origem: str = ""  # "routine" quando veio da pauta do dia escrita pelo Claude
+    origem: str = ""  # "routine" (pauta do dia escrita pelo Claude) ou "gemini" (reserva)
     infografico: dict | None = None  # padrão visual novo (src/infografico.py); None = arte antiga
 
     @property
@@ -375,7 +376,7 @@ def _from_feeds(theme: str, seed: int) -> Post | None:
         else:
             return Post(theme=theme, titulo=c["titulo"], pontos=c["pontos"],
                         fecho=c["fecho"], fontes=[c["fonte"]], curado_por_ia=True,
-                        motivo=c.get("motivo", ""))
+                        motivo=c.get("motivo", ""), origem="gemini" if c.get("provedor") == "Gemini" else "")
     return _from_feeds_palavra_chave(theme, seed)
 
 
@@ -521,6 +522,21 @@ def _da_pauta(theme: str, today: dt.date) -> Post | None:
         return None
 
 
+def _da_reserva_gemini(theme: str, today: dt.date) -> Post | None:
+    """Pauta de reserva escrita pelo Gemini (pauta_reserva) quando a da Routine falta ou reprova.
+
+    Só roda com GEMINI_API_KEY; qualquer falha devolve None e a cadeia segue (curadoria, RSS, acervo)."""
+    if not gemini.disponivel():
+        return None
+    try:
+        import pauta_reserva  # importa content: por isso o import fica aqui dentro
+
+        return _post_do_json(theme, pauta_reserva.gerar_item(theme, today), origem="gemini")
+    except Exception as exc:  # noqa: BLE001 — a reserva nunca pode derrubar o horário
+        log.warning("pauta de reserva com Gemini indisponível para %s (%s); usando a próxima camada", theme, exc)
+        return None
+
+
 def _semente(texto: str) -> int:
     """Número estável a partir de um texto (hash() do Python muda a cada execução)."""
     return sum(ord(c) for c in texto)
@@ -529,14 +545,15 @@ def _semente(texto: str) -> int:
 def build(theme: str, today: dt.date | None = None) -> Post:
     """Monta o post do tema para a data dada (determinístico por dia).
 
-    Ordem: pauta do dia escrita pela Routine; depois a curadoria por IA ou o
-    filtro de RSS (notícias); por fim o acervo autoral (conhecimento e serviços).
+    Ordem: pauta do dia escrita pela Routine; depois a pauta de reserva do Gemini
+    (se houver chave); depois a curadoria por IA ou o filtro de RSS (notícias); por
+    fim o acervo autoral (conhecimento e serviços).
     """
     today = today or config.hoje()
     seed = today.toordinal()
 
     if theme in PAUTA:
-        post = _da_pauta(theme, today)
+        post = _da_pauta(theme, today) or _da_reserva_gemini(theme, today)
         if post:
             return post
 

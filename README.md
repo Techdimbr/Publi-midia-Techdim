@@ -25,8 +25,9 @@ Cada execução do workflow:
    publica o que falta — é o que impede post duplicado quando a Routine e o
    agendador do GitHub disputam o mesmo horário;
 2. **monta o conteúdo**: a pauta do dia (`content/diario/`), ou, se faltar ou
-   estiver malformada, uma reserva — RSS com filtro (notícias, e curadoria por IA
-   se `ANTHROPIC_API_KEY` existir) ou o acervo autoral (conhecimento e serviços);
+   estiver malformada, uma reserva — a pauta escrita pelo Gemini (se `GEMINI_API_KEY`
+   existir; ver `docs/GEMINI.md`), RSS com filtro (notícias, e curadoria por IA se
+   houver chave da Anthropic ou do Gemini) ou o acervo autoral (conhecimento e serviços);
 3. **desenha as imagens** (ver "Padrão visual");
 4. **publica as imagens** num branch `assets`, que lhes dá URL pública (o
    Instagram só aceita buscar imagem por URL, não aceita upload de arquivo);
@@ -64,6 +65,7 @@ Em **Settings → Secrets and variables → Actions → Secrets**:
 | `META_ACCESS_TOKEN` | token de longa duração da Página do Facebook (serve também para o Instagram) |
 | `LINKEDIN_ACCESS_TOKEN` | token do app LinkedIn |
 | `ANTHROPIC_API_KEY` | chave da API da Anthropic, para a curadoria das notícias por IA (opcional) |
+| `GEMINI_API_KEY` | chave grátis do Google AI Studio: o Gemini escreve a pauta se o Claude não escrever (opcional; `docs/GEMINI.md`) |
 
 ### 2. Variables (não são sigilosos)
 
@@ -74,6 +76,7 @@ Na aba **Variables** da mesma tela:
 | `FB_PAGE_ID` | id da Página do Facebook |
 | `IG_USER_ID` | id da conta comercial do Instagram |
 | `LINKEDIN_URN` | `urn:li:organization:123456` (Página) ou `urn:li:person:abc` (perfil) |
+| `GEMINI_MODEL` | modelos do Gemini em ordem de preferência, separados por vírgula (opcional; há um padrão) |
 
 Depois de cadastrar o `META_ACCESS_TOKEN`, rode o workflow **Descobrir IDs**
 uma vez: ele imprime o `FB_PAGE_ID` e o `IG_USER_ID` prontos para colar.
@@ -280,6 +283,7 @@ python src/exemplos_infograficos.py historias
   token.yml             verificação semanal da validade dos tokens
   relatorio.yml         relatório semanal de alcance, engajamento e seguidores
   corrigir-site.yml     troca o endereço do site nos posts e perfis já publicados (ver docs/SEO.md)
+  pauta-reserva.yml     ensaio/gravação da pauta de reserva escrita pelo Gemini (ver docs/GEMINI.md)
   radar.yml             só leitura: confere contas do Instagram e mostra os perfis da TECHDIM (ver docs/CRESCIMENTO.md)
   apagar-posts.yml      exclusão de posts, com conferência e registro
   registrar-movimento.yml  anotações manuais no diário
@@ -288,7 +292,7 @@ content/
   diario/AAAA-MM-DD/    pauta do dia escrita pela Routine
   destaques/ especiais/ posts escritos sob demanda
   dicas.json servicos.json   acervo autoral (reserva)
-docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md, SEO.md, BLOG.md, CRESCIMENTO.md (plano de seguidores)
+docs/                   ESTILOS.md (cenas), LINKEDIN.md, REVISAO.md, SEO.md, BLOG.md, CRESCIMENTO.md (plano de seguidores), GEMINI.md (reserva com o Gemini)
 fonts/ fotos/ exemplos/ fontes OFL, foto de exemplo e imagens de exemplo
 src/
   config.py             marca, formatos, credenciais, hora de Brasília
@@ -302,6 +306,7 @@ src/
   registro.py movimentos.py relatorio.py   diário, movimentos e relatório
   validar_pauta.py     confere a pauta do dia antes de ela ir para o ar
   apagar.py token_check.py discover.py linkedin_ids.py curator.py radar.py
+  gemini.py pauta_reserva.py   reserva com o Gemini (cliente da API e pauta do dia)
   seguranca.py texto.py utilitários (redação de credenciais, corte de texto)
   publishers/           facebook.py, instagram.py, linkedin.py, common.py
 tests/                  pytest

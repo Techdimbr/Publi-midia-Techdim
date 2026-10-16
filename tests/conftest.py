@@ -10,6 +10,7 @@ import pytest
 
 import config
 import content
+import gemini
 
 DIA = dt.date(2026, 10, 2)
 CONTENT_REAL = content.CONTENT_DIR
@@ -45,6 +46,15 @@ def pauta(**extra) -> dict:
     }
     base.update(extra)
     return base
+
+
+@pytest.fixture(autouse=True)
+def sem_gemini(monkeypatch):
+    """Nenhum teste fala com o Gemini de verdade: a chave some do ambiente e o contador volta a zero."""
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_MODEL", raising=False)
+    monkeypatch.delenv("GEMINI_MAX_CHAMADAS", raising=False)
+    gemini.zerar_contador()
 
 
 @pytest.fixture

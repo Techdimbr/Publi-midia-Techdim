@@ -51,6 +51,9 @@ def _com_hash(caminho: pathlib.Path) -> pathlib.Path:
 def _curadoria(post) -> str:
     if getattr(post, "origem", "") == "routine":
         return "Claude (Routine) — pauta do dia"
+    if getattr(post, "origem", "") == "gemini":
+        return ("IA (API do Gemini) — curadoria de reserva" if post.curado_por_ia
+                else "Gemini (reserva) — pauta escrita pela API do Gemini")
     if post.theme == "especial":
         return "publicação especial, escrita sob demanda"
     if post.theme == "destaque":

@@ -1,0 +1,84 @@
+name: Pauta de reserva
+
+# Ensaio e gravação da pauta de reserva escrita pelo Gemini (src/pauta_reserva.py).
+#
+# O caminho normal da reserva não precisa deste workflow: quando a Routine do Claude não escreveu a pauta do
+# tema, o publicador (publicar.yml) pede ao Gemini na hora de publicar. Este aqui serve para TESTAR a reserva
+# sem publicar e, se quiser, GRAVAR as pautas do dia em content/diario/ (só o que falta ou reprova).
+#
+# Sem o segredo GEMINI_API_KEY (Settings > Secrets and variables > Actions) ele não faz nada.
+# Chave grátis: https://aistudio.google.com/apikey
+
+on:
+  workflow_dispatch:
+    inputs:
+      dia:
+        description: "AAAA-MM-DD (vazio = hoje, em Brasília)"
+        type: string
+        default: ""
+      temas:
+        description: "Temas separados por vírgula: noticias, hacker, dica, servico (vazio = os que faltam ou reprovam)"
+        type: string
+        default: ""
+      gravar:
+        description: "Grava as pautas em content/diario/ e envia ao main (desmarcado = ensaio: só mostra no log)"
+        type: boolean
+        default: false
+      forcar:
+        description: "Gera mesmo com a pauta do dia de pé (exige 'temas'; com 'gravar' SOBRESCREVE o arquivo)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pauta-reserva
+  cancel-in-progress: false
+
+jobs:
+  reserva:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Gerar a pauta de reserva
+        env:
+          PYTHONPATH: src
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          DIA: ${{ inputs.dia }}
+          TEMAS: ${{ inputs.temas }}
+          GRAVAR: ${{ inputs.gravar }}
+          FORCAR: ${{ inputs.forcar }}
+        run: |
+          set -uo pipefail
+          if [ "$FORCAR" = "true" ] && [ -z "$TEMAS" ]; then
+            echo "::error::'forcar' exige informar os temas"; exit 1
+          fi
+          args=()
+          [ -n "$DIA" ] && args+=(--dia "$DIA")
+          for t in ${TEMAS//,/ }; do args+=(--tema "$t"); done
+          [ "$FORCAR" = "true" ] && args+=(--forcar)
+          [ "$GRAVAR" = "true" ] && args+=(--gravar)
+          rc=0
+          python src/pauta_reserva.py "${args[@]}" || rc=$?
+          if [ -n "$(git status --porcelain content/diario)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add content/diario
+            git commit -q -m "pauta de reserva (Gemini): $(TZ=America/Sao_Paulo date +%F)"
+            for i in 1 2 3 4; do
+              if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit $rc; fi
+              sleep $((i * 3))
+            done
+            echo "::error::não consegui enviar a pauta de reserva ao main"; exit 1
+          fi
+          exit $rc

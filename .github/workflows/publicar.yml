@@ -138,6 +138,9 @@ jobs:
         env:
           PYTHONPATH: src
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # reserva do Claude: sem pauta do dia, o Gemini (plano gratuito) escreve a pauta; sem a chave, nada muda
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           TEMA: ${{ steps.tema.outputs.tema }}
           REDES: ${{ steps.dup.outputs.redes }}
         run: python src/main.py generate --theme "$TEMA" --networks "$REDES"

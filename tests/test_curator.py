@@ -84,3 +84,51 @@ def test_erro_da_api_vira_indisponivel(com_chave, monkeypatch):
     usar(monkeypatch, erro)
     with pytest.raises(curator.CuradoriaIndisponivel, match="API"):
         curator.curar("hacker", CANDIDATOS)
+
+
+# ------------------------------------------------------------------ Gemini como segundo provedor
+
+
+def com_gemini(monkeypatch, *respostas):
+    fila = list(respostas)
+    monkeypatch.setenv("GEMINI_API_KEY", "chave-de-teste")
+    monkeypatch.setattr(curator, "_texto_da_materia", lambda url, limite=0: "texto da matéria")
+    monkeypatch.setattr(curator.gemini, "gerar_json", lambda prompt, esquema, **kw: fila.pop(0))
+
+
+GEMINI_OK = [{"indice": 0, "motivo": "afeta empresas"},
+             {"titulo": " Título ", "fatos": ["fato 1", "fato 2"], "recomendacao": "faça X", "fecho": "A TECHDIM ajuda."}]
+
+
+def test_sem_chave_da_anthropic_o_gemini_assume(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    com_gemini(monkeypatch, *GEMINI_OK)
+    assert curator.disponivel() is True
+    post = curator.curar("hacker", CANDIDATOS)
+    assert post["provedor"] == "Gemini" and post["titulo"] == "Título" and post["pontos"][-1] == "faça X"
+
+
+def test_claude_falha_e_o_gemini_assume(com_chave, monkeypatch):
+    usar(monkeypatch, anthropic.APIConnectionError(request=SimpleNamespace(url="x")))
+    com_gemini(monkeypatch, *GEMINI_OK)
+    assert curator.curar("hacker", CANDIDATOS)["provedor"] == "Gemini"
+
+
+def test_os_dois_provedores_falham_e_a_mensagem_diz_por_que(com_chave, monkeypatch):
+    usar(monkeypatch, resposta({"indice": -1, "motivo": "só promoção"}))
+    com_gemini(monkeypatch, {"indice": -1, "motivo": "nada serve"})
+    with pytest.raises(curator.CuradoriaIndisponivel) as exc:
+        curator.curar("hacker", CANDIDATOS)
+    assert "Claude:" in str(exc.value) and "Gemini:" in str(exc.value)
+
+
+def test_erro_do_gemini_vira_indisponivel(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setenv("GEMINI_API_KEY", "chave-de-teste")
+
+    def quebra(prompt, esquema, **kw):
+        raise curator.gemini.GeminiIndisponivel("sem cota")
+
+    monkeypatch.setattr(curator.gemini, "gerar_json", quebra)
+    with pytest.raises(curator.CuradoriaIndisponivel, match="API do Gemini"):
+        curator.curar("hacker", CANDIDATOS)
