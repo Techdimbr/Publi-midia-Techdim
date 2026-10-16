@@ -154,3 +154,34 @@ def test_erro_de_rede_na_checagem_sobe_como_publisherror(monkeypatch):
     c.meta_token = "t" * 20
     with pytest.raises(PublishError):
         token_check.check(c)
+
+
+def test_relatorio_traz_seguidores_e_a_variacao_desde_o_anterior(tmp_path):
+    pasta = tmp_path / "registros" / "semanal"
+    pasta.mkdir(parents=True)
+    (pasta / "2026-S40.json").write_text(json.dumps({"audiencia": {"facebook_seguidores": 10, "instagram_seguidores": 30}}),
+                                         encoding="utf-8")
+    inicio, fim = dt.date(2026, 10, 5), dt.date(2026, 10, 11)   # semana ISO 41
+    md = relatorio.escrever([], tmp_path, inicio, fim, {"facebook_seguidores": 12, "instagram_seguidores": 28,
+                                                        "instagram_posts": 59}).read_text(encoding="utf-8")
+    assert "## Seguidores" in md and "| Facebook | 12 | +2 |" in md and "| Instagram | 28 | -2 |" in md
+    guardado = json.loads((pasta / "2026-S41.json").read_text(encoding="utf-8"))
+    assert guardado["audiencia"]["instagram_posts"] == 59
+    # primeira vez, sem relatório anterior: mostra o número e não inventa variação
+    (pasta / "2026-S40.json").unlink()
+    md = relatorio.escrever([], tmp_path, inicio, fim, {"facebook_seguidores": 12}).read_text(encoding="utf-8")
+    assert "| Facebook | 12 | — |" in md
+
+
+def test_audiencia_pula_o_contador_que_a_api_recusa(monkeypatch):
+    class C:
+        fb_page_id, ig_user_id = "1", "2"
+
+    def get(path, token, **params):
+        campo = params["fields"]
+        return {"error": {"message": "(#10) sem permissão"}} if campo == "fan_count" else {campo: 7}
+
+    monkeypatch.setattr(relatorio, "_get", get)
+    assert relatorio.audiencia(C(), "t") == {"facebook_seguidores": 7, "instagram_seguidores": 7,
+                                             "instagram_seguindo": 7, "instagram_posts": 7}
+

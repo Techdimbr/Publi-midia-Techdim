@@ -36,6 +36,10 @@ on:
         description: "Em vez dos posts, conferir o site/descrição do perfil do Facebook e do Instagram (com 'aplicar', corrige o da Página)"
         type: boolean
         default: false
+      limpar_site:
+        description: "Com 'perfis' e 'aplicar': tenta deixar só o endereço novo no campo Site da Página (limpa e grava de novo)"
+        type: boolean
+        default: false
       graph:
         description: "Versão da Graph API para esta rodada (ex.: v26.0); vazio = a de config.py"
         type: string
@@ -73,6 +77,7 @@ jobs:
           LIMITE: ${{ inputs.limite }}
           DESFAZER: ${{ inputs.desfazer }}
           PERFIS: ${{ inputs.perfis }}
+          LIMPAR_SITE: ${{ inputs.limpar_site }}
           GRAPH: ${{ inputs.graph }}
         run: |
           set -uo pipefail
@@ -86,6 +91,7 @@ jobs:
           [ "$LIMITE" != "0" ] && args+=(--limite "$LIMITE")
           [ -n "$DESFAZER" ] && args+=(--desfazer "$DESFAZER")
           [ "$PERFIS" = "true" ] && args+=(--perfis)
+          [ "$LIMPAR_SITE" = "true" ] && args+=(--limpar-site)
           [ -n "$GRAPH" ] && args+=(--graph-versao "$GRAPH")
           # o shell do Actions roda com -e: sem o "|| rc=$?" uma falha abortaria aqui e o backup e o diário
           # da rodada nunca chegariam ao branch assets

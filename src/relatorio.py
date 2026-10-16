@@ -11,6 +11,7 @@ Métricas usadas (as clássicas de "impressões" foram descontinuadas pela Meta)
               compartilhamentos, salvamentos
 Stories não entram: a API só guarda as métricas de Story por 24 horas.
 O primeiro comentário publicado pela própria automação é descontado.
+Também registra quantos seguidores cada rede tem hoje e a variação desde o relatório anterior.
 """
 from __future__ import annotations
 
@@ -100,6 +101,36 @@ def metricas_instagram(media_id: str, token: str, comentou: bool) -> dict:
     }
 
 
+AUDIENCIA = {
+    "facebook": (("facebook_seguidores", "followers_count"), ("facebook_curtidas", "fan_count")),
+    "instagram": (("instagram_seguidores", "followers_count"), ("instagram_seguindo", "follows_count"),
+                  ("instagram_posts", "media_count")),
+}
+
+
+def audiencia(creds, token: str) -> dict[str, int]:
+    """Seguidores de hoje. Um campo por chamada: o que a API recusar fica de fora, o resto sai."""
+    saida: dict[str, int] = {}
+    for rede, objeto in (("facebook", creds.fb_page_id), ("instagram", creds.ig_user_id)):
+        if not objeto:
+            continue
+        for chave, campo in AUDIENCIA[rede]:
+            valor = _get(objeto, token, fields=campo).get(campo)
+            if isinstance(valor, int):
+                saida[chave] = valor
+    return saida
+
+
+def _audiencia_anterior(pasta: pathlib.Path, nome: str) -> dict[str, int]:
+    """Contadores do relatório semanal imediatamente anterior ao de nome `nome`."""
+    for arq in sorted((p for p in pasta.glob("*-S*.json") if p.stem < nome), reverse=True):
+        try:
+            return json.loads(arq.read_text(encoding="utf-8")).get("audiencia") or {}
+        except (OSError, json.JSONDecodeError):
+            continue
+    return {}
+
+
 def _ig_por_permalink(token: str, ig_user: str) -> dict[str, str]:
     """Posts antigos do registro guardaram só o link: casa link -> id."""
     j = _get(f"{ig_user}/media", token, fields="id,permalink", limit=100)
@@ -153,7 +184,8 @@ def _taxa(inter: float, alcance: float) -> str:
     return f"{100 * inter / alcance:.1f}%" if alcance else "—"
 
 
-def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt.date) -> pathlib.Path:
+def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt.date,
+             contadores: dict[str, int] | None = None) -> pathlib.Path:
     ano, semana, _ = fim.isocalendar()
     pasta = destino / "registros" / "semanal"
     pasta.mkdir(parents=True, exist_ok=True)
@@ -219,6 +251,14 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
                 f"{x['compartilhamentos']} | {x['salvamentos']} | {_taxa(x['interacoes'], x['alcance'])} |"
             )
 
+    if contadores:
+        anterior = _audiencia_anterior(pasta, nome)
+        md += ["", "## Seguidores", "", "| Rede | Hoje | Desde o relatório anterior |", "|---|---|---|"]
+        for rede, chave in (("Facebook", "facebook_seguidores"), ("Instagram", "instagram_seguidores")):
+            if chave in contadores:
+                variacao = f"{contadores[chave] - anterior[chave]:+d}" if chave in anterior else "—"
+                md.append(f"| {rede} | {contadores[chave]} | {variacao} |")
+
     md += ["", "## Observações", "",
            "- Engajamento = interações ÷ alcance. Interações: curtidas/reações, comentários, compartilhamentos e salvamentos.",
            "- O primeiro comentário publicado pela própria automação é descontado.",
@@ -229,8 +269,8 @@ def escrever(linhas: list[dict], destino: pathlib.Path, inicio: dt.date, fim: dt
     arq = pasta / f"{nome}.md"
     arq.write_text("\n".join(md) + "\n", encoding="utf-8")
     (pasta / f"{nome}.json").write_text(
-        json.dumps({"semana": nome, "inicio": inicio.isoformat(), "fim": fim.isoformat(), "posts": linhas},
-                   ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        json.dumps({"semana": nome, "inicio": inicio.isoformat(), "fim": fim.isoformat(), "posts": linhas,
+                    "audiencia": contadores or {}}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     relatorios = sorted((p.stem for p in pasta.glob("*-S*.md")), reverse=True)
     (pasta / "README.md").write_text(
@@ -259,7 +299,8 @@ def main(argv: list[str] | None = None) -> int:
     destino = pathlib.Path(args.dest)
 
     linhas = coletar(destino, inicio, fim, creds)
-    arq = escrever(linhas, destino, inicio, fim)
+    contadores = audiencia(creds, page_token(creds.meta_token, creds.fb_page_id))
+    arq = escrever(linhas, destino, inicio, fim, contadores)
     log.info("relatório gravado em %s (%d linhas)", arq.relative_to(destino), len(linhas))
 
     resumo = os.environ.get("GITHUB_STEP_SUMMARY")

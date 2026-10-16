@@ -11,6 +11,7 @@ que a própria automação publicou.
   python src/corrigir_site.py --dest /tmp/assets --desfazer registros/2026-10-16/correcao-site-0030.jsonl
   python src/corrigir_site.py --dest /tmp/assets --perfis [--aplicar]   # site/descrição do perfil do Facebook e do Instagram
   python src/corrigir_site.py ... --graph-versao v26.0                  # testa outra versão da Graph API
+  python src/corrigir_site.py --dest /tmp/assets --perfis --limpar-site --aplicar   # tenta deixar só 1 site na Página
 
 O que NÃO dá para corrigir: as imagens (o endereço está desenhado nelas) e, no Instagram, a legenda
 só muda se a API aceitar; se recusar, o script avisa e a legenda é editada à mão no app.
@@ -251,6 +252,33 @@ def facebook_editar_perfil(creds, campo: str, valor: str) -> None:
     request("POST", f"{config.GRAPH}/{creds.fb_page_id}", data={campo: valor, "access_token": _token_meta(creds)})
 
 
+def _numeros(obj_id: str, token: str, campos: tuple[str, ...]) -> dict:
+    """Contadores públicos, um campo por chamada: se a API recusar um, os outros ainda saem."""
+    saida: dict[str, int] = {}
+    for campo in campos:
+        try:
+            valor = request("GET", f"{config.GRAPH}/{obj_id}", params={"fields": campo, "access_token": token},
+                            attempts=2).json().get(campo)
+        except PublishError:
+            continue
+        if isinstance(valor, int):
+            saida[campo] = valor
+    return saida
+
+
+def facebook_audiencia(creds) -> dict:
+    return _numeros(creds.fb_page_id, _token_meta(creds), ("followers_count", "fan_count"))
+
+
+def instagram_audiencia(creds) -> dict:
+    return _numeros(creds.ig_user_id, instagram._token(creds), ("followers_count", "follows_count", "media_count"))
+
+
+def _audiencia_texto(dados: dict, nomes: dict[str, str]) -> str:
+    partes = [f"{nomes[c]} {dados[c]}" for c in nomes if c in dados]
+    return " · ".join(partes) if partes else "indisponível (a API recusou os contadores)"
+
+
 def instagram_perfil(creds) -> dict:
     resp = request(
         "GET", f"{config.GRAPH}/{creds.ig_user_id}",
@@ -430,7 +458,8 @@ def corrigir(creds, alvos: list[Alvo], aplicar: bool, backup: Backup) -> list[Re
     return resultados
 
 
-def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "instagram")) -> list[Resultado]:
+def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "instagram"),
+                    limpar_site: bool = False) -> list[Resultado]:
     """Site/descrição do perfil. O "Sobre" da Página a API edita; o campo Site da Página (a API só acrescenta) e a
     bio do Instagram (a API não edita) só se trocam no app, então aqui são conferidos e, se citarem o domínio
     antigo, avisados."""
@@ -445,9 +474,12 @@ def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "in
             resultados.append(Resultado(a, "perfil", "falhou", detalhe=_curto(exc)))
         for campo in PERFIL_FACEBOOK if dados is not None else ():
             valor = dados.get(campo) or ""
+            if campo == "website" and limpar_site and aplicar:
+                resultados.append(limpar_site_da_pagina(creds, backup))
+                continue
             if campo == "website":
                 # a API trata o Site como lista e ACRESCENTA em vez de substituir (visto em 16/10/2026: cada POST
-                # somou uma entrada e a antiga ficou), então este campo só se troca no app
+                # somou uma entrada e a antiga ficou), então este campo só se troca no app (ou com --limpar-site)
                 resultados.append(
                     Resultado(a, f"perfil:{campo}", "não editável", valor, corrigir_texto(valor),
                               f"troque no app, deixando só {config.SITE_URL}") if tem_endereco_antigo(valor)
@@ -460,12 +492,16 @@ def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "in
             if r.situacao == "sem mudança":
                 r.detalhe = f"hoje: {valor[:90]!r}" if valor else "vazio"
             resultados.append(r)
+        resultados.append(Resultado(a, "audiência", "sem mudança", detalhe=_audiencia_texto(
+            facebook_audiencia(creds), {"followers_count": "seguidores", "fan_count": "curtidas"})))
     if "instagram" in redes:
         a = Alvo(dia=dia, hora="", tema="perfil", rede="instagram", ident=creds.ig_user_id)
         try:
             dados = instagram_perfil(creds)
         except PublishError as exc:
             return resultados + [Resultado(a, "perfil", "falhou", detalhe=_curto(exc))]
+        resultados.append(Resultado(a, "audiência", "sem mudança", detalhe=_audiencia_texto(
+            instagram_audiencia(creds), {"followers_count": "seguidores", "follows_count": "seguindo", "media_count": "posts"})))
         for campo in PERFIL_INSTAGRAM:
             valor = dados.get(campo) or ""
             if tem_endereco_antigo(valor):
@@ -475,6 +511,46 @@ def corrigir_perfis(creds, aplicar: bool, backup: Backup, redes=("facebook", "in
                 resultados.append(Resultado(a, f"perfil:{campo}", "sem mudança",
                                             detalhe=f"hoje: {valor[:90]!r}" if valor else "vazio"))
     return resultados
+
+
+PAUSA_LEITURA = 6  # segundos: o Facebook leva um instante para refletir a edição do perfil
+
+
+def limpar_site_da_pagina(creds, backup: Backup) -> Resultado:
+    """Tenta deixar o campo Site da Página só com o endereço novo: limpa e grava de novo. A API trata o campo
+    como lista e acrescenta ao gravar; se não aceitar limpar, o resultado é "não editável" e a troca é no app."""
+    dia = f"{config.hoje():%Y-%m-%d}"
+    a = Alvo(dia=dia, hora="", tema="perfil", rede="facebook", ident=creds.fb_page_id)
+    campo, alvo = "perfil:website", config.SITE_URL
+    chave = {"rede": "facebook", "id": creds.fb_page_id, "dia": dia}
+    antes = (facebook_perfil(creds).get("website") or "").strip()
+    if _sem_repeticao(antes) == alvo:
+        return Resultado(a, campo, "sem mudança", detalhe=f"hoje: {antes[:90]!r}")
+    backup.registrar(**chave, campo=campo, estado="tentando", antes=antes, depois=alvo)
+    try:
+        facebook_editar_perfil(creds, "website", "")
+        time.sleep(PAUSA_LEITURA)
+        restou = (facebook_perfil(creds).get("website") or "").strip()
+        if restou:
+            backup.registrar(**chave, campo=campo, estado="falhou", erro="a API não limpou o campo")
+            return Resultado(a, campo, "não editável", antes, alvo,
+                             f"a API não limpa o campo (hoje: {restou[:90]!r}); troque no app, deixando só {alvo}")
+        facebook_editar_perfil(creds, "website", alvo)
+        time.sleep(PAUSA_LEITURA)
+        final = (facebook_perfil(creds).get("website") or "").strip()
+    except PublishError as exc:
+        backup.registrar(**chave, campo=campo, estado="falhou", erro=_curto(exc))
+        return Resultado(a, campo, "falhou", antes, alvo, _curto(exc))
+    if _sem_repeticao(final) != alvo or "," in final:
+        backup.registrar(**chave, campo=campo, estado="falhou", erro=f"ficou {final!r}")
+        return Resultado(a, campo, "falhou", antes, alvo, f"depois de limpar e gravar, o campo ficou {final[:90]!r}")
+    backup.registrar(**chave, campo=campo, estado="ok")
+    return Resultado(a, campo, "ok", antes, final, "campo limpo e gravado de novo")
+
+
+def _sem_repeticao(lista: str) -> str:
+    """"a, a" -> "a": só para comparar o campo Site da Página, que guarda o endereço mais de uma vez."""
+    return ", ".join(dict.fromkeys(x.strip() for x in lista.split(",") if x.strip()))
 
 
 def desfazer(creds, arquivo: pathlib.Path) -> list[Resultado]:
@@ -556,6 +632,8 @@ def main(argv=None) -> int:
     ap.add_argument("--limite", type=int, default=0, help="máximo de posts a processar (0 = todos)")
     ap.add_argument("--desfazer", default="", help="restaura os textos de um arquivo correcao-site-*.jsonl")
     ap.add_argument("--perfis", action="store_true", help="em vez dos posts, confere o site/descrição do perfil do Facebook e do Instagram")
+    ap.add_argument("--limpar-site", action="store_true",
+                    help="com --perfis --aplicar: tenta deixar só o endereço novo no campo Site da Página (limpa e grava)")
     ap.add_argument("--graph-versao", default="", help="versão da Graph API (ex.: v26.0); padrão: a de config.py")
     a = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -583,7 +661,7 @@ def main(argv=None) -> int:
         caminho = dest / "registros" / f"{config.hoje():%Y-%m-%d}" / f"correcao-site-{config.agora():%H%M}.jsonl"
         backup = Backup(caminho if a.aplicar else None)
         redes_perfil = [r for r, ok in (("facebook", creds.has_facebook), ("instagram", creds.has_instagram)) if ok]
-        resultados = corrigir_perfis(creds, a.aplicar, backup, redes_perfil)
+        resultados = corrigir_perfis(creds, a.aplicar, backup, redes_perfil, limpar_site=a.limpar_site)
         for r in resultados:
             print(_linha(r))
             for antes, depois in linhas_trocadas(r.antes, r.depois):

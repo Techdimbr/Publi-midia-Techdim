@@ -198,14 +198,15 @@ class Post:
             partes += ["", f"Fale com a TECHDIM — {aviso_link.lower().replace('🔗 ', '')} 👇", "", tags]
             return "\n".join(partes)
 
-        # instagram: link não é clicável em legenda nem em comentário, então o
-        # site continua escrito aqui; as fontes vão para o comentário.
+        # instagram: link não é clicável em legenda nem em comentário. O caminho do clique é o link do
+        # perfil ("Link na bio"); o endereço segue escrito aqui para quem quiser digitar. As fontes vão
+        # para o comentário.
         emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
         corpo = "\n".join(f"{emojis[i]} {p}" for i, p in enumerate(pontos))
         partes = [f"{self.titulo}", ""] + ([] if self.infografico else ["Arraste para o lado →", ""]) + [corpo]
         if self.fecho:
             partes += ["", self.fecho]
-        partes += ["", f"Saiba mais: {config.SITE}"]
+        partes += ["", f"🔗 Link na bio: {config.SITE}"]
         if self.fontes:
             partes += ["Fontes no primeiro comentário 👇"]
         partes += ["", tags]

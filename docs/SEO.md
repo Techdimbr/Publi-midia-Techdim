@@ -94,7 +94,8 @@ Limites confirmados na prática (16/10/2026):
   o campo "Site" do perfil estava vazio em 16/10/2026.
 - **Perfis** (`--perfis`, input "perfis" do workflow): o "Sobre" da Página do Facebook a API edita. O campo **Site** da
   Página a API trata como lista e **acrescenta** em vez de substituir (cada POST somou uma entrada), então o script
-  não mexe nele: troque no app (Página → Editar informações → Contato) e deixe só o endereço do site.
+  não mexe nele, a menos que se peça `--limpar-site` (input "limpar_site"): aí tenta limpar o campo e gravar um só
+  endereço, e se a API não limpar avisa. Sem isso, troque no app (Página → Editar informações → Contato).
 - **Imagens** já publicadas (post e Story) trazem o endereço desenhado e não dá para trocá-lo sem apagar e republicar.
 
 Quando o domínio próprio voltar, troque `SITE`, `SITE_URL` e `SITE_FORA_DO_AR` em `config.py` (e `BASE_URL` em

@@ -185,7 +185,8 @@ class Redes:
         self.quebra_em: set[str] = set()
         self.perfil_fb = {"website": ANTIGO_URL, "about": "TECHDIM", "description": ""}
         self.perfil_ig = {"website": ANTIGO_URL, "biography": "Infra e segurança"}
-        for nome in ("facebook_perfil", "facebook_editar_perfil", "instagram_perfil", "linkedin_ler", "linkedin_editar", "facebook_ler", "facebook_editar", "facebook_comentarios",
+        self.site_ignora_limpeza = False
+        for nome in ("facebook_audiencia", "instagram_audiencia", "facebook_perfil", "facebook_editar_perfil", "instagram_perfil", "linkedin_ler", "linkedin_editar", "facebook_ler", "facebook_editar", "facebook_comentarios",
                      "facebook_editar_comentario", "instagram_ler", "instagram_editar"):
             monkeypatch.setattr(cs, nome, getattr(self, nome))
 
@@ -228,7 +229,15 @@ class Redes:
 
     def facebook_editar_perfil(self, creds, campo, valor):
         self.edicoes.append(("perfil", campo, valor))
+        if campo == "website" and valor == "" and self.site_ignora_limpeza:
+            return   # como a API real: aceita e não muda
         self.perfil_fb[campo] = valor
+
+    def facebook_audiencia(self, creds):
+        return {"followers_count": 12, "fan_count": 10}
+
+    def instagram_audiencia(self, creds):
+        return {"followers_count": 34, "media_count": 59}   # follows_count recusado pela API
 
     def instagram_perfil(self, creds):
         return dict(self.perfil_ig)
@@ -444,7 +453,7 @@ def test_main_desfazer(assets, redes, ambiente, capsys):
 
 
 def test_perfis_no_ensaio_mostram_o_site_antigo_e_nao_editam(redes):
-    resultados = cs.corrigir_perfis(Creds(), False, cs.Backup(None))
+    resultados = [r for r in cs.corrigir_perfis(Creds(), False, cs.Backup(None)) if r.campo != "audiência"]
     assert [(r.alvo.rede, r.campo, r.situacao) for r in resultados] == [
         ("facebook", "perfil:website", "não editável"), ("facebook", "perfil:about", "sem mudança"),
         ("facebook", "perfil:description", "sem mudança"),
@@ -457,7 +466,7 @@ def test_perfis_no_ensaio_mostram_o_site_antigo_e_nao_editam(redes):
 def test_perfis_aplicar_corrige_o_sobre_guarda_o_original_e_so_avisa_do_resto(redes, tmp_path):
     redes.perfil_fb["about"] = ANTIGO
     backup = cs.Backup(tmp_path / "b.jsonl")
-    resultados = cs.corrigir_perfis(Creds(), True, backup)
+    resultados = [r for r in cs.corrigir_perfis(Creds(), True, backup) if r.campo != "audiência"]
     assert redes.perfil_fb["about"] == config.SITE
     assert redes.perfil_fb["website"] == ANTIGO_URL and redes.perfil_ig["website"] == ANTIGO_URL   # só se trocam no app
     assert [(e[0], e[1]) for e in redes.edicoes] == [("perfil", "about")]
@@ -485,4 +494,42 @@ def test_main_perfis_e_versao_da_graph_api(redes, ambiente, tmp_path, capsys, mo
     assert "Graph API: v26.0" in saida and "perfil:website" in saida and "trocar" in saida
     assert config.GRAPH == "https://graph.facebook.com/v26.0"
     assert redes.edicoes == [] and not list(tmp_path.rglob("*.jsonl"))
+
+
+def test_perfis_mostram_os_seguidores_e_o_que_a_api_recusou(redes):
+    linhas = {r.alvo.rede: r.detalhe for r in cs.corrigir_perfis(Creds(), False, cs.Backup(None)) if r.campo == "audiência"}
+    assert linhas["facebook"] == "seguidores 12 · curtidas 10"
+    assert linhas["instagram"] == "seguidores 34 · posts 59"   # "seguindo" ficou de fora: a API não devolveu
+
+
+def test_limpar_site_da_pagina_limpa_e_grava_so_um(redes, tmp_path):
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}, http://{ANTIGO}/"
+    backup = cs.Backup(tmp_path / "b.jsonl")
+    r = cs.limpar_site_da_pagina(Creds(), backup)
+    assert r.situacao == "ok" and redes.perfil_fb["website"] == config.SITE_URL
+    assert redes.edicoes == [("perfil", "website", ""), ("perfil", "website", config.SITE_URL)]
+    assert r.antes.endswith(f"http://{ANTIGO}/") and '"estado": "ok"' in backup.caminho.read_text(encoding="utf-8")
+
+
+def test_limpar_site_da_pagina_para_quando_a_api_ignora_a_limpeza(redes):
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, http://{ANTIGO}/"
+    redes.site_ignora_limpeza = True
+    r = cs.limpar_site_da_pagina(Creds(), cs.Backup(None))
+    assert r.situacao == "não editável" and "troque no app" in r.detalhe
+    assert redes.edicoes == [("perfil", "website", "")]   # não gravou nada por cima
+
+
+def test_limpar_site_da_pagina_ja_certa_nao_faz_nada(redes):
+    redes.perfil_fb["website"] = f"{config.SITE_URL}, {config.SITE_URL}"
+    assert cs.limpar_site_da_pagina(Creds(), cs.Backup(None)).situacao == "sem mudança"
+    assert redes.edicoes == []
+
+
+def test_corrigir_perfis_so_limpa_o_site_com_o_pedido_e_com_aplicar(redes):
+    redes.perfil_fb["website"] = f"http://{ANTIGO}/"
+    cs.corrigir_perfis(Creds(), False, cs.Backup(None), limpar_site=True)   # ensaio: nada
+    cs.corrigir_perfis(Creds(), True, cs.Backup(None))                      # aplicar sem o pedido: nada no Site
+    assert not [e for e in redes.edicoes if e[1] == "website"]
+    cs.corrigir_perfis(Creds(), True, cs.Backup(None), limpar_site=True)
+    assert redes.perfil_fb["website"] == config.SITE_URL
 

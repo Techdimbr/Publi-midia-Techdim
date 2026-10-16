@@ -278,7 +278,8 @@ python src/exemplos_infograficos.py historias
   publicar.yml          publicação (Routine + reserva por cron) e execução manual
   testes.yml            ruff + pytest a cada mudança em código ou conteúdo
   token.yml             verificação semanal da validade dos tokens
-  relatorio.yml         relatório semanal de alcance e engajamento
+  relatorio.yml         relatório semanal de alcance, engajamento e seguidores
+  corrigir-site.yml     troca o endereço do site nos posts e perfis já publicados (ver docs/SEO.md)
   apagar-posts.yml      exclusão de posts, com conferência e registro
   registrar-movimento.yml  anotações manuais no diário
   descobrir-ids.yml     imprime FB_PAGE_ID, IG_USER_ID e LINKEDIN_URN
