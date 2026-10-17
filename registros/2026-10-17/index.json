@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "Suporte de TI: alguém acompanhando alertas e atualizações antes que virem problema",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136745587390486",
+      "instagram": "https://www.instagram.com/p/Dem9XEOmMSG/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7517319405249347584/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136745587390486",
+      "instagram": "18165172804493054",
+      "linkedin": "urn:li:share:7517319405249347584"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
