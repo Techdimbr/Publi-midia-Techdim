@@ -1,0 +1,47 @@
+{
+  "titulo": "Suporte de TI: alguém acompanhando alertas e atualizações antes que virem problema",
+  "pontos": [
+    "Toda semana surgem alertas e atualizações importantes. Em muitas empresas ninguém tem tempo de ler, testar e aplicar: o aviso chega, mas a ação não",
+    "A TECHDIM presta suporte de TI a pequenas e médias empresas: monitoramento proativo, inventário de equipamentos e licenças, atualizações e um ponto de contato",
+    "Você sabe o que mudou e o que ainda precisa de decisão da sua empresa, em linguagem simples, sem depender de alguém da equipe para acompanhar tudo"
+  ],
+  "fecho": "Quem cuida dos alertas e das atualizações de TI da sua empresa hoje? Fale com a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de suporte de TI com monitoramento proativo, inventário e atualizações, ligando os alertas da semana ao cuidado contínuo, sem promessa de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "notebook",
+        "celular",
+        "grafico"
+      ],
+      "legenda": "SUPORTE DE TI · ALERTAS E ATUALIZAÇÕES"
+    },
+    "titulo_branco": "Suporte de TI:",
+    "titulo_destaque": "alerta chega, alguém age",
+    "historia": "Alertas e atualizações aparecem toda semana. O difícil é ter quem leia, teste e aplique. Com suporte de TI, alguém acompanha monitoramento, inventário e atualizações. A TECHDIM ajuda a manter isso em dia.",
+    "licoes": [
+      [
+        "Quem acompanha?",
+        "Defina quem lê os alertas e decide o que aplicar, mesmo que seja um fornecedor."
+      ],
+      [
+        "Saiba o que tem",
+        "Mantenha o inventário de equipamentos, programas e licenças: sem lista, não há o que checar."
+      ],
+      [
+        "Atualize com critério",
+        "Teste e aplique as atualizações em ordem, com plano de volta se algo falhar."
+      ]
+    ],
+    "pergunta": "Se saísse um alerta crítico hoje, quem na sua empresa agiria?",
+    "hashtags": [
+      "#SuporteDeTI",
+      "#Monitoramento",
+      "#Atualizacoes",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

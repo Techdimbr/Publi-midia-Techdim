@@ -1,0 +1,95 @@
+{
+  "titulo": "AOMEI Backupper: servidores de atualização foram adulterados e instalaram backdoor",
+  "pontos": [
+    "Google (GTIG/Mandiant) e ManageEngine relatam: de abril a julho, invasores adulteraram por 5 a 10 minutos a atualização do AOMEI Backupper e instalaram um backdoor",
+    "Há vítimas em TI, telecom e universidades de 11 países, incluindo o Brasil. O programa não verificava a autenticidade dos arquivos de configuração baixados",
+    "A AOMEI diz ter corrigido os servidores, mas PCs infectados seguem comprometidos. Busque as tarefas RadminComponentRuntime e NitroRuntime e bloqueie SMB e WebDAV de saída"
+  ],
+  "fecho": "Sua empresa usa o AOMEI Backupper? Peça à TI para verificar tarefas suspeitas e bloquear SMB e WebDAV de saída.",
+  "motivo": "Ataque à cadeia de atualização de um programa de backup usado em empresas, com vítimas no Brasil segundo o Google, e passos práticos de verificação para quem usa o produto.",
+  "fontes": [
+    [
+      "cloud.google.com",
+      "https://cloud.google.com/blog/topics/threat-intelligence/investigating-ephemeral-supply-chain-tampering"
+    ],
+    [
+      "manageengine.com",
+      "https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html"
+    ],
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/attackers-tampered-with-aomei.html"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "backup · AOMEI Backupper",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · AOMEI Backupper (atualização)",
+        "cmd"
+      ],
+      [
+        "",
+        "servidor de update adulterado 5-10 min",
+        "risco"
+      ],
+      [
+        "",
+        "abril a julho de 2026 · backdoor",
+        "risco"
+      ],
+      [
+        "",
+        "vítimas em 11 países · inclui o Brasil",
+        "risco"
+      ],
+      [
+        "",
+        "fonte: Google GTIG e ManageEngine",
+        "txt"
+      ],
+      [
+        "$ ",
+        "procurar tarefa RadminComponentRuntime",
+        "cmd"
+      ],
+      [
+        "",
+        "bloquear SMB 445 e WebDAV de saída",
+        "ok"
+      ],
+      [
+        "",
+        "guardar logs e arquivos de abril a julho",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "AOMEI Backupper:",
+    "titulo_destaque": "atualização virou porta de entrada",
+    "historia": "Invasores adulteraram por minutos a atualização do AOMEI Backupper e instalaram um backdoor, dizem Google e ManageEngine. Há vítimas no Brasil. Corrigir o servidor não limpa os PCs infectados.",
+    "licoes": [
+      [
+        "Procure sinais",
+        "Verifique as tarefas RadminComponentRuntime e NitroRuntime e revise os logs de abril a julho."
+      ],
+      [
+        "Bloqueie a saída",
+        "Barre SMB (porta 445) e WebDAV para a internet, além dos endereços listados pelo Google."
+      ],
+      [
+        "Guarde evidências",
+        "O site já serve arquivos limpos. Preserve os arquivos em cache e os logs de proxy da época."
+      ]
+    ],
+    "pergunta": "Quem confere o que seus programas de backup baixam e executam?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#SupplyChain",
+      "#Backup",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
