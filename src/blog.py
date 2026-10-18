@@ -667,7 +667,7 @@ def html_indice(dias: list[Dia]) -> str:
     meses = sorted({d.data[:7] for d in dias}, reverse=True)
     cartoes = "\n      ".join(cartao_dia(d, p) for d in recentes)
     arquivo = "".join(f'<li><a href="{p}blog/arquivo/{m}/">{e(mes_extenso(m))}</a></li>' for m in meses)
-    titulo = f"Blog {MARCA}: radar diário de tecnologia, segurança e IA para empresas"
+    titulo = f"Blog {MARCA}: tecnologia, segurança e IA para empresas"
     desc = ("Todo dia, notícia de tecnologia, alerta de segurança e dica prática de TI para pequenas "
             "e médias empresas, sempre com as fontes. Campinas e todo o Brasil.")
     corpo = f"""    <section class="container blog-lista">
