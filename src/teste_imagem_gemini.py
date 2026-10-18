@@ -45,10 +45,15 @@ def pedir(modelo: str, prompt: str, chave: str, com_proporcao: bool) -> requests
 
 
 def erro(resp: requests.Response) -> str:
+    """Mensagem e, em erro de cota, qual métrica/limite estourou (não contém a chave)."""
     try:
-        return str(resp.json().get("error", {}).get("message", ""))[:300]
+        e = resp.json().get("error", {})
     except ValueError:
         return resp.text[:300]
+    cotas = [f"{v.get('quotaId', '')} ({v.get('quotaValue', '?')})"
+             for d in e.get("details", []) for v in d.get("violations", []) if v.get("quotaId")]
+    msg = str(e.get("message", "")).split("\n")[0][:200]
+    return msg + (" | cotas: " + "; ".join(cotas) if cotas else "")
 
 
 def main() -> int:
