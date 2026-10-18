@@ -82,6 +82,26 @@ SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
 # ----------------------------------------------------------------- utilidades ---
 
+# Tag do Google Analytics do site, no topo do <head> de cada página (uma tag por página, como o Google pede).
+# Visitas medidas por legítimo interesse; quem recusa no aviso de cookies (tracking.js do site) desliga a
+# medição, e anúncios só rodam com aceite. A mesma tag está no index.html e no privacidade.html do site.
+GA_ID = "G-VEF3PZHXEM"
+GTAG = f"""<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    // LGPD: visitas medidas por legítimo interesse (recusável no aviso de cookies); anúncios só com aceite
+    (function () {{
+      var c = null;
+      try {{ c = localStorage.getItem('techdim_consent_v1'); }} catch (e) {{}}
+      var ads = c === 'granted' ? 'granted' : 'denied';
+      gtag('consent', 'default', {{ analytics_storage: c === 'denied' ? 'denied' : 'granted', ad_storage: ads, ad_user_data: ads, ad_personalization: ads }});
+    }})();
+    gtag('js', new Date());
+    gtag('config', '{GA_ID}');
+  </script>"""
+
 JS_MENU = """<script>
     (function () {
       var b = document.getElementById('mobileToggle'), m = document.getElementById('navMenu');
@@ -97,7 +117,7 @@ JS_MENU = """<script>
       document.addEventListener('click', function (e) {
         if (m.classList.contains('open') && !m.contains(e.target) && !b.contains(e.target)) fechar();
       });
-      window.addEventListener('resize', function () { if (window.innerWidth > 1180) fechar(); });
+      window.addEventListener('resize', function () { if (window.innerWidth > 1239) fechar(); });
       m.querySelectorAll('.nav-link').forEach(function (a) { a.addEventListener('click', fechar); });
     })();
   </script>"""
@@ -348,6 +368,7 @@ def cabeca(m: Meta, p: str) -> str:
         og_extra += f'  <meta property="article:tag" content="{e(t)}" />\n'
     ld = "\n".join(jsonld(o) for o in m.ld)
     return f"""<meta charset="UTF-8" />
+  {GTAG}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{e(m.titulo)}</title>
   <meta name="description" content="{e(m.descricao)}" />
@@ -420,11 +441,15 @@ def rodape_site(p: str) -> str:
         <a href="{p}blog/">Blog</a>
         <a href="{p}blog/feed.xml">Feed RSS</a>
         <a href="{p}#contato">Fale com a TECHDIM</a>
+        <a href="{p}privacidade.html">Privacidade</a>
+        <button type="button" class="footer-link-btn" data-open-consent hidden>Cookies</button>
         <a href="#top">Voltar ao topo ↑</a>
       </nav>
     </div>
   </footer>
-  {JS_MENU}"""
+  {JS_MENU}
+  <script src="{p}site-config.js"></script>
+  <script src="{p}tracking.js"></script>"""
 
 
 def pagina(m: Meta, p: str, corpo: str) -> str:

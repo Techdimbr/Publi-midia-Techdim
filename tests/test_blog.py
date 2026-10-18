@@ -86,6 +86,7 @@ def monta(tmp_path, monkeypatch, dias=("2026-10-06", "2026-10-07"), capa=True):
     (site / "index.html").write_text(INDEX_HTML, encoding="utf-8")
     (site / "favicon.svg").write_text("<svg/>", encoding="utf-8")
     (site / "styles.css").write_text("", encoding="utf-8")
+    (site / "privacidade.html").write_text("<!DOCTYPE html><title>Privacidade</title>", encoding="utf-8")
     (site / "assets").mkdir()
     (site / "assets" / "techdim-official-cube-icon.jpg").write_bytes(b"jpg")
     (site / "sitemap.xml").write_text(SITEMAP_ANTIGO, encoding="utf-8")
