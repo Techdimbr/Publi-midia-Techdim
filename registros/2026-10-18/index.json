@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:20",
+    "tema": "hacker",
+    "titulo": "ConnectWise Cloud Backup suspenso após invasão a ambientes Microsoft 365 de clientes",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h20-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136895089390486",
+      "instagram": "https://www.instagram.com/p/Deo4et8FrHf/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4010703999074713195",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7517590175582109696/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136895089390486",
+      "instagram": "18637326019002203",
+      "instagram_stories": "17958500796017900",
+      "linkedin": "urn:li:share:7517590175582109696"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
