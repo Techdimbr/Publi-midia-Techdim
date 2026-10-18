@@ -58,6 +58,7 @@ FUNDADOR_LINKEDIN = "https://linkedin.com/in/deivismayer"
 CAPA_TAMANHO = (720, 900)
 CAPA_QUALIDADE = 72
 ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+DESCRICAO_MAX = 158  # o Google corta a descrição perto de 155-160 caracteres
 
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
@@ -254,7 +255,7 @@ class Dia:
 
     @property
     def descricao(self) -> str:
-        return truncar("Hoje no Radar TECHDIM: " + "; ".join(a.titulo for a in self.artigos), 300)
+        return truncar("Hoje no Radar TECHDIM: " + "; ".join(a.titulo for a in self.artigos), DESCRICAO_MAX)
 
 
 def _tags(bloco: dict) -> list[str]:
@@ -408,7 +409,7 @@ def topo_site(p: str) -> str:
   <div class="cyber-bg-canvas" aria-hidden="true"></div>
   <header class="site-header" id="top">
     <div class="container nav-bar">
-      <a href="{p}" class="brand-wrapper" aria-label="TECHDIM Início">
+      <a href="{p}" class="brand-wrapper">
         <img src="{p}assets/techdim-official-cube-icon.jpg" alt="Logo Oficial TECHDIM INOVA" class="brand-logo-img" width="50" height="50" />
         <div class="brand-meta">
           <span class="brand-title">TECHDIM<span>_</span></span>
@@ -667,8 +668,8 @@ def html_indice(dias: list[Dia]) -> str:
     cartoes = "\n      ".join(cartao_dia(d, p) for d in recentes)
     arquivo = "".join(f'<li><a href="{p}blog/arquivo/{m}/">{e(mes_extenso(m))}</a></li>' for m in meses)
     titulo = f"Blog {MARCA}: radar diário de tecnologia, segurança e IA para empresas"
-    desc = ("Todo dia, notícia de tecnologia, alerta de segurança, dica prática e serviços de TI "
-            "para pequenas e médias empresas, sempre com as fontes. Campinas e todo o Brasil.")
+    desc = ("Todo dia, notícia de tecnologia, alerta de segurança e dica prática de TI para pequenas "
+            "e médias empresas, sempre com as fontes. Campinas e todo o Brasil.")
     corpo = f"""    <section class="container blog-lista">
       {migalhas_html([("Início", p), ("Blog", None)])}
       <header class="blog-topo">
