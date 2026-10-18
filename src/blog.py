@@ -118,7 +118,7 @@ JS_MENU = """<script>
       document.addEventListener('click', function (e) {
         if (m.classList.contains('open') && !m.contains(e.target) && !b.contains(e.target)) fechar();
       });
-      window.addEventListener('resize', function () { if (window.innerWidth > 1239) fechar(); });
+      window.addEventListener('resize', function () { if (window.innerWidth > 899) fechar(); });
       m.querySelectorAll('.nav-link').forEach(function (a) { a.addEventListener('click', fechar); });
     })();
   </script>"""
@@ -404,6 +404,12 @@ def cabeca(m: Meta, p: str) -> str:
   {ld}"""
 
 
+ICONE_CARRINHO = ('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                  'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+                  '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>'
+                  '<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>')
+
+
 def topo_site(p: str) -> str:
     return f"""<a href="#conteudo" class="skip-link">Pular para o conteúdo principal</a>
   <div class="cyber-bg-canvas" aria-hidden="true"></div>
@@ -418,14 +424,14 @@ def topo_site(p: str) -> str:
       </a>
       <nav aria-label="Navegação Principal">
         <ul class="nav-menu" id="navMenu">
-          <li><a href="{p}#solucoes" class="nav-link">Serviços B2B</a></li>
-          <li><a href="{p}#sobre" class="nav-link">Sobre Nós</a></li>
+          <li><a href="{p}#solucoes" class="nav-link">Serviços</a></li>
+          <li><a href="{p}#scanner" class="nav-link">Scanner</a></li>
           <li><a href="{p}blog/" class="nav-link active">Blog</a></li>
-          <li><a href="{p}#faq" class="nav-link">FAQ</a></li>
           <li><a href="{p}#contato" class="nav-link">Contato</a></li>
         </ul>
       </nav>
       <div class="nav-cta-group">
+        <a href="{p}loja.html" class="nav-cart" aria-label="Loja TECHDIM" title="Loja">{ICONE_CARRINHO}</a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu" aria-controls="navMenu" aria-expanded="false">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -442,7 +448,9 @@ def rodape_site(p: str) -> str:
         <a href="{p}blog/">Blog</a>
         <a href="{p}blog/feed.xml">Feed RSS</a>
         <a href="{p}#contato">Fale com a TECHDIM</a>
+        <a href="{p}loja.html">Loja</a>
         <a href="{p}privacidade.html">Privacidade</a>
+        <a href="{p}trocas-e-devolucoes.html">Trocas e devoluções</a>
         <button type="button" class="footer-link-btn" data-open-consent hidden>Cookies</button>
         <a href="#top">Voltar ao topo ↑</a>
       </nav>
