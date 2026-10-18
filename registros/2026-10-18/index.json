@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "11:18",
+    "tema": "noticias",
+    "titulo": "Vazamento de dados custa R$ 7,44 milhões no Brasil: recorde no relatório 2026 da IBM",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h18-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136894717390486",
+      "instagram": "https://www.instagram.com/p/Deo4Ul7HWiq/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4010703285052332087",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7517589830126714881/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136894717390486",
+      "instagram": "18635668465055107",
+      "instagram_stories": "18632984917060030",
+      "linkedin": "urn:li:share:7517589830126714881"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
