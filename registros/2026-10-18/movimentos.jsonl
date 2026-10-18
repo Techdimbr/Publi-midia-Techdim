@@ -36,3 +36,5 @@
 {"hora": "14:23:43", "teste": false, "tema": "Conhecimento", "origem": "disparo manual", "link": "", "rede": "instagram", "tipo": "gerado", "detalhe": "1 imagem(ns)"}
 {"hora": "14:23:43", "teste": false, "tema": "Conhecimento", "origem": "disparo manual", "link": "https://www.instagram.com/p/DepNhNlHWKp/", "rede": "instagram", "tipo": "publicado", "detalhe": "id 18097416998111424"}
 {"hora": "14:23:43", "teste": false, "tema": "Conhecimento", "origem": "disparo manual", "link": "https://www.instagram.com/p/DepNhNlHWKp/", "rede": "instagram", "tipo": "comentou", "detalhe": "primeiro comentário com fontes e site"}
+{"hora": "16:28:22", "teste": false, "tema": "Conhecimento", "origem": "agendamento automático", "link": "https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39158886369", "tipo": "iniciado", "detalhe": "execução iniciada"}
+{"hora": "16:28:22", "teste": false, "tema": "Conhecimento", "origem": "agendamento automático", "link": "https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39158886369", "tipo": "pulado", "detalhe": "tema já publicado hoje em todas as redes; execução ignorada"}
