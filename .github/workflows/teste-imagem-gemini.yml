@@ -1,0 +1,33 @@
+name: Teste imagem Gemini
+
+# Teste isolado (só roda com push neste branch): gera uma imagem com a API do Gemini a partir de uma
+# notícia da pauta e grava o resultado em teste-gemini/ neste mesmo branch. Não publica nada.
+on:
+  push:
+    branches: [teste-gemini-imagem]
+    paths: [src/teste_imagem_gemini.py, .github/workflows/teste-imagem-gemini.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  imagem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests==2.32.4
+      - name: Gerar imagem
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 src/teste_imagem_gemini.py 2026-10-17 noticias
+      - name: Gravar resultado no branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add teste-gemini/
+          git commit -m "teste: resultado da imagem do Gemini [skip ci]"
+          git push
