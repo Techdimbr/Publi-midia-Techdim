@@ -1,0 +1,47 @@
+{
+  "titulo": "Software sob medida com IA: Claude Code, Gemini e Antigravity, sempre com revisão humana",
+  "pontos": [
+    "Assistentes de programação com IA, como Claude Code, Gemini e Antigravity, ajudam a escrever e testar código. O que entra no sistema continua sendo decidido por pessoas",
+    "A TECHDIM usa essas ferramentas em sistemas, apps e automações sob medida para web, desktop e celular, com revisão humana, testes e cuidado com dados e acessos",
+    "Conte a sua ideia ou o processo que hoje é manual. A TECHDIM avalia se faz sentido virar sistema, app ou automação e propõe os próximos passos, sem compromisso"
+  ],
+  "fecho": "Tem uma ideia de sistema, app ou automação? Conte para a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de desenvolvimento sob medida e automações com assistentes de IA (Claude Code, Gemini e Antigravity), com revisão humana, sem promessa de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "monitor",
+        "chip",
+        "celular"
+      ],
+      "legenda": "SOFTWARE SOB MEDIDA · IA + REVISÃO HUMANA"
+    },
+    "titulo_branco": "Software sob medida:",
+    "titulo_destaque": "IA com revisão de gente",
+    "historia": "A TECHDIM usa assistentes de IA como Claude Code, Gemini e Antigravity para apoiar sistemas, apps e automações sob medida, sempre com revisão humana, testes e cuidado com dados e acessos.",
+    "licoes": [
+      [
+        "Ideia primeiro",
+        "Descreva o problema ou a tarefa repetitiva. Daí dá para avaliar o que vira sistema, app ou automação."
+      ],
+      [
+        "IA apoia, gente decide",
+        "As ferramentas ajudam a escrever e testar código; a equipe revisa tudo antes de entrar no ar."
+      ],
+      [
+        "Segurança no desenho",
+        "Acessos, dados e dependências entram no projeto desde o início, não só no fim."
+      ]
+    ],
+    "pergunta": "Qual tarefa da sua empresa ainda é manual e poderia virar um sistema?",
+    "hashtags": [
+      "#SoftwareSobMedida",
+      "#ClaudeCode",
+      "#Gemini",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

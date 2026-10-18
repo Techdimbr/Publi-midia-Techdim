@@ -1,0 +1,60 @@
+{
+  "titulo": "Windows LAPS: senha de administrador local diferente em cada computador, em 5 passos",
+  "pontos": [
+    "1) Use Windows 11 (ou 10 atualizado) em PCs ingressados no Entra ID. 2) No Entra: Devices > Device settings > Enable Local Administrator Password Solution (LAPS) = Yes",
+    "3) No Intune: Endpoint security > Account protection > Create policy > Windows > Local admin password solution (Windows LAPS). Backup no Entra ID e regras da senha",
+    "4) Atribua a um grupo piloto e confira em Devices > Local administrator password recovery. 5) Só funções como Cloud Device Administrator veem a senha. Depois, amplie"
+  ],
+  "fecho": "Seus PCs ainda compartilham a mesma senha de administrador local? Troque por uma senha única por computador e limite quem a vê.",
+  "motivo": "Passo a passo baseado na documentação da Microsoft para trocar a senha de administrador local repetida por uma senha única e rotacionada em cada PC, reduzindo o risco de movimentação lateral.",
+  "fontes": [
+    [
+      "learn.microsoft.com/windows-server",
+      "https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview"
+    ],
+    [
+      "learn.microsoft.com/entra",
+      "https://learn.microsoft.com/en-us/entra/identity/devices/howto-manage-local-admin-passwords"
+    ],
+    [
+      "learn.microsoft.com/intune",
+      "https://learn.microsoft.com/en-us/intune/device-configuration/endpoint-security/account-protection"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "notebook",
+        "monitor",
+        "escudo"
+      ],
+      "legenda": "SENHA DE ADMIN ÚNICA EM CADA COMPUTADOR"
+    },
+    "titulo_branco": "Windows LAPS:",
+    "titulo_destaque": "uma senha de admin por PC",
+    "historia": "Quando todos os PCs usam a mesma senha de administrador local, uma invasão se espalha rápido. O Windows LAPS troca e guarda uma senha diferente em cada computador. O recurso vem no Windows, sem custo.",
+    "licoes": [
+      [
+        "Ative no Entra",
+        "Em Device settings, marque Yes em Enable Local Administrator Password Solution e salve."
+      ],
+      [
+        "Crie a política",
+        "No Intune, em Endpoint security > Account protection, crie o perfil Windows LAPS com backup no Entra ID."
+      ],
+      [
+        "Teste e atribua",
+        "Aplique a um grupo piloto, confira a senha no dispositivo e depois amplie para todos os PCs."
+      ]
+    ],
+    "pergunta": "Seus PCs ainda dividem a mesma senha de administrador local?",
+    "hashtags": [
+      "#WindowsLAPS",
+      "#Hardening",
+      "#MicrosoftIntune",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
