@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:23",
+    "tema": "dica",
+    "titulo": "Windows LAPS: senha de administrador local diferente em cada computador, em 5 passos",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h23-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122136921879390486",
+      "instagram": "https://www.instagram.com/p/DepNhNlHWKp/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7517636425253752832/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122136921879390486",
+      "instagram": "18097416998111424",
+      "linkedin": "urn:li:share:7517636425253752832"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
