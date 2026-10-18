@@ -1,0 +1,60 @@
+{
+  "titulo": "Vazamento de dados custa R$ 7,44 milhões no Brasil: recorde no relatório 2026 da IBM",
+  "pontos": [
+    "O relatório Cost of a Data Breach 2026, da IBM, aponta que o custo médio de um vazamento no Brasil chegou a R$ 7,44 milhões, recorde da série e 3,5% acima de 2025",
+    "Phishing e ataques à cadeia de suprimentos responderam por 16% dos casos cada um. O shadow IT, uso de apps sem aprovação da empresa, somou R$ 720,3 mil por vazamento",
+    "Reduza o risco: revise acessos, criptografe os dados e defina os apps permitidos. No Brasil, uso amplo de IA e automação na defesa teve custo cerca de 30% menor"
+  ],
+  "fecho": "Sua empresa sabe quanto custaria um vazamento e quem agiria nas primeiras horas? Revise acessos, dados e apps antes.",
+  "motivo": "Dado novo e brasileiro sobre o custo de incidentes de segurança, com números que ajudam pequenas e médias empresas a priorizar proteção.",
+  "fontes": [
+    [
+      "canaltech.com.br",
+      "https://canaltech.com.br/seguranca/custo-de-violacao-de-dados-bate-recorde-no-brasil-e-chega-a-r-744-milhoes/"
+    ],
+    [
+      "convergenciadigital.com.br",
+      "https://convergenciadigital.com.br/mercado/custo-medio-de-uma-violacao-de-dados-no-brasil-bate-recorde-e-chega-a-r-744-milhoes/"
+    ],
+    [
+      "ibm.com",
+      "https://www.ibm.com/reports/data-breach"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "grafico",
+        "escudo",
+        "documento"
+      ],
+      "legenda": "CUSTO DE VAZAMENTO · BRASIL · RECORDE"
+    },
+    "titulo_branco": "Vazamento de dados:",
+    "titulo_destaque": "R$ 7,44 milhões em média",
+    "historia": "A IBM calcula que um vazamento custa, em média, R$ 7,44 milhões no Brasil, recorde da série. Phishing e cadeia de suprimentos são causas comuns. Uso amplo de IA na defesa teve custo cerca de 30% menor.",
+    "licoes": [
+      [
+        "Revise os acessos",
+        "Credenciais fracas e contas esquecidas abrem portas. Revise acessos e remova o que ninguém usa mais."
+      ],
+      [
+        "Proteja os dados",
+        "Criptografe notebooks, servidores e backups. Se o equipamento for perdido, os dados seguem ilegíveis."
+      ],
+      [
+        "Limite o shadow IT",
+        "Apps não aprovados somaram R$ 720,3 mil por vazamento. Defina quais ferramentas a equipe pode usar."
+      ]
+    ],
+    "pergunta": "Sua empresa saberia quem age nas primeiras horas de um vazamento?",
+    "hashtags": [
+      "#VazamentoDeDados",
+      "#Ciberseguranca",
+      "#IBM",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

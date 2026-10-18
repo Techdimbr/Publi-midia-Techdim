@@ -1,0 +1,91 @@
+{
+  "titulo": "ConnectWise Cloud Backup suspenso após invasão a ambientes Microsoft 365 de clientes",
+  "pontos": [
+    "A ConnectWise suspendeu o Cloud Backup (antigo SkyKick) após invasores usarem credenciais do aplicativo para entrar em ambientes Microsoft 365 de clientes e parceiros",
+    "Entraram como o próprio app, sem login de usuário e sem MFA. A Huntress confirmou mais de 160 ambientes. A ConnectWise não vê indício de acesso aos backups",
+    "Se usa o Cloud Backup, direto ou via fornecedor de TI, mantenha o app desativado no Entra ID e confira os logins do aplicativo e as credenciais novas desde 13/10"
+  ],
+  "fecho": "Seu backup do Microsoft 365 passa por um fornecedor? Peça à TI para conferir os logins do aplicativo e as credenciais adicionadas.",
+  "motivo": "Ataque à cadeia de suprimentos de um serviço de backup usado por provedores de TI, com passos práticos de verificação no Microsoft Entra para empresas e prestadores.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/connectwise-suspends-cloud-backup-after.html"
+    ],
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/hackers-breach-microsoft-365-tenants-via-connectwise-supply-chain-attack/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "backup · ConnectWise Cloud Backup",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · ConnectWise Cloud Backup",
+        "cmd"
+      ],
+      [
+        "",
+        "app usado para entrar em contas do M365",
+        "risco"
+      ],
+      [
+        "",
+        "entrada como o app: sem usuário e sem MFA",
+        "risco"
+      ],
+      [
+        "",
+        "7 identidades de app desativadas em 17/10",
+        "ok"
+      ],
+      [
+        "",
+        "Cloud Backup suspenso, sem prazo de volta",
+        "txt"
+      ],
+      [
+        "",
+        "fonte: Huntress, Microsoft e ConnectWise",
+        "txt"
+      ],
+      [
+        "$ ",
+        "Entra > logins de service principal (13/10+)",
+        "cmd"
+      ],
+      [
+        "",
+        "app ID 506e08f9-6e9a-4da4-942b-a099a03644ae",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "ConnectWise Cloud Backup:",
+    "titulo_destaque": "o app virou porta de entrada",
+    "historia": "Invasores usaram credenciais do ConnectWise Cloud Backup para entrar em ambientes Microsoft 365, sem login de usuário nem MFA. A ConnectWise suspendeu o serviço e a apuração segue em andamento.",
+    "licoes": [
+      [
+        "Desative o app",
+        "Se usa o Cloud Backup, mantenha o app desativado no Entra ID até a ConnectWise liberar o uso."
+      ],
+      [
+        "Confira os logins",
+        "No Entra, veja os logins de service principal do app desde 13/10 e IPs fora do padrão."
+      ],
+      [
+        "Revise credenciais",
+        "Procure segredos ou funções de administrador adicionados a apps desde 13/10 e remova o suspeito."
+      ]
+    ],
+    "pergunta": "Quem na sua empresa revisa os aplicativos com acesso ao Microsoft 365?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#Microsoft365",
+      "#SupplyChain",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
