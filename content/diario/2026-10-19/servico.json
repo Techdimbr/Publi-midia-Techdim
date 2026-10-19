@@ -1,0 +1,47 @@
+{
+  "titulo": "Infraestrutura e redes: Wi-Fi, firewall e cabeamento organizados para a empresa funcionar",
+  "pontos": [
+    "Rede lenta, Wi-Fi que cai e acesso remoto instável costumam vir de equipamento mal dimensionado ou configuração antiga. O primeiro passo é saber o que existe hoje",
+    "A TECHDIM cuida de infraestrutura e redes de PMEs: Wi-Fi, cabeamento, switches, firewall, VPN e acesso remoto, com levantamento do que existe e registro das mudanças",
+    "Conte como é a rede hoje e o que incomoda. A TECHDIM faz o levantamento e propõe o que ajustar, sem compromisso"
+  ],
+  "fecho": "Como está a rede da sua empresa hoje? Fale com a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de infraestrutura e redes (Wi-Fi, cabeamento, switches, firewall, VPN e acesso remoto), convidando o leitor a descrever a rede atual, sem promessa de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "rack",
+        "globo",
+        "celular"
+      ],
+      "legenda": "REDE ESTÁVEL · WI-FI, FIREWALL E CABEAMENTO"
+    },
+    "titulo_branco": "Infraestrutura e redes:",
+    "titulo_destaque": "conheça o que sua rede tem",
+    "historia": "A TECHDIM cuida de Wi-Fi, cabeamento, switches, firewall, VPN e acesso remoto para pequenas e médias empresas. O primeiro passo é levantar o que existe hoje e o que está incomodando.",
+    "licoes": [
+      [
+        "Conheça a rede",
+        "Liste equipamentos, links e pontos de Wi-Fi. Sem mapa da rede, todo problema vira tentativa e erro."
+      ],
+      [
+        "Separe os acessos",
+        "Rede de visitas separada da interna e regras claras de firewall reduzem o risco."
+      ],
+      [
+        "Planeje o crescimento",
+        "Mais gente e mais equipamentos pedem Wi-Fi, switches e link dimensionados para o uso real."
+      ]
+    ],
+    "pergunta": "Sua rede aguenta o uso de hoje e o crescimento de amanhã?",
+    "hashtags": [
+      "#InfraestruturaDeTI",
+      "#Redes",
+      "#WiFi",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

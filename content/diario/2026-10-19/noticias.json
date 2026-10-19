@@ -1,0 +1,56 @@
+{
+  "titulo": "Exchange: atualização de outubro do Windows Server pode travar o OWA e o envio de e-mail",
+  "pontos": [
+    "A Microsoft confirmou que a atualização de 13/10 do Windows Server pode causar falha no login do OWA e no envio de e-mail em Exchange 2016, 2019 e Subscription Edition",
+    "A causa é um novo limite de 512 consultas simultâneas no Endpoint Mapper, curto para um Exchange com carga alta. Nem todo servidor é afetado, e o efeito varia com a carga",
+    "Com Exchange próprio: confira filas e OWA e aplique a solução alternativa de registro da Microsoft. Falta a correção definitiva. Não remova as atualizações do Exchange"
+  ],
+  "fecho": "Sua empresa mantém um servidor Exchange próprio? Peça à TI para conferir filas de e-mail e OWA depois das atualizações.",
+  "motivo": "Problema confirmado pela Microsoft que afeta servidores Exchange locais após a atualização de outubro do Windows Server, com solução alternativa disponível.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/microsoft/microsoft-october-windows-server-updates-cause-exchange-issues/"
+    ],
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "documento",
+        "engrenagens"
+      ],
+      "legenda": "EXCHANGE · OWA E ENVIO DE E-MAIL EM ALERTA"
+    },
+    "titulo_branco": "Windows Server e Exchange:",
+    "titulo_destaque": "e-mail pode travar após atualização",
+    "historia": "Após a atualização de segurança de outubro do Windows Server, a Microsoft confirmou que o Exchange pode falhar no OWA e no envio de e-mail. Há solução alternativa; a correção definitiva ainda não saiu.",
+    "licoes": [
+      [
+        "Veja se é seu caso",
+        "Vale para Exchange 2016, 2019 e Subscription Edition em Windows Server com a atualização de 13/10."
+      ],
+      [
+        "Aplique o paliativo",
+        "A Microsoft publicou uma solução alternativa por chave de registro. Monitore filas e logs."
+      ],
+      [
+        "Não desinstale",
+        "Segundo a Microsoft, as atualizações do Exchange não causam o problema. Mantenha-as instaladas."
+      ]
+    ],
+    "pergunta": "Quem na sua empresa confere o e-mail depois de cada atualização do servidor?",
+    "hashtags": [
+      "#MicrosoftExchange",
+      "#WindowsServer",
+      "#GestaoDeTI",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

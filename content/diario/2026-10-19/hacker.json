@@ -1,0 +1,91 @@
+{
+  "titulo": "OpenCode Console: invasão pode ter exposto chaves de API da OpenAI, Anthropic e Google",
+  "pontos": [
+    "O OpenCode, agente de código aberto para programar com IA, diz que uma invasão ao Console pode ter exposto chaves de API da OpenAI, Anthropic e Google salvas por usuários",
+    "A empresa diz que 1,4% dos usuários do Console foram afetados e avisados por e-mail. O app local (CLI e desktop) não foi atingido. Há relatos de cobranças indevidas",
+    "Se sua equipe salvou chaves no Console, revogue no painel de cada provedor, gere novas, confira o uso desde 16/10 e defina limites de gasto. Use uma chave por ferramenta"
+  ],
+  "fecho": "Sua equipe guarda chaves de API de IA em ferramentas de terceiros? Gire as chaves e defina limites de gasto.",
+  "motivo": "Incidente em ferramenta de IA para desenvolvedores com risco para chaves de API de provedores, com passos práticos de revogação e conferência de uso.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/opencode-console-breach-may-have.html"
+    ],
+    [
+      "cyera.com",
+      "https://www.cyera.com/research/opencode-breach-what-happened-and-how-to-rotate-exposed-ai-api-keys"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "dev · OpenCode Console",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · OpenCode Console (sistema legado)",
+        "cmd"
+      ],
+      [
+        "",
+        "chaves OpenAI/Anthropic/Google expostas?",
+        "risco"
+      ],
+      [
+        "",
+        "1,4% dos usuários do Console afetados",
+        "risco"
+      ],
+      [
+        "",
+        "app local (CLI e desktop): não afetado",
+        "ok"
+      ],
+      [
+        "",
+        "fonte: The Hacker News e Cyera",
+        "txt"
+      ],
+      [
+        "$ ",
+        "revogar a chave no painel do provedor",
+        "cmd"
+      ],
+      [
+        "",
+        "conferir uso e cobrança desde 16/10",
+        "ok"
+      ],
+      [
+        "",
+        "limite de gasto e uma chave por ferramenta",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "OpenCode Console:",
+    "titulo_destaque": "chaves de API podem ter vazado",
+    "historia": "Um invasor chegou a um sistema antigo do OpenCode Console. Chaves de API da OpenAI, Anthropic e Google salvas por 1,4% dos usuários podem ter sido expostas. Revogue no provedor e confira o uso.",
+    "licoes": [
+      [
+        "Revogue no provedor",
+        "Apagar a chave no Console não a invalida. Revogue no painel da OpenAI, Anthropic ou Google."
+      ],
+      [
+        "Confira o uso",
+        "Veja cobrança e uso desde 16/10: picos, modelos estranhos e horários fora do normal."
+      ],
+      [
+        "Limite o estrago",
+        "Defina limites de gasto e alertas e use uma chave por ferramenta ou projeto."
+      ]
+    ],
+    "pergunta": "Onde sua equipe guarda as chaves de API de IA?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#IAGenerativa",
+      "#SegurancaDeAPI",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "titulo": "Verificação em duas etapas no Google Workspace: exija para todos em 5 passos",
+  "pontos": [
+    "1) Como superadmin, abra Menu > Security > Authentication > 2-step verification. 2) Marque Allow users to turn on 2-Step Verification, deixe Enforcement em Off e salve",
+    "3) Avise a equipe e acompanhe quem já cadastrou em Reporting > User Reports > Security. 4) Quando todos estiverem prontos, mude Enforcement para On ou para uma data",
+    "5) Em Methods, prefira Any except verification codes via text, phone call; para administradores, use chave de segurança. Evite Allow user to trust the device"
+  ],
+  "fecho": "As contas da sua empresa exigem um segundo passo para entrar? Comece pelos administradores e por quem lida com dados sensíveis.",
+  "motivo": "Passo a passo baseado na documentação do Google Workspace para ativar e exigir a verificação em duas etapas, reduzindo o risco de invasão por senha roubada.",
+  "fontes": [
+    [
+      "knowledge.workspace.google.com/deploy-2sv",
+      "https://knowledge.workspace.google.com/admin/security/deploy-2-step-verification"
+    ],
+    [
+      "knowledge.workspace.google.com/protect-2sv",
+      "https://knowledge.workspace.google.com/admin/security/protect-your-business-with-2-step-verification"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "celular",
+        "escudo",
+        "nuvem"
+      ],
+      "legenda": "SEGUNDO FATOR · CONTA DA EMPRESA PROTEGIDA"
+    },
+    "titulo_branco": "Verificação em duas etapas:",
+    "titulo_destaque": "exija no Google Workspace",
+    "historia": "Uma senha roubada não basta quando a conta exige um segundo passo. No Google Workspace, dá para exigir a verificação em duas etapas, começando por administradores e quem lida com dados sensíveis.",
+    "licoes": [
+      [
+        "Cadastro antes",
+        "Ative Allow users to turn on e acompanhe o cadastro. Só depois exija o segundo passo."
+      ],
+      [
+        "Evite SMS",
+        "Prefira Any except verification codes via text, phone call. Chaves de segurança são a opção mais forte."
+      ],
+      [
+        "Avise a equipe",
+        "Quem usa SMS ou ligação fica bloqueado ao exigir outro método. Avise antes da data."
+      ]
+    ],
+    "pergunta": "Todas as contas da sua empresa exigem um segundo passo para entrar?",
+    "hashtags": [
+      "#GoogleWorkspace",
+      "#VerificacaoEmDuasEtapas",
+      "#MFA",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
