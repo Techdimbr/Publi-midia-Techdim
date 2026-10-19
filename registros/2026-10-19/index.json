@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "OpenCode Console: invasão pode ter exposto chaves de API da OpenAI, Anthropic e Google",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137083579390486",
+      "instagram": "https://www.instagram.com/p/DercBhZmA2z/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4011423325708903450",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7517949804631633920/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137083579390486",
+      "instagram": "18151841521544795",
+      "instagram_stories": "18081208034707219",
+      "linkedin": "urn:li:share:7517949804631633920"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

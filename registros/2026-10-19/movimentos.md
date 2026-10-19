@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:00 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DerGYRll9Mc/) |
 | 08:00 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 08:00 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18632652877065408 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4011328084087606633) |
+| 11:09 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39266177054) |
+| 11:09 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: OpenCode Console: invasão pode ter exposto chaves de API da OpenAI, Anthropic e Google — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7517949804631633920 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7517949804631633920/) |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122137083579390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122137083579390486) |
+| 11:09 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122137083579390486) |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 18151841521544795 | disparo manual |  | [abrir](https://www.instagram.com/p/DercBhZmA2z/) |
+| 11:09 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DercBhZmA2z/) |
+| 11:09 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
+| 11:09 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18081208034707219 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4011423325708903450) |
