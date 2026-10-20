@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "Rank Math PRO adulterado: plugin de SEO do WordPress entregou backdoor que se recria",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137366137390486",
+      "instagram": "https://www.instagram.com/p/DeuA0JpiVcx/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4012148077071212451",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7518312191452848128/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137366137390486",
+      "instagram": "18351218584268678",
+      "instagram_stories": "18080667650532737",
+      "linkedin": "urn:li:share:7518312191452848128"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
