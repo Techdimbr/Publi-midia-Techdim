@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "IA local: modelos de linguagem na sua rede para analisar documentos sem enviá-los à nuvem",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137423953390486",
+      "instagram": "https://www.instagram.com/p/DeurwH_jYjE/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7518406618473226240/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137423953390486",
+      "instagram": "18115093934600285",
+      "linkedin": "urn:li:share:7518406618473226240"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
