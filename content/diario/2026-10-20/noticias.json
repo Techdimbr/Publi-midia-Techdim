@@ -1,0 +1,60 @@
+{
+  "titulo": "Microsoft trata agentes de IA como risco interno e anuncia controles para vigiá-los",
+  "pontos": [
+    "A Microsoft diz que agentes de IA com acesso a dados e sistemas são risco interno: modelos de ponta são imprevisíveis, não necessariamente maliciosos",
+    "Os novos Guardian Agents vigiam outros agentes, e um recurso do Defender detecta até 60 tipos de agentes que a equipe leva para o trabalho, como Claude Code e Codex",
+    "Na sua empresa: liste as IAs e agentes em uso, dê a cada um só o acesso necessário e exija aprovação humana em ações de risco, como apagar dados"
+  ],
+  "fecho": "Quem na sua empresa sabe quais agentes de IA têm acesso a dados e sistemas? Comece listando e limitando os acessos.",
+  "motivo": "Tema novo e prático para PMEs que começam a usar agentes de IA: inventário, acesso mínimo e aprovação humana. O aviso vem da Microsoft, que também vende segurança para agentes.",
+  "fontes": [
+    [
+      "techcrunch.com",
+      "https://techcrunch.com/2026/10/19/microsoft-says-ai-agents-are-like-insider-threats-as-frontier-models-cant-be-trusted/"
+    ],
+    [
+      "businesstoday.in",
+      "https://www.businesstoday.in/amp/technology/story/ai-models-cannot-be-trusted-microsoft-warns-of-insider-threats-expands-project-perception-562579-2026-10-19"
+    ],
+    [
+      "dataconomy.com",
+      "https://dataconomy.com/2026/10/20/microsoft-warns-companies-not-to-trust-ai-agents/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "chip",
+        "escudo",
+        "monitor"
+      ],
+      "legenda": "AGENTES DE IA · RISCO INTERNO"
+    },
+    "titulo_branco": "Agentes de IA:",
+    "titulo_destaque": "risco de dentro da empresa",
+    "historia": "A Microsoft avisa que agentes de IA com acesso a dados e sistemas podem agir como um funcionário com acesso demais. Propõe vigiá-los, limitar o acesso e exigir aprovação humana em ações de risco.",
+    "licoes": [
+      [
+        "Liste os agentes",
+        "Veja quais IAs e agentes a equipe usa, inclusive os instalados por conta própria."
+      ],
+      [
+        "Acesso mínimo",
+        "Dê a cada agente só os dados e sistemas que a tarefa pede e retire o acesso quando acabar."
+      ],
+      [
+        "Aprovação humana",
+        "Exija o OK de uma pessoa antes de ações de risco, como apagar dados ou enviar informações."
+      ]
+    ],
+    "pergunta": "Sua empresa sabe quais agentes de IA têm acesso a dados e sistemas?",
+    "hashtags": [
+      "#AgentesDeIA",
+      "#Microsoft",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

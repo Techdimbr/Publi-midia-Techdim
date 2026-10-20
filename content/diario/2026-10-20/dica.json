@@ -1,0 +1,56 @@
+{
+  "titulo": "Acesso controlado a pastas do Windows: proteja arquivos contra ransomware em 5 passos",
+  "pontos": [
+    "1) Segurança do Windows > Proteção contra vírus e ameaças > Gerenciar configurações > Gerenciar acesso controlado a pastas. 2) Ative a chave e confirme com Sim",
+    "3) Em Pastas protegidas, adicione as pastas de dados (ex.: C:\\Dados). Documentos, Imagens, Vídeos e Música já vêm protegidos. Exige o antivírus do Defender ativo",
+    "4) Programa legítimo bloqueado: Permitir um aplicativo > Adicionar um aplicativo permitido. 5) Em várias máquinas, teste antes em Modo de Auditoria (Intune ou GPO)"
+  ],
+  "fecho": "Seus PCs estão com o acesso controlado a pastas ligado? Ative, teste em modo de auditoria e inclua as pastas de dados da empresa.",
+  "motivo": "Passo a passo baseado na documentação da Microsoft para ligar uma proteção nativa do Windows que impede programas não confiáveis de alterar arquivos, reduzindo o estrago de um ransomware.",
+  "fontes": [
+    [
+      "learn.microsoft.com/defender (visão geral)",
+      "https://learn.microsoft.com/en-us/defender-endpoint/controlled-folder-access-overview"
+    ],
+    [
+      "learn.microsoft.com/defender (configurar)",
+      "https://learn.microsoft.com/pt-br/defender-endpoint/controlled-folder-access-configure"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "notebook",
+        "documento",
+        "escudo"
+      ],
+      "legenda": "PASTAS PROTEGIDAS CONTRA RANSOMWARE"
+    },
+    "titulo_branco": "Acesso controlado a pastas:",
+    "titulo_destaque": "só app confiável altera arquivos",
+    "historia": "O Windows tem uma proteção contra ransomware que vem desligada: o acesso controlado a pastas. Só aplicativos confiáveis alteram arquivos nas pastas protegidas. Ela ajuda, mas não substitui o backup.",
+    "licoes": [
+      [
+        "Ligue a proteção",
+        "Em Proteção contra vírus e ameaças, abra Gerenciar acesso controlado a pastas e ligue a chave."
+      ],
+      [
+        "Inclua suas pastas",
+        "Adicione em Pastas protegidas os locais dos dados da empresa. Documentos e Imagens já vêm incluídos."
+      ],
+      [
+        "Libere o que precisa",
+        "Se um programa legítimo for bloqueado, adicione-o em Permitir um aplicativo. Teste antes em auditoria."
+      ]
+    ],
+    "pergunta": "Os arquivos do seu computador estão numa pasta protegida contra ransomware?",
+    "hashtags": [
+      "#Ransomware",
+      "#MicrosoftDefender",
+      "#Hardening",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

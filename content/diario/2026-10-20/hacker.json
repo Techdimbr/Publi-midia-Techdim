@@ -1,0 +1,91 @@
+{
+  "titulo": "Rank Math PRO adulterado: plugin de SEO do WordPress entregou backdoor que se recria",
+  "pontos": [
+    "O Rank Math PRO 3.0.123, plugin pago de SEO, saiu adulterado do site do próprio fornecedor para quem baixou entre 20h02 de 15/10 e 07h12 de 16/10 (UTC)",
+    "O malware recria o backdoor a cada visita e pode criar admins falsos. Quem ativou essa cópia deve tratar o site como invadido, mesmo após atualizar para a 3.0.124",
+    "Restaure um backup anterior a 15/10 (ou apague a pasta do plugin) e bloqueie rank1cdn[.]com. Troque senhas, chaves e salts. O plugin grátis não foi afetado"
+  ],
+  "fecho": "Seu site usa Rank Math PRO? Peça a quem cuida dele para conferir a data do download e restaurar um backup limpo.",
+  "motivo": "Ataque à cadeia de suprimentos de um plugin pago de WordPress, com janela exata e passos de resposta confirmados pelo aviso do fornecedor e por duas fontes.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/popular-wordpress-seo-plugin-rank-math.html"
+    ],
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/wordpress-seo-plugin-rank-math-compromised-to-backdoor-websites/"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "wordpress · Rank Math PRO",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · Rank Math PRO 3.0.123",
+        "cmd"
+      ],
+      [
+        "",
+        "build adulterado no site do fornecedor",
+        "risco"
+      ],
+      [
+        "",
+        "janela: 15/10 20:02 a 16/10 07:12 UTC",
+        "risco"
+      ],
+      [
+        "",
+        "backdoor se recria a cada visita",
+        "risco"
+      ],
+      [
+        "",
+        "plugin grátis do WordPress.org: não afetado",
+        "ok"
+      ],
+      [
+        "",
+        "baixou na janela? site comprometido",
+        "txt"
+      ],
+      [
+        "$ ",
+        "apague a pasta · bloqueie rank1cdn[.]com",
+        "cmd"
+      ],
+      [
+        "",
+        "troque senhas, chaves e salts do WP",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Rank Math PRO:",
+    "titulo_destaque": "o plugin virou backdoor",
+    "historia": "Cópias do Rank Math PRO 3.0.123 baixadas em 15 e 16/10 trouxeram malware que recria um backdoor oculto. Desativar ou atualizar não limpa o site: restaure um backup anterior e troque as credenciais.",
+    "licoes": [
+      [
+        "Confira a janela",
+        "Baixou o PRO 3.0.123 entre 15/10 20h02 e 16/10 07h12 (UTC)? Trate o site como invadido."
+      ],
+      [
+        "Restaure ou limpe",
+        "Use um backup anterior a 15/10. Sem backup, apague a pasta do plugin e bloqueie rank1cdn[.]com."
+      ],
+      [
+        "Troque os segredos",
+        "Senhas do WordPress, banco, chaves e salts, SSH e APIs. Procure admins com nome wpsupport_."
+      ]
+    ],
+    "pergunta": "Quem cuida do seu site sabe quando cada plugin pago foi baixado?",
+    "hashtags": [
+      "#WordPress",
+      "#Ciberseguranca",
+      "#SupplyChain",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titulo": "IA local: modelos de linguagem na sua rede para analisar documentos sem enviá-los à nuvem",
+  "pontos": [
+    "Contratos, dados de clientes e planilhas financeiras nem sempre podem ir para um serviço de IA na nuvem. A IA local roda os modelos dentro da sua própria rede",
+    "A TECHDIM implanta modelos de linguagem abertos em servidores da empresa, até isolados da internet, e monta a consulta aos seus documentos (RAG) com controle de acesso",
+    "Conte qual dado precisa ficar dentro de casa. A TECHDIM avalia se IA local faz sentido (uso, hardware e custo) e propõe os próximos passos, sem compromisso"
+  ],
+  "fecho": "Quer usar IA com documentos sigilosos sem mandá-los para fora? Conte seu caso para a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de IA local (on-premise) da TECHDIM para empresas com dados sigilosos, sem promessa de preço, prazo, desempenho ou segurança absoluta.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "chip",
+        "documento"
+      ],
+      "legenda": "IA LOCAL · DADOS DENTRO DA SUA REDE"
+    },
+    "titulo_branco": "IA local:",
+    "titulo_destaque": "roda dentro da sua rede",
+    "historia": "Modelos de linguagem abertos rodam em servidores da empresa, inclusive sem internet, e respondem com base nos seus documentos. A TECHDIM avalia se IA local faz sentido para o seu caso antes de propor.",
+    "licoes": [
+      [
+        "Dado sigiloso primeiro",
+        "Contratos, dados de clientes e finanças são bons candidatos a ficar dentro da rede da empresa."
+      ],
+      [
+        "Base nos seus arquivos",
+        "A IA responde a partir dos documentos da empresa (RAG), com controle de quem acessa cada um."
+      ],
+      [
+        "Avalie antes",
+        "Nem todo caso precisa de IA local. Uso, hardware e custo entram na conta antes de decidir."
+      ]
+    ],
+    "pergunta": "Que documentos da sua empresa não deveriam ir para um serviço de IA na nuvem?",
+    "hashtags": [
+      "#IALocal",
+      "#LLM",
+      "#PrivacidadeDeDados",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
