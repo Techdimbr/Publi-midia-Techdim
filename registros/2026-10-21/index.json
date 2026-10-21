@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "Backup e recuperação: quanto tempo sua empresa aguenta parada e quanto dado pode perder?",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137632087390486",
+      "instagram": "https://www.instagram.com/p/DexQmEkEXS3/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7518768977695694848/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137632087390486",
+      "instagram": "18125585788911431",
+      "linkedin": "urn:li:share:7518768977695694848"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
