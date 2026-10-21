@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 08:00 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DewP-y5F_4K/) |
 | 08:00 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
 | 08:00 | 📱 story | Notícias de Tecnologia | instagram_stories | id 17942831394368101 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4012777710326110818) |
+| 11:12 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39614674104) |
+| 11:12 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: PHP 8.5.12, 8.4.27, 8.3.36 e 8.2.35 corrigem duas falhas críticas de execução remota — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 11:12 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 11:12 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7518675485099356162 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7518675485099356162/) |
+| 11:12 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 11:12 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122137576413390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122137576413390486) |
+| 11:12 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122137576413390486) |
+| 11:12 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 11:12 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 17902788159375373 | disparo manual |  | [abrir](https://www.instagram.com/p/DewmBg9HQT8/) |
+| 11:12 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DewmBg9HQT8/) |
+| 11:12 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | disparo manual |  |  |
+| 11:12 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18502416874103178 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4012874611382129075) |
