@@ -1,0 +1,60 @@
+{
+  "titulo": "unattended-upgrades no Debian: atualizações de segurança automáticas em 5 passos",
+  "pontos": [
+    "1) Instale: sudo apt install unattended-upgrades. 2) Ative: sudo dpkg-reconfigure -plow unattended-upgrades e responda Sim. O padrão instala só atualizações de segurança",
+    "3) Confira que APT::Periodic::Update-Package-Lists e APT::Periodic::Unattended-Upgrade valem 1 (apt-config dump). 4) Teste: sudo unattended-upgrade --debug --dry-run",
+    "5) Leia o log em /var/log/unattended-upgrades/. O reinício automático vem desligado: para reiniciar às 02:00, use Automatic-Reboot e Automatic-Reboot-Time"
+  ],
+  "fecho": "Seus servidores Linux recebem correções de segurança sem depender de alguém lembrar? Ative, teste e acompanhe o log.",
+  "motivo": "Passo a passo baseado na documentação do Debian e do projeto unattended-upgrades para instalar correções de segurança automaticamente em servidores Linux, com teste antes e log para conferir.",
+  "fontes": [
+    [
+      "wiki.debian.org/UnattendedUpgrades",
+      "https://wiki.debian.org/UnattendedUpgrades"
+    ],
+    [
+      "manpages.debian.org (unattended-upgrade)",
+      "https://manpages.debian.org/trixie/unattended-upgrades/unattended-upgrade.8.en.html"
+    ],
+    [
+      "github.com/mvo5/unattended-upgrades",
+      "https://github.com/mvo5/unattended-upgrades/blob/master/README.md"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "rack",
+        "engrenagens",
+        "escudo"
+      ],
+      "legenda": "SEGURANÇA AUTOMÁTICA NO DEBIAN"
+    },
+    "titulo_branco": "Debian atualizado:",
+    "titulo_destaque": "correções sem esquecer",
+    "historia": "No Debian, o pacote unattended-upgrades baixa e instala sozinho as atualizações de segurança. Por padrão, só entram correções de segurança. Teste antes com --dry-run e acompanhe o log.",
+    "licoes": [
+      [
+        "Instale e ative",
+        "Instale unattended-upgrades e rode dpkg-reconfigure -plow unattended-upgrades; responda Sim."
+      ],
+      [
+        "Teste sem instalar",
+        "Rode unattended-upgrade --debug --dry-run e leia o log em /var/log/unattended-upgrades/."
+      ],
+      [
+        "Decida o reinício",
+        "O reinício automático vem desligado. Se ativar, escolha um horário, como 02:00."
+      ]
+    ],
+    "pergunta": "Quem garante que seus servidores Linux recebam as correções de segurança?",
+    "hashtags": [
+      "#Debian",
+      "#Linux",
+      "#AtualizacaoDeSeguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

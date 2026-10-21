@@ -1,0 +1,56 @@
+{
+  "titulo": "OpenAI diz que GPT-6.1 Sol migra código COBOL com 86,6% de acerto em teste próprio",
+  "pontos": [
+    "A OpenAI diz que o GPT-6.1 Sol melhorou muito em linguagens antigas, como COBOL, Fortran e Visual Basic, que têm pouco material para treinar modelos",
+    "Em teste próprio, migrou COBOL para Java, Python e outras linguagens com 86,6% de acerto (5,4% no GPT-5.6 Sol). Os números são da OpenAI; migração real pede revisão",
+    "Na sua empresa: tem sistema legado? Liste o que ele faz, monte testes para comparar os resultados e só migre com revisão de especialista"
+  ],
+  "fecho": "Algum sistema da sua empresa ainda depende de COBOL ou Visual Basic? Comece mapeando o que ele faz e quem o usa.",
+  "motivo": "Notícia de IA com aplicação direta a empresas que mantêm sistemas legados: os números são da própria OpenAI e a ressalva de que migrações reais exigem revisão e testes foi preservada.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-says-gpt-61-sol-is-dramatically-better-at-migrating-legacy-code/"
+    ],
+    [
+      "the-decoder.com",
+      "https://the-decoder.com/openai-says-gpt-6-is-much-better-with-legacy-programming-languages-such-as-cobol-and-fortran/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "chip",
+        "monitor",
+        "engrenagens"
+      ],
+      "legenda": "IA PARA MIGRAR SISTEMAS LEGADOS"
+    },
+    "titulo_branco": "IA e código legado:",
+    "titulo_destaque": "migrar exige teste e revisão",
+    "historia": "A OpenAI diz que o GPT-6.1 Sol migra programas COBOL para linguagens atuais com 86,6% de acerto em teste próprio. Os números são da empresa e migrações reais ainda pedem revisão e testes.",
+    "licoes": [
+      [
+        "Mapeie o legado",
+        "Liste o que o sistema antigo faz, onde roda e quem depende dele antes de pensar em migrar."
+      ],
+      [
+        "Crie testes antes",
+        "Guarde entradas e saídas atuais para comparar o sistema novo com o antigo, resultado por resultado."
+      ],
+      [
+        "Revisão humana",
+        "A IA acelera, mas especialistas devem revisar o código e validar regras de negócio e cálculos."
+      ]
+    ],
+    "pergunta": "Algum sistema da sua empresa ainda roda em COBOL ou Visual Basic?",
+    "hashtags": [
+      "#OpenAI",
+      "#SistemasLegados",
+      "#COBOL",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

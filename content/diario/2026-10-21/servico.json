@@ -1,0 +1,47 @@
+{
+  "titulo": "Backup e recuperação: quanto tempo sua empresa aguenta parada e quanto dado pode perder?",
+  "pontos": [
+    "Dois números guiam o backup: quanto tempo a empresa aguenta parada (RTO) e quantas horas de dados aceita perder (RPO). Sem defini-los, a cópia pode não servir",
+    "A TECHDIM ajuda a definir esses limites, escolher o que proteger, manter cópias fora do local e testar a restauração, com registro do resultado",
+    "Conte quais sistemas não podem parar. A TECHDIM avalia a situação atual e propõe um plano de backup e recuperação, sem compromisso"
+  ],
+  "fecho": "Se o servidor parasse agora, em quanto tempo sua empresa voltaria? Converse com a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de backup e recuperação da TECHDIM com ângulo novo (tempo parado e dados perdidos, RTO e RPO), sem promessa de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "documento"
+      ],
+      "legenda": "BACKUP · TEMPO PARADO E DADOS PERDIDOS"
+    },
+    "titulo_branco": "Backup e recuperação:",
+    "titulo_destaque": "quanto você pode perder?",
+    "historia": "Ter cópia dos dados não basta: é preciso saber em quanto tempo os sistemas voltam e quantas horas de dados podem se perder. A TECHDIM ajuda a definir esses limites e a testar a restauração.",
+    "licoes": [
+      [
+        "Tempo parado (RTO)",
+        "Defina quanto tempo cada sistema pode ficar fora do ar sem comprometer a operação."
+      ],
+      [
+        "Dado perdido (RPO)",
+        "Defina quantas horas de dados a empresa aceita perder e ajuste a frequência da cópia."
+      ],
+      [
+        "Teste a restauração",
+        "Restaure arquivos e sistemas de verdade em intervalos fixos e registre o tempo que levou."
+      ]
+    ],
+    "pergunta": "Se o servidor parasse agora, em quanto tempo sua empresa voltaria a operar?",
+    "hashtags": [
+      "#Backup",
+      "#RecuperacaoDeDesastres",
+      "#ContinuidadeDeNegocios",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
