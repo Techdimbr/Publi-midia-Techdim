@@ -1,20 +1,24 @@
 {
-  "titulo": "PHP: duas falhas críticas de execução remota terão correção de emergência em 21/10",
+  "titulo": "PHP 8.5.12, 8.4.27, 8.3.36 e 8.2.35 corrigem duas falhas críticas de execução remota",
   "pontos": [
-    "O PHP alertou para duas falhas críticas (CVE-2026-109618 e -109619, nota 9.2) e marcou a correção de emergência para 21/10, 14h UTC (11h em Brasília)",
-    "A watchTowr diz que permitem execução remota de código e não viu exploração até o aviso. O PHP não detalhou as falhas; só as versões 8.2 a 8.5 devem receber correção",
-    "Liste onde há PHP (site, WordPress, ERP, hospedagem) e atualize assim que a correção sair. Versão 8.1 ou anterior não terá correção: migre ou proteja atrás de WAF ou VPN"
+    "O PHP publicou em 21/10 as versões 8.5.12, 8.4.27, 8.3.36 e 8.2.35, que corrigem duas falhas críticas (CVE-2026-109618 e -109619, nota 9.2) de execução remota sem login",
+    "O aviso do PHP diz que atualizar é a única mitigação completa. Versões anteriores às corrigidas são afetadas e o 8.1 e anteriores não recebem correção do projeto",
+    "Atualize já: liste onde há PHP (site, WordPress, ERP, hospedagem), aplique a versão corrigida e confirme com o provedor. PHP 8.1 ou anterior: migre ou isole da internet"
   ],
-  "fecho": "Seu site ou sistema roda em PHP? Peça a quem cuida dele a versão em uso e um plano para atualizar no mesmo dia.",
-  "motivo": "Falha crítica em tecnologia muito usada em sites e sistemas de pequenas empresas, com data oficial de correção e passos de preparo confirmados por duas fontes.",
+  "fecho": "Seu site ou sistema roda em PHP? Peça a quem cuida dele a versão em uso e a atualização para a versão corrigida hoje.",
+  "motivo": "Falha crítica em tecnologia muito usada em sites e sistemas de pequenas empresas, com correção oficial publicada pelo PHP em 21/10; a pauta foi atualizada com os avisos oficiais antes da publicação.",
   "fontes": [
     [
-      "thehackernews.com",
-      "https://thehackernews.com/2026/10/php2shell-two-unpatched-critical-php.html"
+      "php.net",
+      "https://www.php.net/archive/2026.php"
     ],
     [
-      "bleepingcomputer.com",
-      "https://www.bleepingcomputer.com/news/security/php-warns-admins-of-two-critical-flaws-emergency-patches-coming-tomorrow/"
+      "github.com/php-src (CVE-2026-109618)",
+      "https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w"
+    ],
+    [
+      "github.com/php-src (CVE-2026-109619)",
+      "https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp"
     ]
   ],
   "infografico": {
@@ -28,28 +32,28 @@
       ],
       [
         "",
-        "duas falhas críticas · RCE (watchTowr)",
+        "duas falhas críticas · RCE sem login",
         "risco"
       ],
       [
         "",
-        "nota 9.2 (CVSS v4.0) pelo time do PHP",
+        "nota 9.2 (CVSS v4.0), segundo o PHP",
         "risco"
       ],
       [
         "",
-        "sem detalhes técnicos no aviso do PHP",
-        "txt"
-      ],
-      [
-        "",
-        "correção: 21/10, 14h UTC (11h Brasília)",
+        "corrigido: 8.5.12 · 8.4.27 · 8.3.36 · 8.2.35",
         "ok"
       ],
       [
         "",
-        "só PHP 8.2 a 8.5 deve receber correção",
+        "atualizar é a única mitigação completa",
         "txt"
+      ],
+      [
+        "",
+        "8.1 ou anterior: sem correção do projeto",
+        "risco"
       ],
       [
         "$ ",
@@ -58,28 +62,28 @@
       ],
       [
         "",
-        "8.1 ou anterior: sem correção do PHP",
-        "risco"
+        "aplique a versão corrigida hoje",
+        "ok"
       ]
     ],
     "titulo_branco": "PHP:",
-    "titulo_destaque": "falhas críticas e correção",
-    "historia": "O PHP corrige em 21/10, às 14h UTC, duas falhas críticas, que a watchTowr descreve como de execução remota. Liste onde há PHP, prepare a atualização e trate com urgência o que roda 8.1 ou anterior.",
+    "titulo_destaque": "atualize, a correção saiu",
+    "historia": "O PHP publicou em 21/10 as versões 8.5.12, 8.4.27, 8.3.36 e 8.2.35 contra duas falhas críticas de execução remota sem login. Segundo o aviso, atualizar é a única mitigação completa.",
     "licoes": [
       [
         "Ache o PHP",
         "Liste sites, WordPress, ERPs, painéis e equipamentos que usam PHP. Em servidores, rode php -v."
       ],
       [
-        "Atualize no dia",
-        "Prepare a atualização de 21/10 e priorize o que está exposto à internet. Confirme com o provedor."
+        "Atualize já",
+        "Aplique 8.5.12, 8.4.27, 8.3.36 ou 8.2.35, começando pelo que está na internet. Confirme com o provedor."
       ],
       [
         "Versão antiga",
-        "PHP 8.1 ou anterior não terá correção do projeto: atualize, tire da internet ou use WAF ou VPN."
+        "PHP 8.1 ou anterior não recebe correção do projeto: migre, confira o pacote da sua distribuição ou isole."
       ]
     ],
-    "pergunta": "Quem cuida do seu site sabe qual versão do PHP ele usa?",
+    "pergunta": "Quem cuida do seu site já atualizou o PHP para a versão corrigida?",
     "hashtags": [
       "#PHP",
       "#Vulnerabilidade",
