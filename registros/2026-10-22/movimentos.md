@@ -42,3 +42,12 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 14:24 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/DezgxOhF6yQ/) |
 | 15:28 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39831668195) |
 | 15:28 | ⚠️ pulado | Cibersegurança · IA · Hacker |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39831668195) |
+| 17:24 | ▶️ iniciado | TECHDIM · Serviços |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39848427259) |
+| 17:24 | 🗓️ planejado | TECHDIM · Serviços |  | pauta: Hardening: recolha os crachás esquecidos da sua TI, de contas antigas a serviços abertos — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 17:24 | 🖼️ gerado | TECHDIM · Serviços | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 17:24 | ✅ publicado | TECHDIM · Serviços | linkedin | id urn:li:share:7519131469001322496 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7519131469001322496/) |
+| 17:24 | 🖼️ gerado | TECHDIM · Serviços | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 17:24 | ✅ publicado | TECHDIM · Serviços | facebook | id 1167193706481148_122137843953390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122137843953390486) |
+| 17:24 | 💬 comentou | TECHDIM · Serviços | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122137843953390486) |
+| 17:24 | 🖼️ gerado | TECHDIM · Serviços | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 17:24 | ✅ publicado | TECHDIM · Serviços | instagram | id 17924124729442143 | disparo manual |  | [abrir](https://www.instagram.com/p/Dez1X0cFxVb/) |

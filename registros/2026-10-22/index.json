@@ -84,5 +84,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "17:24",
+    "tema": "servico",
+    "titulo": "Hardening: recolha os crachás esquecidos da sua TI, de contas antigas a serviços abertos",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "17h24-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137843953390486",
+      "instagram": "https://www.instagram.com/p/Dez1X0cFxVb/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7519131469001322496/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137843953390486",
+      "instagram": "17924124729442143",
+      "linkedin": "urn:li:share:7519131469001322496"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
