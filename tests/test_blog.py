@@ -90,7 +90,7 @@ def monta(tmp_path, monkeypatch, dias=("2026-10-06", "2026-10-07"), capa=True):
     (site / "loja.html").write_text("<!DOCTYPE html><title>Loja</title>", encoding="utf-8")
     (site / "trocas-e-devolucoes.html").write_text("<!DOCTYPE html><title>Trocas</title>", encoding="utf-8")
     (site / "assets").mkdir()
-    (site / "assets" / "techdim-official-cube-icon.jpg").write_bytes(b"jpg")
+    (site / "assets" / "techdim-cube-icon-100.webp").write_bytes(b"webp")
     (site / "sitemap.xml").write_text(SITEMAP_ANTIGO, encoding="utf-8")
     (site / "robots.txt").write_text("User-agent: *\nAllow: /\n\nSitemap: https://www.techdim.com.br/sitemap.xml\n", encoding="utf-8")
     monkeypatch.setattr(blog, "DIARIO", diario)

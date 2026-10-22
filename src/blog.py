@@ -398,7 +398,8 @@ def cabeca(m: Meta, p: str) -> str:
   <meta name="theme-color" content="#030712" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" /></noscript>
   <link rel="stylesheet" href="{p}styles.css" />
   <link rel="stylesheet" href="{p}blog/blog.css" />
   {ld}"""
@@ -434,7 +435,7 @@ def topo_site(p: str) -> str:
   <header class="site-header" id="top">
     <div class="container nav-bar">
       <a href="{p}" class="brand-wrapper">
-        <img src="{p}assets/techdim-official-cube-icon.jpg" alt="Logo Oficial TECHDIM INOVA" class="brand-logo-img" width="50" height="50" />
+        <img src="{p}assets/techdim-cube-icon-100.webp" alt="Logo Oficial TECHDIM INOVA" class="brand-logo-img" width="50" height="50" />
         <div class="brand-meta">
           <span class="brand-title">TECHDIM<span>_</span></span>
           <span class="brand-subtitle">INOVA SIMPLES // KETHER_1</span>
@@ -516,7 +517,7 @@ def cartao_artigo(a: Artigo, p: str, dentro_do_dia: bool = False) -> str:
     href = f"{p}{a.caminho}" if not dentro_do_dia else f"{a.slug}/"
     return f"""<article class="blog-cartao">
         <p class="blog-rotulo-linha"><span class="blog-rotulo blog-{e(a.tema)}">{e(a.rotulo)}</span> <time datetime="{e(a.data)}">{e(data_curta(a.data))}</time></p>
-        <h3><a href="{e(href)}">{e(a.titulo)}</a></h3>
+        <h2><a href="{e(href)}">{e(a.titulo)}</a></h2>
         <p>{e(a.descricao)}</p>
         <a class="blog-mais" href="{e(href)}" aria-label="Ler o artigo: {e(a.titulo)}">Ler o artigo →</a>
       </article>"""
@@ -681,7 +682,7 @@ def cartao_dia(d: Dia, p: str) -> str:
     itens = "".join(f'<li><a href="{p}{e(a.caminho)}">{e(a.titulo)}</a></li>' for a in d.artigos)
     return f"""<article class="blog-cartao">
         <p class="blog-rotulo-linha"><time datetime="{e(d.data)}">{e(data_extenso(d.data))}</time></p>
-        <h3><a href="{p}{e(d.caminho)}">Radar {MARCA} · {e(data_curta(d.data))}</a></h3>
+        <h2><a href="{p}{e(d.caminho)}">Radar {MARCA} · {e(data_curta(d.data))}</a></h2>
         <ul>{itens}</ul>
         <a class="blog-mais" href="{p}{e(d.caminho)}">Ver o resumo do dia →</a>
       </article>"""
@@ -716,7 +717,9 @@ def html_indice(dias: list[Dia]) -> str:
              "name": f"Blog {MARCA}", "url": f"{BASE_URL}/blog/", "description": desc, "inLanguage": "pt-BR",
              "publisher": organizacao_curta(),
              "blogPost": [{"@type": "BlogPosting", "headline": truncar(a.titulo, 110), "url": a.url,
-                           "datePublished": a.publicado_em} for a in artigos]},
+                           "datePublished": a.publicado_em, "image": a.capa_url if a.tem_capa else PREVIEW_URL,
+                           "author": {"@type": "Organization", "name": EMPRESA, "url": f"{BASE_URL}/"}}
+                          for a in artigos]},
             migalhas_ld([("Início", f"{BASE_URL}/"), ("Blog", f"{BASE_URL}/blog/")])),
     )
     return pagina(m, p, corpo)
@@ -752,8 +755,8 @@ def html_arquivo(mes: str, dias: list[Dia]) -> str:
 CSS = """/* Blog TECHDIM: complementa o styles.css do site */
 .blog-artigo, .blog-lista { max-width: 860px; padding-top: 7rem; padding-bottom: 4rem; }
 .blog-migalhas { font-family: var(--font-mono); font-size: .8rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.6; }
-.blog-migalhas a { color: var(--cyan-neon); text-decoration: none; }
-.blog-migalhas a:hover { text-decoration: underline; }
+.blog-migalhas a { color: var(--cyan-neon); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.blog-migalhas a:hover { text-decoration-thickness: 2px; }
 .blog-topo h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.15; color: var(--text-pure); margin: .4rem 0 1rem; }
 .blog-rotulo-linha { display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; font-family: var(--font-mono); font-size: .82rem; color: var(--text-muted); }
 .blog-rotulo { display: inline-block; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--cyan-neon); }
@@ -783,8 +786,8 @@ CSS = """/* Blog TECHDIM: complementa o styles.css do site */
 .blog-grade { display: grid; gap: 1.2rem; margin-top: 2rem; }
 .blog-cartao { padding: 1.4rem 1.5rem; border: 1px solid var(--border-cyber); border-radius: var(--radius-md); background: var(--bg-card); transition: background .25s var(--ease), transform .25s var(--ease); }
 .blog-cartao:hover, .blog-cartao:focus-within { background: var(--bg-card-hover); transform: translateY(-2px); }
-.blog-cartao h3 { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.3; margin: .4rem 0 .7rem; }
-.blog-cartao h3 a { color: var(--text-pure); text-decoration: none; }
+.blog-cartao h2 { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.3; margin: .4rem 0 .7rem; }
+.blog-cartao h2 a { color: var(--text-pure); text-decoration: none; }
 .blog-cartao p { color: var(--text-muted); line-height: 1.6; margin-bottom: .7rem; }
 .blog-cartao ul { margin: 0 0 .9rem 1.1rem; color: var(--text-muted); line-height: 1.55; }
 .blog-cartao li a { color: var(--text-main); text-decoration: none; }
@@ -945,7 +948,9 @@ def _head_seo(site: pathlib.Path) -> str:
         f'  <meta property="og:image:height" content="{PREVIEW_TAMANHO[1]}" />',
         '  <meta property="og:image:alt" content="TECHDIM — cibersegurança, nuvem e IA para empresas" />',
         '  <meta name="twitter:image:alt" content="TECHDIM — cibersegurança, nuvem e IA para empresas" />',
-        '  <link rel="stylesheet" href="blog/blog.css" />',
+        # só estiliza a seção do blog, lá embaixo: carrega sem travar a primeira pintura
+        '''  <link rel="preload" as="style" href="blog/blog.css" onload="this.onload=null;this.rel='stylesheet'" />''',
+        '  <noscript><link rel="stylesheet" href="blog/blog.css" /></noscript>',
         recuar(jsonld({"@context": "https://schema.org", "@graph": [
             {"@type": "WebSite", "@id": f"{BASE_URL}/#website", "url": f"{BASE_URL}/", "name": MARCA,
              "inLanguage": "pt-BR", "publisher": {"@id": f"{BASE_URL}/#organization"}},
