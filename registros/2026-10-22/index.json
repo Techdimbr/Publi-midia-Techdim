@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "11:09",
+    "tema": "hacker",
+    "titulo": "LiteLLM 1.107.0 comprometido: pacote Python de IA no PyPI e Docker rouba senhas e chaves",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "11h09-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137770981390486",
+      "instagram": "https://www.instagram.com/p/DezKeFsmDrJ/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4013597914383784539",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7519037104794787840/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137770981390486",
+      "instagram": "17883398475690574",
+      "instagram_stories": "17948584701347972",
+      "linkedin": "urn:li:share:7519037104794787840"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
