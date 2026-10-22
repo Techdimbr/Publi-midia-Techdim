@@ -1,0 +1,47 @@
+{
+  "titulo": "Hardening: recolha os crachás esquecidos da sua TI, de contas antigas a serviços abertos",
+  "pontos": [
+    "Crachá de ex-funcionário não recolhido abre portas. Na TI, é a conta antiga ativa, o serviço aberto sem uso e a atualização atrasada. Hardening é recolher o que sobrou",
+    "A TECHDIM revisa contas, permissões, serviços e portas abertas, atualizações, firewall e registros de servidores, estações e rede, e entrega um relatório em português",
+    "Conte como é o seu ambiente. A TECHDIM avalia o que está exposto e propõe o que ajustar primeiro, sem compromisso e sem prometer risco zero"
+  ],
+  "fecho": "Quantas contas e serviços esquecidos sua TI tem hoje? Converse com a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de segurança e hardening com uma analogia nova (crachás esquecidos), sem promessa de preço, prazo ou risco zero.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "rack",
+        "escudo",
+        "engrenagens"
+      ],
+      "legenda": "HARDENING · RECOLHA O QUE FICOU ABERTO"
+    },
+    "titulo_branco": "Hardening:",
+    "titulo_destaque": "recolha os crachás esquecidos",
+    "historia": "Contas antigas, serviços sem uso e atualizações atrasadas são portas esquecidas. A TECHDIM revisa servidores, estações e rede, fecha o que não precisa estar aberto e documenta tudo.",
+    "licoes": [
+      [
+        "Contas e acessos",
+        "Revise contas de quem saiu e permissões que ninguém usa mais, e remova o que sobrou."
+      ],
+      [
+        "Serviços e portas",
+        "Liste o que está aberto na rede e desligue serviços que a empresa não usa."
+      ],
+      [
+        "Atualizações e logs",
+        "Mantenha as atualizações em dia e guarde registros de acesso para investigar se algo acontecer."
+      ]
+    ],
+    "pergunta": "Quantas contas esquecidas sua empresa tem hoje, sem ninguém usar?",
+    "hashtags": [
+      "#Hardening",
+      "#SegurancaDaInformacao",
+      "#GestaoDeAcessos",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

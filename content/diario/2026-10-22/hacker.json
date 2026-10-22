@@ -1,0 +1,91 @@
+{
+  "titulo": "LiteLLM 1.107.0 comprometido: pacote Python de IA no PyPI e Docker rouba senhas e chaves",
+  "pontos": [
+    "A versão 1.107.0 do LiteLLM, gateway de IA em Python, foi publicada com malware no PyPI e no Docker. O PyPI a colocou em quarentena e as imagens foram removidas",
+    "O código rouba senhas, chaves de nuvem, de APIs de IA e SSH, e abre um backdoor que consulta o invasor a cada hora. Roda quando o Python inicia, pelo arquivo cook.pth",
+    "Procure a 1.107.0 em ambientes, lockfiles e imagens Docker. Se rodou, refaça o ambiente do zero e troque chaves e senhas. A última versão segura citada é a 1.106.2"
+  ],
+  "fecho": "Sua empresa ou seu fornecedor usa LiteLLM? Peça a conferência da versão e a troca das chaves se a 1.107.0 rodou.",
+  "motivo": "Ataque à cadeia de suprimentos de um pacote de IA muito usado por equipes de desenvolvimento, com versão afetada e passos de resposta confirmados por duas fontes.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/litellm-compromised-in-supply-chain.html"
+    ],
+    [
+      "theregister.com",
+      "https://www.theregister.com/security/2026/10/21/litellm-supply-chain-attack-hoovers-up-passwords-and-secrets/5304548"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "python · LiteLLM 1.107.0",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · LiteLLM 1.107.0 (PyPI e Docker)",
+        "cmd"
+      ],
+      [
+        "",
+        "malware: rouba senhas, chaves e tokens",
+        "risco"
+      ],
+      [
+        "",
+        "backdoor consulta o invasor a cada hora",
+        "risco"
+      ],
+      [
+        "",
+        "roda ao iniciar o Python (cook.pth)",
+        "risco"
+      ],
+      [
+        "",
+        "PyPI: quarentena · Docker: imagens removidas",
+        "ok"
+      ],
+      [
+        "",
+        "última versão segura citada: 1.106.2",
+        "txt"
+      ],
+      [
+        "$ ",
+        "pip show litellm  # confira a versão",
+        "cmd"
+      ],
+      [
+        "",
+        "rodou a 1.107.0? troque chaves e senhas",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "LiteLLM:",
+    "titulo_destaque": "pacote de IA virou ladrão",
+    "historia": "A versão 1.107.0 do LiteLLM foi publicada com um ladrão de credenciais e um backdoor. Quem a rodou deve refazer o ambiente e trocar chaves e senhas. A versão segura citada é a 1.106.2.",
+    "licoes": [
+      [
+        "Ache o LiteLLM",
+        "Procure a 1.107.0 em projetos, lockfiles e imagens Docker, inclusive nas tags latest e main-stable."
+      ],
+      [
+        "Troque os segredos",
+        "Se a versão rodou, refaça o ambiente do zero e troque chaves de nuvem, de IA, SSH e senhas."
+      ],
+      [
+        "Fixe a versão",
+        "Fixe o LiteLLM na 1.106.2, de preferência pelo digest, e revise os tokens do GitHub e do CI."
+      ]
+    ],
+    "pergunta": "Sua equipe sabe quais pacotes de IA estão instalados nos seus servidores?",
+    "hashtags": [
+      "#LiteLLM",
+      "#SupplyChain",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

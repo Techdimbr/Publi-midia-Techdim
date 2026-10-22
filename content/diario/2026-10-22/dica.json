@@ -1,0 +1,52 @@
+{
+  "titulo": "Microsoft Entra: ative os padrões de segurança e exija MFA de todos no Microsoft 365",
+  "pontos": [
+    "1) Entre em entra.microsoft.com como Administrador de Acesso Condicional ou superior. 2) Vá em Entra ID > Overview > Properties e abra Manage security defaults",
+    "3) Defina Security defaults como Enabled e clique em Save. Isso exige MFA de todos, bloqueia protocolos legados (IMAP, POP3, SMTP) e protege o acesso ao portal do Azure",
+    "4) Antes, veja se algum scanner ou app antigo usa protocolo legado. 5) Peça o cadastro do MFA em myprofile.microsoft.com. Com licença P1 ou P2, prefira Acesso Condicional"
+  ],
+  "fecho": "Seu Microsoft 365 exige MFA de todos? Confira os padrões de segurança, avise a equipe e teste os apps antigos antes.",
+  "motivo": "Passo a passo baseado na documentação da Microsoft para exigir MFA de todos e bloquear a autenticação legada no Microsoft 365, sem custo extra, com os avisos de compatibilidade.",
+  "fontes": [
+    [
+      "learn.microsoft.com/entra (padrões de segurança)",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "celular",
+        "escudo",
+        "nuvem"
+      ],
+      "legenda": "MFA PARA TODOS NO MICROSOFT 365"
+    },
+    "titulo_branco": "Entra ID:",
+    "titulo_destaque": "MFA para todos, sem custo",
+    "historia": "Segundo a Microsoft, MFA e o bloqueio de protocolos legados barram mais de 99,9% dos ataques comuns de identidade. Os padrões de segurança do Entra ID ligam isso sem custo extra, em poucos cliques.",
+    "licoes": [
+      [
+        "Confira o painel",
+        "Abra Entra ID > Overview > Properties > Manage security defaults. Tenants novos podem já vir ativos."
+      ],
+      [
+        "Prepare a equipe",
+        "Avise os usuários e peça o cadastro do MFA no Microsoft Authenticator em myprofile.microsoft.com."
+      ],
+      [
+        "Atenção a legados",
+        "Scanners e apps antigos que enviam e-mail por IMAP, POP3 ou SMTP podem parar de funcionar. Teste antes."
+      ]
+    ],
+    "pergunta": "Todos os usuários do seu Microsoft 365 já usam verificação em duas etapas?",
+    "hashtags": [
+      "#Microsoft365",
+      "#MFA",
+      "#EntraID",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

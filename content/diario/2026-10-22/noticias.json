@@ -1,0 +1,56 @@
+{
+  "titulo": "Gemini para pequenos negócios: Google lança ferramentas de marca, anúncios e finanças",
+  "pontos": [
+    "O Google lançou no app Gemini uma página para pequenos negócios que reúne marca, anúncios e finanças e conecta apps como Google Ads, Workspace, Canva, Shopify e Wix",
+    "O Gemini guarda logotipo, cores e fontes para criar imagens com a sua marca e transforma recibos, compras e planilhas em gráficos. Chega nos próximos dias, diz o Google",
+    "Na sua empresa: antes de enviar notas e planilhas a uma IA, defina quais dados podem sair, revise o que ela gerar e confira preço e termos, que o anúncio não traz"
+  ],
+  "fecho": "Que dados financeiros da sua empresa você aceitaria enviar a uma IA? Defina a regra antes de ligar a ferramenta.",
+  "motivo": "Anúncio de IA voltado a pequenas empresas, confirmado no blog do Google e na imprensa brasileira, com a ressalva de que preço e tratamento dos dados enviados não foram detalhados.",
+  "fontes": [
+    [
+      "blog.google",
+      "https://blog.google/innovation-and-ai/products/gemini-app/new-tools-small-business-owners/"
+    ],
+    [
+      "seudinheiro.com",
+      "https://www.seudinheiro.com/2026/seu-negocio/inteligencia-artificial-nos-pequenos-negocios-google-lanca-3-novas-ferramentas-no-gemini-para-pmes-giov/"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "notebook",
+        "grafico",
+        "nuvem"
+      ],
+      "legenda": "GEMINI PARA PEQUENOS NEGÓCIOS"
+    },
+    "titulo_branco": "Gemini para PMEs:",
+    "titulo_destaque": "marca, anúncios e finanças",
+    "historia": "O Google anunciou no app Gemini uma página para pequenos negócios, com marca, anúncios e análise de finanças. As ferramentas chegam nos próximos dias. O anúncio não explica o tratamento dos dados enviados.",
+    "licoes": [
+      [
+        "Defina os dados",
+        "Decida quais dados a empresa pode enviar à IA antes de subir notas, recibos e planilhas."
+      ],
+      [
+        "Revise o resultado",
+        "Confira anúncios, gráficos e números gerados antes de usar. A IA pode errar valores e imagens."
+      ],
+      [
+        "Veja plano e termos",
+        "O anúncio não informa preço nem tratamento dos dados. Leia os termos antes de ligar seus apps."
+      ]
+    ],
+    "pergunta": "Que dados financeiros da sua empresa você aceitaria enviar a uma IA?",
+    "hashtags": [
+      "#Gemini",
+      "#PMEs",
+      "#IAGenerativa",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
