@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "07:59",
+    "tema": "noticias",
+    "titulo": "Gemini para pequenos negócios: Google lança ferramentas de marca, anúncios e finanças",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "07h59-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137743333390486",
+      "instagram": "https://www.instagram.com/p/Dey0wZXFgjm/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4013502364464355261",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7518989357664583681/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137743333390486",
+      "instagram": "17952167088301360",
+      "instagram_stories": "18013816202966808",
+      "linkedin": "urn:li:share:7518989357664583681"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
