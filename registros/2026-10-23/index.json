@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "08:00",
+    "tema": "noticias",
+    "titulo": "Exchange Online: Microsoft mostra como reativar o EWS e consertar apps quebrados",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "08h00-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122137968357390486",
+      "instagram": "https://www.instagram.com/p/De1ZkLXjPBU/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4014227184277020102",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7519351784499204096/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122137968357390486",
+      "instagram": "18020395943936409",
+      "instagram_stories": "18123463537887705",
+      "linkedin": "urn:li:share:7519351784499204096"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
