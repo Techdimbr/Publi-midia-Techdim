@@ -1,0 +1,91 @@
+{
+  "titulo": "Arista VeloCloud Orchestrator: zero-day CVE-2026-114625 é explorado e já tem correção",
+  "pontos": [
+    "A Arista alertou que a CVE-2026-114625, um SQL injection no VeloCloud Orchestrator, gerenciador de SD-WAN, está sendo explorada. Já há correção",
+    "Com um login de baixo privilégio, até só de leitura, o atacante vira superoperador do orquestrador. Corrigidas: 5.2.3.18, 6.1.3.10 e 6.4.2.12 ou superiores",
+    "Atualize, limite o painel às redes de administração, bloqueie 74.82.197[.]86 e 38.54.50[.]151 e revise logs e contas de admin. Em SD-WAN gerenciada, pergunte ao provedor"
+  ],
+  "fecho": "Sua empresa usa SD-WAN gerenciada? Pergunte ao provedor se o VeloCloud Orchestrator já foi atualizado e se o painel está restrito.",
+  "motivo": "Zero-day explorado em orquestrador de SD-WAN, com correção disponível e orientações do aviso da Arista confirmadas por duas fontes.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/arista-patches-new-velocloud-orchestrator-zero-day-exploited-in-attacks/"
+    ],
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/arista-warns-of-critical-velocloud-sql.html"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "sd-wan · VeloCloud Orchestrator",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · Arista VeloCloud Orchestrator",
+        "cmd"
+      ],
+      [
+        "",
+        "CVE-2026-114625 · SQL injection · explorada",
+        "risco"
+      ],
+      [
+        "",
+        "login só de leitura já vira superoperador",
+        "risco"
+      ],
+      [
+        "",
+        "corrigido: 5.2.3.18 · 6.1.3.10 · 6.4.2.12",
+        "ok"
+      ],
+      [
+        "",
+        "hospedados e dedicados: já corrigidos",
+        "ok"
+      ],
+      [
+        "",
+        "on-premises: atualizar e limitar o painel",
+        "txt"
+      ],
+      [
+        "$ ",
+        "bloquear 74.82.197[.]86 e 38.54.50[.]151",
+        "cmd"
+      ],
+      [
+        "",
+        "revise logs de acesso e contas de admin",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Arista VeloCloud:",
+    "titulo_destaque": "zero-day em SD-WAN",
+    "historia": "A Arista confirmou que uma falha crítica no VeloCloud Orchestrator, painel de gestão de SD-WAN, já é explorada. Um login básico vira superoperador. Atualize, limite o acesso ao painel e revise logs.",
+    "licoes": [
+      [
+        "Veja se você usa",
+        "Veja com a TI ou o provedor se há VeloCloud Orchestrator on-premises. Os hospedados já foram corrigidos."
+      ],
+      [
+        "Atualize já",
+        "Instale a 5.2.3.18, 6.1.3.10 ou 6.4.2.12, ou superior, conforme a sua versão."
+      ],
+      [
+        "Feche o painel",
+        "Limite o acesso web às redes de administração e bloqueie os IPs citados pela Arista."
+      ]
+    ],
+    "pergunta": "Quem cuida da sua rede sabe quais painéis de gestão estão expostos?",
+    "hashtags": [
+      "#Arista",
+      "#SDWAN",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

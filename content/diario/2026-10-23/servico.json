@@ -1,0 +1,47 @@
+{
+  "titulo": "Software sob medida: aplicativo de ordem de serviço no celular para sua equipe de campo",
+  "pontos": [
+    "Equipe externa que anota visita no papel perde foto, assinatura e horário. Um app de ordem de serviço no celular registra tudo na hora e envia para o escritório",
+    "A TECHDIM desenvolve sistemas e apps sob medida para web, desktop e celular, com itens como agenda de visitas, fotos, assinatura e relatórios, conforme o seu processo",
+    "Conte como é o seu processo hoje. A TECHDIM avalia se faz sentido virar sistema ou app e propõe os próximos passos, sem compromisso e sem prometer prazo"
+  ],
+  "fecho": "Qual tarefa da sua equipe ainda é feita no papel ou em mensagem solta? Conte a ideia para a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de software sob medida com uma ideia de projeto concreta (ordem de serviço no celular), convidando o leitor a contar o processo, sem promessa de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "celular",
+        "documento",
+        "nuvem"
+      ],
+      "legenda": "APP DE ORDEM DE SERVIÇO NO CELULAR"
+    },
+    "titulo_branco": "Software sob medida:",
+    "titulo_destaque": "ordem de serviço no celular",
+    "historia": "Visita anotada no papel perde foto, assinatura e horário. Um app de ordem de serviço no celular registra tudo na hora e envia ao escritório. A TECHDIM avalia a sua ideia e propõe os próximos passos.",
+    "licoes": [
+      [
+        "Descreva o processo",
+        "Conte como a visita acontece hoje: quem faz, o que registra e para onde a informação vai."
+      ],
+      [
+        "Defina o essencial",
+        "Escolha o mínimo útil: agenda, fotos, assinatura e relatório. O resto entra depois."
+      ],
+      [
+        "Teste com a equipe",
+        "Comece com poucos usuários, ouça quem usa em campo e ajuste antes de ampliar."
+      ]
+    ],
+    "pergunta": "Qual tarefa da sua equipe ainda depende de papel ou de mensagem solta?",
+    "hashtags": [
+      "#SoftwareSobMedida",
+      "#Aplicativos",
+      "#TransformacaoDigital",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

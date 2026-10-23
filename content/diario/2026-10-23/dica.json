@@ -1,0 +1,56 @@
+{
+  "titulo": "LGPD para pequenas empresas: o que a Resolução ANPD 2/2022 simplifica, em 5 passos",
+  "pontos": [
+    "1) Confira se sua empresa é agente de pequeno porte: ME, EPP, MEI ou startup (art. 2º), sem tratamento de alto risco nem receita acima do limite (art. 3º)",
+    "2) Faça o registro simplificado das operações com dados pessoais (art. 9º), no modelo da ANPD. 3) Sem encarregado (DPO), abra um canal para os titulares (art. 11)",
+    "4) Adote medidas de segurança essenciais (art. 12). 5) Prazos de resposta ao titular e de aviso de incidente valem em dobro (art. 14). O resto da LGPD continua valendo"
+  ],
+  "fecho": "Sua empresa tem registro simplificado dos dados pessoais e canal para os titulares? Comece por eles e confirme com seu advogado.",
+  "motivo": "Passo a passo prático baseado na Resolução CD/ANPD nº 2/2022, com o que ela simplifica para pequenas empresas e o que continua obrigatório; não substitui assessoria jurídica.",
+  "fontes": [
+    [
+      "gov.br/anpd (Resolução CD/ANPD nº 2/2022)",
+      "https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-2-de-27-de-janeiro-de-2022"
+    ],
+    [
+      "gov.br/anpd (modelo de registro simplificado)",
+      "https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-divulga-modelo-de-registro-simplificado-de-operacoes-com-dados-pessoais-para-agentes-de-tratamento-de-pequeno-porte-atpp"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "espaco",
+      "elementos": [
+        "documento",
+        "escudo",
+        "notebook"
+      ],
+      "legenda": "LGPD PARA PEQUENAS EMPRESAS"
+    },
+    "titulo_branco": "LGPD simplificada:",
+    "titulo_destaque": "regras para pequenas empresas",
+    "historia": "A Resolução CD/ANPD 2/2022 simplifica a LGPD para ME, EPP, MEI e startups: registro simplificado, dispensa de DPO com canal para titulares e prazos em dobro. O restante da lei continua valendo.",
+    "licoes": [
+      [
+        "Veja se se encaixa",
+        "ME, EPP, MEI e startups podem se beneficiar. Alto risco ou receita acima do limite ficam de fora."
+      ],
+      [
+        "Registro e canal",
+        "Preencha o modelo simplificado da ANPD e abra um canal para os titulares, mesmo sem encarregado."
+      ],
+      [
+        "Segurança e prazos",
+        "Adote medidas de segurança essenciais. Os prazos de incidente e de resposta ao titular são em dobro."
+      ]
+    ],
+    "pergunta": "Sua empresa sabe quais dados pessoais trata e quem pode pedir acesso a eles?",
+    "hashtags": [
+      "#LGPD",
+      "#ANPD",
+      "#ProtecaoDeDados",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

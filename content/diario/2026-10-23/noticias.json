@@ -1,0 +1,60 @@
+{
+  "titulo": "Exchange Online: Microsoft mostra como reativar o EWS e consertar apps quebrados",
+  "pontos": [
+    "Desde 1º/10 o Exchange Online começou a bloquear o EWS por padrão. Apps que dependem dele, como add-ins do Outlook, Apple Mail e backups, podem falhar ou pedir senha",
+    "A Microsoft explicou como reativar: em Baseline Security Mode, no centro de administração, ou com Set-OrganizationConfig -EWSEnabled $true. Só funciona até abril de 2027",
+    "Na sua empresa: liste apps e backups que usam EWS, reative só o que precisa e cobre dos fornecedores uma versão com Microsoft Graph antes de abril de 2027"
+  ],
+  "fecho": "Seus apps do Microsoft 365 pararam depois de 1º/10? Confira se dependem do EWS e peça aos fornecedores a versão com Graph.",
+  "motivo": "Mudança do Microsoft 365 que está quebrando add-ins e backups, com o passo a passo de reativação e o prazo final de abril de 2027 confirmados em duas fontes e no aviso da Microsoft.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/microsoft/microsoft-shares-how-to-fix-broken-exchange-online-ews-apps/"
+    ],
+    [
+      "mc.merill.net (aviso MC1227454 da Microsoft)",
+      "https://mc.merill.net/message/MC1227454"
+    ],
+    [
+      "veeam.com (KB4820)",
+      "https://www.veeam.com/kb4820"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "nuvem",
+        "documento",
+        "engrenagens"
+      ],
+      "legenda": "EXCHANGE ONLINE · FIM DO EWS"
+    },
+    "titulo_branco": "Exchange Online:",
+    "titulo_destaque": "o EWS foi bloqueado",
+    "historia": "Desde 1º/10 o Exchange Online começou a bloquear o EWS por padrão, e apps que dependem dele podem falhar. A Microsoft explicou como reativar, só até abril de 2027. A saída é migrar para o Microsoft Graph.",
+    "licoes": [
+      [
+        "Ache os apps",
+        "Liste add-ins, backups e integrações que usam EWS. Veja o uso no centro de administração do Microsoft 365."
+      ],
+      [
+        "Reative só se precisar",
+        "Desmarque o bloqueio do EWS em Baseline Security Mode ou use Set-OrganizationConfig -EWSEnabled $true."
+      ],
+      [
+        "Planeje o Graph",
+        "Peça aos fornecedores uma versão com Microsoft Graph. A reativação deixa de funcionar em abril de 2027."
+      ]
+    ],
+    "pergunta": "Seus backups e apps do Microsoft 365 ainda dependem do EWS?",
+    "hashtags": [
+      "#Microsoft365",
+      "#ExchangeOnline",
+      "#MicrosoftGraph",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
