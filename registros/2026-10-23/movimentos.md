@@ -30,3 +30,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:11 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 17938006473126279 | disparo manual |  | [abrir](https://www.instagram.com/stories/techdimbr/4014323447656581438) |
 | 12:43 | ▶️ iniciado | Notícias de Tecnologia |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39980688391) |
 | 12:43 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39980688391) |
+| 14:24 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/39994657795) |
+| 14:24 | 🗓️ planejado | Conhecimento |  | pauta: LGPD para pequenas empresas: o que a Resolução ANPD 2/2022 simplifica, em 5 passos — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:24 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7519448536325836800 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7519448536325836800/) |
+| 14:24 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122138033805390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122138033805390486) |
+| 14:24 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122138033805390486) |
+| 14:24 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:24 | ✅ publicado | Conhecimento | instagram | id 18086916290346810 | disparo manual |  | [abrir](https://www.instagram.com/p/De2Fkc8DTlJ/) |
+| 14:24 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/De2Fkc8DTlJ/) |

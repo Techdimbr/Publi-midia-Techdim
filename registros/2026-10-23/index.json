@@ -56,5 +56,33 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:24",
+    "tema": "dica",
+    "titulo": "LGPD para pequenas empresas: o que a Resolução ANPD 2/2022 simplifica, em 5 passos",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h24-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138033805390486",
+      "instagram": "https://www.instagram.com/p/De2Fkc8DTlJ/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7519448536325836800/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138033805390486",
+      "instagram": "18086916290346810",
+      "linkedin": "urn:li:share:7519448536325836800"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
