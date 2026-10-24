@@ -1,0 +1,95 @@
+{
+  "titulo": "Grupo k0t ataca firewalls Fortinet e Palo Alto: mais de 70 mil credenciais expostas",
+  "pontos": [
+    "Group-IB e NyxLab descrevem o grupo k0t, que procura firewalls e VPNs expostos na internet. Mais de 70 mil credenciais de equipamentos de rede foram expostas",
+    "Ele explora falhas do FortiWeb (CVE-2025-64446) e do GlobalProtect da Palo Alto (CVE-2026-0257) e testa senhas comuns em FortiGate. A Palo Alto já tem correção",
+    "Na sua empresa: deixe o painel do firewall acessível só por VPN, troque senhas comuns, exija MFA na VPN e aplique as atualizações do fabricante nos equipamentos"
+  ],
+  "fecho": "O painel do seu firewall ou da sua VPN abre pela internet? Peça ao seu suporte de TI para conferir hoje e fechar esse acesso.",
+  "motivo": "Campanha contra firewalls e VPNs, equipamentos comuns em pequenas e médias empresas: o relatório do Group-IB e da NyxLab saiu em 21/10 e o The Hacker News o repercutiu em 23/10, com orientações práticas de mitigação.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/hackers-breach-enterprise-firewalls-and.html"
+    ],
+    [
+      "group-ib.com",
+      "https://www.group-ib.com/blog/stray-cat-network-edge/"
+    ],
+    [
+      "security.paloaltonetworks.com (CVE-2026-0257)",
+      "https://security.paloaltonetworks.com/CVE-2026-0257"
+    ]
+  ],
+  "infografico": {
+    "cena": "painel",
+    "terminal_titulo": "borda · firewall e VPN",
+    "terminal": [
+      [
+        "$ ",
+        "alerta · borda · firewalls e VPN · grupo k0t",
+        "cmd"
+      ],
+      [
+        "",
+        "alvos: FortiGate, FortiWeb e GlobalProtect",
+        "txt"
+      ],
+      [
+        "",
+        "senhas comuns testadas em FortiGate",
+        "risco"
+      ],
+      [
+        "",
+        "CVE-2025-64446 (FortiWeb) · CVE-2026-0257",
+        "risco"
+      ],
+      [
+        "",
+        "70 mil+ credenciais de rede expostas",
+        "risco"
+      ],
+      [
+        "",
+        "painel só por VPN · MFA · sem senha comum",
+        "ok"
+      ],
+      [
+        "$ ",
+        "conferir  # painel abre pela internet?",
+        "cmd"
+      ],
+      [
+        "",
+        "aplique as correções dos fabricantes",
+        "ok"
+      ]
+    ],
+    "titulo_branco": "Firewalls e VPNs:",
+    "titulo_destaque": "painel exposto é porta aberta",
+    "historia": "Group-IB e NyxLab descrevem o grupo k0t, que varre a internet atrás de firewalls e VPNs expostos, explora falhas e testa senhas comuns. Mais de 70 mil credenciais de rede foram expostas.",
+    "licoes": [
+      [
+        "Feche o painel",
+        "Deixe a administração do firewall e da VPN acessível só pela rede interna ou por VPN confiável."
+      ],
+      [
+        "Senha e MFA",
+        "Troque senhas comuns ou repetidas e exija MFA de quem entra pela VPN."
+      ],
+      [
+        "Atualize e vigie",
+        "Aplique as correções do fabricante e procure AnyDesk, Atera ou MeshCentral que ninguém instalou."
+      ]
+    ],
+    "pergunta": "O painel do seu firewall abre pela internet? Quem confere isso?",
+    "hashtags": [
+      "#Firewall",
+      "#VPN",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

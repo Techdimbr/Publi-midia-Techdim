@@ -1,0 +1,47 @@
+{
+  "titulo": "Automação com IA: do PDF que chega por e-mail à planilha, com uma pessoa conferindo",
+  "pontos": [
+    "Nota fiscal, boleto ou pedido chega por e-mail e alguém digita tudo na planilha? Uma automação com IA pode ler o PDF, separar os campos e deixar tudo pronto para conferir",
+    "A TECHDIM monta automações com IA sob medida: a IA faz a triagem como uma esteira de bagagem, e o que sair torto vai para uma pessoa decidir antes de valer",
+    "Conte qual tarefa de digitação trava sua equipe. A TECHDIM avalia o processo e os cuidados com dados pessoais (LGPD) e propõe os próximos passos, sem compromisso"
+  ],
+  "fecho": "Qual tarefa de digitação mais cansa sua equipe? Conte para a TECHDIM: techdimbr.github.io/techdimbr",
+  "motivo": "Apresenta o serviço de automação com IA com um caso concreto (documentos por e-mail virando dados na planilha) e a ideia de triagem com revisão humana, sem promessa de preço, prazo ou resultado.",
+  "fontes": [],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "documento",
+        "chip",
+        "engrenagens"
+      ],
+      "legenda": "AUTOMAÇÃO COM IA · UMA PESSOA CONFERE"
+    },
+    "titulo_branco": "Automação:",
+    "titulo_destaque": "a IA tria, a pessoa decide",
+    "historia": "Quando documentos chegam por e-mail, a IA pode ler, separar e organizar os dados como uma esteira de bagagem. O que sair torto vai para uma pessoa conferir.",
+    "licoes": [
+      [
+        "Escolha uma tarefa",
+        "Comece por uma rotina de digitação repetida, com regras claras e fácil de conferir."
+      ],
+      [
+        "A IA faz a triagem",
+        "Lê PDFs e e-mails e organiza os campos para o próximo passo do processo."
+      ],
+      [
+        "A pessoa decide",
+        "Casos duvidosos e dados pessoais passam por revisão humana, com atenção à LGPD."
+      ]
+    ],
+    "pergunta": "Qual tarefa de digitação sua equipe adoraria deixar de repetir?",
+    "hashtags": [
+      "#AutomacaoComIA",
+      "#IAParaEmpresas",
+      "#Produtividade",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

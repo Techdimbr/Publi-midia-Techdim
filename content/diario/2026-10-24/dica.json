@@ -1,0 +1,56 @@
+{
+  "titulo": "Secure Boot: confira em 5 passos se seus PCs já têm os certificados de 2023 da Microsoft",
+  "pontos": [
+    "Os certificados de 2011 do Secure Boot vencem entre 24/06 e 19/10/2026. 1) No Visualizador de Eventos, abra Logs do Windows > Sistema e filtre a origem TPM-WMI",
+    "2) Evento 1808: o PC já tem os certificados de 2023. 3) Evento 1801: atualização feita, ainda pendente no firmware. 4) Erros 1795, 1796 ou 1800: reinicie e confira",
+    "5) Sem o 1808, instale as atualizações do Windows e veja se o fabricante tem BIOS/UEFI nova. Sem os certificados de 2023, o PC liga, mas perde proteções de boot"
+  ],
+  "fecho": "Quantos PCs da sua empresa já mostram o evento 1808? Comece por um e peça ao seu suporte de TI para repetir nos demais.",
+  "motivo": "Dica prática e atual: os certificados de 2011 do Secure Boot vencem entre junho e 19/10/2026, e a página de eventos da Microsoft permite conferir, no próprio Windows, quais PCs já receberam os de 2023.",
+  "fontes": [
+    [
+      "support.microsoft.com (eventos do Secure Boot)",
+      "https://support.microsoft.com/en-us/topic/secure-boot-db-and-dbx-variable-update-events-37e47cf8-608b-4a87-8175-bdead630eb69"
+    ],
+    [
+      "support.microsoft.com (certificados do Secure Boot)",
+      "https://support.microsoft.com/en-us/topic/windows-secure-boot-certificate-expiration-and-ca-updates-7ff40d33-95dc-4c3c-8725-a9b95457578e"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "notebook",
+        "engrenagens",
+        "escudo"
+      ],
+      "legenda": "SECURE BOOT · CERTIFICADOS DE 2023 NO PC"
+    },
+    "titulo_branco": "Secure Boot:",
+    "titulo_destaque": "confira o evento 1808 no PC",
+    "historia": "Os certificados de 2011 do Secure Boot vencem entre 24/06 e 19/10/2026. O PC continua ligando, mas sem os de 2023 deixa de receber novas proteções da inicialização.",
+    "licoes": [
+      [
+        "Abra o log do Sistema",
+        "No Visualizador de Eventos, vá em Logs do Windows > Sistema e filtre a origem TPM-WMI."
+      ],
+      [
+        "Procure o 1808",
+        "Esse evento indica que o PC já tem os certificados de 2023. O 1801 indica pendência no firmware."
+      ],
+      [
+        "Trate os erros",
+        "1795, 1796 e 1800: reinicie. Persistindo, veja se o fabricante tem atualização de BIOS/UEFI."
+      ]
+    ],
+    "pergunta": "Seu suporte de TI já conferiu o evento 1808 nos PCs da empresa?",
+    "hashtags": [
+      "#SecureBoot",
+      "#Windows",
+      "#Hardening",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}

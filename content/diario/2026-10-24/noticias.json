@@ -1,0 +1,56 @@
+{
+  "titulo": "Windows Server 2016: Microsoft avisa que a atualização de janeiro de 2027 será a última",
+  "pontos": [
+    "A Microsoft confirmou que a atualização de segurança de janeiro de 2027 será a última do Windows Server 2016, em todas as edições, inclusive a Essentials",
+    "Depois disso, o sistema deixa de receber as atualizações mensais de segurança. O suporte aos recursos exclusivos do Essentials, como o Remote Web Access, também termina",
+    "Na sua empresa: liste os servidores com Windows Server 2016 e planeje a migração. A Microsoft recomenda o Windows Server 2025, com teste gratuito de 180 dias"
+  ],
+  "fecho": "Quantos servidores da sua empresa ainda rodam Windows Server 2016? Faça o levantamento agora, para migrar sem correria.",
+  "motivo": "Notícia de 23/10 confirmada no BleepingComputer e na página de ciclo de vida da Microsoft: o Windows Server 2016 recebe a última atualização de segurança em janeiro de 2027, com impacto direto em servidores de pequenas e médias empresas.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-server-2016-reaches-end-of-support-in-january/"
+    ],
+    [
+      "learn.microsoft.com",
+      "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2016"
+    ]
+  ],
+  "infografico": {
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "rack",
+        "monitor",
+        "escudo"
+      ],
+      "legenda": "SERVER 2016 · ÚLTIMA ATUALIZAÇÃO EM JAN/2027"
+    },
+    "titulo_branco": "Windows Server 2016:",
+    "titulo_destaque": "o suporte acaba em janeiro",
+    "historia": "A Microsoft avisou que a atualização de segurança de janeiro de 2027 será a última do Windows Server 2016. Depois dela, o servidor deixa de receber as correções mensais de segurança.",
+    "licoes": [
+      [
+        "Faça o inventário",
+        "Liste cada servidor com Windows Server 2016, o que roda nele e quem depende dele."
+      ],
+      [
+        "Escolha o destino",
+        "A Microsoft recomenda o Windows Server 2025. Teste os sistemas da empresa antes de migrar."
+      ],
+      [
+        "Marque a data",
+        "A última atualização será a de janeiro de 2027: planeje a migração com folga, não na última semana."
+      ]
+    ],
+    "pergunta": "Quantos servidores da sua empresa ainda usam o Windows Server 2016?",
+    "hashtags": [
+      "#WindowsServer",
+      "#GestaoDeTI",
+      "#Migracao",
+      "#TI",
+      "#TECHDIM"
+    ]
+  }
+}
