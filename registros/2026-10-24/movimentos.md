@@ -32,3 +32,13 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:28 | ⚠️ pulado | Notícias de Tecnologia |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40102651469) |
 | 14:21 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40115745137) |
 | 14:21 | ⚠️ pulado | Cibersegurança · IA · Hacker |  | tema já publicado hoje em todas as redes; execução ignorada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40115745137) |
+| 14:23 | ▶️ iniciado | Conhecimento |  | execução iniciada | disparo manual |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40115869395) |
+| 14:23 | 🗓️ planejado | Conhecimento |  | pauta: Secure Boot: confira em 5 passos se seus PCs já têm os certificados de 2023 da Microsoft — curadoria: Claude (Routine) — pauta do dia | disparo manual |  |  |
+| 14:23 | 🖼️ gerado | Conhecimento | linkedin | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | linkedin | id urn:li:share:7519810832021471233 | disparo manual |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7519810832021471233/) |
+| 14:23 | 🖼️ gerado | Conhecimento | facebook | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | facebook | id 1167193706481148_122138225277390486 | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122138225277390486) |
+| 14:23 | 💬 comentou | Conhecimento | facebook | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.facebook.com/122132402349390486/posts/122138225277390486) |
+| 14:23 | 🖼️ gerado | Conhecimento | instagram | 1 imagem(ns) | disparo manual |  |  |
+| 14:23 | ✅ publicado | Conhecimento | instagram | id 18221607850345018 | disparo manual |  | [abrir](https://www.instagram.com/p/De4qUQtF_3F/) |
+| 14:23 | 💬 comentou | Conhecimento | instagram | primeiro comentário com fontes e site | disparo manual |  | [abrir](https://www.instagram.com/p/De4qUQtF_3F/) |
