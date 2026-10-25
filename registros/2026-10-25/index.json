@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "14:37",
+    "tema": "hacker",
+    "titulo": "Vulnerabilidade Brotli: Falha de Corrupção de Memória Afeta Node.js, Bun e Python",
+    "curadoria": "Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash)",
+    "arquivo": "14h37-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138493207390486",
+      "instagram": "https://www.instagram.com/p/De7QkyXCfn7/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4015876591917299751",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520176430928986112/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138493207390486",
+      "instagram": "18118778710785370",
+      "instagram_stories": "18071904578775040",
+      "linkedin": "urn:li:share:7520176430928986112"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]

@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 11:57 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/De6-U7boPel/) |
 | 11:57 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
 | 11:57 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18176556628449708 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4015796253322393591) |
+| 14:37 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40217214269) |
+| 14:37 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: Vulnerabilidade Brotli: Falha de Corrupção de Memória Afeta Node.js, Bun e Python — curadoria: Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash) | agendamento automático |  |  |
+| 14:37 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | agendamento automático |  |  |
+| 14:37 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7520176430928986112 | agendamento automático |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7520176430928986112/) |
+| 14:37 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | agendamento automático |  |  |
+| 14:37 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122138493207390486 | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122138493207390486) |
+| 14:37 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122138493207390486) |
+| 14:37 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | agendamento automático |  |  |
+| 14:37 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 18118778710785370 | agendamento automático |  | [abrir](https://www.instagram.com/p/De7QkyXCfn7/) |
+| 14:37 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/De7QkyXCfn7/) |
+| 14:37 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
+| 14:37 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18071904578775040 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4015876591917299751) |
