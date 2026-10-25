@@ -56,5 +56,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "16:45",
+    "tema": "dica",
+    "titulo": "Offboarding: o acesso que ficou aberto pode ser a porta para um incidente de segurança",
+    "curadoria": "Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash)",
+    "arquivo": "16h45-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138508369390486",
+      "instagram": "https://www.instagram.com/p/De7fQOkjpSq/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520208676075405313/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138508369390486",
+      "instagram": "18120188647973289",
+      "linkedin": "urn:li:share:7520208676075405313"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
