@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "11:57",
+    "tema": "noticias",
+    "titulo": "IA: Moonshot limita modelo avançado Kimi K3.1 Pro por risco de ataques cibernéticos",
+    "curadoria": "Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash)",
+    "arquivo": "11h57-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138467449390486",
+      "instagram": "https://www.instagram.com/p/De6-U7boPel/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4015796253322393591",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520136305498910722/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138467449390486",
+      "instagram": "18413700736094029",
+      "instagram_stories": "18176556628449708",
+      "linkedin": "urn:li:share:7520136305498910722"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
