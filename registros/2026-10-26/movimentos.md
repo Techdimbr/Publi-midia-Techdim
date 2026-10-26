@@ -15,3 +15,8 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 04:11 | 🧪 ensaio | Notícias de Tecnologia | facebook | 1 imagem(ns) conferido(s); nada publicado | disparo manual | 🧪 |  |
 | 04:11 | 🧪 ensaio | Notícias de Tecnologia | instagram | 1 imagem(ns) conferido(s); nada publicado | disparo manual | 🧪 |  |
 | 04:11 | 🧪 ensaio | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) conferido(s); nada publicado | disparo manual | 🧪 |  |
+| 04:20 | ▶️ iniciado | Conhecimento |  | ensaio: nada será publicado | disparo manual | 🧪 | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40285136113) |
+| 04:20 | 🗓️ planejado | Conhecimento |  | pauta: MFA: Por que a senha forte já não basta para proteger seus acessos? — curadoria: Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash) | disparo manual | 🧪 |  |
+| 04:20 | 🧪 ensaio | Conhecimento | linkedin | 1 imagem(ns) conferido(s); nada publicado | disparo manual | 🧪 |  |
+| 04:20 | 🧪 ensaio | Conhecimento | facebook | 1 imagem(ns) conferido(s); nada publicado | disparo manual | 🧪 |  |
+| 04:20 | 🧪 ensaio | Conhecimento | instagram | 1 imagem(ns) conferido(s); nada publicado | disparo manual | 🧪 |  |
