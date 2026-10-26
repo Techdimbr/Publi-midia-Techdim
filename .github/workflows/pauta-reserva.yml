@@ -1,15 +1,17 @@
-name: Pauta de reserva
+name: Pauta do Dia (Gemini Spark)
 
-# Ensaio e gravação da pauta de reserva escrita pelo Gemini (src/pauta_reserva.py).
+# Geração automática da pauta diária escrita pelo Gemini (src/pauta_reserva.py).
 #
-# O caminho normal da reserva não precisa deste workflow: quando a Routine do Claude não escreveu a pauta do
-# tema, o publicador (publicar.yml) pede ao Gemini na hora de publicar. Este aqui serve para TESTAR a reserva
-# sem publicar e, se quiser, GRAVAR as pautas do dia em content/diario/ (só o que falta ou reprova).
+# Roda todo dia às 07:03 BRT (10:03 UTC) como provedor oficial de pautas,
+# pesquisando feeds RSS e criando content/diario/AAAA-MM-DD/ com os 4 temas do dia.
+# Também pode ser disparado manualmente via workflow_dispatch para ensaio ou regeração.
 #
 # Sem o segredo GEMINI_API_KEY (Settings > Secrets and variables > Actions) ele não faz nada.
 # Chave grátis: https://aistudio.google.com/apikey
 
 on:
+  schedule:
+    - cron: "3 10 * * *"   # 07:03 BRT (UTC-3), geração diária automática
   workflow_dispatch:
     inputs:
       dia:
@@ -58,8 +60,12 @@ jobs:
           TEMAS: ${{ inputs.temas }}
           GRAVAR: ${{ inputs.gravar }}
           FORCAR: ${{ inputs.forcar }}
+          EVENTO: ${{ github.event_name }}
         run: |
           set -uo pipefail
+          if [ "$EVENTO" = "schedule" ]; then
+            GRAVAR="true"
+          fi
           if [ "$FORCAR" = "true" ] && [ -z "$TEMAS" ]; then
             echo "::error::'forcar' exige informar os temas"; exit 1
           fi
@@ -74,7 +80,7 @@ jobs:
             git config user.name  "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add content/diario
-            git commit -q -m "pauta de reserva (Gemini): $(TZ=America/Sao_Paulo date +%F)"
+            git commit -q -m "pauta do dia (Gemini Spark): $(TZ=America/Sao_Paulo date +%F)"
             for i in 1 2 3 4; do
               if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit $rc; fi
               sleep $((i * 3))

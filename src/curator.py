@@ -19,7 +19,10 @@ import logging
 import os
 import re
 
-import anthropic
+try:
+    import anthropic
+except ImportError:
+    anthropic = None  # opcional: Gemini assume se faltar a biblioteca
 import requests
 
 import config
@@ -82,7 +85,7 @@ class CuradoriaIndisponivel(RuntimeError):
 
 
 def _tem_anthropic() -> bool:
-    return bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
+    return anthropic is not None and bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
 
 
 def disponivel() -> bool:
