@@ -1,0 +1,78 @@
+{
+  "titulo": "Vulnerabilidade Brotli: Microsoft lança patches emergenciais para falha crítica no .NET",
+  "pontos": [
+    "Microsoft lançou atualizações emergenciais para corrigir a falha crítica Brotli (CVE-2026-111497) no .NET, conhecida como Broccoli2Shell.",
+    "A falha, descoberta pela Imperva Red Team, é uma escrita fora dos limites no decodificador Brotli que pode causar travamentos, vazamento de memória ou execução remota de código.",
+    "Sistemas .NET não padronizados podem permitir escalonamento de privilégios. A Microsoft recomenda atualização imediata ou bloqueio de requisições Brotli comprimidas."
+  ],
+  "fecho": "A TECHDIM implementa hardening e gestão de patches para proteger sua infraestrutura de TI contra vulnerabilidades como esta.",
+  "motivo": "Este alerta da Microsoft é crucial para proteger sistemas .NET e prevenir ataques de execução remota de código.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-emergency-net-patches-for-critical-brotli-flaw/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "DEFESA CONTRA VULNERABILIDADES",
+    "titulo_destaque": "NO .NET",
+    "historia": "A falha Brotli no .NET destaca a necessidade de vigilância constante e ação rápida. Mesmo sem exploração em massa, a existência de PoCs aumenta o risco para sistemas não atualizados, exigindo uma postura proativa de cibersegurança.",
+    "licoes": [
+      [
+        "Atualização Imediata",
+        "Aplique os patches emergenciais da Microsoft para .NET 8, 9, 10 e 11 RC3 o mais rápido possível."
+      ],
+      [
+        "Controle de Entradas",
+        "Bloqueie requisições Brotli comprimidas via proxy ou firewall se não puder aplicar as atualizações."
+      ],
+      [
+        "Verificação de Apps",
+        "Confira se seus aplicativos .NET usam Brotli e se possuem bibliotecas próprias que precisam de atualização."
+      ]
+    ],
+    "pergunta": "Sua equipe de TI está preparada para responder a alertas de segurança emergenciais?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#Vulnerabilidade",
+      "#PatchManagement",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena": "painel",
+    "terminal_titulo": "MITIGAÇÃO DE RISCOS .NET",
+    "terminal": [
+      [
+        "",
+        "Alerta: Falha crítica Brotli (CVE-2026-111497) no .NET.",
+        "risco"
+      ],
+      [
+        "",
+        "Impacto: Execução remota de código e escalonamento.",
+        "risco"
+      ],
+      [
+        "$ ",
+        "Aplicar patches de segurança emergenciais Microsoft.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Desabilitar decodificação Brotli em apps afetados.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Bloquear requisições Brotli via proxy/firewall.",
+        "cmd"
+      ],
+      [
+        "",
+        "Status: Proteção contra exploração ativa.",
+        "ok"
+      ]
+    ]
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

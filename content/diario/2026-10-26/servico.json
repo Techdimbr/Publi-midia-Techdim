@@ -1,0 +1,47 @@
+{
+  "titulo": "Diagnóstico de infraestrutura: identifique gargalos na sua rede com a TECHDIM",
+  "pontos": [
+    "A TECHDIM realiza um diagnóstico completo de infraestrutura e segurança para mapear vulnerabilidades em redes, servidores e estações.",
+    "A análise detalhada identifica pontos únicos de falha, riscos de segurança e gargalos de desempenho que afetam a operação diária.",
+    "Nossa equipe de engenharia entrega um relatório técnico acionável para orientar correções estruturais e melhorias de hardening."
+  ],
+  "fecho": "Conheça o diagnóstico de infraestrutura da TECHDIM para blindar suas operações em techdimbr.github.io/techdimbr.",
+  "motivo": "Empresas crescem e modificam suas redes sem documentação, acumulando riscos invisíveis que causam paralisações e brechas de segurança.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Infraestrutura invisível",
+    "titulo_destaque": "gera falhas ocultas.",
+    "historia": "Sem um mapeamento rigoroso da rede e dos servidores, falhas de desempenho e brechas de segurança permanecem escondidas até causarem uma parada total na empresa.",
+    "licoes": [
+      [
+        "Mapeamento total",
+        "Inventariamos ativos, firewalls, switches e servidores para revelar a topologia real."
+      ],
+      [
+        "Análise de riscos",
+        "Identificamos configurações inseguras, pontos de falha única e gargalos de tráfego."
+      ],
+      [
+        "Plano corretivo",
+        "Entregamos prioridades técnicas para blindar o ambiente e estabilizar as conexões."
+      ]
+    ],
+    "pergunta": "Sua rede suporta a operação de amanhã ou opera no limite?",
+    "hashtags": [
+      "#Infraestrutura",
+      "#Redes",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "monitor",
+        "escudo"
+      ],
+      "legenda": "DIAGNÓSTICO E GOVERNANÇA DE REDES"
+    }
+  },
+  "gerado_por": "gemini (gemini-flash-lite-latest), pauta de reserva"
+}

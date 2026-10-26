@@ -1,0 +1,48 @@
+{
+  "titulo": "Offboarding: o acesso que ficou aberto é porta para riscos na sua empresa",
+  "pontos": [
+    "O processo de offboarding, ao desligar um colaborador, deve incluir a revisão e revogação imediata de todos os acessos.",
+    "Contas de e-mail, sistemas internos, VPNs, pastas compartilhadas e acessos a serviços em nuvem precisam ser desativados ou removidos.",
+    "A falta de um offboarding de TI rigoroso pode resultar em acessos indevidos, vazamento de dados e brechas de segurança, mesmo após a saída do funcionário."
+  ],
+  "fecho": "A TECHDIM ajuda sua PME a estruturar processos de offboarding de TI que protegem seus dados e a segurança da informação.",
+  "motivo": "Este assunto é crucial hoje para garantir que a segurança da informação não seja comprometida por acessos legados.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Offboarding: o acesso que ficou aberto",
+    "titulo_destaque": "é risco na sua rede.",
+    "historia": "Quando um colaborador sai, é comum focar na parte burocrática. Mas o acesso digital que ele tinha pode virar uma brecha séria se não for revogado. Pense nisso como chaves esquecidas na porta da sua empresa.",
+    "licoes": [
+      [
+        "Liste todos os acessos",
+        "Mapeie todas as contas, sistemas e permissões do colaborador antes da saída."
+      ],
+      [
+        "Revogue imediatamente",
+        "Desative e remova acessos a e-mail, VPN, sistemas, nuvem e pastas no dia do desligamento."
+      ],
+      [
+        "Audite periodicamente",
+        "Revise acessos de ex-colaboradores e contas inativas para garantir que nada foi esquecido."
+      ]
+    ],
+    "pergunta": "Sua empresa tem um plano de offboarding de TI claro e executado?",
+    "hashtags": [
+      "#Offboarding",
+      "#Ciberseguranca",
+      "#Governança",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "documento",
+        "notebook",
+        "escudo"
+      ],
+      "legenda": "CONTROLE DE ACESSOS: SEGURANÇA CONTÍNUA"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}
