@@ -54,5 +54,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "16:52",
+    "tema": "hacker",
+    "titulo": "Vulnerabilidade Brotli: Microsoft lança patches emergenciais para falha crítica no .NET",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "16h52-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138727045390486",
+      "instagram": "https://www.instagram.com/p/De-E2ynl16W/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4016669396223607347",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520572893559164928/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138727045390486",
+      "instagram": "18145688581578867",
+      "instagram_stories": "18128337439847167",
+      "linkedin": "urn:li:share:7520572893559164928"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
