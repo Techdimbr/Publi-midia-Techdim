@@ -25,5 +25,34 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "14:19",
+    "tema": "noticias",
+    "titulo": "OpenAI: Treinamento de IA agora é offline devido a riscos de segurança",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h19-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138706399390486",
+      "instagram": "https://www.instagram.com/p/De9zZaZjLoZ/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4016592590119446348",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520534496820187136/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138706399390486",
+      "instagram": "17926218474437949",
+      "instagram_stories": "18082304555354295",
+      "linkedin": "urn:li:share:7520534496820187136"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
