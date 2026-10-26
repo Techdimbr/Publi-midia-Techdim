@@ -1,0 +1,29 @@
+[
+  {
+    "hora": "04:25",
+    "tema": "dica",
+    "titulo": "MFA: Por que a senha forte já não basta para proteger seus acessos na empresa",
+    "curadoria": "Gemini (reserva) — pauta escrita pela API do Gemini (modelo gemini-2.5-flash)",
+    "arquivo": "04h25-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138599083390486",
+      "instagram": "https://www.instagram.com/p/De8vZMvDT8M/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520384946537005056/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138599083390486",
+      "instagram": "18082888445709986",
+      "linkedin": "urn:li:share:7520384946537005056"
+    },
+    "comentou": [
+      "facebook"
+    ]
+  }
+]
