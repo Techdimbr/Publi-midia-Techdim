@@ -51,17 +51,25 @@ FOCO = {
                "suporte de TI; LGPD; automação com IA; software sob medida)",
 }
 
-SISTEMA = f"""Você é o editor de conteúdo da TECHDIM, empresa de infraestrutura de TI, cibersegurança defensiva, \
-automação com IA e software sob medida de Campinas-SP. O público é dono de pequena e média empresa e gestor de TI no Brasil.
+SISTEMA = f"""Você é o editor de inteligência e conteúdo sênior da TECHDIM (Campinas-SP), especializada em infraestrutura de TI, \
+cibersegurança defensiva, governança de dados, automação com IA e software corporativo sob medida.
+O público-alvo são proprietários de PMEs, Diretores de Operações e gestores de TI corporativos no Brasil.
 
-Regras:
-- Escreva em português do Brasil, com tom profissional e direto, sem sensacionalismo nem alarmismo.
-- Use somente fatos do material fornecido (nas dicas e nos serviços, só conhecimento consolidado e verificável). \
-Não invente números, nomes, datas, CVEs, versões, comandos, citações nem resultados. Preserve as ressalvas do original ("pode", "segundo a empresa").
-- Nunca inclua telefone nem e-mail. O único contato é o site {config.SITE}; não cite {config.SITE_FORA_DO_AR}.
-- Nunca diga que a TECHDIM é parceira ou revendedora oficial de outra empresa.
-- Sem preço, prazo ou resultado garantido.
-- Respeite os limites de tamanho de cada campo: texto maior estoura a arte."""
+Diretrizes de Fato e Veracidade Absoluta:
+- Fidelidade Factual 100%: Baseie todas as afirmações técnicas estritamente no material fornecido. Jamais invente CVEs, estatísticas, versões de software, citações ou projeções sem respaldo direto no texto original.
+- Preservação de Nuance: Mantenha as ressalvas da fonte ("potencial", "segundo comunicado oficial", "em fase de testes").
+- Tom Técnico e Tático: Escreva em português do Brasil, claro, direto, pragmático e institucionalmente impecável. Evite sensacionalismo, alarmismo e clichês de IA (ex.: "no cenário atual", "revolução sem precedentes").
+- Proibição de Contatos Externos: O único contato permitido é o portal oficial {config.SITE}. Nunca mencione telefone, e-mail ou o domínio inativo {config.SITE_FORA_DO_AR}.
+- Independência: Nunca afirme que a TECHDIM é parceira ou revendedora exclusiva/oficial de terceiros, nem garanta prazos, preços ou lucros.
+- Limites de Caracteres: Respeite rigorosamente as restrições de cada campo do esquema para garantir a harmonia estética do infográfico.
+
+Diretrizes de Identidade Visual e Diferenciação Gráfica por Tema:
+- Cada publicação deve possuir identidade visual temática marcante e distinta, evitando repetir sempre o mesmo fundo:
+  * NOTÍCIAS (IA / Nuvem / Tecnologia): Use fundos tecnológicos como "cidade" ou "datacenter". Elementos recomendados: ["nuvem", "chip", "globo", "monitor"] ou ["celular", "grafico", "nuvem"].
+  * CIBERSEGURANÇA (Ameaças / Hardening): Fundo "laboratorio" ou "datacenter" com elementos de defesa e hardware: ["escudo", "rack", "monitor"] ou ["escudo", "chip", "documento"]. No tema hacker, estruturar linhas de terminal em português defensivo.
+  * CONHECIMENTO / DICAS: Fundo "laboratorio" ou "escritorio" com elementos focados em processos e governança: ["documento", "engrenagens", "notebook"] ou ["nuvem", "escudo", "celular"].
+  * TECHDIM SERVIÇOS: Fundo "datacenter" ou "espaco" com elementos de infraestrutura robusta: ["rack", "nuvem", "escudo", "chip"] ou ["globo", "rack", "grafico"].
+- Legenda da Cena Composta: Deve ser um lema ou resumo tático curto e impactante em CAIXA ALTA (ex.: "INFRAESTRUTURA RESILIENTE", "BACKUP MULTI-CAMADA", "DEFESA CONTRA RANSOMWARE")."""
 
 EXEMPLO_BLOCO = """Exemplo do estilo do bloco "infografico" (assunto: backup):
 titulo_branco: "Backup que ninguém restaurou"
@@ -214,33 +222,39 @@ def _prompt_noticia(tema: str, manchete: dict, materia: str, recentes: list[str]
     return (
         f"Escreva o post do tema \"{tema}\" para a TECHDIM a partir desta matéria. Foco: {FOCO[tema]}.\n\n"
         f"Manchete original: {manchete['title']}\nFonte: {manchete['source']}\n\n"
-        f"Texto da matéria (a única fonte de fatos):\n{materia}\n\n"
-        f"Assuntos já publicados nos últimos dias (não repita): {'; '.join(recentes[:40]) or 'nenhum'}.\n\n"
-        + ("O texto acima é curto: escreva só o que ele afirma, sem acrescentar detalhes, números, versões ou nomes.\n\n"
+        f"Texto da matéria (a única fonte de fatos verificados):\n{materia}\n\n"
+        f"Assuntos já publicados nos últimos dias (não repita assunto nem títulos semelhantes): {'; '.join(recentes[:40]) or 'nenhum'}.\n\n"
+        + ("O texto acima é curto: atenha-se estritamente aos fatos explícitos, sem acrescentar números, versões ou dados não verificados.\n\n"
            if len(materia) < 600 else "")
-        + "Escolha uma cena que combine com o assunto e escreva todos os campos do esquema.\n\n" + EXEMPLO_BLOCO
+        + "Diretriz visual: Escolha o fundo e elementos gráficos da cena que melhor diferenciem este post "
+        "(fundo: cidade, datacenter, espaco, escritorio, laboratorio; elementos: notebook, monitor, celular, rack, nuvem, escudo, globo, engrenagens, grafico, documento, chip). "
+        "A legenda da cena deve ser um lema técnico em maiúsculas (até 45 caracteres).\n\n" + EXEMPLO_BLOCO
     )
 
 
 def _prompt_autoral(tema: str, ideias: list[str], recentes: list[str], dia: dt.date) -> str:
     return (
         f"Escreva o post do tema \"{tema}\" de hoje ({dia:%d/%m/%Y}). Foco: {FOCO[tema]}.\n\n"
-        f"Assuntos do acervo da TECHDIM (inspiração; pode combinar ou ir além): {'; '.join(ideias)}.\n"
-        f"Assuntos já publicados nos últimos dias (não repita assunto, analogia nem cena): {'; '.join(recentes[:40]) or 'nenhum'}.\n\n"
-        + ("Ensine algo prático e verificável, que o leitor consiga fazer hoje. Prefira uma analogia do dia a dia da empresa.\n"
+        f"Assuntos do acervo da TECHDIM (inspiração; selecione ou elabore um tópico de alto valor): {'; '.join(ideias)}.\n"
+        f"Assuntos já publicados nos últimos dias (não repita tema, analogia nem composição gráfica): {'; '.join(recentes[:40]) or 'nenhum'}.\n\n"
+        + ("Ensine algo prático, verdadeiro e aplicável hoje por uma empresa brasileira. Destaque lições acionáveis de TI/segurança.\n"
            if tema == "dica" else
-           "Mostre o problema do dia a dia da empresa e como a TECHDIM resolve; convide a pedir um diagnóstico. "
+           "Apresente um desafio real enfrentado por empresas em infraestrutura, nuvem ou segurança, demonstrando como a engenharia da TECHDIM resolve. "
            "Sem preço, prazo ou resultado garantido.\n")
-        + "\nEscolha uma cena que combine com o assunto e escreva todos os campos do esquema.\n\n" + EXEMPLO_BLOCO
+        + "\nDiretriz visual: Selecione uma composição gráfica com fundo marcante e elementos que ilustrem a arquitetura da solução. "
+        "A legenda da cena deve ser concisa e impactante em maiúsculas.\n\n" + EXEMPLO_BLOCO
     )
 
 
 def _escolher_manchete(tema: str, candidatas: list[dict]) -> dict:
     lista = "\n".join(f"[{i}] {c['title']} ({c['source']})\n    {c['summary']}" for i, c in enumerate(candidatas))
     escolha = gemini.gerar_json(
-        f"Foco do post: {FOCO[tema]}.\n\nEscolha a manchete mais relevante e útil para empresas brasileiras que dependem de TI. "
-        "Descarte consumo pessoal, games, celulares, entretenimento, política e promoções. Prefira fontes em português quando "
-        f"a relevância for parecida. Se nenhuma servir, devolva indice -1.\n\nManchetes de hoje:\n{lista}",
+        f"Foco do post: {FOCO[tema]}.\n\n"
+        "Escolha a manchete mais relevante, factual e de maior impacto prático para empresas brasileiras que utilizam TI corporativa e nuvem. "
+        "Priorize: ameaças reais, incidentes com lições táticas, atualizações de infraestrutura crítica, soberania de dados e avanços pragmáticos em IA. "
+        "Descarte: gadgets de consumo pessoal, smartphones, videogames, fofocas corporativas, promoções comerciais e notícias sensacionalistas. "
+        "Prefira fontes em português quando a relevância técnica for equivalente. Se nenhuma tiver padrão de qualidade profissional, devolva indice -1.\n\n"
+        f"Manchetes avaliadas:\n{lista}",
         ESQUEMA_ESCOLHA, sistema=SISTEMA, temperatura=0.2, max_tokens=1024)
     i = escolha.get("indice")
     if not isinstance(i, int) or not 0 <= i < len(candidatas):
