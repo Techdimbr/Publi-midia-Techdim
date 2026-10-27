@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "13:33",
+    "tema": "noticias",
+    "titulo": "IA local: Excluir histórico não apaga rastros em celulares Android",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "13h33-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138896683390486",
+      "instagram": "https://www.instagram.com/p/DfAS7TciYct/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4017294216379610572",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520885304191545346/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138896683390486",
+      "instagram": "18348098044266972",
+      "instagram_stories": "17993831913025606",
+      "linkedin": "urn:li:share:7520885304191545346"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
