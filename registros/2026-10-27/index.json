@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "16:23",
+    "tema": "hacker",
+    "titulo": "Cibersegurança: Huntress revela táticas de ataque que mais impactam empresas hoje",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "16h23-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138928387390486",
+      "instagram": "https://www.instagram.com/p/DfAmWarmPFk/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4017379704206525747",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520927998766800896/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138928387390486",
+      "instagram": "18131777476830042",
+      "instagram_stories": "17988223086095009",
+      "linkedin": "urn:li:share:7520927998766800896"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
