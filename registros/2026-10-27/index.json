@@ -56,5 +56,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "18:23",
+    "tema": "dica",
+    "titulo": "Firewall: Seu firewall está configurado ou só ligado? Não basta ter, precisa proteger.",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "18h23-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122138948025390486",
+      "instagram": "https://www.instagram.com/p/DfA0JSWjCko/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7520958317314109440/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122138948025390486",
+      "instagram": "18110626862614067",
+      "linkedin": "urn:li:share:7520958317314109440"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
