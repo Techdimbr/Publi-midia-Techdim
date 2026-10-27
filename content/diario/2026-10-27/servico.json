@@ -1,0 +1,49 @@
+{
+  "titulo": "Migração de servidor: leve seus dados sem interromper a operação da empresa",
+  "pontos": [
+    "Muitas empresas adiam a migração de servidores por medo de paradas prolongadas e perda de dados, um risco real sem planejamento e execução adequados.",
+    "A engenharia da TECHDIM realiza migrações de servidores e ambientes de nuvem com estratégias de \"zero downtime\", minimizando qualquer impacto na produtividade.",
+    "Utilizamos métodos que permitem a replicação de dados em tempo real e testes pré-migração, garantindo a integridade e a disponibilidade dos sistemas críticos."
+  ],
+  "fecho": "Não deixe a modernização de sua infraestrutura para depois. A TECHDIM garante uma transição segura e eficiente.",
+  "motivo": "A migração de servidores é um desafio constante para PMEs que buscam modernizar sua TI sem interrupções.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Migrar servidor sem parar",
+    "titulo_destaque": "é engenharia.",
+    "historia": "Mover dados e sistemas críticos entre servidores ou para a nuvem sem interrupções exige mais que copiar e colar. É preciso arquitetar a transição com precisão, garantindo a continuidade dos negócios.",
+    "licoes": [
+      [
+        "Planejamento Detalhado",
+        "Mapeie dependências, defina janelas de manutenção e crie um plano de contingência para cada etapa."
+      ],
+      [
+        "Replicação Contínua",
+        "Use ferramentas que repliquem dados em tempo real, permitindo uma \"virada de chave\" rápida e controlada."
+      ],
+      [
+        "Testes Rigorosos",
+        "Valide a funcionalidade do novo ambiente antes da migração final, garantindo que tudo opere como esperado."
+      ]
+    ],
+    "pergunta": "Sua empresa está pronta para uma migração de servidor sem interrupções?",
+    "hashtags": [
+      "#MigracaoServidor",
+      "#InfraestruturaTI",
+      "#ZeroDowntime",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "grafico",
+        "chip"
+      ],
+      "legenda": "MIGRAÇÃO DE INFRAESTRUTURA SEM PARAR"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

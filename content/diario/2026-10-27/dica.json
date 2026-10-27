@@ -1,0 +1,48 @@
+{
+  "titulo": "Firewall: Seu firewall está configurado ou só ligado? Não basta ter, precisa proteger.",
+  "pontos": [
+    "Muitas PMEs investem em firewall, mas o deixam com configurações padrão, que não bloqueiam ameaças avançadas.",
+    "Um firewall configurado corretamente é uma barreira ativa, filtrando tráfego e detectando intrusões em tempo real.",
+    "Sem a configuração adequada, sua rede fica exposta a acessos não autorizados e ataques cibernéticos."
+  ],
+  "fecho": "A TECHDIM atua na configuração e gestão de firewalls, garantindo que sua proteção esteja sempre ativa e otimizada.",
+  "motivo": "Configurar corretamente o firewall é uma medida de segurança fundamental para qualquer empresa hoje.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Seu Firewall: Ligado ou",
+    "titulo_destaque": "REALMENTE CONFIGURADO?",
+    "historia": "Ter um firewall sem a configuração correta é como instalar uma porta blindada e deixar a chave na fechadura. Ele está lá, mas não cumpre sua função de segurança. A configuração padrão raramente é suficiente para as ameaças atuais.",
+    "licoes": [
+      [
+        "Revise as Regras",
+        "Verifique portas abertas e regras de tráfego. Bloqueie o que não é essencial para o negócio."
+      ],
+      [
+        "Atualize o Firmware",
+        "Mantenha o firmware do firewall sempre atualizado para garantir as últimas correções de segurança."
+      ],
+      [
+        "Monitore os Logs",
+        "Analise os registros do firewall regularmente para identificar tentativas de acesso e atividades suspeitas."
+      ]
+    ],
+    "pergunta": "Você sabe quais portas do seu firewall estão abertas para a internet?",
+    "hashtags": [
+      "#Firewall",
+      "#Ciberseguranca",
+      "#Hardening",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "escudo",
+        "monitor"
+      ],
+      "legenda": "FIREWALL: PROTEÇÃO ATIVA E INTELIGENTE"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

@@ -1,0 +1,73 @@
+{
+  "titulo": "Cibersegurança: Huntress revela táticas de ataque que mais impactam empresas hoje",
+  "pontos": [
+    "A Huntress, empresa de cibersegurança, ranqueou as táticas de ataque que mais causam impacto em empresas, focando no abuso de ferramentas e fluxos de trabalho confiáveis.",
+    "Abuso de ferramentas RMM (45% dos incidentes em Q1 2026) e manipulação de caixas de e-mail (24,6% dos sinais ITDR em 2026) são as principais ameaças.",
+    "Ataques AiTM (18,9% em 2025) e phishing com código de dispositivo também são críticos, roubando tokens de sessão para acesso persistente sem senha ou MFA."
+  ],
+  "fecho": "A TECHDIM oferece soluções de cibersegurança defensiva para proteger sua empresa contra essas e outras ameaças persistentes e emergentes.",
+  "motivo": "Entender as táticas de ataque mais eficazes é crucial para priorizar defesas e proteger sua infraestrutura de TI.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/the-huntress-tragic-quadrant-ranking-threats-hitting-businesses-hardest/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "ANÁLISE DE AMEAÇAS:",
+    "titulo_destaque": "QUADRANTE TRÁGICO",
+    "historia": "Ataques cibernéticos muitas vezes não são espetaculares, mas sim táticas que abusam de ferramentas e fluxos de trabalho que sua equipe já confia, escondendo-se no dia a dia.",
+    "licoes": [
+      [
+        "Monitore Acessos RMM",
+        "Ataques abusam de ferramentas RMM para acesso persistente. Verifique instalações e atividades incomuns."
+      ],
+      [
+        "Proteja Caixas de E-mail",
+        "Manipulação de e-mail desvia pagamentos e oculta atividades. Monitore regras de caixa de entrada e redirecionamentos."
+      ],
+      [
+        "Atenção a Tokens",
+        "Ataques AiTM e phishing de código de dispositivo roubam tokens de sessão, permitindo acesso sem senha ou MFA."
+      ]
+    ],
+    "pergunta": "Sua empresa está preparada para detectar e responder a essas táticas de ataque?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#AtaqueCibernetico",
+      "#Ransomware",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena": "painel",
+    "terminal_titulo": "DEFESA PROATIVA CONTRA AMEAÇAS",
+    "terminal": [
+      [
+        "",
+        "STATUS: AMEAÇAS PERSISTENTES DETECTADAS",
+        "risco"
+      ],
+      [
+        "$ ",
+        "REVISAR POLÍTICAS DE ACESSO REMOTO (RMM)",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "IMPLEMENTAR MONITORAMENTO DE CAIXAS DE E-MAIL",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "FORTALECER AUTENTICAÇÃO E GESTÃO DE SESSÕES",
+        "cmd"
+      ],
+      [
+        "",
+        "STATUS: VULNERABILIDADES MITIGADAS",
+        "ok"
+      ]
+    ]
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

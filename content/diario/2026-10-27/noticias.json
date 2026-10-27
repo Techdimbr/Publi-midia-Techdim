@@ -1,0 +1,54 @@
+{
+  "titulo": "IA local: Excluir histórico não apaga rastros em celulares Android",
+  "pontos": [
+    "Pesquisadores do Georgia Tech desenvolveram a ferramenta ORISA, capaz de recuperar conversas excluídas de assistentes de IA que operam localmente em celulares Android.",
+    "A exclusão de um bate-papo via interface do aplicativo não remove imediatamente todos os dados da memória RAM, permitindo à ORISA reconstruir o contexto e sessões funcionais.",
+    "A descoberta, útil para perícia digital, levanta questões cruciais sobre a privacidade de dados em assistentes de IA com processamento local, como Google AI Edge Gallery e ChatterUI."
+  ],
+  "fecho": "A proteção e governança de dados, mesmo em IAs locais, são essenciais. A TECHDIM oferece cibersegurança defensiva e gestão de dados.",
+  "motivo": "A pesquisa destaca a importância de entender a persistência de dados em IAs locais para a segurança corporativa e a privacidade das informações.",
+  "fontes": [
+    [
+      "canaltech.com.br",
+      "https://canaltech.com.br/inteligencia-artificial/cuidado-excluir-historico-de-ia-nao-apaga-rastros-em-celulares-android/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "Privacidade de dados em IA",
+    "titulo_destaque": "local: o que você não vê.",
+    "historia": "Pesquisadores do Georgia Tech revelaram que assistentes de IA locais em Android mantêm fragmentos de conversas na memória, mesmo após exclusão. A ferramenta ORISA recupera esses dados, expondo a persistência invisível.",
+    "licoes": [
+      [
+        "Dados Persistem",
+        "Excluir um bate-papo em apps de IA local não garante a remoção completa da memória RAM do dispositivo."
+      ],
+      [
+        "Risco de Recuperação",
+        "Ferramentas forenses podem resgatar informações e contexto, mesmo que a IA não os acesse mais ativamente."
+      ],
+      [
+        "Privacidade Crítica",
+        "IAs locais processam dados no aparelho, mas a persistência exige atenção redobrada à governança de dados."
+      ]
+    ],
+    "pergunta": "Sua empresa entende os riscos de dados persistentes em IAs locais?",
+    "hashtags": [
+      "#IAlocal",
+      "#Ciberseguranca",
+      "#DadosCorporativos",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "celular",
+        "chip",
+        "escudo",
+        "nuvem"
+      ],
+      "legenda": "DADOS EM IA LOCAL: PERSISTÊNCIA INVISÍVEL"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}
