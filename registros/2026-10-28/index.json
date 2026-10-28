@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "16:29",
+    "tema": "hacker",
+    "titulo": "Vulnerabilidades de Infraestrutura: Ataques exploram falhas críticas em redes",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "16h29-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139139131390486",
+      "instagram": "https://www.instagram.com/p/DfDLzjgGHrc/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4018107315673118258",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7521291844048232448/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139139131390486",
+      "instagram": "18115911731603344",
+      "instagram_stories": "17951784861057212",
+      "linkedin": "urn:li:share:7521291844048232448"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
