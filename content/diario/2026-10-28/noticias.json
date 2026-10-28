@@ -1,0 +1,53 @@
+{
+  "titulo": "Discord: Mensagens de servidores públicos agora pesquisáveis no Google",
+  "pontos": [
+    "Discord passará a indexar mensagens de servidores públicos (tipo 'Descobrir') em mecanismos de busca, como o Google, a partir de dezembro.",
+    "A medida se aplica somente a servidores públicos com mais de mil participantes e regras de segurança específicas, não afetando grupos privados ou mensagens diretas.",
+    "Usuários podem desabilitar a exposição de suas próprias mensagens, e administradores de canais podem escolher quais páginas serão disponibilizadas em buscadores."
+  ],
+  "fecho": "A gestão de privacidade em plataformas como Discord reforça a necessidade de governança de dados e cibersegurança defensiva em sua empresa.",
+  "motivo": "Este assunto é relevante devido às implicações de privacidade e governança de dados para empresas que usam plataformas online.",
+  "fontes": [
+    [
+      "canaltech.com.br",
+      "https://canaltech.com.br/apps/discord-decide-abrir-conversas-dos-usuarios-e-mensagens-serao-buscaveis-no-google/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "Discord abre portas: suas conversas públicas",
+    "titulo_destaque": "no Google.",
+    "historia": "O Discord, similar ao Reddit, busca facilitar a descoberta de temas e comunidades ao indexar servidores públicos em mecanismos de busca. Isso pode expor informações que antes eram acessíveis apenas dentro da plataforma.",
+    "licoes": [
+      [
+        "Avalie o impacto",
+        "Entenda quais dados da sua empresa podem ser expostos em plataformas abertas."
+      ],
+      [
+        "Configure privacidade",
+        "Revise as configurações de privacidade de usuários e administradores em plataformas colaborativas."
+      ],
+      [
+        "Governança de dados",
+        "Implemente políticas claras para uso de plataformas, protegendo informações sensíveis da empresa."
+      ]
+    ],
+    "pergunta": "Sua empresa está preparada para a exposição de dados em plataformas públicas?",
+    "hashtags": [
+      "#Discord",
+      "#PrivacidadeDeDados",
+      "#GovernancaDeDados",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "globo",
+        "nuvem",
+        "monitor"
+      ],
+      "legenda": "DADOS PÚBLICOS: NOVO DESAFIO DE GOVERNANÇA"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

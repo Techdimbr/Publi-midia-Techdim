@@ -1,0 +1,47 @@
+{
+  "titulo": "MFA obrigatório: por que senha forte já não basta na sua empresa",
+  "pontos": [
+    "Senhas complexas caem em phishing e vazamentos corporativos, tornando a autenticação multifator indispensável para bloquear invasões.",
+    "A ativação do MFA exige uma segunda forma de confirmação, como aplicativo authenticator ou chave física, a cada acesso crítico.",
+    "Gerenciar identidades com barreiras adicionais protege dados de clientes e sistemas contra acessos não autorizados."
+  ],
+  "fecho": "A TECHDIM implementa políticas de acesso e MFA para blindar sua operação corporativa.",
+  "motivo": "Ataques de credential stuffing e roubo de senhas continuam liderando incidentes em PMEs.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "MFA: A senha forte",
+    "titulo_destaque": "sozinha já falhou.",
+    "historia": "Criminosos usam engenharia social e infostealers para capturar credenciais. Sem uma segunda etapa de validação, qualquer conta corporativa fica vulnerável a invasões imediatas.",
+    "licoes": [
+      [
+        "Exija de todos",
+        "Ative o MFA obrigatoriamente para cada usuário do Microsoft 365 e Google Workspace."
+      ],
+      [
+        "Evite SMS",
+        "Prefira aplicativos autenticadores no celular ou chaves de segurança físicas."
+      ],
+      [
+        "Monitore acessos",
+        "Revise regularmente os logs de entrada para identificar tentativas suspeitas."
+      ]
+    ],
+    "pergunta": "Sua equipe já usa autenticação multifator em todos os sistemas?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#MFA",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "escudo",
+        "celular",
+        "documento"
+      ],
+      "legenda": "AUTENTICAÇÃO MULTIFATOR OBRIGATÓRIA"
+    }
+  },
+  "gerado_por": "gemini (gemini-flash-lite-latest), pauta de reserva"
+}

@@ -1,0 +1,78 @@
+{
+  "titulo": "Vulnerabilidades de Infraestrutura: Ataques exploram falhas críticas em redes",
+  "pontos": [
+    "Atacantes estão explorando ativamente vulnerabilidades em infraestruturas de rede críticas, como firewalls e VPNs, através de falhas PHP2Shell em interfaces de gerenciamento.",
+    "O relatório InfraTrust identificou 133 novos alertas de segurança, com 37 críticos e 58 exploráveis remotamente sem autenticação, incluindo 16 falhas já no catálogo KEV da CISA.",
+    "A maioria dos equipamentos incorpora PHP no firmware, impedindo que administradores apliquem patches diretamente; é preciso aguardar as atualizações dos fabricantes."
+  ],
+  "fecho": "A TECHDIM protege sua infraestrutura crítica contra ameaças ativas com serviços avançados de cibersegurança defensiva.",
+  "motivo": "Este assunto é crucial hoje devido à exploração ativa de falhas críticas em dispositivos de rede no Brasil e no mundo.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/infratrust-report-warns-of-exploited-flaws-in-critical-network-infrastructure/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "INFRAESTRUTURA CRÍTICA:",
+    "titulo_destaque": "ALERTA MÁXIMO",
+    "historia": "Dispositivos de rede como firewalls, VPNs e ADCs são a linha de frente da sua defesa. Quando vulnerabilidades como PHP2Shell são exploradas, a porta de entrada para a rede corporativa se abre, exigindo ação imediata e coordenação com fabricantes.",
+    "licoes": [
+      [
+        "Monitoramento Ativo",
+        "Acompanhe relatórios como InfraTrust e CISA KEV para identificar falhas ativamente exploradas em seus sistemas."
+      ],
+      [
+        "Gerencie Interfaces",
+        "Não exponha interfaces de gerenciamento de dispositivos críticos à internet. Mantenha-as em redes isoladas."
+      ],
+      [
+        "Atualize Firmware",
+        "Aguarde e aplique as atualizações de firmware dos fabricantes para corrigir PHP e outros componentes o mais rápido possível."
+      ]
+    ],
+    "pergunta": "Sua infraestrutura de rede está protegida contra as últimas vulnerabilidades exploradas?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#Vulnerabilidade",
+      "#Hardening",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena": "painel",
+    "terminal_titulo": "Ações de Defesa da Infraestrutura",
+    "terminal": [
+      [
+        "",
+        "Falha crítica detectada em firewall de borda.",
+        "risco"
+      ],
+      [
+        "$ ",
+        "Isolar interfaces de gerenciamento da internet.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Verificar catálogo CISA KEV por exploits ativos.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Acompanhar comunicados dos fabricantes.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Aplicar atualização de firmware assim que disponível.",
+        "cmd"
+      ],
+      [
+        "",
+        "Proteção da rede reforçada com patches e isolamento.",
+        "ok"
+      ]
+    ]
+  },
+  "gerado_por": "gemini (gemini-flash-lite-latest), pauta de reserva"
+}

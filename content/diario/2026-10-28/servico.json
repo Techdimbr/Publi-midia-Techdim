@@ -1,0 +1,47 @@
+{
+  "titulo": "Infraestrutura e redes: Wi-Fi, firewall e cabeamento organizados para sua empresa",
+  "pontos": [
+    "Redes instáveis e pontos cegos de Wi-Fi travam o atendimento e geram frustração na equipe todos os dias.",
+    "A TECHDIM projeta e organiza a infraestrutura física e lógica para garantir alta disponibilidade e tráfego seguro.",
+    "Com uma arquitetura de rede estruturada, sua empresa ganha performance, previsibilidade e bases sólidas para crescer."
+  ],
+  "fecho": "Conte com a engenharia da TECHDIM para estruturar a rede da sua empresa. Visite techdimbr.github.io/techdimbr",
+  "motivo": "Organizar a infraestrutura de redes previne falhas de conectividade e mitiga brechas de segurança operacionais.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Rede sem organização",
+    "titulo_destaque": "é gargalo e lentidão.",
+    "historia": "Pontos cegos de Wi-Fi, cabos mal identificados e firewalls mal configurados prejudicam a produtividade e deixam a empresa vulnerável a interrupções inesperadas.",
+    "licoes": [
+      [
+        "Mapeamento lógico",
+        "Avalie a distribuição de pontos de acesso e o fluxo de tráfego atual."
+      ],
+      [
+        "Segmentação correta",
+        "Separe redes corporativas, de convidados e de dispositivos IoT."
+      ],
+      [
+        "Hardware adequado",
+        "Utilize equipamentos de rede robustos e compatíveis com a demanda."
+      ]
+    ],
+    "pergunta": "Como está a estabilidade da rede na sua empresa hoje?",
+    "hashtags": [
+      "#Infraestrutura",
+      "#Redes",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "escudo"
+      ],
+      "legenda": "INFRAESTRUTURA DE REDE ROBUSTA"
+    }
+  },
+  "gerado_por": "gemini (gemini-flash-lite-latest), pauta de reserva"
+}
