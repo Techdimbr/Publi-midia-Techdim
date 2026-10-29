@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 14:25 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/DfFibWmD27b/) |
 | 14:25 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
 | 14:25 | 📱 story | Notícias de Tecnologia | instagram_stories | id 18132092464811557 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4018769754609124644) |
+| 16:32 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/40940863619) |
+| 16:32 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: Cisco: Zero-day em firewalls ASA/FTD explorado para derrubar dispositivos SSL VPN — curadoria: Claude (Routine) — pauta do dia | agendamento automático |  |  |
+| 16:32 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | agendamento automático |  |  |
+| 16:32 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7521655095025975298 | agendamento automático |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7521655095025975298/) |
+| 16:32 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | agendamento automático |  |  |
+| 16:32 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122139339441390486 | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122139339441390486) |
+| 16:32 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122139339441390486) |
+| 16:32 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | agendamento automático |  |  |
+| 16:32 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 18029346350875192 | agendamento automático |  | [abrir](https://www.instagram.com/p/DfFw_UkDG0y/) |
+| 16:32 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/DfFw_UkDG0y/) |
+| 16:32 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
+| 16:32 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18019344617957900 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4018833820086730769) |
