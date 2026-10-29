@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "14:25",
+    "tema": "noticias",
+    "titulo": "Cabos Submarinos: Alerta nos EUA sobre risco de sabotagem à infraestrutura global da internet",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h25-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139322149390486",
+      "instagram": "https://www.instagram.com/p/DfFibWmD27b/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4018769754609124644",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7521623061251592193/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139322149390486",
+      "instagram": "18221763655351659",
+      "instagram_stories": "18132092464811557",
+      "linkedin": "urn:li:share:7521623061251592193"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
