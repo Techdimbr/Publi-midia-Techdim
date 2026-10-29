@@ -1,0 +1,78 @@
+{
+  "titulo": "Cisco: Zero-day em firewalls ASA/FTD explorado para derrubar dispositivos SSL VPN",
+  "pontos": [
+    "Cisco lança patches para CVE-2026-76418, uma vulnerabilidade zero-day de alta gravidade em firewalls ASA e FTD, já explorada ativamente.",
+    "A exploração permite que atacantes não autenticados causem condição de negação de serviço (DoS), forçando o reinício inesperado dos dispositivos.",
+    "A falha afeta dispositivos com 'webvpn' e SSL VPN configurados; a Cisco recomenda upgrade imediato ou desativação da autenticação secundária."
+  ],
+  "fecho": "A TECHDIM atua na proteção de sua infraestrutura com cibersegurança defensiva, atualizando sistemas e monitorando vulnerabilidades.",
+  "motivo": "A exploração ativa de falhas críticas em firewalls exige atenção imediata para evitar interrupções operacionais.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/cisco-warns-of-firewall-zero-day-exploited-to-crash-ssl-vpn-devices/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "Firewall Cisco: Zero-day explorado",
+    "titulo_destaque": "DERRUBA SUA PROTEÇÃO",
+    "historia": "Uma falha crítica em firewalls Cisco ASA e FTD está sendo ativamente explorada. Atacantes conseguem causar negação de serviço, reiniciando dispositivos e comprometendo a segurança da rede. Ações imediatas são cruciais.",
+    "licoes": [
+      [
+        "Atualize Imediato",
+        "Aplique os patches da Cisco para CVE-2026-76418 o mais rápido possível."
+      ],
+      [
+        "Mitigue o Risco",
+        "Se não puder atualizar, desative a autenticação secundária em grupos de túnel SSL VPN."
+      ],
+      [
+        "Monitore Sua Rede",
+        "Fique atento a atividades incomuns que possam indicar exploração ou tentativas de DoS."
+      ]
+    ],
+    "pergunta": "Seu firewall está atualizado contra as últimas ameaças zero-day?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#ZeroDay",
+      "#Firewall",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena": "painel",
+    "terminal_titulo": "DEFESA CONTRA ZERO-DAY",
+    "terminal": [
+      [
+        "",
+        "Vulnerabilidade CVE-2026-76418 detectada.",
+        "risco"
+      ],
+      [
+        "",
+        "Status: Exploração ativa em dispositivos Cisco ASA/FTD.",
+        "risco"
+      ],
+      [
+        "$ ",
+        "Verificar versão do software Cisco ASA/FTD.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Aplicar atualização de segurança do fabricante.",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Desativar autenticação secundária SSL VPN como mitigação.",
+        "cmd"
+      ],
+      [
+        "",
+        "Sistema protegido contra CVE-2026-76418.",
+        "ok"
+      ]
+    ]
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

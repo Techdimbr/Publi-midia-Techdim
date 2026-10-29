@@ -1,0 +1,54 @@
+{
+  "titulo": "Cabos Submarinos: Alerta nos EUA sobre risco de sabotagem à infraestrutura global da internet",
+  "pontos": [
+    "Navios chineses próximos a cabos submarinos no Pacífico acendem alerta nos EUA sobre possível sabotagem à infraestrutura que sustenta parte crucial da internet mundial.",
+    "Relatório da Comissão de Revisão Econômica e de Segurança EUA-China (USCC) avalia pontos frágeis e capacidades de uso duplo, como submersíveis, da China.",
+    "Interrupções graves poderiam forçar dados a rotas mais longas, impactando serviços de internet, computação em nuvem e operações financeiras globais."
+  ],
+  "fecho": "Proteger a infraestrutura crítica é vital para a continuidade dos negócios. A TECHDIM oferece soluções robustas de cibersegurança e TI.",
+  "motivo": "Este alerta sublinha a importância estratégica da proteção da infraestrutura de rede global para empresas brasileiras.",
+  "fontes": [
+    [
+      "canaltech.com.br",
+      "https://canaltech.com.br/telecom/navios-chineses-rondam-cabos-de-google-e-meta-e-acendem-alerta-nos-eua/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "Infraestrutura Submarina:",
+    "titulo_destaque": "O Fio da Internet Global",
+    "historia": "A internet diária depende de vasta rede de cabos submarinos, a espinha dorsal da comunicação global. Conectam continentes, permitindo fluxo de dados, nuvem e transações financeiras. Sua vulnerabilidade é um risco sistêmico que afeta a todos.",
+    "licoes": [
+      [
+        "Monitore sua Rede",
+        "Garanta visibilidade e monitoramento proativo de toda a sua infraestrutura de TI, da borda à nuvem."
+      ],
+      [
+        "Diversifique Conexões",
+        "Avalie a redundância e resiliência de suas conexões de internet e serviços em nuvem para evitar pontos únicos de falha."
+      ],
+      [
+        "Proteja o Essencial",
+        "Invista em cibersegurança defensiva e governança de dados para proteger os ativos críticos da sua empresa."
+      ]
+    ],
+    "pergunta": "Sua empresa está preparada para falhas na infraestrutura de comunicação global?",
+    "hashtags": [
+      "#CabosSubmarinos",
+      "#Ciberseguranca",
+      "#InfraestruturaTI",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "globo",
+        "monitor"
+      ],
+      "legenda": "RESILIÊNCIA DA INFRAESTRUTURA CRÍTICA"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

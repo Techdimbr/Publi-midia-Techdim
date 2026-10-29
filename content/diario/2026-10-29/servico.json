@@ -1,0 +1,49 @@
+{
+  "titulo": "Suporte de TI: Sua PME precisa de um time proativo, não de um 'quebra-galho'.",
+  "pontos": [
+    "Muitas PMEs enfrentam interrupções e lentidão por falta de um suporte de TI dedicado e estratégico, que vá além do reativo.",
+    "A ausência de manutenção preventiva e monitoramento constante leva a problemas recorrentes que impactam a produtividade e a segurança dos dados.",
+    "Um suporte especializado garante que a infraestrutura esteja otimizada, atualizada e pronta para as demandas do dia a dia, evitando surpresas."
+  ],
+  "fecho": "A TECHDIM oferece suporte de TI proativo e estratégico, garantindo que sua operação se mantenha eficiente e segura, focada no seu negócio.",
+  "motivo": "PMEs precisam de TI robusta para competir, e o suporte adequado é a base para isso.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Seu suporte de TI é um",
+    "titulo_destaque": "investimento ou um custo?",
+    "historia": "Muitas empresas veem o TI como um gasto apenas quando algo falha. Um suporte estratégico transforma esse custo em um investimento contínuo, prevenindo problemas e otimizando recursos para o crescimento do negócio.",
+    "licoes": [
+      [
+        "Visão Proativa",
+        "Não espere a falha. Monitore, atualize e otimize sistemas antes que parem sua operação."
+      ],
+      [
+        "Segurança Contínua",
+        "Implemente e mantenha defesas cibernéticas, backups e políticas de acesso para proteger dados."
+      ],
+      [
+        "Otimização de Recursos",
+        "Use a tecnologia para melhorar processos, reduzir custos e aumentar a eficiência da equipe."
+      ]
+    ],
+    "pergunta": "Sua TI está impulsionando ou apenas reagindo aos desafios do seu negócio?",
+    "hashtags": [
+      "#SuporteTI",
+      "#PME",
+      "#Infraestrutura",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "notebook",
+        "engrenagens",
+        "grafico",
+        "documento"
+      ],
+      "legenda": "TI ESTRATÉGICA PARA SUA PME"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

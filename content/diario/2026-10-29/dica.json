@@ -1,0 +1,48 @@
+{
+  "titulo": "LGPD na prática: 4 itens que o auditor de dados pede primeiro na sua PME",
+  "pontos": [
+    "Auditorias de LGPD focam em evidências de conformidade, não apenas em políticas escritas. Prepare-se para mostrar como sua empresa protege dados.",
+    "Os primeiros itens solicitados incluem o registro de operações de tratamento, o relatório de impacto à proteção de dados (RIPD), o plano de resposta a incidentes e as evidências de treinamentos.",
+    "Apresentar esses documentos e processos de forma organizada e atualizada demonstra maturidade e compromisso com a proteção de dados pessoais."
+  ],
+  "fecho": "A TECHDIM ajuda sua empresa a implementar processos e ferramentas que garantem a conformidade com a LGPD, protegendo seus dados e sua reputação.",
+  "motivo": "Entender o que um auditor busca é crucial para preparar sua PME para a LGPD e evitar multas.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "LGPD na prática:",
+    "titulo_destaque": "o que o auditor pede.",
+    "historia": "Imagine um auditor de dados chegando à sua empresa. Ele não quer apenas ouvir, mas ver provas concretas de que a LGPD é levada a sério. Estar preparado é crucial para demonstrar conformidade e evitar problemas.",
+    "licoes": [
+      [
+        "Registro de Operações",
+        "Mantenha um inventário claro de todos os dados pessoais coletados, como são usados e por quanto tempo. Isso é fundamental."
+      ],
+      [
+        "Relatório de Impacto",
+        "Avalie os riscos de privacidade de novos projetos ou sistemas. O RIPD mostra que sua empresa pensa na proteção desde o início."
+      ],
+      [
+        "Plano de Incidentes",
+        "Tenha um protocolo detalhado para responder a vazamentos de dados. Agilidade e transparência são essenciais em caso de crise."
+      ]
+    ],
+    "pergunta": "Sua empresa está pronta para apresentar essas evidências a um auditor?",
+    "hashtags": [
+      "#LGPD",
+      "#GovernancaDeDados",
+      "#Ciberseguranca",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "escritorio",
+      "elementos": [
+        "documento",
+        "notebook",
+        "engrenagens"
+      ],
+      "legenda": "LGPD: CONFORMIDADE COMPROVADA"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}
