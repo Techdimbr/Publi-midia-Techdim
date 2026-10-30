@@ -1,0 +1,49 @@
+{
+  "titulo": "Atualização de Software: Controle de segurança essencial para sua PME",
+  "pontos": [
+    "Software desatualizado é uma porta aberta para ataques. Manter sistemas e aplicativos em dia é a primeira linha de defesa contra vulnerabilidades conhecidas.",
+    "Muitas atualizações corrigem falhas de segurança críticas que poderiam ser exploradas por cibercriminosos, protegendo dados e a continuidade do negócio.",
+    "A falta de patches pode levar a incompatibilidades e instabilidade, impactando a produtividade e exigindo intervenções de emergência mais caras."
+  ],
+  "fecho": "A TECHDIM ajuda sua empresa a implementar políticas eficazes de atualização, garantindo a segurança e o bom funcionamento da sua infraestrutura.",
+  "motivo": "A atualização de software é uma prática básica, mas frequentemente negligenciada, com grandes impactos na segurança e operação das empresas.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Atualização de Software:",
+    "titulo_destaque": "É Segurança Ativa.",
+    "historia": "Imagine sua empresa como um prédio. Cada software é uma porta ou janela. Se não forem mantidas, podem enferrujar ou ter fechaduras fracas, tornando-as fáceis de arrombar. Atualizar é como reforçar essas entradas.",
+    "licoes": [
+      [
+        "Inventário Completo",
+        "Mapeie todos os softwares e sistemas operacionais em uso, incluindo dispositivos IoT e aplicativos de terceiros."
+      ],
+      [
+        "Planeje as Atualizações",
+        "Estabeleça um cronograma regular para aplicar patches de segurança e novas versões, testando antes em ambiente controlado."
+      ],
+      [
+        "Automatize o Possível",
+        "Utilize ferramentas para automatizar atualizações de sistemas operacionais e aplicativos, minimizando a intervenção manual."
+      ]
+    ],
+    "pergunta": "Sua PME tem um plano claro para manter todos os softwares atualizados?",
+    "hashtags": [
+      "#AtualizacaoDeSoftware",
+      "#Ciberseguranca",
+      "#Hardening",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "monitor",
+        "escudo",
+        "chip"
+      ],
+      "legenda": "DEFESA CONTÍNUA CONTRA AMEAÇAS"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

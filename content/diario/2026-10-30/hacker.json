@@ -1,0 +1,78 @@
+{
+  "titulo": "Vulnerabilidade GitLab: Falha crítica CVE-2026-97229 é explorada ativamente",
+  "pontos": [
+    "CISA confirma exploração ativa da falha crítica CVE-2026-97229 no GitLab, que permite a execução remota de código por atacantes não autenticados.",
+    "A vulnerabilidade, um overflow de inteiro no compilador de expressões regulares CI/CD, afeta GitLab CE e EE em versões específicas (19.4.2, 19.3.5, 19.2.8).",
+    "A CISA ordenou agências federais a corrigir até domingo e recomenda que empresas privadas priorizem a aplicação imediata dos patches."
+  ],
+  "fecho": "A TECHDIM oferece cibersegurança defensiva para sua infraestrutura, garantindo que vulnerabilidades como esta não comprometam sua operação.",
+  "motivo": "É crucial alertar sobre vulnerabilidades ativamente exploradas que exigem ação imediata para proteção corporativa.",
+  "fontes": [
+    [
+      "bleepingcomputer.com",
+      "https://www.bleepingcomputer.com/news/security/hackers-now-exploiting-max-severity-gitlab-flaw-in-attacks/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "GitLab sob ataque: Falha crítica",
+    "titulo_destaque": "CVE-2026-97229 explorada",
+    "historia": "A CISA (Agência de Cibersegurança e Infraestrutura dos EUA) emitiu um alerta urgente sobre a exploração ativa de uma vulnerabilidade crítica no GitLab. Esta falha permite que atacantes executem código arbitrário remotamente.",
+    "licoes": [
+      [
+        "Atualize Imediato",
+        "Aplique os patches do GitLab nas versões 19.4.2, 19.3.5 e 19.2.8 (CE/EE) para corrigir a CVE-2026-97229."
+      ],
+      [
+        "Monitore Atividade",
+        "Utilize ferramentas de detecção de ameaças para identificar tentativas de exploração em suas instâncias GitLab."
+      ],
+      [
+        "Reforce a Defesa",
+        "Considere hardening da infraestrutura e revisão de políticas de segurança para mitigar riscos de execução remota de código."
+      ]
+    ],
+    "pergunta": "Sua equipe já verificou e aplicou os patches críticos do GitLab?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#Vulnerabilidade",
+      "#GitLab",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena": "painel",
+    "terminal_titulo": "DEFESA CONTRA VULNERABILIDADE CRÍTICA",
+    "terminal": [
+      [
+        "",
+        "STATUS: ALERTA DE VULNERABILIDADE CRÍTICA NO GITLAB",
+        "risco"
+      ],
+      [
+        "",
+        "CVE-2026-97229 SENDO EXPLORADA ATIVAMENTE",
+        "risco"
+      ],
+      [
+        "$ ",
+        "Verificar versão do GitLab CE/EE em uso",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Aplicar atualização para as versões corrigidas",
+        "cmd"
+      ],
+      [
+        "$ ",
+        "Monitorar logs para tentativas de exploração",
+        "cmd"
+      ],
+      [
+        "",
+        "AÇÃO: INFRAESTRUTURA PROTEGIDA CONTRA AMEAÇAS",
+        "ok"
+      ]
+    ]
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

@@ -1,0 +1,48 @@
+{
+  "titulo": "Hardening de Servidores: Não deixe sua infraestrutura ser um alvo fácil",
+  "pontos": [
+    "Servidores e estações com configurações padrão de fábrica ou desatualizadas são portas abertas para ataques cibernéticos, mesmo com antivírus e firewall.",
+    "Ataques exploram configurações fracas, serviços desnecessários e credenciais padrão para obter acesso inicial, escalar privilégios e comprometer dados.",
+    "Um processo de hardening sistemático reduz a superfície de ataque, aplicando configurações de segurança robustas e removendo vulnerabilidades conhecidas."
+  ],
+  "fecho": "A TECHDIM oferece serviço de hardening de servidores e estações, blindando sua infraestrutura contra as ameaças mais comuns e avançadas.",
+  "motivo": "Configurações seguras são a primeira linha de defesa ativa contra invasões.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Servidor e Estação: ",
+    "titulo_destaque": "Alvo ou Fortaleza?",
+    "historia": "Muitas empresas investem em hardware robusto e licenças de software caras, mas negligenciam a configuração de segurança. É como ter um carro blindado com as janelas abertas. O hardening transforma cada ponto de acesso em um obstáculo para invasores.",
+    "licoes": [
+      [
+        "Reduza a Superfície",
+        "Desative serviços e portas desnecessárias. Cada funcionalidade ativa é um potencial vetor de ataque."
+      ],
+      [
+        "Aplique Patches",
+        "Mantenha sistemas operacionais e softwares atualizados. Patches corrigem falhas exploradas por cibercriminosos."
+      ],
+      [
+        "Configure o Acesso",
+        "Implemente políticas de senha forte, MFA e princípio do menor privilégio para todos os usuários e serviços."
+      ]
+    ],
+    "pergunta": "Seus servidores e estações de trabalho estão realmente protegidos ou apenas ligados?",
+    "hashtags": [
+      "#Hardening",
+      "#Ciberseguranca",
+      "#Infraestrutura",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "escudo",
+        "chip"
+      ],
+      "legenda": "INFRAESTRUTURA BLINDADA"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

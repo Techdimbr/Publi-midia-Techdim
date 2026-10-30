@@ -1,0 +1,54 @@
+{
+  "titulo": "IA Gemini: Edição interativa de documentos no chat otimiza fluxos de trabalho",
+  "pontos": [
+    "Google Gemini agora permite criar, visualizar e editar documentos (PDFs, Docs, Sheets, apresentações) diretamente no chat, sem sair da interface.",
+    "Usuários podem fazer edições manuais e solicitar modificações à IA, combinando comandos de linguagem natural e ajustes diretos no conteúdo.",
+    "A versão web oferece suporte mais amplo (Docs, Sheets, Markdown, TXT, código) que a mobile (PDFs), já disponível em português para todos os usuários."
+  ],
+  "fecho": "A TECHDIM otimiza sua infraestrutura e integra IA para impulsionar a produtividade e segurança da informação em sua PME.",
+  "motivo": "A integração de IA em ferramentas de produtividade redefine a eficiência operacional das empresas.",
+  "fontes": [
+    [
+      "canaltech.com.br",
+      "https://canaltech.com.br/inteligencia-artificial/sem-sair-do-chat-gemini-ganha-edicao-interativa-de-documentos-no-celular-e-na-web/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "Produtividade com IA: Edite documentos",
+    "titulo_destaque": "sem sair do chat.",
+    "historia": "Imagine otimizar a criação e revisão de relatórios, propostas ou planilhas. Com o Gemini, a IA se torna uma ferramenta interativa para ajustar conteúdos, combinar edições manuais e comandos, tudo no mesmo ambiente de conversa.",
+    "licoes": [
+      [
+        "Fluxo Unificado",
+        "Crie, edite e revise documentos diretamente no chat, sem alternar entre aplicativos."
+      ],
+      [
+        "Colaboração IA/Humana",
+        "Combine edições manuais com comandos de IA para ajustes rápidos e precisos."
+      ],
+      [
+        "Eficiência Operacional",
+        "Reduza o tempo gasto em tarefas repetitivas, focando na estratégia e qualidade do conteúdo."
+      ]
+    ],
+    "pergunta": "Como a IA pode otimizar a gestão de documentos na sua empresa hoje?",
+    "hashtags": [
+      "#IAGemini",
+      "#ProdutividadeIA",
+      "#DocumentosDigitais",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "cidade",
+      "elementos": [
+        "nuvem",
+        "monitor",
+        "celular",
+        "grafico"
+      ],
+      "legenda": "IA ACESSÍVEL: PRODUTIVIDADE NO SEU DIA A DIA"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}
