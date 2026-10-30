@@ -83,5 +83,32 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "20:55",
+    "tema": "servico",
+    "titulo": "Hardening de Servidores: Não deixe sua infraestrutura ser um alvo fácil",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "20h55-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139591243390486",
+      "instagram": "https://www.instagram.com/p/DfIz7JJlQS8/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7522083757030313984/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139591243390486",
+      "instagram": "18101819981185897",
+      "linkedin": "urn:li:share:7522083757030313984"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
