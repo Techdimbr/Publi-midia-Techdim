@@ -1,0 +1,31 @@
+[
+  {
+    "hora": "14:00",
+    "tema": "noticias",
+    "titulo": "IA Gemini: Edição interativa de documentos no chat otimiza fluxos de trabalho",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "14h00-noticias.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139539229390486",
+      "instagram": "https://www.instagram.com/p/DfIEbK0l-J3/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4019482259317275494",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7521979314972790786/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139539229390486",
+      "instagram": "18129243532891836",
+      "instagram_stories": "17976943566151201",
+      "linkedin": "urn:li:share:7521979314972790786"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
+  }
+]
