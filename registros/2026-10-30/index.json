@@ -56,5 +56,32 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "18:34",
+    "tema": "dica",
+    "titulo": "Atualização de Software: Controle de segurança essencial para sua PME",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "18h34-dica.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139575355390486",
+      "instagram": "https://www.instagram.com/p/DfIjyR6F3Z5/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7522048283356073985/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139575355390486",
+      "instagram": "18124463921514320",
+      "linkedin": "urn:li:share:7522048283356073985"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
