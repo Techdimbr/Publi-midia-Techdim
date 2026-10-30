@@ -16,3 +16,15 @@ Tudo que foi planejado, gerado, publicado, comentado, apagado, editado ou testad
 | 14:00 | 💬 comentou | Notícias de Tecnologia | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/DfIEbK0l-J3/) |
 | 14:00 | 🖼️ gerado | Notícias de Tecnologia | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
 | 14:00 | 📱 story | Notícias de Tecnologia | instagram_stories | id 17976943566151201 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4019482259317275494) |
+| 16:11 | ▶️ iniciado | Cibersegurança · IA · Hacker |  | execução iniciada | agendamento automático |  | [abrir](https://github.com/Techdimbr/Publi-midia-Techdim/actions/runs/41113028454) |
+| 16:11 | 🗓️ planejado | Cibersegurança · IA · Hacker |  | pauta: Vulnerabilidade GitLab: Falha crítica CVE-2026-97229 é explorada ativamente — curadoria: Claude (Routine) — pauta do dia | agendamento automático |  |  |
+| 16:11 | 🖼️ gerado | Cibersegurança · IA · Hacker | linkedin | 1 imagem(ns) | agendamento automático |  |  |
+| 16:11 | ✅ publicado | Cibersegurança · IA · Hacker | linkedin | id urn:li:share:7522012154057854976 | agendamento automático |  | [abrir](https://www.linkedin.com/feed/update/urn:li:share:7522012154057854976/) |
+| 16:11 | 🖼️ gerado | Cibersegurança · IA · Hacker | facebook | 1 imagem(ns) | agendamento automático |  |  |
+| 16:11 | ✅ publicado | Cibersegurança · IA · Hacker | facebook | id 1167193706481148_122139555537390486 | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122139555537390486) |
+| 16:11 | 💬 comentou | Cibersegurança · IA · Hacker | facebook | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.facebook.com/122132402349390486/posts/122139555537390486) |
+| 16:11 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram | 1 imagem(ns) | agendamento automático |  |  |
+| 16:11 | ✅ publicado | Cibersegurança · IA · Hacker | instagram | id 17919750600544527 | agendamento automático |  | [abrir](https://www.instagram.com/p/DfITXEOF7EJ/) |
+| 16:11 | 💬 comentou | Cibersegurança · IA · Hacker | instagram | primeiro comentário com fontes e site | agendamento automático |  | [abrir](https://www.instagram.com/p/DfITXEOF7EJ/) |
+| 16:11 | 🖼️ gerado | Cibersegurança · IA · Hacker | instagram_stories | 1 imagem(ns) | agendamento automático |  |  |
+| 16:11 | 📱 story | Cibersegurança · IA · Hacker | instagram_stories | id 18483242581119345 | agendamento automático |  | [abrir](https://www.instagram.com/stories/techdimbr/4019547947226572743) |

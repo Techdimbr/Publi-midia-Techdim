@@ -27,5 +27,34 @@
       "facebook",
       "instagram"
     ]
+  },
+  {
+    "hora": "16:11",
+    "tema": "hacker",
+    "titulo": "Vulnerabilidade GitLab: Falha crítica CVE-2026-97229 é explorada ativamente",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "16h11-hacker.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "publicado",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139555537390486",
+      "instagram": "https://www.instagram.com/p/DfITXEOF7EJ/",
+      "instagram_stories": "https://www.instagram.com/stories/techdimbr/4019547947226572743",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7522012154057854976/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139555537390486",
+      "instagram": "17919750600544527",
+      "instagram_stories": "18483242581119345",
+      "linkedin": "urn:li:share:7522012154057854976"
+    },
+    "comentou": [
+      "facebook",
+      "instagram"
+    ]
   }
 ]
