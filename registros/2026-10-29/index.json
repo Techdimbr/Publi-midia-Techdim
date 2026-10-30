@@ -83,5 +83,32 @@
     "comentou": [
       "facebook"
     ]
+  },
+  {
+    "hora": "21:01",
+    "tema": "servico",
+    "titulo": "Suporte de TI: Sua PME precisa de um time proativo, não de um 'quebra-galho'.",
+    "curadoria": "Claude (Routine) — pauta do dia",
+    "arquivo": "21h01-servico.md",
+    "redes": {
+      "facebook": "publicado",
+      "instagram": "publicado",
+      "instagram_stories": "-",
+      "linkedin": "publicado"
+    },
+    "links": {
+      "facebook": "https://www.facebook.com/122132402349390486/posts/122139375375390486",
+      "instagram": "https://www.instagram.com/p/DfGPud_l_ZT/",
+      "instagram_stories": "",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:share:7521722690110648320/"
+    },
+    "ids": {
+      "facebook": "1167193706481148_122139375375390486",
+      "instagram": "18175256014457670",
+      "linkedin": "urn:li:share:7521722690110648320"
+    },
+    "comentou": [
+      "facebook"
+    ]
   }
 ]
