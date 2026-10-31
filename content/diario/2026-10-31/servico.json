@@ -1,0 +1,47 @@
+{
+  "titulo": "Infraestrutura e redes: garanta estabilidade e segurança para sua PME",
+  "pontos": [
+    "Redes instáveis e gargalos de hardware geram lentidão diária e interrompem a operação das equipes na sua empresa.",
+    "A engenharia da TECHDIM realiza o diagnóstico completo e a reestruturação física e lógica de redes corporativas.",
+    "Projetamos ambientes robustos com foco em alta disponibilidade, segmentação de tráfego e segurança perimetral."
+  ],
+  "fecho": "Conte com a experiência da TECHDIM para blindar sua infraestrutura. Acesse techdimbr.github.io/techdimbr.",
+  "motivo": "Empresas crescem, mas redes mal estruturadas limitam a produtividade e expõem dados a falhas críticas.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Infraestrutura sólida é a base",
+    "titulo_destaque": "para o seu negócio.",
+    "historia": "Uma rede corporativa eficiente não depende apenas de equipamentos caros, mas de planejamento, organização de cabos e regras rígidas de segurança e tráfego.",
+    "licoes": [
+      [
+        "Mapeamento lógico",
+        "Identificamos gargalos e pontos de falha única em toda a estrutura de rede da sua empresa."
+      ],
+      [
+        "Hardening de ativos",
+        "Configuramos firewalls, switches e pontos de acesso com foco em defesa contra acessos não autorizados."
+      ],
+      [
+        "Cabeamento organizado",
+        "Padronizamos racks e conexões físicas para facilitar manutenções e evitar desligamentos acidentais."
+      ]
+    ],
+    "pergunta": "Sua rede atual aguenta o crescimento da sua empresa?",
+    "hashtags": [
+      "#Infraestrutura",
+      "#Redes",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "nuvem",
+        "escudo"
+      ],
+      "legenda": "INFRAESTRUTURA RESILIENTE"
+    }
+  },
+  "gerado_por": "gemini (gemini-flash-lite-latest), pauta de reserva"
+}

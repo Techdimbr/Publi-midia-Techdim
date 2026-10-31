@@ -1,0 +1,54 @@
+{
+  "titulo": "Entire: Plataforma Git com IA e servidores locais no Brasil impulsiona devs",
+  "pontos": [
+    "A Entire, nova plataforma de hospedagem Git do ex-CEO do GitHub, Thomas Dohmke, expandiu operações para o Brasil com infraestrutura de servidores locais.",
+    "Projetos de desenvolvedores brasileiros agora podem ser hospedados localmente, garantindo mais estabilidade, menor latência e opção de residência de dados no país.",
+    "A plataforma se diferencia ao permitir colaboração entre humanos e agentes de IA, além de um sistema inovador de revisão de código baseado em 'Trails', superando pull requests."
+  ],
+  "fecho": "A evolução das plataformas com IA e infraestrutura local reforça a necessidade de otimizar sua TI e governança de dados.",
+  "motivo": "Este assunto é relevante hoje pela expansão de infraestrutura de desenvolvimento e IA no Brasil, impactando a gestão de projetos de software.",
+  "fontes": [
+    [
+      "tecnoblog.net",
+      "https://tecnoblog.net/noticias/entire-do-ex-ceo-do-github-ja-hospeda-codigos-no-brasil/"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "IA na Hospedagem Git:",
+    "titulo_destaque": "Código Mais Perto.",
+    "historia": "A chegada da Entire ao Brasil com servidores locais e suporte a agentes de IA demonstra a crescente demanda por infraestrutura de desenvolvimento robusta e inteligente. Isso impacta diretamente a agilidade e segurança dos projetos corporativos.",
+    "licoes": [
+      [
+        "Infraestrutura Local",
+        "Reduz latência e aumenta a estabilidade para equipes de desenvolvimento, otimizando o ciclo de vida do software."
+      ],
+      [
+        "IA e Colaboração",
+        "Plataformas que integram IA no desenvolvimento e revisão de código aceleram projetos e elevam a qualidade final."
+      ],
+      [
+        "Residência de Dados",
+        "Manter dados no país é crucial para governança e conformidade, especialmente para empresas com requisitos regulatórios."
+      ]
+    ],
+    "pergunta": "Sua equipe de desenvolvimento já explora as vantagens da IA e infraestrutura local?",
+    "hashtags": [
+      "#IACorporativa",
+      "#InfraestruturaTI",
+      "#DesenvolvimentoDeSoftware",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "datacenter",
+      "elementos": [
+        "rack",
+        "chip",
+        "nuvem",
+        "monitor"
+      ],
+      "legenda": "INFRAESTRUTURA INTELIGENTE E LOCAL"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

@@ -1,0 +1,83 @@
+{
+  "titulo": "Vulnerabilidade Ivanti: Falhas em cadeia concedem acesso root não autenticado",
+  "pontos": [
+    "A CISA adicionou falhas críticas no Ivanti Connect Secure (ICS) ao seu catálogo KEV após exploração ativa em campo, revelando uma cadeia de ataque.",
+    "A cadeia de ataque combina bypass de autenticação, execução remota de código (RCE) e escalonamento de privilégios para acesso root não autenticado.",
+    "O ator de ameaça UTA0576 focou na extração de credenciais, metadados AD, senhas de administrador e chaves BitLocker. Patches já foram liberados."
+  ],
+  "fecho": "A TECHDIM oferece soluções de cibersegurança defensiva e governança de dados para proteger sua infraestrutura contra ameaças avançadas.",
+  "motivo": "A exploração ativa de vulnerabilidades críticas exige atenção imediata para proteger sistemas de acesso remoto.",
+  "fontes": [
+    [
+      "thehackernews.com",
+      "https://thehackernews.com/2026/10/attackers-chain-three-ivanti-connect.html"
+    ]
+  ],
+  "infografico": {
+    "titulo_branco": "Sua VPN Ivanti está atualizada?",
+    "titulo_destaque": "Ataques avançados exploram falhas.",
+    "historia": "Ataques recentes contra Ivanti Connect Secure (ICS) demonstram como falhas em sequência podem levar a acesso total não autenticado. Um vetor crítico para empresas com VPNs, exigindo patches imediatos e monitoramento constante.",
+    "licoes": [
+      [
+        "Atualize Imediato",
+        "Aplique os patches da Ivanti para CVE-2026-111357 e CVE-2026-118527 em todas as versões do ICS."
+      ],
+      [
+        "Monitore Acessos",
+        "Verifique logs de acesso para atividades incomuns, especialmente extração de credenciais ou reconhecimento de host."
+      ],
+      [
+        "Reforce Defesas",
+        "Implemente MFA e princípios de privilégio mínimo para limitar o impacto de qualquer comprometimento."
+      ]
+    ],
+    "pergunta": "Seus sistemas de acesso remoto estão protegidos contra cadeias de exploração?",
+    "hashtags": [
+      "#Ciberseguranca",
+      "#Vulnerabilidade",
+      "#Ivanti",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena": "painel",
+    "terminal_titulo": "STATUS DA DEFESA CIBERNÉTICA",
+    "terminal": [
+      [
+        "",
+        "Análise de Vulnerabilidades Críticas:",
+        "txt"
+      ],
+      [
+        "$ ",
+        "Verificar versão do Ivanti Connect Secure",
+        "cmd"
+      ],
+      [
+        "",
+        "Status: Versões afetadas identificadas.",
+        "risco"
+      ],
+      [
+        "$ ",
+        "Aplicar patches de segurança do fabricante",
+        "cmd"
+      ],
+      [
+        "",
+        "Status: Patches CVE-2026-111357 e CVE-2026-118527 aplicados.",
+        "ok"
+      ],
+      [
+        "$ ",
+        "Revisar logs de acesso e auditoria",
+        "cmd"
+      ],
+      [
+        "",
+        "Status: Nenhuma atividade suspeita detectada pós-patch.",
+        "ok"
+      ]
+    ]
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}

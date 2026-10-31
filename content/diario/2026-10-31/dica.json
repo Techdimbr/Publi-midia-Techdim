@@ -1,0 +1,48 @@
+{
+  "titulo": "Phishing: Como identificar e se defender de ataques que vão além do e-mail mal escrito",
+  "pontos": [
+    "Ataques de phishing evoluíram e agora utilizam técnicas sofisticadas, como engenharia social e falsificação de identidade, para enganar usuários.",
+    "Criminosos exploram múltiplos canais – SMS, mensagens em aplicativos, chamadas e até mesmo plataformas de colaboração – para induzir o clique em links maliciosos.",
+    "É crucial que as PMEs invistam em treinamento contínuo para suas equipes, ensinando a reconhecer os sinais de um ataque e a verificar a autenticidade das comunicações."
+  ],
+  "fecho": "A TECHDIM oferece soluções de cibersegurança defensiva e treinamentos para proteger sua equipe contra as ameaças de phishing mais recentes.",
+  "motivo": "Ameaças de phishing são uma das principais portas de entrada para ataques cibernéticos em empresas, exigindo vigilância constante.",
+  "fontes": [],
+  "infografico": {
+    "titulo_branco": "Phishing não é mais só",
+    "titulo_destaque": "e-mail mal escrito.",
+    "historia": "O phishing evoluiu. Não se trata mais apenas de mensagens óbvias. Ataques modernos são personalizados, usam dados reais e exploram a confiança para enganar. Sua equipe precisa estar preparada para identificar essas novas táticas.",
+    "licoes": [
+      [
+        "Verifique o Remetente",
+        "Confira o endereço de e-mail completo e o nome de exibição. Desconfie de pequenas alterações."
+      ],
+      [
+        "Cuidado com Links",
+        "Passe o mouse sobre links para ver o URL real antes de clicar. Nunca insira credenciais em páginas suspeitas."
+      ],
+      [
+        "Atenção ao Conteúdo",
+        "Procure por erros gramaticais, senso de urgência, ofertas boas demais ou pedidos incomuns de dados."
+      ]
+    ],
+    "pergunta": "Sua equipe sabe como identificar um ataque de phishing sofisticado hoje?",
+    "hashtags": [
+      "#Phishing",
+      "#Ciberseguranca",
+      "#SegurancaDaInformacao",
+      "#TI",
+      "#TECHDIM"
+    ],
+    "cena_composta": {
+      "fundo": "laboratorio",
+      "elementos": [
+        "monitor",
+        "escudo",
+        "celular"
+      ],
+      "legenda": "DEFESA ATIVA CONTRA PHISHING"
+    }
+  },
+  "gerado_por": "gemini (gemini-2.5-flash), pauta de reserva"
+}
